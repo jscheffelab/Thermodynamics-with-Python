@@ -1,0 +1,22 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+options:
+  numbered: true
+chapters:
+#- file: markdown
+#- file: notebooks
+#- file: markdown-notebooks
+- file: chapters/About
+- file: chapters/Brief Introduction to Python
+- file: chapters/Brief Introduction to Thermodynamics
+- file: chapters/Evaluation of Properties
+- file: chapters/First Law of Thermodynamics
+- file: chapters/First Law of Thermodynamics Continued
+- file: chapters/References Cited
+- file: chapters/Exercise 1
+- file: chapters/Exercise 2
+- file: chapters/Exercise 3
+- file: genindex
