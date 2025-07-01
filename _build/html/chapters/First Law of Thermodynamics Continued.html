@@ -1,0 +1,1463 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. First Law of Thermodynamics - Boundary Work and Specific Heats &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/First Law of Thermodynamics Continued';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. First Law of Thermodynamics - Open Systems" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html" />
+    <link rel="prev" title="5. First Law of Thermodynamics - Introduction to Closed Systems" href="First%20Law%20of%20Thermodynamics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Exercise%20Solutions.html">10. Exercise Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References%20Cited.html">12. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/First Law of Thermodynamics Continued.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/First Law of Thermodynamics Continued.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>First Law of Thermodynamics - Boundary Work and Specific Heats</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-boundary-work-reversible-processes">6.1. More on Boundary Work - Reversible Processes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-boundary-work-polytropic-process">6.2. More on Boundary Work - Polytropic Process</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-polytropic-process">6.2.1. Evaluating Polytropic Process</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-polytropic-work-isothermal-process">6.2.1.1. Example - Evaluating Polytropic Work - Isothermal Process</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-polytropic-work-numerically-with-python-s-scipy-package">6.2.1.2. Example - Evaluating Polytropic Work Numerically with Python’s scipy Package</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-polytropic-work-non-isothermal-process">6.2.1.3. Example - Evaluating Polytropic Work - Non-Isothermal Process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-heats">6.3. Specific Heats</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-heat-at-constant-volume">6.3.1. Specific Heat at Constant Volume</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-heat-at-constant-pressure">6.3.2. Specific Heat at Constant Pressure</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#molar-specific-heats">6.3.2.1. Molar Specific Heats</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-specific-heats-with-ideal-gases">6.4. Using Specific Heats with Ideal Gases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-c-rm-p-and-c-rm-v-for-ideal-gases">6.5. Relationship between <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> for Ideal Gases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-cantera-to-determine-c-rm-p-and-c-rm-v-for-ideal-gases">6.6. Using Cantera to Determine <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> for Ideal Gases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-changes-in-internal-energy-or-enthalpy-of-ideal-gases-using-specific-heats">6.7. Determining Changes in Internal Energy or Enthalpy of Ideal Gases using Specific Heats</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-changes-in-enthalpy-assuming-constant-average-and-temperature-dependent-c-rm-p">6.7.1. Example - Evaluating Changes in Enthalpy Assuming Constant, Average and Temperature Dependent <span class="math notranslate nohighlight">\(c_{\rm p}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-shomate-equation-knowing-specific-heats-as-a-function-of-temperature">6.7.2. Example - Evaluating Shomate Equation Knowing Specific Heats as a Function of Temperature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4">6.7.3. Exercise 4</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="first-law-of-thermodynamics-boundary-work-and-specific-heats">
+<span id="firstlawapplications"></span><h1><span class="section-number">6. </span>First Law of Thermodynamics - Boundary Work and Specific Heats<a class="headerlink" href="#first-law-of-thermodynamics-boundary-work-and-specific-heats" title="Link to this heading">#</a></h1>
+<p id="index-0">In the previous chapter <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-numref">Section 5</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-ref">First Law of Thermodynamics - Introduction to Closed Systems</span></a> we learned about various forms of heat transfer and work interactions and used or evaluated these with the help of <span class="xref std std-ref">energy conservation equation</span> for closed systems and evaluation of the relevant properties. We learned that for stationary, closed systems undergoing a process, the energy equation reduces to <span class="math notranslate nohighlight">\(\Delta U = Q_{\rm net} - W_{\rm net}\)</span> , where the internal energy is the combined microscopic forms of energy of the system (e.g., thermal energy), <span class="math notranslate nohighlight">\(Q_{\rm net}\)</span> is the net heat transfer and <span class="math notranslate nohighlight">\(W_{\rm net}\)</span> is the net work. When the heat transfer and work terms are added to the energy equation in numerical form, the correct sign should be applied to them, depending on the direction of the interaction. I.e., positive for heat transfer to the system and work from the system, and negative for heat transfer from the system and work to the system. Note that if you are solving for either <span class="math notranslate nohighlight">\(Q\)</span> or <span class="math notranslate nohighlight">\(W\)</span>, then the resulting sign is indicitive of the direction of heat transfer and you do not need to apply the correct sign. Refer to the section <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#energytransfer"><span class="std std-numref">Section 5.2</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#energytransfer"><span class="std std-ref">Energy Transfer and The First Law</span></a> from chapter <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-numref">Section 5</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-ref">First Law of Thermodynamics - Introduction to Closed Systems</span></a> for more discussion.</p>
+<p>For fixed volume systems, boundary work can be ignored, and in the absense of other work interactions the energy equation reduces to <span class="math notranslate nohighlight">\(Q_{\rm net} = \Delta U\)</span>. However, for variable volume systems such as piston-cylinders undergoing compression/expansion, we cannot ignore the boundary work. Refer to the prior examples <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#constv"><span class="std std-numref">Section 5.2.2.4</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#constv"><span class="std std-ref">Example - Constant Volume System</span></a> and <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#constp"><span class="std std-numref">Section 5.2.2.5</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#constp"><span class="std std-ref">Example - Constant Pressure System</span></a> from chapter <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-numref">Section 5</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-ref">First Law of Thermodynamics - Introduction to Closed Systems</span></a>. For the special case of constant pressure compression/expanion, we also showed that <span class="math notranslate nohighlight">\(Q_{\rm net} = \Delta H\)</span>, where H is the extensive property enthalpy and captures the internal energy and boundary work into a single term (<span class="math notranslate nohighlight">\(h = u + pv\)</span>). Refer to the section <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#enthalpy"><span class="std std-numref">Section 5.3</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#enthalpy"><span class="std std-ref">Enthalpy</span></a> from chapter <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-numref">Section 5</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-ref">First Law of Thermodynamics - Introduction to Closed Systems</span></a> for more discussion.</p>
+<p>In this chapter the concept of reversible, polytropic work is introduced which allows us to readily evaluate boundary work when pressure is not constant. Further, specific heats, <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> are introduced, which are thermodynamic properties that enable evaluation of internal energy and enthalpy changes by measurement of other system properties, such as temperature and pressure, which are readily measurable.</p>
+<section id="more-on-boundary-work-reversible-processes">
+<span id="reversibility"></span><h2><span class="section-number">6.1. </span>More on Boundary Work - Reversible Processes<a class="headerlink" href="#more-on-boundary-work-reversible-processes" title="Link to this heading">#</a></h2>
+<p>Reversible processes are those which can occur in the forward and reverse directions without any external input from the surroundings. They are idealized processes that are not possible in nature, but provide reference for the maximum or minimum input that is required to drive a process. For example, the maximum work output acheivable by lowering a weight from a high to low elevation is the change in gravitational potential energy, or <span class="math notranslate nohighlight">\(W = mg(h_2-h_1)\)</span>.  For a reversible process, the reverse direction (i.e., raising the weight back to its original elevation) should be equally possible without any added external input from the surroundings. The only way this is possible is if the work output gained from dropping the weight were used to raise the weight back to its original height. In reality, the work output will be lower than the change in potential energy because of other external factors that render processes irreversible, such as friction. Further, more work will need to be put into raising the mass than the idealized reversible work in order to overcome the frictional losses.</p>
+<p>As seen from the above example, friction is one type of irreversibility. Another is any form of heat transfer over a finite temperature gradient. This is because heat transfer can only occur in one direction spontaneously, i.e., from hot to cold. The only way to transfer heat back from a cool body to a warmer one would require an external work input (i.e., a heat pump, which we will learn about following a more in depth disussion of the Second Law of Thermodynamics, in later chapters), thereby rendering the process irreversible. Finally, another irreversibility is the unconstrained release of pressure, which is especially relevant for expansion and compression processes in piston-cylinder devices.</p>
+<p>To extract the maximum work via a reversible expansion process, expansion should be constrained in such a way that the external force (and thus pressure) that the system is acting against decreases gradually as volume increases. In essence, the internal and external forces are almost equal to each other, but one is infintessimally larger or smaller than the other. You can imagine this as an infinite series of weights or stops, such that as one is removed, the volume increases infinitesimally and the pressure decreases infinitesimally. In the opposite extreme case, or one that is completely irreversible resulting in the minimum work, the pressure is released in an unconstrained manner and the external force that the system works against is a minimum. Examples of unconstrained and constrained piston expansion, and the resulting pressure-volume curve that dictates the work output, is shown in <a class="reference internal" href="#first-law-cont-fig-a"><span class="std std-numref">Figure 6.1</span></a> below. Starting on the left, the expansion is completly unconstrained - the weights (indicated in red) are all removed simultanesouly and the piston expands until the internal and external pressures are equilibrated. Because all of the weight is removed at once, the external force during the expansion process is a minimum the entire time (indicated by the red area), resulting in minimum work (recall <span class="math notranslate nohighlight">\(W_{\rm mech} = \int_{1}^{2} F_{\rm ext}dx\)</span> or <span class="math notranslate nohighlight">\(W_{\rm mech} = \int_{1}^{2} pdV\)</span>). The middle case is partially constrainted and the weight has been removed in two iterations. By leaving part of the mass on the piston during the first expansion, more work was done compared to the unconstrained case because the external force was greater. This can be visualized by the added green area in the pressure-volume curve. Finally, on the right is a more constrined case where the weight has been divided into several pieces and removed one at a time. In this case, even more work is done because the external pressure, or force, is greater during more of the expansion process. This can be visualized by the added blue areas in the pressure-volume curve. The idealized reversible process is shown in the dashed line, where the internal force is only infinitesimally greater than the external force, which would be described by a series of inifinite weights. Of course, to realize the reversible process it would take an infinite period of time, which is why we can only approximate reversible processes but never realize them.</p>
+<figure class="align-default" id="first-law-cont-fig-a">
+<img alt="../_images/reversible_work.png" src="../_images/reversible_work.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Schematic depicting unconstrined expansion (left), partially constrained expansion (middle), and even more constrained expansion (right) which is the closest to a reversible process. The work associated with each of these processes is indicated by the magnitude of the areas under the colored portions. Red is the left unconstrined case, red and green the intermediate case and red, green and blue the most constrained case. The dashed line represents the competely constrained case, in which the internal pressure is only infinitesimally larger than the external pressure during the entire expansion process.</span><a class="headerlink" href="#first-law-cont-fig-a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="more-on-boundary-work-polytropic-process">
+<h2><span class="section-number">6.2. </span>More on Boundary Work - Polytropic Process<a class="headerlink" href="#more-on-boundary-work-polytropic-process" title="Link to this heading">#</a></h2>
+<p id="index-1">Constant pressure expansion and compression processes  were discussed in <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#mechanicalwork"><span class="std std-numref">Section 5.2.2.1</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#mechanicalwork"><span class="std std-ref">Mechanical Work</span></a>. In this scenario, evaluation of the boundary work from <span class="math notranslate nohighlight">\(W_{\rm mech} = \int_{1}^{2} pdV\)</span> is straightforward and reduces to <span class="math notranslate nohighlight">\(W_{\rm mech} = P\Delta V\)</span>. However, there are an infinite number of paths that could be taken during compression and expansion, and often pressure is not constant during these processes, as seen during the example of reversible expansion discussed above. For the special case of <strong>reversible</strong> compression and expansion processes involving an <strong>ideal gas</strong>, these are called <span class="xref std std-ref">polytropic processes</span>. The relationship between pressure and volume during polytropic processes is described mathematically as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-a">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-eq-a" title="Link to this equation">#</a></span>\[pV^\rm n = \rm {const.}\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is a constant called the polytropic exponent. Thus, during a polytropic process the product of <span class="math notranslate nohighlight">\(pV^{\rm n}\)</span> remains constant, even as pressure and volume both change. This expression is true using specific volume as well, i.e., <span class="math notranslate nohighlight">\(pv^{\rm n}\)</span> remains constant during a process. An example of different polytropic paths are shown below in <a class="reference internal" href="#first-law-cont-fig-b"><span class="std std-numref">Figure 6.2</span></a>.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">n</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">pi</span><span class="p">,</span><span class="n">Vi</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span><span class="mf">.5</span>
+<span class="n">const</span> <span class="o">=</span> <span class="n">pi</span><span class="o">*</span><span class="n">Vi</span><span class="o">**</span><span class="n">n</span>
+<span class="n">V</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">.5</span><span class="o">*</span><span class="n">Vi</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">Vi</span><span class="p">,</span><span class="mf">.25</span><span class="o">*</span><span class="n">Vi</span><span class="p">)</span>
+<span class="n">p</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)):</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">const</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">V</span><span class="o">**</span><span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;n = 0&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">110</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;n = .5&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">145</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;n = 1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">203</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;n = 1.5&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.30</span><span class="p">,</span><span class="mi">250</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$pV^\mathrm</span><span class="si">{n}</span><span class="s1"> = const$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">200</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Black&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$V$ $(\mathrm{m^3})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$p$ $({\mathrm</span><span class="si">{kPa}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Figures/polytropic_exponent.png&#39;</span><span class="p">)</span><span class="c1"># used to save the figure if you desire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:17: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:18: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:17: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:18: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_16051/3073569994.py:17: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.annotate(&#39;$pV^\mathrm{n} = const$&#39;, (0.5,200), color=&#39;Black&#39;, fontsize=12)
+/tmp/ipykernel_16051/3073569994.py:18: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.xlabel(&#39;$V$ $(\mathrm{m^3})$&#39;,  fontsize=12)
+/tmp/ipykernel_16051/3073569994.py:19: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.ylabel(&#39;$p$ $({\mathrm{kPa})}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/8c1ba4c45de8ee8973581e4bfc5fdf171829633d80b529ad8b210e2abaa5a239.png" src="../_images/8c1ba4c45de8ee8973581e4bfc5fdf171829633d80b529ad8b210e2abaa5a239.png" />
+</div>
+</details>
+</div>
+<figure class="align-default" id="first-law-cont-fig-b">
+<img alt="../_images/polytropic_exponent.png" src="../_images/polytropic_exponent.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Pressure verses volume for reversible processes with different polytropic exponents, <span class="math notranslate nohighlight">\(n\)</span>. The polytropic exponent dictates the path that is taken and is dependent on the amount of heat transfer during the expansion/compression process.</span><a class="headerlink" href="#first-law-cont-fig-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In the case of <span class="math notranslate nohighlight">\({\rm n} = 0\)</span>, this is an isobaric process, or <span class="math notranslate nohighlight">\(p_1=p_2\)</span>. When <span class="math notranslate nohighlight">\({\rm n} = 1\)</span>, or <span class="math notranslate nohighlight">\(p_1V_1=p_2V_2\)</span>,  this is representative of an isothermal process. We can see this from analysis of the ideal gas law, where</p>
+<div class="math notranslate nohighlight" id="equation-eq-b">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-eq-b" title="Link to this equation">#</a></span>\[\frac{p_1V_1}{m_1T_1}=R=\frac{p_2V_2}{m_2T_2}\]</div>
+<p>If the process is isothermal (<span class="math notranslate nohighlight">\(T_1=T_2\)</span>) and in a closed system with constant mass (<span class="math notranslate nohighlight">\(m_1=m_2\)</span>), then equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-b">(8.2)</a> reduces to the same as we conclude from a polytropic process with <span class="math notranslate nohighlight">\(\rm n=1\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq-c">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-eq-c" title="Link to this equation">#</a></span>\[p_1V_1=R=p_2V_2\]</div>
+<p>This is only possible if heat is added or rejected during expansion or compression, respectively.  And as n varies, this is representative of different degrees of heat transfer during during the compression or expansion process.</p>
+<section id="evaluating-polytropic-process">
+<h3><span class="section-number">6.2.1. </span>Evaluating Polytropic Process<a class="headerlink" href="#evaluating-polytropic-process" title="Link to this heading">#</a></h3>
+<p>Starting from the definition of mechanical work</p>
+<div class="math notranslate nohighlight" id="equation-eq-d">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-eq-d" title="Link to this equation">#</a></span>\[W_{\rm mech} = \int_{1}^{2} pdV\]</div>
+<p>and rearranging the polytropic equation to obtain pressure as a function of volume</p>
+<div class="math notranslate nohighlight" id="equation-eq-e">
+<span class="eqno">(6.5)<a class="headerlink" href="#equation-eq-e" title="Link to this equation">#</a></span>\[p = \frac{\rm {const.}}{V^\rm n}\]</div>
+<p>we can insert this into the work equation and integrate analytically</p>
+<div class="math notranslate nohighlight" id="equation-eq-f">
+<span class="eqno">(6.6)<a class="headerlink" href="#equation-eq-f" title="Link to this equation">#</a></span>\[W_{\rm mech} = \int_{1}^{2} \frac{\rm {const.}}{V^\rm n}dV = {\rm const.} \left. \frac{V^{1-\rm n}}{1-\rm n} \right|_{V_1}^{V_2}\]</div>
+<p>which reduces to the following in the case where n <span class="math notranslate nohighlight">\(\neq\)</span> 1 and const. = <span class="math notranslate nohighlight">\(p_1V_1^\rm n\)</span> or <span class="math notranslate nohighlight">\(p_2V_2^\rm n\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-g">
+<span class="eqno">(6.7)<a class="headerlink" href="#equation-eq-g" title="Link to this equation">#</a></span>\[W_{\rm mech} = \frac{p_2V_2 - p_1V_1}{1-\rm n}\]</div>
+<p>In the case where n = 1, then</p>
+<div class="math notranslate nohighlight" id="equation-eq-h">
+<span class="eqno">(6.8)<a class="headerlink" href="#equation-eq-h" title="Link to this equation">#</a></span>\[W_{\rm mech} = \int_{1}^{2} \frac{\rm {const.}}{V}dV =  {\rm (const.)} {\rm ln} (V)|_{V_1}^{V_2}  \]</div>
+<p>and with const. = <span class="math notranslate nohighlight">\(p_1V_1\)</span> = <span class="math notranslate nohighlight">\(p_2V_2\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-i">
+<span class="eqno">(6.9)<a class="headerlink" href="#equation-eq-i" title="Link to this equation">#</a></span>\[W_{\rm mech} = p_1V_1{\rm ln} \frac{V_2}{V_1} = p_2V_2{\rm ln} \frac{V_2}{V_1}\]</div>
+<section id="example-evaluating-polytropic-work-isothermal-process">
+<span id="polytropicexample1"></span><h4><span class="section-number">6.2.1.1. </span>Example - Evaluating Polytropic Work - Isothermal Process<a class="headerlink" href="#example-evaluating-polytropic-work-isothermal-process" title="Link to this heading">#</a></h4>
+<p>2 kg of N<sub>2</sub> at 100 kPa and 15 °C is contained within a piston cylinder. It is compressed to a final pressure of 600 kPa. During compression heat is transferred from the N<sub>2</sub> and the temperature remains constant. Determine the work input required. <span class="math notranslate nohighlight">\(M_{\rm N2}\)</span> = 28 kg kmol<sup>-1</sup></p>
+<blockquote>
+<div><p><strong>Solution</strong> - Recall that if polytropic expansion or compression is conducted isothermally then n=1. Therefore, the work equation we can use is from equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-i">(8.9)</a>. We will need to use either the ideal gas law or Cantera to solve for the specific volume at State 1 (100 kPa and 15 °C) and State 2 (600 kPa and 15 °C), and then determine the volume at each state by multiplying the specific volume times the mass. Alternatively, we could just use the ideal gas law to directly solve for the volume. Then knowing pressure and volume at states 1 and 2 we can directly solve for the work using <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-i">(8.9)</a>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#First State 1</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">m</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100000</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># celsius, Pa, kg</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span><span class="c1"># define species1 as nitrogen</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="n">T1</span><span class="p">,</span> <span class="n">p1</span> 
+<span class="n">v1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">V1</span><span class="o">=</span><span class="n">m</span><span class="o">*</span><span class="n">v1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span> <span class="s2">&quot;m3, Using Cantera&quot;</span><span class="p">)</span> <span class="c1">#units m^3</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">v</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">T</span><span class="p">):</span> <span class="c1"># we could have also used ideal gas</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">/</span><span class="mi">28</span><span class="o">*</span><span class="p">(</span><span class="n">T1</span><span class="o">+</span><span class="mf">273.15</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">p1</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># divide p by 100 because of units for ideal gas constant in kJ</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">v</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">T1</span><span class="p">),</span> <span class="s2">&quot;m3, Using Ideal Gas Equation&quot;</span><span class="p">)</span> <span class="c1">#units m^3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.7099180898606285 m3, Using Cantera
+1.711199357142857 m3, Using Ideal Gas Equation
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#State 2</span>
+<span class="n">T2</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">m</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">600000</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># celsius, Pa, kg</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span><span class="c1"># define species1 as nitrogen</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="n">T1</span><span class="p">,</span> <span class="n">p2</span> 
+<span class="n">v2</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">V2</span><span class="o">=</span><span class="n">m</span><span class="o">*</span><span class="n">v2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V2</span><span class="p">,</span> <span class="s2">&quot;m3, Using Cantera&quot;</span><span class="p">)</span> <span class="c1">#units m^3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2846013748242659 m3, Using Cantera
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="o">=</span><span class="n">p1</span><span class="o">*</span><span class="n">V1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">V2</span><span class="o">/</span><span class="n">V1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="s2">&quot;J&quot;</span><span class="p">)</span> <span class="c1">#units J</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The boundary work is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span> <span class="c1">#units kJ</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-306607.33315565734 J
+The boundary work is -306.61 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice, we could have also used only specific volumes within the logarithm and didn’t necessarily need to evaluate <span class="math notranslate nohighlight">\(V_2\)</span>. Also notice the negatice sign, which is an indication that work was done to the system - since this was a compression process, which requires work, this makes sense.</p>
+</section>
+<section id="example-evaluating-polytropic-work-numerically-with-python-s-scipy-package">
+<span id="polytropicexample2"></span><h4><span class="section-number">6.2.1.2. </span>Example - Evaluating Polytropic Work Numerically with Python’s scipy Package<a class="headerlink" href="#example-evaluating-polytropic-work-numerically-with-python-s-scipy-package" title="Link to this heading">#</a></h4>
+<p>Repeat above example, but use the Python package scipy.integrate sub-package to evaluate the boundary work integral. This is a numerical integration procedure described here (<a class="reference external" href="https://docs.scipy.org/doc/scipy/tutorial/integrate.html">https://docs.scipy.org/doc/scipy/tutorial/integrate.html</a>)- there are also ways to perform analytical computations using the Sympy package but its use is outside the scope of this text. There is extensive documentation of you would like to learn more - <a class="reference external" href="https://docs.sympy.org/latest/modules/integrals/integrals.html">https://docs.sympy.org/latest/modules/integrals/integrals.html</a>. For now, we will leverage the scipy package and import the integrate sub-package as the following line of code <span class="math notranslate nohighlight">\(import\)</span> <span class="math notranslate nohighlight">\(scipy.integrate\)</span> <span class="math notranslate nohighlight">\(as\)</span> <span class="math notranslate nohighlight">\(integrate\)</span>.</p>
+<blockquote>
+<div><p><strong>Solution</strong> - Recall that if polytropic expansion or compression is conducted isothermally then n=1. We wish  we to evaluate the integral <span class="math notranslate nohighlight">\(W_{\rm mech} = \int_{1}^{2} pdV\)</span>, where <span class="math notranslate nohighlight">\(pV = \rm const.\)</span> and <span class="math notranslate nohighlight">\(p_1V_1 = \rm const.\)</span>. Therefore, we can define pressure as a function of volume, and by solving for <span class="math notranslate nohighlight">\(V_1\)</span> at State 1 (100 kPa and 15 °C) and <span class="math notranslate nohighlight">\(V_2\)</span> at State 2 (600 kPa and 15 °C) using cantera we can evaluate the integral using <span class="math notranslate nohighlight">\(scipy.integrate\)</span></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#State 1</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">m</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100000</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># celsius, Pa, kg</span>
+<span class="c1">#State 2</span>
+<span class="n">T2</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">m</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">600000</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># celsius, Pa, kg</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span><span class="c1"># define species1 as nitrogen</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="n">T1</span><span class="p">,</span> <span class="n">p1</span> 
+<span class="n">v1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">V1</span><span class="o">=</span><span class="n">m</span><span class="o">*</span><span class="n">v1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="n">T2</span><span class="p">,</span> <span class="n">p2</span> 
+<span class="n">v2</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">V2</span><span class="o">=</span><span class="n">m</span><span class="o">*</span><span class="n">v2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span> <span class="s2">&quot;and&quot;</span><span class="p">,</span> <span class="n">V2</span><span class="p">,</span> <span class="s2">&quot;are V1 and V2 in m^3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.7099180898606285 and 0.2846013746854079 are V1 and V2 in m^3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">p</span><span class="p">(</span><span class="n">V</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">p1</span><span class="o">*</span><span class="n">V1</span><span class="o">/</span><span class="n">V</span> <span class="c1">#express pressure as a function of volume</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">integrate</span>
+<span class="n">work</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">V1</span><span class="p">,</span> <span class="n">V2</span><span class="p">)</span> <span class="c1"># quad is used for general purpose integration</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">work</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-306607.3332390848, 5.80017246903583e-07)
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>The first value is the value of the integral and the second is the estimated error. We are interested in the value which is <span class="math notranslate nohighlight">\(res[0]\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The boundary work is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">work</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span> <span class="c1"># Units kJ. Notice the value is identical to above.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The boundary work is -306.61 kJ
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-evaluating-polytropic-work-non-isothermal-process">
+<span id="polytropicexample3"></span><h4><span class="section-number">6.2.1.3. </span>Example - Evaluating Polytropic Work - Non-Isothermal Process<a class="headerlink" href="#example-evaluating-polytropic-work-non-isothermal-process" title="Link to this heading">#</a></h4>
+<p>2 kg of N<sub>2</sub> at 100 kPa and 15 °C is contained within a piston cylinder. It is compressed to a final pressure of 600 kPa and temperature of 100 °C. Determine the work input required. <span class="math notranslate nohighlight">\(M_{\rm N2}\)</span> = 28 kg kmol<sup>-1</sup></p>
+<blockquote>
+<div><p><strong>Solution</strong> - To determine the work, we will have to evaluate the polytopic exponent, n. We have enough information to solve for the volume at State 1 and State 1 using either Cantera or ideal gas law.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#State 1</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">m</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100000</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># celsius, Pa, kg</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span><span class="c1"># define species1 as nitrogen</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="n">T1</span><span class="p">,</span> <span class="n">p1</span>
+<span class="n">v1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">V1</span><span class="o">=</span><span class="n">m</span><span class="o">*</span><span class="n">v1</span>
+
+<span class="c1">#State 2</span>
+<span class="n">T2</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">m</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">600000</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># celsius, Pa, kg</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span><span class="c1"># define species1 as nitrogen</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="n">T2</span><span class="p">,</span> <span class="n">p2</span> 
+<span class="n">v2</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">V2</span><span class="o">=</span><span class="n">m</span><span class="o">*</span><span class="n">v2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span> <span class="s2">&quot;and&quot;</span><span class="p">,</span> <span class="n">V2</span><span class="p">,</span> <span class="s2">&quot;are V1 and V2 in m^3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.7099180898606285 and 0.3696353158332322 are V1 and V2 in m^3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, knowing <span class="math notranslate nohighlight">\(p_1\)</span>, <span class="math notranslate nohighlight">\(V_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span>, <span class="math notranslate nohighlight">\(V_2\)</span>, we can solve for n, knowing:</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(pV^{\rm n} = \rm const.\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>thus</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(p_1V_1^{\rm n} = p_2V_2^{\rm n}\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\({\rm ln}p_1+{\rm nln}V_1 = {\rm ln}p_2+{\rm nln}V_2\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\({\rm nln}\frac{V_1}{V_2} ={\rm ln}\frac{p_2}{p_1}\)</span>, and finally</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(n=\frac{{\rm ln}\frac{p_2}{p_1}}{{\rm ln}\frac{V_1}{V_2}}\)</span></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p2</span><span class="o">/</span><span class="n">p1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">V1</span><span class="o">/</span><span class="n">V2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;is the polytropic exponent&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.17
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> is the polytropic exponent
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote id="index-2">
+<div><p>We could also call the scipy.optimize subpackage in python to use the <span class="xref std std-ref">fsolve</span> function to solve for n directly without algebraic simplification as seen below.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsolve</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">poly</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">p1</span><span class="o">*</span><span class="n">V1</span><span class="o">**</span><span class="n">n</span><span class="o">-</span><span class="n">p2</span><span class="o">*</span><span class="n">V2</span><span class="o">**</span><span class="n">n</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">poly</span><span class="p">,</span><span class="mf">.8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;is the polytropic exponent&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.17 is the polytropic exponent
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Knowing <span class="math notranslate nohighlight">\(p_1\)</span>, <span class="math notranslate nohighlight">\(V_1\)</span>, <span class="math notranslate nohighlight">\(p_2\)</span>, <span class="math notranslate nohighlight">\(V_2\)</span>, and n we can then solve directly for the work using equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-g">(8.7)</a></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">work</span> <span class="o">=</span> <span class="p">(</span><span class="n">p2</span><span class="o">*</span><span class="n">V2</span><span class="o">-</span><span class="n">p1</span><span class="o">*</span><span class="n">V1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The boundary work is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">work</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The boundary work is -299.12 kJ
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="specific-heats">
+<h2><span class="section-number">6.3. </span>Specific Heats<a class="headerlink" href="#specific-heats" title="Link to this heading">#</a></h2>
+<p id="index-3">Recall the energy equation in differential form, which says <span class="math notranslate nohighlight">\(dU = \delta Q- \delta W\)</span>. While we have just learned how to quantify  work, which is readily determined via evaluation of easily measureable properties (i.e., pressure and volume), it would be equaly beneficial to quantify the heat transfer from some readily measureable properties. However, if we wish to use the energy equation to help us solve for the heat transfer, internal energy, or enthalpy, are not properties that are readily measurable.  Therefore, a property called <span class="xref std std-ref">specific heat</span> is defined, which relates either internal energy and enthalpy changes to changes in temperature, which is readily measureable.  The specific heat is defined as the energy required to raise the temperature of a system with mass 1 gram by 1 <span class="math notranslate nohighlight">\(^\circ\)</span>C (or 1 K). The amount of energy depends on if the system volume is fixed or allowed to vary (as in a piston-cylinder), and thus there are two specific heats that are definied. For a fixed volume system, the specific heat (<span class="math notranslate nohighlight">\(c_\rm v\)</span>) is indicated with a subscript v to indicate constant volume. For a constant pressure system, the specific heat (<span class="math notranslate nohighlight">\(c_\rm p\)</span>) is indicated with a subscript p to indicate constant pressure.</p>
+<p>The difference between <span class="math notranslate nohighlight">\(c_\rm v\)</span> and <span class="math notranslate nohighlight">\(c_\rm p\)</span> is exemplified below in <a class="reference internal" href="#first-law-cont-fig-c"><span class="std std-numref">Figure 6.3</span></a>. In the fixed volume system on the left there is no work done by the system, and the heat transfer is the change in internal energy. For the fixed pressure system on the right, there is work done because of expansion as heat is added to the system. Because of the extra work associated with raising the temperature of the fixed pressure system,  the required energy change to raise its temperature by 1 K is greater than the fixed volume system.</p>
+<figure class="align-default" id="first-law-cont-fig-c">
+<img alt="../_images/specific_heats.png" src="../_images/specific_heats.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Schematic depicting the difference between specific heat at constant volume (<span class="math notranslate nohighlight">\(c_\rm v\)</span>) and specific heat at constant pressure (<span class="math notranslate nohighlight">\(c_\rm p\)</span>). Because there is work done in the fixed pressure system on the right as energy is added, due to expansion, the required energy to raise its temperature by 1 K is greater than the fixed volume system.</span><a class="headerlink" href="#first-law-cont-fig-c" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="specific-heat-at-constant-volume">
+<h3><span class="section-number">6.3.1. </span>Specific Heat at Constant Volume<a class="headerlink" href="#specific-heat-at-constant-volume" title="Link to this heading">#</a></h3>
+<p>Starting from the specific energy equation in differential form, replacing the differential work with <span class="math notranslate nohighlight">\(pdv\)</span>,</p>
+<div class="math notranslate nohighlight" id="equation-eq-j">
+<span class="eqno">(6.10)<a class="headerlink" href="#equation-eq-j" title="Link to this equation">#</a></span>\[\delta q = du + pdv\]</div>
+<p>and differentiating with respect to temperature at constant volume</p>
+<div class="math notranslate nohighlight" id="equation-eq-k">
+<span class="eqno">(6.11)<a class="headerlink" href="#equation-eq-k" title="Link to this equation">#</a></span>\[\left( \frac{\partial q}{\partial T}\right)_{\rm v} = \left( \frac{\partial u}{\partial T} \right)_{\rm v}\]</div>
+<p>The left hand side of the equation, <span class="math notranslate nohighlight">\(\left( \frac{\partial q}{\partial T}\right)_{\rm v}\)</span>, is by definition the specific heat, <span class="math notranslate nohighlight">\(c_\rm v\)</span>. Therefore,</p>
+<div class="math notranslate nohighlight" id="equation-eq-l">
+<span class="eqno">(6.12)<a class="headerlink" href="#equation-eq-l" title="Link to this equation">#</a></span>\[c_{\rm v} = \left( \frac{\partial u}{\partial T} \right)_{\rm v}\]</div>
+</section>
+<section id="specific-heat-at-constant-pressure">
+<h3><span class="section-number">6.3.2. </span>Specific Heat at Constant Pressure<a class="headerlink" href="#specific-heat-at-constant-pressure" title="Link to this heading">#</a></h3>
+<p>Likewise, again starting from the specifc energy equation in differential form</p>
+<div class="math notranslate nohighlight" id="equation-eq-m">
+<span class="eqno">(6.13)<a class="headerlink" href="#equation-eq-m" title="Link to this equation">#</a></span>\[\delta q = du + pdv\]</div>
+<p>and differentiating the enthalpy equation (<span class="math notranslate nohighlight">\(h=u+pv\)</span>) and solving for <span class="math notranslate nohighlight">\(du\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq-n">
+<span class="eqno">(6.14)<a class="headerlink" href="#equation-eq-n" title="Link to this equation">#</a></span>\[du = dh - pdv - vdp\]</div>
+<p>we can substitute this back into the energy equation to show that</p>
+<div class="math notranslate nohighlight" id="equation-eq-o">
+<span class="eqno">(6.15)<a class="headerlink" href="#equation-eq-o" title="Link to this equation">#</a></span>\[\delta q = dh - vdp\]</div>
+<p>And differentiating with respect to remperature, keeping pressure constant</p>
+<div class="math notranslate nohighlight" id="equation-eq-p">
+<span class="eqno">(6.16)<a class="headerlink" href="#equation-eq-p" title="Link to this equation">#</a></span>\[\left( \frac{\partial q}{\partial T}\right)_{\rm p} = \left( \frac{\partial h}{\partial T} \right)_{\rm p}\]</div>
+<p>The left hand side of the equation, <span class="math notranslate nohighlight">\(\left( \frac{\partial q}{\partial T}\right)_{\rm p}\)</span>, is also by definition the specific heat, <span class="math notranslate nohighlight">\(c_\rm p\)</span>. Therefore,</p>
+<div class="math notranslate nohighlight" id="equation-eq-q">
+<span class="eqno">(6.17)<a class="headerlink" href="#equation-eq-q" title="Link to this equation">#</a></span>\[c_{\rm p} = \left( \frac{\partial h}{\partial T} \right)_{\rm p}\]</div>
+<section id="molar-specific-heats">
+<h4><span class="section-number">6.3.2.1. </span>Molar Specific Heats<a class="headerlink" href="#molar-specific-heats" title="Link to this heading">#</a></h4>
+<p>The above equations can also be expressed on a molar basis. That is</p>
+<div class="math notranslate nohighlight" id="equation-eq-r">
+<span class="eqno">(6.18)<a class="headerlink" href="#equation-eq-r" title="Link to this equation">#</a></span>\[\bar c_{\rm v} = \left( \frac{\partial \bar u}{\partial T} \right)_{\rm v}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-s">
+<span class="eqno">(6.19)<a class="headerlink" href="#equation-eq-s" title="Link to this equation">#</a></span>\[\bar c_{\rm p} = \left( \frac{\partial \bar h}{\partial T} \right)_{\rm p}\]</div>
+<p>Thus, although for the ensuing discussion where specific heats are expressed only on a mass basis, corresponding molar equations may also be assumed.</p>
+</section>
+</section>
+</section>
+<section id="using-specific-heats-with-ideal-gases">
+<span id="usingspecificheat"></span><h2><span class="section-number">6.4. </span>Using Specific Heats with Ideal Gases<a class="headerlink" href="#using-specific-heats-with-ideal-gases" title="Link to this heading">#</a></h2>
+<p>At this point, two equations have been derived which, at first glance are not entirely useful without further context. This is because of the nature of the partial differentials. If a process of interest were to occur only at constant volume or constant pressure, then we could use these equations to evaulate changes in internal energy or enthalpy, if we knew the specific heat at the pressure or volume of interest and its temperature dependence - e.g., <span class="math notranslate nohighlight">\(\Delta h = \int_{1}^{2} c_{\rm p} dT\)</span> . But more often than not, we are interested in processes where both pressure and/or volume are changing. And for real substances, internal energy and enthalpy are not functions of temperature only.</p>
+<p>Conveniently, for ideal gases, it turns out that internal energy is only a function of temperature, i.e., <span class="math notranslate nohighlight">\(u = f(T)\)</span>. This was shown by Joule in 1843 via an experiment in which he connected two spheres via a valve, one filled with a gas and the other evacuated. The spheres were placed within a larger system where temperature was carefully monitored. After letting the system and spheres thermally equilibrate, upon opening the valves and letting the pressure and specific volume change within the spheres, the was no observable change in temperature. The conclusion was that there was no energy exchange between the spheres and surrounding system, indicating that the internal energy of the spheres remained constant, even as pressure and volume changed. Therefore, for ideal gases,we can remove the partial derivitives from <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-l">(8.12)</a> and replace them with ordinary derivitives, in which case it reduces to</p>
+<div class="math notranslate nohighlight" id="equation-eq-t">
+<span class="eqno">(6.20)<a class="headerlink" href="#equation-eq-t" title="Link to this equation">#</a></span>\[c_{\rm v} = \frac{du}{dT}\]</div>
+<p>Upon rearrangement we can show that</p>
+<div class="math notranslate nohighlight" id="equation-eq-u">
+<span class="eqno">(6.21)<a class="headerlink" href="#equation-eq-u" title="Link to this equation">#</a></span>\[du = c_{\rm v} dT\]</div>
+<p>Understanding that internal energy is only a function of temperature for an ideal gas, we can also show that the enthalpy of an ideal gas is only a function of temperature. Starting from the definition of enthalpy</p>
+<div class="math notranslate nohighlight" id="equation-eq-v">
+<span class="eqno">(6.22)<a class="headerlink" href="#equation-eq-v" title="Link to this equation">#</a></span>\[h = u + pv\]</div>
+<p>and combining with the ideal gas law, which says <span class="math notranslate nohighlight">\(pv = RT\)</span>, we can show</p>
+<div class="math notranslate nohighlight" id="equation-eq-w">
+<span class="eqno">(6.23)<a class="headerlink" href="#equation-eq-w" title="Link to this equation">#</a></span>\[h = u + RT\]</div>
+<p>Because <span class="math notranslate nohighlight">\(u = f(T)\)</span> and the right hand side is also only a function of temperature, we can therefore say <span class="math notranslate nohighlight">\(h = f(T)\)</span>. <strong>At this point, there is one major implication of this observation - that is, if directly looking up internal energy or enthalpy of any ideal gas, e.g., from tables, Cantera, etc., you only need to know temperature. Not another property such as pressure or volume, as you would need to do for real substances.</strong></p>
+<p>Further, because enthalpy, like internal energy, of ideal gas is a function of temperature only, we can also remove the partial derivitives from <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-q">(8.17)</a> and replace them with ordinary derivities. Thus, <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-q">(8.17)</a> reduces to</p>
+<div class="math notranslate nohighlight" id="equation-eq-x">
+<span class="eqno">(6.24)<a class="headerlink" href="#equation-eq-x" title="Link to this equation">#</a></span>\[c_{\rm p} = \frac{dh}{dT}\]</div>
+<p>Upon rearrangement we can show that</p>
+<div class="math notranslate nohighlight" id="equation-eq-y">
+<span class="eqno">(6.25)<a class="headerlink" href="#equation-eq-y" title="Link to this equation">#</a></span>\[dh = c_{\rm p} dT\]</div>
+<p>Integrating <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-t">(8.20)</a>and <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-x">(8.25)</a> we can show that</p>
+<div class="math notranslate nohighlight" id="equation-eq-z">
+<span class="eqno">(6.26)<a class="headerlink" href="#equation-eq-z" title="Link to this equation">#</a></span>\[\Delta u = \int_{1}^{2} c_{\rm v} dT\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight" id="equation-eq-a1">
+<span class="eqno">(6.27)<a class="headerlink" href="#equation-eq-a1" title="Link to this equation">#</a></span>\[\Delta h = \int_{1}^{2} c_{\rm p} dT\]</div>
+<p id="index-4">Therefore, if we know how specific heats depend on temperature, we could readily evaluate changes in enthalpy and internal energy. There are a variety of assumptions that are typically made at this point, with varying degrees of accuracy. The first and typically least accurate is to assume that specific heat is independent of temperature, in which case it can be removed from the integral and its evaluation then reduces to <span class="math notranslate nohighlight">\(c_{\rm v} \Delta T\)</span> or <span class="math notranslate nohighlight">\(c_{\rm p} \Delta T\)</span>. The second and more accurate (but not most accurate) is to assume specific heat varies linearly with temperature and use an average value, in which case it can also be removed from the integral and evaluation reduces to reduces to <span class="math notranslate nohighlight">\(c_{\rm v,avg} \Delta T\)</span> or <span class="math notranslate nohighlight">\(c_{\rm p,avg} \Delta T\)</span>. Finally, analytical integration is performed which is the most accurate (apart from a numerical approach). Analytical fits for ideal gas specific heats are usually documented in the form of the <span class="xref std std-ref">Shomate Equation</span>, as seen below</p>
+<div class="math notranslate nohighlight" id="equation-eq-a2">
+<span class="eqno">(6.28)<a class="headerlink" href="#equation-eq-a2" title="Link to this equation">#</a></span>\[c_{\rm p} = A + BT + CT^2 + DT^3 + \frac{E}{T^2}\]</div>
+<p>where A,B,C,D and E are empirically determined fitting parameters and <span class="math notranslate nohighlight">\(T\)</span> is temperature in K divided by 1000. For example, from NIST’s Chemistry webBook (<a class="reference external" href="https://webbook.nist.gov/chemistry/">https://webbook.nist.gov/chemistry/</a>) which has thermophysical properties of a number of species, you would find the following when searching for N2 and selecting “Gas Phase” thermodynamic data.</p>
+<figure class="align-default" id="first-law-cont-fig-d">
+<img alt="../_images/shomate_equation.png" src="../_images/shomate_equation.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.4 </span><span class="caption-text">Excerpt from NIST Chemistry WebBook showing fitting parameters to the Shomate Equation for N<sub>2</sub> gas. Here, molar specific heat is shown, with the degree symbol indicating that it is molar specific heat at standard conditions of 1 bar and 298.15 K.</span><a class="headerlink" href="#first-law-cont-fig-d" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#first-law-cont-fig-d"><span class="std std-numref">Figure 6.4</span></a> shows fitting parameters not only for specific heat, but other thermodynamic properties. Note that although in this figure it is referred to as heat capacity, this is actually molar specific heat, because it is defined per unit mol. Note also the degree symbol, which indicates that this is the molar specific heat capacity at standard conditions, i.e., 1 bar and 298.15 K.</p>
+<p>Specific heats are also documented in many other places, for example NIST-JANAF thermochemical tables (<a class="reference external" href="https://janaf.nist.gov/">https://janaf.nist.gov/</a>). An exerpt is shown below in <a class="reference internal" href="#first-law-cont-fig-e"><span class="std std-numref">Figure 6.5</span></a>, again for N<sub>2</sub> gas. Note that these values would be useful if you needed to know the specific heat at a particular temperature, for example if you were assuming it was constant or linear with temperature. Or, from these data you could calculate the Shomate fitting paramaters (or fit your own chosen function), or use to numerically integrate in order to determine changes in enthalpy. Discussion of the other tabulated properties shown here is outside the scope of our discussion for now, but will become relevant later for calculations concerning chemically reacting thermodynamic systems.</p>
+<figure class="align-default" id="first-law-cont-fig-e">
+<img alt="../_images/nist_janaf.png" src="../_images/nist_janaf.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.5 </span><span class="caption-text">Excerpt from NIST-JANAF Thermochemical Tables showing molar specific heat (and other properties) as a function of temperature. The degree symbol indicates that it is computed at standard conditions of 1 bar and 298.15 K.</span><a class="headerlink" href="#first-law-cont-fig-e" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="relationship-between-c-rm-p-and-c-rm-v-for-ideal-gases">
+<h2><span class="section-number">6.5. </span>Relationship between <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> for Ideal Gases<a class="headerlink" href="#relationship-between-c-rm-p-and-c-rm-v-for-ideal-gases" title="Link to this heading">#</a></h2>
+<p>At this point, you may have noticed that only specific heats at constant pressure are shown in the NIST databases. There is a straightforward relationship between <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> that enables computation between one and the other, in the case of ideal gases.</p>
+<div class="math notranslate nohighlight" id="equation-eq-a3">
+<span class="eqno">(6.29)<a class="headerlink" href="#equation-eq-a3" title="Link to this equation">#</a></span>\[c_{\rm p} = c_{\rm v} + R\]</div>
+<p>Or in the case of molar specific heats.</p>
+<div class="math notranslate nohighlight" id="equation-eq-a4">
+<span class="eqno">(6.30)<a class="headerlink" href="#equation-eq-a4" title="Link to this equation">#</a></span>\[\bar{c}_{\rm p} = \bar{c}_{\rm v} + \bar{R}\]</div>
+<p>This relationship comes from differentiating the equation for enthalpy and subsitutting definitions of <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm v}\)</span>, as seen below.</p>
+<p><span class="math notranslate nohighlight">\(h=u+RT\)</span></p>
+<p><span class="math notranslate nohighlight">\(dh = du+RdT\)</span></p>
+<p><span class="math notranslate nohighlight">\(c_{\rm p}dT = c_{\rm v}dT+RdT\)</span></p>
+</section>
+<section id="using-cantera-to-determine-c-rm-p-and-c-rm-v-for-ideal-gases">
+<h2><span class="section-number">6.6. </span>Using Cantera to Determine <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> for Ideal Gases<a class="headerlink" href="#using-cantera-to-determine-c-rm-p-and-c-rm-v-for-ideal-gases" title="Link to this heading">#</a></h2>
+<p>Of course, since we have learned to use the Cantera package to evaluate thermodynamic properties we can take advantage of its database to evaluate specific heats. When assuming ideal gas behavior, it will be important to calculate specific heats at ambient pressure (e.g. 1 bar) or lower where the calculated values are, for the most part, independent of pressure. This is because the values we have so far learned to extract from Cantera are for real gases, not ideal gases. But, as long as the pressure is sufficiently low there is very little deviation between ideal gas and real gas behavior for most monotonic (e.g. Ar, He) and diatomic gases (e.g., N<sub>2</sub>, O<sub>2</sub>).</p>
+<p>Now, lets consider how good our assumptions are regarding pressure (or volume) independence of monotonic gases. For this we can call <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> by following our defined species, in this case nitrogen, with <em>.cp</em> or <em>.cv</em>, such as <em>species1.cp</em>. The units are <span class="math notranslate nohighlight">\(\frac{\rm kg}{\rm J K}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#State 1</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="n">m</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100000</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># celsius, Pa, kg</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span><span class="c1"># define species1 as nitrogen</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="n">T1</span><span class="p">,</span> <span class="n">p1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">cp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1040.5742633016914
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, lets define a list of pressures, from 10 kPa to 100 Mpa and evaluate <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> at each pressure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1">#pressures = 10**np.arange(1,6,1) # alternative approach</span>
+<span class="n">pressures</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">cps</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pressures</span><span class="p">:</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="n">T1</span><span class="p">,</span> <span class="n">i</span>
+    <span class="n">cps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">cp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1038.784070996967, 1038.7856817302738, 1038.8017891406482, 1038.9628692697945, 1040.574263297144]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As seen, only at the highest pressure of 100 MPa does the specific heat deviate largely from values at lower pressures. And 100 MPa is well above the practical operating pressure for many typical applications. Thus, we can confidently say that for ideal gases specific heats are independent of pressure - and the same conclusion would be drawn if we were to perform calculations as a function of specific volume.</p>
+<p>For real gases however, such as water vapor, the pressure (and volume) dependence is greater, as seen below. Although it isn’t until 100 MPa that the deviation becomes very large.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#pressures = 10**np.arange(1,6,1) # alternative approach</span>
+<span class="n">pressures</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">cps</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pressures</span><span class="p">:</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">473.15</span><span class="o">+</span><span class="n">T1</span><span class="p">,</span> <span class="n">i</span>
+    <span class="n">cps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">cp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1947.2793028311721, 1947.308009567147, 1947.5804720336023, 1950.3244450337818, 1978.3364173330692]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="determining-changes-in-internal-energy-or-enthalpy-of-ideal-gases-using-specific-heats">
+<span id="id1"></span><h2><span class="section-number">6.7. </span>Determining Changes in Internal Energy or Enthalpy of Ideal Gases using Specific Heats<a class="headerlink" href="#determining-changes-in-internal-energy-or-enthalpy-of-ideal-gases-using-specific-heats" title="Link to this heading">#</a></h2>
+<p>As mentioned in <a class="reference internal" href="#usingspecificheat"><span class="std std-numref">Section 6.4</span></a> <a class="reference internal" href="#usingspecificheat"><span class="std std-ref">Using Specific Heats with Ideal Gases</span></a>, there are several aproaches, with varying degrees of accuracy for evaluating internal energy or enthalpy using specific heats. These are</p>
+<ol class="arabic simple">
+<li><p>(Least Accurate) Assume specific heat is independent of temperature. In this case <span class="math notranslate nohighlight">\(\Delta u =c_{\rm v} \Delta T\)</span> and <span class="math notranslate nohighlight">\(\Delta h=c_{\rm p} \Delta T\)</span>. Typically the specific heat at ambient conditions (e.g. 300 K) is chosen, but if it is known closer to the temperature range of interest then this would result in better accuracy.</p></li>
+<li><p>(More Accurate) Assume specific heat is linear with temperature and use an average specific heat. In this case <span class="math notranslate nohighlight">\(\Delta u =c_{\rm v,avg} \Delta T\)</span> and <span class="math notranslate nohighlight">\(\Delta h=c_{\rm v,avg} \Delta T\)</span></p></li>
+<li><p>(EvenMore Accurate) Determine temperature dependence and integrate analytically using Shomate equation (<a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-z">(8.27)</a>).</p></li>
+</ol>
+<p>The most accurate approach to determining changes in internal energy or enthalpy is to simply use tabulated values or software such as Cantera, which is the equivilent of numerical integration.</p>
+<p>We will go through examples of each of these approaches and discuss their accuracy by comparing results to changes in internal energy or enthalpy that are estimated using Cantera. First, let’s take a look at the temperature dependence of <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> of some gases, namely nitrogen, methane and hydrogen. As seen in <a class="reference internal" href="#first-law-cont-fig-c"><span class="std std-numref">Figure 6.3</span></a>, depending on the type of gas, the variability with temperature can change greatly. For example, nitrogen and methane both increase almost linearly with increasing temperature, but <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> of N<sub>2</sub> changes only by about 10% while for CH<sub>4</sub> it nearly doubles. <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> of H<sub>2</sub> is less dependent on temperature, but is a minimum at an intermediate temperature.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># add one subplot</span>
+<span class="n">ax2</span><span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># add a second subplot</span>
+<span class="n">ax3</span><span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># add a third subplot</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span><span class="c1"># define species1 as nitrogen</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span><span class="c1"># define species2. Methane does not exist as a class in Cantera so we need to do things a bit differently to define it. See Cantera documentation for more details</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;CH4:1&#39;</span> <span class="c1">#gri30 is a mixture of gases and here we set the mixture to only be methane</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span><span class="c1"># define species3 as Hydrogen</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="mi">100000</span> <span class="c1">#Pa</span>
+<span class="n">temperatures</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span> <span class="c1"># temperature in degrees C</span>
+<span class="n">cps1</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">cps2</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">cps3</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temperatures</span><span class="p">:</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">p1</span>
+    <span class="n">cps1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">cp</span><span class="p">)</span>
+    <span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">p1</span>
+    <span class="n">cps2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species2</span><span class="o">.</span><span class="n">cp</span><span class="p">)</span>
+    <span class="n">species3</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">p1</span>
+    <span class="n">cps3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species3</span><span class="o">.</span><span class="n">cp</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">temperatures</span><span class="p">,</span><span class="n">cps1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Nitrogen&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">temperatures</span><span class="p">,</span><span class="n">cps2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Methane&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">temperatures</span><span class="p">,</span><span class="n">cps3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hydrogen&#39;</span><span class="p">)</span>
+   
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature $(\mathrm{^\circ C})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature $(\mathrm{^\circ C})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature $(\mathrm{^\circ C})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$c_{\mathrm</span><span class="si">{p}</span><span class="s1">}$ $({\mathrm{kJ kg^{-1}K^{-1}})}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1"># add spacing between subplots</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Nitrogen&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Methane&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Hydrogen&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Figures/cp_temp_depend.png&#39;</span><span class="p">)</span><span class="c1"># used to save the figure if you desire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:29: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:30: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:31: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:32: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:29: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:30: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:31: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:32: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_16051/2418094824.py:29: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  ax1.set_xlabel(&#39;Temperature $(\mathrm{^\circ C})$&#39;,  fontsize=12)
+/tmp/ipykernel_16051/2418094824.py:30: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  ax2.set_xlabel(&#39;Temperature $(\mathrm{^\circ C})$&#39;,  fontsize=12)
+/tmp/ipykernel_16051/2418094824.py:31: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  ax3.set_xlabel(&#39;Temperature $(\mathrm{^\circ C})$&#39;,  fontsize=12)
+/tmp/ipykernel_16051/2418094824.py:32: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  ax1.set_ylabel(&#39;$c_{\mathrm{p}}$ $({\mathrm{kJ kg^{-1}K^{-1}})}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/c4de1e9ca0b821b863c7a424863fc8467bd92cf3c6d2899a31d16e4a7e7af1b3.png" src="../_images/c4de1e9ca0b821b863c7a424863fc8467bd92cf3c6d2899a31d16e4a7e7af1b3.png" />
+</div>
+</details>
+</div>
+<figure class="align-default" id="first-law-cont-fig-f">
+<img alt="../_images/cp_temp_depend.png" src="../_images/cp_temp_depend.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.6 </span><span class="caption-text">Specific heats of three different gases at ambient pressure, shown as a function of temperature between 300 and 1000 <span class="math notranslate nohighlight">\(^\circ C\)</span>. From left to right, Nitrogen, Methane and Hydrogen.</span><a class="headerlink" href="#first-law-cont-fig-f" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Thus, from simple visual inspection of <a class="reference internal" href="#first-law-cont-fig-f"><span class="std std-numref">Figure 6.6</span></a> we can infer that assuming constant <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> will be least accurate for methane, followed by nitrogen and then hydrogen. Further, assuming an average value and a dependence that is linear with temperature will likely be more acceptable for nitrogen and methane compared to hydrogen. Lets compare:</p>
+<section id="example-evaluating-changes-in-enthalpy-assuming-constant-average-and-temperature-dependent-c-rm-p">
+<span id="cpexample1"></span><h3><span class="section-number">6.7.1. </span>Example - Evaluating Changes in Enthalpy Assuming Constant, Average and Temperature Dependent <span class="math notranslate nohighlight">\(c_{\rm p}\)</span><a class="headerlink" href="#example-evaluating-changes-in-enthalpy-assuming-constant-average-and-temperature-dependent-c-rm-p" title="Link to this heading">#</a></h3>
+<p>Determine the change in enthalpy of H<sub>2</sub> as it is heated from 500 K to 700 K using the three specific heat approaches discussed above. Compare to changes in enthalpy estimated using Cantera.</p>
+<blockquote>
+<div><p><strong>Solution</strong> - First, lets determine the change in enthalpy directly using Cantera. For H<sub>2</sub>:</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="mi">700</span><span class="p">,</span><span class="mi">100000</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">h</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h2</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">h</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The change in enthalpy is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">((</span><span class="n">h2</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ/kg&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The change in enthalpy is 2908.91 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Now, using the least accurate, constant specific heat approach. Lets use <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> at ambient conditions, or the default 300 K in Cantera.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="mi">700</span><span class="p">,</span><span class="mi">100000</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">cp</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">cp</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The specific heat is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">cp</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J/kg/K&quot;</span> <span class="p">)</span>
+<span class="n">delta_h</span><span class="o">=</span><span class="n">cp</span><span class="o">*</span><span class="p">(</span><span class="n">T2</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The change in enthalpy using constant specific heat is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">delta_h</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ kg-1&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The specific heat is 14862.6 J/kg/K
+The change in enthalpy using constant specific heat is 2972.52 kJ kg-1
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Now, lets calculate the average specific heat and use this to calculate <span class="math notranslate nohighlight">\(\Delta h\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="mi">700</span><span class="p">,</span><span class="mi">100000</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span><span class="n">P</span>
+<span class="n">cp1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">cp</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span><span class="n">P</span>
+<span class="n">cp2</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">cp</span>
+<span class="n">cp_avg</span> <span class="o">=</span> <span class="p">(</span><span class="n">cp1</span><span class="o">+</span><span class="n">cp2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average specific heat is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">cp_avg</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J/kg/K&quot;</span> <span class="p">)</span>
+<span class="n">delta_h</span><span class="o">=</span><span class="n">cp_avg</span><span class="o">*</span><span class="p">(</span><span class="n">T2</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The change in enthalpy using constant specific heat is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">delta_h</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ kg&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The average specific heat is 14563.59 J/kg/K
+The change in enthalpy using constant specific heat is 2912.72 kJ kg
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Finally, lets calculate the change in ethalpy through analytical integration of the Shomate equation. We will find the equation from NIST Chemistry Webbook (<a class="reference external" href="https://webbook.nist.gov/chemistry/">https://webbook.nist.gov/chemistry/</a>) but can also determine this ourselves, as will be shown in a following, alternative approach after this example. For H2, the Shomate equation is <span class="math notranslate nohighlight">\(c_{\rm p} = A + BT + CT^2 + DT^3 + \frac{E}{T^2}\)</span>, with A = 33.066178, B = -11.363417, C = 11.432816, D = -2.772874, and E = -0.158558. To integrate this expression, we can either let Python do this for us using built in functions such as <em>scipy.integrate</em> or it is straightforward to do by hand as well. Both approaches are discussed. First, we will integrate ourselves, as shown below.</p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(\Delta h = \int_{1}^{2} c_{\rm p} dT\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Delta h = \left. AT + \frac{BT^2}{2} + \frac{CT^3}{3} + \frac{DT^4}{4} - \frac{E}{T^{-1}}  \right|_{T_1}^{T_2}\)</span></p>
+<p>with the corresponding code</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">E</span> <span class="o">=</span> <span class="mf">33.066178</span><span class="p">,</span><span class="o">-</span><span class="mf">11.363417</span><span class="p">,</span><span class="mf">11.432816</span><span class="p">,</span><span class="o">-</span><span class="mf">2.772874</span><span class="p">,</span><span class="o">-</span><span class="mf">0.158558</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cp_int</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">E</span><span class="p">):</span> <span class="c1">#this is the integrated form of the shomate equation, which we will evaluate at T1 and T2. Units J/mol</span>
+    <span class="k">return</span> <span class="n">A</span><span class="o">*</span><span class="n">T</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">T</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">C</span><span class="o">*</span><span class="n">T</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> <span class="n">D</span><span class="o">*</span><span class="n">T</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">4</span> <span class="o">+</span> <span class="n">E</span><span class="o">*</span><span class="n">T</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">delta_h</span><span class="o">=</span><span class="n">cp_int</span><span class="p">(</span><span class="mi">700</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">E</span><span class="p">)</span><span class="o">-</span><span class="n">cp_int</span><span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">E</span><span class="p">)</span> <span class="c1"># The units are J/mol, as seen from the NIST website. Thus we need to convert to kJ/kg or J/g to compare to our other calculations</span>
+<span class="n">M_H2</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># kg/kmol</span>
+<span class="n">delta_h</span><span class="o">=</span><span class="n">delta_h</span><span class="o">*</span><span class="mi">1000</span><span class="o">/</span><span class="n">M_H2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The change in enthalpy using the Shomate Equation is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">delta_h</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ/kg&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The change in enthalpy using the Shomate Equation is 2933.35 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<p>To integrate in Python we can also use the <em>scipy.integrate</em> package and import the <em>quad</em> function, as seen below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">quad</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cp</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">E</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">T</span> <span class="o">+</span> <span class="n">C</span><span class="o">*</span><span class="n">T</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">D</span><span class="o">*</span><span class="n">T</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="n">T</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">delta_h</span><span class="o">=</span><span class="n">quad</span><span class="p">(</span><span class="n">cp</span><span class="p">,</span> <span class="mi">500</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">700</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">33.066178</span><span class="p">,</span><span class="o">-</span><span class="mf">11.363417</span><span class="p">,</span><span class="mf">11.432816</span><span class="p">,</span><span class="o">-</span><span class="mf">2.772874</span><span class="p">,</span><span class="o">-</span><span class="mf">0.158558</span><span class="p">,))</span> <span class="c1"># Here the args represent our constant. We could have alternatively just let the function cp be dependent on T and inserted these values directly.</span>
+<span class="n">delta_h</span><span class="o">=</span><span class="n">delta_h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># The first output value is the integral and the second is the error. Thus we want only the first value in the output list.</span>
+<span class="n">M_H2</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># kg/kmol</span>
+<span class="n">delta_h</span><span class="o">=</span><span class="n">delta_h</span><span class="o">*</span><span class="mi">1000</span><span class="o">/</span><span class="n">M_H2</span> <span class="c1"># The units were J/mol, as seen from the NIST website. Thus we need to convert to kJ/kg or J/g to compare to our other calculations</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The change in enthalpy using the Shomate Equation and integrating it with scipy.integrate is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">delta_h</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ kg&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The change in enthalpy using the Shomate Equation and integrating it with scipy.integrate is 2933.35 kJ kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">,</span><span class="n">P</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="mi">700</span><span class="p">,</span><span class="mi">100000</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">species1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  hydrogen:
+
+       temperature   300 K
+          pressure   1.0133e+05 Pa
+           density   0.081843 kg/m^3
+  mean mol. weight   2.0159 kg/kmol
+    vapor fraction   1
+   phase of matter   supercritical
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy             28006             56457  J
+   internal energy         -1.21e+06       -2.4393e+06  J
+           entropy             64917        1.3087e+05  J/K
+    Gibbs function       -1.9447e+07       -3.9204e+07  J
+ heat capacity c_p             14863             29962  J/K
+ heat capacity c_v             10737             21644  J/K
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-evaluating-shomate-equation-knowing-specific-heats-as-a-function-of-temperature">
+<span id="cpexample2"></span><h3><span class="section-number">6.7.2. </span>Example - Evaluating Shomate Equation Knowing Specific Heats as a Function of Temperature<a class="headerlink" href="#example-evaluating-shomate-equation-knowing-specific-heats-as-a-function-of-temperature" title="Link to this heading">#</a></h3>
+<p>Determine parameters to the Shomate equation for H<sub>2</sub> by using the <em>scipy</em> function <em>curve_fit</em></p>
+<blockquote>
+<div><p><strong>Solution</strong> - First, we need to define our objective function, which is the Shomate Equation.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">shomate</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">E</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">T</span> <span class="o">+</span> <span class="n">C</span><span class="o">*</span><span class="n">T</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">D</span><span class="o">*</span><span class="n">T</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="n">T</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Then, we need to compile a list of specific heats at different temperatures. For this we will again use Cantera. But these could come from other sources such as NIST-JANAF</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span> <span class="c1">#define a temperature list, from 300 K to 100 K every 50 K</span>
+<span class="n">cps</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empy list for cps</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temps</span><span class="p">:</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="mi">100000</span> <span class="c1"># Everything calculated at 100 kPa</span>
+    <span class="n">cps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">cp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">temps</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">cps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[300 350 400 450 500 550 600 650 700 750 800 850 900 950]
+[14862.565558882909, 14647.86803115975, 14562.046680868487, 14523.003193748402, 14508.210386844778, 14513.200426749348, 14535.061244764198, 14571.105664278139, 14618.976750487958, 14676.655338398828, 14742.430564576087, 14814.860151230303, 14892.730062123708, 14975.01827957901]
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Now lets determine the Shomate fitting paramaters by using <em>curve_fit</em></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">curve_fit</span>
+<span class="n">fit_params</span><span class="o">=</span><span class="n">curve_fit</span><span class="p">(</span><span class="n">shomate</span><span class="p">,</span> <span class="n">temps</span><span class="p">,</span> <span class="n">cps</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># The fitted paramaters are the first values from the resulting list, thus we add [0] afterwards</span>
+<span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">E</span> <span class="o">=</span> <span class="n">fit_params</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Here are the fitted paramaters A,B,C,D and E:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">fit_params</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Here are the fitted paramaters A,B,C,D and E: [np.float64(12992.693108295514), np.float64(3.233326446376023), np.float64(-0.0027790492760506207), np.float64(1.5308826141905065e-06), np.float64(99342482.54084578)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fittedcps</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temps</span><span class="p">:</span>
+    <span class="n">fittedcps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">shomate</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">E</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fittedcps</span><span class="p">)</span> <span class="c1"># These are the fitted specific heats at each temperature in temps</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.float64(14857.715799511863), np.float64(14660.5194614441), np.float64(14560.242805866303), np.float64(14515.01436967812), np.float64(14503.324269408065), np.float64(14513.465743694434), np.float64(14538.853221799292), np.float64(14575.75575342196), np.float64(14622.119972448712), np.float64(14676.92268601107), np.float64(14739.797256159547), np.float64(14810.80901693958), np.float64(14890.315462351695), np.float64(14978.87651495708)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">temps</span><span class="p">,</span><span class="n">cps</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">temps</span><span class="p">,</span><span class="n">fittedcps</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$T$ , K&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$c_\mathrm</span><span class="si">{p}</span><span class="s1">$, $\mathrm</span><span class="si">{kJ}</span><span class="s1">$ $\mathrm{kg^{-1}}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Cantera&#39;</span><span class="p">,</span><span class="s1">&#39;fitted values from Shomate&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_16051/1938316306.py:5: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.ylabel(&#39;$c_\mathrm{p}$, $\mathrm{kJ}$ $\mathrm{kg^{-1}}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/0fb50cc6789c8a6687a7592a5aa6c2734e9955f3525bc7d28d07aede11005984.png" src="../_images/0fb50cc6789c8a6687a7592a5aa6c2734e9955f3525bc7d28d07aede11005984.png" />
+</div>
+</div>
+</section>
+<section id="exercise-4">
+<span id="exercise4"></span><h3><span class="section-number">6.7.3. </span>Exercise 4<a class="headerlink" href="#exercise-4" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Determine the change in enthalpy of O<sub>2</sub> as it is heated from 500 K to 700 K using</p>
+<ol class="arabic simple">
+<li><p>property evaluation in Cantera</p></li>
+<li><p>polynomial expression for specific heat as a function of temperature</p></li>
+<li><p>average specific heats</p></li>
+<li><p>constant specific heat at 300 K</p></li>
+</ol>
+</li>
+<li><p>A cylinder is fitted with a piston and has an initial volume of 0.1 m<sup>3</sup> and contains N<sub>2</sub> gas at 150 kPa, 25 °C. The piston is moved, compressing the N<sub>2</sub> until the pressure is 1 MPa and T = 150 °C. During compression, heat is transferred from the N<sub>2</sub>, and the work done on the system is 20 kJ. Determine the amount of heat transfer.</p></li>
+<li><p>A cylinder is fitted with a piston contains N<sub>2</sub> gas at 150 kPa, 25 °C. 300 kJ of heat is transferred to the system at constant pressure. Determine the temperature after heat addition using average specific heats. Note that an iterative solution approach is necessary.</p></li>
+<li><p>A frictionless piston–cylinder device contains 5 kg of nitrogen at 100 kPa and 250 K. Nitrogen is now compressed slowly according to the relation <span class="math notranslate nohighlight">\(PV\)</span><sup>1.4</sup> = constant until it reaches a final temperature of 450 K. Calculate the work input during this process.</p></li>
+<li><p>Nitrogen at an initial state of 300 K, 150 kPa, and 0.2 m<sup>3</sup> is compressed slowly in an isothermal process to a final pressure of 800 kPa. Determine the work done during this process.</p></li>
+<li><p>Argon is compressed in a polytropic process with n = 1.2 from 120 kPa and 30°C to 1200 kPa in a piston–cylinder device. Determine the final temperature of the argon.</p></li>
+<li><p>Determine the change in specific internal energy of hydrogen as it is heated from 200 to 800 K using a) the Shomate specific heat equation as a function of temperature, b) using an average cv value, c) using a room temperature cv value, and d) using Cantera.</p></li>
+<li><p>1 kg of oxygen is heated from 20 to 120°C. Determine the amount of heat transfer required when this is done during both a constant-volume process and an isobaric process. For each use</p>
+<ol class="arabic simple">
+<li><p>specific heat equation as a function of temperature</p></li>
+<li><p>using an average cv value</p></li>
+<li><p>using a room temperature cv value</p></li>
+<li><p>using Cantera.</p></li>
+</ol>
+</li>
+<li><p>Argon (c<sub>v</sub> = 0.3122 kJ/kg/K) is compressed in a polytropic process with n = 1.2 from 120 kPa and 10°C to 800 kPa in a piston–cylinder device. Determine the work produced and heat transferred during this compression process, in kJ/kg.</p></li>
+<li><p>A piston–cylinder device contains 2.2 kg of nitrogen initially at 100 kPa and 25°C. The nitrogen is now compressed slowly in a polytropic process during which <span class="math notranslate nohighlight">\(PV\)</span><sup>1.3</sup> = constant until the volume is reduced by one-half. Determine the work done and the heat transfer for this process.</p></li>
+</ol>
+<p><a class="reference internal" href="Exercise_Solutions/Exercise%204.html#exercise4solutions"><span class="std std-numref">Section 10.4</span></a> <a class="reference internal" href="Exercise_Solutions/Exercise%204.html#exercise4solutions"><span class="std std-ref">Exercise 4 Solutions</span></a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="First%20Law%20of%20Thermodynamics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>First Law of Thermodynamics - Introduction to Closed Systems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>First Law of Thermodynamics - Open Systems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-boundary-work-reversible-processes">6.1. More on Boundary Work - Reversible Processes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-boundary-work-polytropic-process">6.2. More on Boundary Work - Polytropic Process</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-polytropic-process">6.2.1. Evaluating Polytropic Process</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-polytropic-work-isothermal-process">6.2.1.1. Example - Evaluating Polytropic Work - Isothermal Process</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-polytropic-work-numerically-with-python-s-scipy-package">6.2.1.2. Example - Evaluating Polytropic Work Numerically with Python’s scipy Package</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-polytropic-work-non-isothermal-process">6.2.1.3. Example - Evaluating Polytropic Work - Non-Isothermal Process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-heats">6.3. Specific Heats</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-heat-at-constant-volume">6.3.1. Specific Heat at Constant Volume</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specific-heat-at-constant-pressure">6.3.2. Specific Heat at Constant Pressure</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#molar-specific-heats">6.3.2.1. Molar Specific Heats</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-specific-heats-with-ideal-gases">6.4. Using Specific Heats with Ideal Gases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-c-rm-p-and-c-rm-v-for-ideal-gases">6.5. Relationship between <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> for Ideal Gases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-cantera-to-determine-c-rm-p-and-c-rm-v-for-ideal-gases">6.6. Using Cantera to Determine <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> for Ideal Gases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-changes-in-internal-energy-or-enthalpy-of-ideal-gases-using-specific-heats">6.7. Determining Changes in Internal Energy or Enthalpy of Ideal Gases using Specific Heats</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-changes-in-enthalpy-assuming-constant-average-and-temperature-dependent-c-rm-p">6.7.1. Example - Evaluating Changes in Enthalpy Assuming Constant, Average and Temperature Dependent <span class="math notranslate nohighlight">\(c_{\rm p}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-shomate-equation-knowing-specific-heats-as-a-function-of-temperature">6.7.2. Example - Evaluating Shomate Equation Knowing Specific Heats as a Function of Temperature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4">6.7.3. Exercise 4</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

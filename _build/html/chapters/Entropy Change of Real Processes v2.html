@@ -1,0 +1,1384 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>9. Entropy Change of Real and Idealized Processes &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Entropy Change of Real Processes v2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10. Exercise Solutions" href="Exercise%20Solutions.html" />
+    <link rel="prev" title="8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators" href="Second%20Law%20of%20Thermodynamics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Exercise%20Solutions.html">10. Exercise Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References%20Cited.html">12. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/Entropy Change of Real Processes v2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Entropy Change of Real Processes v2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Entropy Change of Real and Idealized Processes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-change-of-ideal-gases">9.1. Entropy Change of Ideal Gases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-entropy-change-of-an-ideal-gas-with-and-without-specific-heats">9.1.1. Example - Evaluating Entropy Change of an Ideal Gas With and Without Specific Heats</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isentropic-processes-of-ideal-gases">9.2. Isentropic Processes of Ideal Gases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-steady-state-work">9.3. Reversible Steady State Work</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-isentropic-pumping">9.3.1. Example - Isentropic Pumping</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isentropic-efficiency">9.4. Isentropic Efficiency</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-isentropic-efficiency">9.4.1. Example - Isentropic Efficiency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-isentropic-efficiency-iterative-solution-approach">9.4.2. Example - Isentropic Efficiency Iterative Solution Approach</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="entropy-change-of-real-and-idealized-processes">
+<span id="entropy"></span><h1><span class="section-number">9. </span>Entropy Change of Real and Idealized Processes<a class="headerlink" href="#entropy-change-of-real-and-idealized-processes" title="Link to this heading">#</a></h1>
+<p>During the last chapter we motivated the idea of entropy from a statistical perspective and showed that for any real process the entropy (and multiplicity) is always maximized. This explains why there is a directionality to processes, such as the transfer of heat from hot to cold. And for any real process, there is always entropy generation and thus the entropy of the universe is increasing. Using our statistical interpreation with an assumption that entropy is an extensive thermodynamic property, we were able to derive a thermodynamic definition of entropy that relates the entropy change to the heat transfer divided by temperature. For a reversible process, these quantities are equal, and for an irreversible, or real, process we must also account for the entropy generation. In this chapter, we will build off of our concept of the thermodynamic definition of entropy to help analyze processes, similar to how we used internal energy and enthalpy to analyze processes in earlier chapters.</p>
+<p>Recall from last chapter in the thermodynamic discussion of entropy (<a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#thermodynamicentropy"><span class="std std-numref">Section 8.4</span></a> <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#thermodynamicentropy"><span class="std std-ref">Thermodynamic Definition of Entropy</span></a>), the following equation</p>
+<div class="math notranslate nohighlight" id="equation-eq-a">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-eq-a" title="Link to this equation">#</a></span>\[dS = \frac{1}{T} dU + \frac{p}{T} dV\]</div>
+<p>or in terms of specific properties</p>
+<div class="math notranslate nohighlight" id="equation-eq-b">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-eq-b" title="Link to this equation">#</a></span>\[ds = \frac{1}{T} du + \frac{p}{T} dv\]</div>
+<p>And upon rearrangement we see that</p>
+<div class="math notranslate nohighlight" id="equation-eq-c">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-eq-c" title="Link to this equation">#</a></span>\[Tds = du + pdv\]</div>
+<p>Also, recall that</p>
+<div class="math notranslate nohighlight" id="equation-eq-d">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-eq-d" title="Link to this equation">#</a></span>\[h = u + pv\]</div>
+<p>which becomes the following after differentiation</p>
+<div class="math notranslate nohighlight" id="equation-eq-e">
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-eq-e" title="Link to this equation">#</a></span>\[dh = du + pdv + vdp\]</div>
+<p>And substituting <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-c">(8.3)</a> into this we also get</p>
+<div class="math notranslate nohighlight" id="equation-eq-f">
+<span class="eqno">(9.6)<a class="headerlink" href="#equation-eq-f" title="Link to this equation">#</a></span>\[Tds = dh - vdp\]</div>
+<p>And therefore, in addition to <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-b">(8.2)</a> we get another expression for entropy in terms of enthalpy</p>
+<div class="math notranslate nohighlight" id="equation-eq-g">
+<span class="eqno">(9.7)<a class="headerlink" href="#equation-eq-g" title="Link to this equation">#</a></span>\[ds = \frac{1}{T} dh - \frac{v}{T} dp\]</div>
+<section id="entropy-change-of-ideal-gases">
+<h2><span class="section-number">9.1. </span>Entropy Change of Ideal Gases<a class="headerlink" href="#entropy-change-of-ideal-gases" title="Link to this heading">#</a></h2>
+<p>From <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-b">(8.2)</a> and <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-g">(8.7)</a> we have two equations that can be used to determine entropy via integration with the appropriate equation of state. Perhaps the simplest is the ideal gas equation of state, from which we also prior derived relationships for enthalpy and entropy in terms of temperature only. See <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#usingspecificheat"><span class="std std-numref">Section 6.4</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#usingspecificheat"><span class="std std-ref">Using Specific Heats with Ideal Gases</span></a>, where we showed that</p>
+<div class="math notranslate nohighlight" id="equation-eq-h">
+<span class="eqno">(9.8)<a class="headerlink" href="#equation-eq-h" title="Link to this equation">#</a></span>\[du = c_{\rm v} dT\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight" id="equation-eq-i">
+<span class="eqno">(9.9)<a class="headerlink" href="#equation-eq-i" title="Link to this equation">#</a></span>\[dh = c_{\rm p} dT\]</div>
+<p>Using these two equations and the ideal gas law (i.e., <span class="math notranslate nohighlight">\(pv=RT\)</span>), we can rearrange <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-b">(8.2)</a> and <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-g">(8.7)</a> to show that</p>
+<div class="math notranslate nohighlight" id="equation-eq-j">
+<span class="eqno">(9.10)<a class="headerlink" href="#equation-eq-j" title="Link to this equation">#</a></span>\[ds = \frac{c_{\rm v}}{T} dT + \frac{R}{v} dv\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight" id="equation-eq-k">
+<span class="eqno">(9.12)<a class="headerlink" href="#equation-eq-k" title="Link to this equation">#</a></span>\[ds = \frac{c_{\rm p}}{T} dT - \frac{R}{p} dp\]</div>
+<p>which are now expressions that can be readily integrated because <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> and <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> are functions of temperature only for an ideal gas. Therefore</p>
+<div class="math notranslate nohighlight" id="equation-eq-k">
+<span class="eqno">(9.12)<a class="headerlink" href="#equation-eq-k" title="Link to this equation">#</a></span>\[s_2-s_1 = \int_{1}^{2} \frac{c_{\rm v} }{T} dT + R ln \frac{v_2}{v_1}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-l">
+<span class="eqno">(9.13)<a class="headerlink" href="#equation-eq-l" title="Link to this equation">#</a></span>\[s_2-s_1 = \int_{1}^{2} \frac{c_{\rm p} }{T} dT - R ln \frac{p_2}{p_1}\]</div>
+<p>If it is assumed that specific heat is independent of temperature or linear with temperature, then <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-k">(8.11)</a> and <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-l">(8.12)</a> become</p>
+<div class="math notranslate nohighlight" id="equation-eq-m">
+<span class="eqno">(9.14)<a class="headerlink" href="#equation-eq-m" title="Link to this equation">#</a></span>\[s_2-s_1 = c_{\rm v} ln \frac{T_2}{T_1} + R ln \frac{v_2}{v_1}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-n">
+<span class="eqno">(9.15)<a class="headerlink" href="#equation-eq-n" title="Link to this equation">#</a></span>\[s_2-s_1 = c_{\rm p} ln \frac{T_2}{T_1} - R ln \frac{p_2}{p_1}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_{\rm v}\)</span> or <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> are the average values if it is assumed they are linear with temerature and not constant. Exact values for the integral are often tabulated in textbooks as a function of temperature in various forms, understanding that</p>
+<div class="math notranslate nohighlight" id="equation-eq-o">
+<span class="eqno">(9.16)<a class="headerlink" href="#equation-eq-o" title="Link to this equation">#</a></span>\[\int_{T_1}^{T_2} \frac{c_{\rm p} }{T} dT = \int_{0}^{T_2} \frac{c_{\rm p} }{T} dT - \int_{0}^{T_1} \frac{c_{\rm p} }{T} dT\]</div>
+<p>where the two right hand terms are now functions of a single temperature only and can be readily tabulated. Since we will be using Cantera to solve for property values this is not necessary to discuss in further detail, but in the case where only tables are avalable this is the approach often used. This is necessary because as can be seen from the equations above, entropy is not only a function of temperature, like enthalpy and internal energy and cannot therefore themselves be easily tabulated in a similar manner. Lets see how we can evaluate entropy changes of an ideal gas using specific heats and compare it to the output directly from Cantera.</p>
+<section id="example-evaluating-entropy-change-of-an-ideal-gas-with-and-without-specific-heats">
+<span id="entropychangeidealgasexample1"></span><h3><span class="section-number">9.1.1. </span>Example - Evaluating Entropy Change of an Ideal Gas With and Without Specific Heats<a class="headerlink" href="#example-evaluating-entropy-change-of-an-ideal-gas-with-and-without-specific-heats" title="Link to this heading">#</a></h3>
+<p>Consider oxygen that is heated from 300 K to 1500 K. Assume that during this process the pressure is decreased from 200 to 150 kPa and that oxygen behaves ideally. Calculate the change in specific entropy, s, using Cantera and with specific heats.</p>
+<blockquote>
+<div><p><strong>Solution</strong> - We know the initial temperature and pressure, so solving with Cantera should be straightforward. Using these two properties we can also solve directly using <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-o">(8.15)</a>. We will obtain the specific heat from Cantera, assuming it is contstant and at 300 K.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#State 1</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">300</span> <span class="c1">#K</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">200</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa</span>
+
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Oxygen</span><span class="p">()</span><span class="c1"># define state 1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P1</span>
+
+<span class="c1">#State 2</span>
+<span class="n">T2</span><span class="o">=</span> <span class="mi">1500</span> <span class="c1">#K</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mi">150</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa</span>
+
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Oxygen</span><span class="p">()</span><span class="c1"># define state 2</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P2</span>
+
+<span class="c1">#Using Cantera directly</span>
+
+<span class="n">ds</span><span class="o">=</span><span class="n">species2</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">species1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J/kg using Cantera&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1724.55 J/kg using Cantera
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Oxygen</span><span class="p">()</span>
+<span class="n">cp</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">cp</span> <span class="c1"># cp at 300 K, the default temperature</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">cp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">T2</span><span class="o">/</span><span class="n">T1</span><span class="p">)</span><span class="o">-</span><span class="mf">8.314</span><span class="o">/</span><span class="mi">32</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">P2</span><span class="o">/</span><span class="n">P1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J/kg using specific heat equation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1480.69 J/kg using specific heat equation
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="isentropic-processes-of-ideal-gases">
+<h2><span class="section-number">9.2. </span>Isentropic Processes of Ideal Gases<a class="headerlink" href="#isentropic-processes-of-ideal-gases" title="Link to this heading">#</a></h2>
+<p id="index-0">When the entropy change during a process remains unchanged, this is referred to as an  <span class="xref std std-ref">isentropic process</span>. When compression or expansion processes occur reversibly and adiabatically, then they are also by definition isentropic. This can be seen readily from our equation relating entropy to heat transfer discussed in <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#thermodynamicentropy"><span class="std std-numref">Section 8.4</span></a> <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#thermodynamicentropy"><span class="std std-ref">Thermodynamic Definition of Entropy</span></a>, which is <span class="math notranslate nohighlight">\(dS = \frac{1}{T} \delta Q_{\rm rev}\)</span>. As seen, if the process is adiabatic then the magnitude of heat transfer is zero. And, if the process is reversible, then there is no entropy generation, and as a result, an adiabatic and reversible process MUST be isentropic.</p>
+<p>In the special case of an isentropic expansion or compression process of an ideal gas, the left hand sides of <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-m">(8.13)</a> and <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-n">(8.14)</a> are zero and become</p>
+<div class="math notranslate nohighlight" id="equation-eq-p">
+<span class="eqno">(9.17)<a class="headerlink" href="#equation-eq-p" title="Link to this equation">#</a></span>\[0 = c_{\rm v} ln \frac{T_2}{T_1} + R ln \frac{v_2}{v_1}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-q">
+<span class="eqno">(9.18)<a class="headerlink" href="#equation-eq-q" title="Link to this equation">#</a></span>\[0 = c_{\rm p} ln \frac{T_2}{T_1} - R ln \frac{p_2}{p_1}\]</div>
+<p>These then can be simplified to the following</p>
+<div class="math notranslate nohighlight" id="equation-eq-r">
+<span class="eqno">(9.19)<a class="headerlink" href="#equation-eq-r" title="Link to this equation">#</a></span>\[\frac{T_2}{T_1} = (\frac{v_1}{v_2})^{\frac{R}{c_{\rm v}}}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-s">
+<span class="eqno">(9.20)<a class="headerlink" href="#equation-eq-s" title="Link to this equation">#</a></span>\[\frac{T_2}{T_1} = (\frac{p_2}{p_1})^{\frac{R}{c_{\rm p}}}\]</div>
+<p>Then, recalling the relationship between the gas constant and specific heats which is</p>
+<div class="math notranslate nohighlight" id="equation-eq-t">
+<span class="eqno">(9.21)<a class="headerlink" href="#equation-eq-t" title="Link to this equation">#</a></span>\[R = c_{\rm p} - c_{\rm v}\]</div>
+<p>and the specific heat ratio, <span class="math notranslate nohighlight">\(k\)</span>, which is defined below,</p>
+<div class="math notranslate nohighlight" id="equation-eq-u">
+<span class="eqno">(9.22)<a class="headerlink" href="#equation-eq-u" title="Link to this equation">#</a></span>\[k = \frac{c_{\rm p}}{c_{\rm v}}\]</div>
+<p>we can combine with <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-r">(8.18)</a> and <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-s">(8.19)</a> to rearrange them to show that</p>
+<div class="math notranslate nohighlight" id="equation-eq-v">
+<span class="eqno">(9.23)<a class="headerlink" href="#equation-eq-v" title="Link to this equation">#</a></span>\[\frac{T_2}{T_1} = (\frac{v_1}{v_2})^{k-1}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-w">
+<span class="eqno">(9.24)<a class="headerlink" href="#equation-eq-w" title="Link to this equation">#</a></span>\[\frac{T_2}{T_1} = (\frac{p_2}{p_1})^{\frac{k}{k-1}}\]</div>
+<p>And finally, combining <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-v">(8.22)</a> and <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-w">(8.23)</a> we can also show that</p>
+<div class="math notranslate nohighlight" id="equation-eq-x">
+<span class="eqno">(9.25)<a class="headerlink" href="#equation-eq-x" title="Link to this equation">#</a></span>\[\frac{p_2}{p_1} = (\frac{v_1}{v_2})^{k}\]</div>
+</section>
+<section id="reversible-steady-state-work">
+<h2><span class="section-number">9.3. </span>Reversible Steady State Work<a class="headerlink" href="#reversible-steady-state-work" title="Link to this heading">#</a></h2>
+<p id="index-1">Interestingly, for steady state open systems such as compressors, the isentropic case does not correspond to the minimum shaft work required. Rather, less work is required heat transfer occurs during compressions. In the case of a compressor, this is because cooling during compression decreases the specific volume relative to an isentropic processes. At first, it may be tempting to think that the minimum work is related to the reversible boundary work equation discussed in <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#reversibility"><span class="std std-numref">Section 6.1</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#reversibility"><span class="std std-ref">More on Boundary Work - Reversible Processes</span></a>, which says that <span class="math notranslate nohighlight">\(W_{\rm rev} = \int_{1}^{2} pdV\)</span>. However, compressors are steady state devices with one inlet and one exit, and are governed by the first law of thermodynamics for open systems (<a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html#firstlawopen"><span class="std std-numref">Section 7</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html#firstlawopen"><span class="std std-ref">First Law of Thermodynamics - Open Systems</span></a>). Thus, the open system energy conservation equation reduces to the following.</p>
+<div class="math notranslate nohighlight" id="equation-eq-y">
+<span class="eqno">(9.26)<a class="headerlink" href="#equation-eq-y" title="Link to this equation">#</a></span>\[0 = \dot Q_{\rm rev} - \dot W_{\rm rev} + \dot m(h_{\rm i}-h_{\rm e}) + \dot m(\frac{{\rm V_i}^2}{2}-\frac{{\rm V_e}^2}{2}) +\dot m g(z_{\rm i} -z_{\rm e})\]</div>
+<p>Dividing by the mass flowrate, the specific form of this equation is</p>
+<div class="math notranslate nohighlight" id="equation-eq-z">
+<span class="eqno">(9.27)<a class="headerlink" href="#equation-eq-z" title="Link to this equation">#</a></span>\[0 = q_{\rm rev} - w_{\rm rev} - \Delta h - \Delta ke - \Delta pe\]</div>
+<p>and in differential form can be expressed as</p>
+<div class="math notranslate nohighlight" id="equation-eq-aa">
+<span class="eqno">(9.28)<a class="headerlink" href="#equation-eq-aa" title="Link to this equation">#</a></span>\[\delta w_{\rm rev} = \delta q_{\rm rev} - dh - dke - dpe\]</div>
+<p>Recalling that <span class="math notranslate nohighlight">\(ds = \frac{1}{T} \delta q_{\rm rev}\)</span>, and from the T-ds relation shown above in <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-h">(8.8)</a> that <span class="math notranslate nohighlight">\(Tds = dh - vdp\)</span>, we can substitute these into <a class="reference internal" href="#equation-eq-aa">(9.28)</a> to show that</p>
+<div class="math notranslate nohighlight" id="equation-eq-bb">
+<span class="eqno">(9.29)<a class="headerlink" href="#equation-eq-bb" title="Link to this equation">#</a></span>\[\delta w_{\rm rev} =  - vdp - dke - dpe\]</div>
+<p>Upon integration <a class="reference internal" href="#equation-eq-bb">(9.29)</a> becomes</p>
+<div class="math notranslate nohighlight" id="equation-eq-cc">
+<span class="eqno">(9.30)<a class="headerlink" href="#equation-eq-cc" title="Link to this equation">#</a></span>\[w_{\rm rev} =  - \int_{1}^{2} vdp - \Delta ke - \Delta pe\]</div>
+<p>And finally, neglecting kinetic and potential energy changes</p>
+<div class="math notranslate nohighlight" id="equation-eq-dd">
+<span class="eqno">(9.31)<a class="headerlink" href="#equation-eq-dd" title="Link to this equation">#</a></span>\[w_{\rm rev} =  - \int_{1}^{2} vdp\]</div>
+<p>Notice that we did not neglect heat transfer when deriving this equation. In the case of reversible compression that is not adiabatic, the heat transfer should occur isothermally if it is to be considered reversible. In the case of an incompressible substance, such as compressed water, the specific volume is a function of temperature only, not pressure, and the above <a class="reference internal" href="#equation-eq-dd">(9.31)</a> simplifies to</p>
+<div class="math notranslate nohighlight" id="equation-eq-ddd">
+<span class="eqno">(9.32)<a class="headerlink" href="#equation-eq-ddd" title="Link to this equation">#</a></span>\[w_{\rm rev} =  - v(p_2-p_1)\]</div>
+<p>For an ideal gas, isothermal means <span class="math notranslate nohighlight">\(pv = const\)</span>. Solving for volume and substituting into the above equation we find that.</p>
+<div class="math notranslate nohighlight" id="equation-eq-ee">
+<span class="eqno">(9.33)<a class="headerlink" href="#equation-eq-ee" title="Link to this equation">#</a></span>\[w_{\rm rev} = -pv ln \frac{p_2}{p_1}\]</div>
+<p>In the case of isentropic compression of an ideal gas, from <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-x">(8.25)</a> we can show that</p>
+<div class="math notranslate nohighlight" id="equation-eq-ff">
+<span class="eqno">(9.34)<a class="headerlink" href="#equation-eq-ff" title="Link to this equation">#</a></span>\[pv^k = const\]</div>
+<p>Solving for volume and substituting into <a class="reference internal" href="#equation-eq-dd">(9.31)</a> we find that.</p>
+<div class="math notranslate nohighlight" id="equation-eq-gg">
+<span class="eqno">(9.35)<a class="headerlink" href="#equation-eq-gg" title="Link to this equation">#</a></span>\[w_{\rm rev} = \frac{p_1v_1-p_2v_2}{1-\frac{1}{k}}\]</div>
+<p>Now, lets imagine we wish to compress N<sub>2</sub> gas from 100 kPa to 10 Mpa. If we begin compressing at 20 <span class="math notranslate nohighlight">\(^ \circ\)</span>C and do so isentropically, then we can use <a class="reference internal" href="#equation-eq-gg">(9.35)</a> to solve for the work. The strategy is to set the intial state, determine the initial entropy, and set the final state knowing the entropy remains constant and the final temperature. This will enable determination of the final specific volume. See below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">species1</span><span class="p">,</span><span class="n">species2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">(),</span><span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">P1</span><span class="p">,</span><span class="n">P2</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#Pa</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span><span class="mf">273.15</span> <span class="c1">#K</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+<span class="n">s1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">ST</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s2</span><span class="o">=</span><span class="n">s1</span>
+<span class="n">v1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">SP</span><span class="o">=</span><span class="n">s2</span><span class="p">,</span><span class="n">P2</span>
+<span class="n">v2</span><span class="o">=</span><span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">k</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">cp</span><span class="o">/</span><span class="n">species1</span><span class="o">.</span><span class="n">cv</span> <span class="c1">#assuming constant specific heats</span>
+<span class="n">work</span> <span class="o">=</span> <span class="p">(</span><span class="n">P1</span><span class="o">*</span><span class="n">v1</span><span class="o">-</span><span class="n">P2</span><span class="o">*</span><span class="n">v2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The isentropic reversible work is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">work</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The isentropic reversible work is  -811.333 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we wish to compare to reversible and isothermal compression work then we should use <a class="reference internal" href="#equation-eq-ee">(9.33)</a>. In this case the intial and final temperatures are the same and thus both states are fully defined and we can use cantera again to determine the initial and final specific volumes, like below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span><span class="p">,</span><span class="n">species2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">(),</span><span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">P1</span><span class="p">,</span><span class="n">P2</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#Pa</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span><span class="mf">273.15</span> <span class="c1">#K</span>
+<span class="n">T2</span><span class="o">=</span><span class="n">T1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+<span class="n">v1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T2</span><span class="p">,</span><span class="n">P2</span>
+<span class="n">v2</span><span class="o">=</span><span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">k</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">cp</span><span class="o">/</span><span class="n">species1</span><span class="o">.</span><span class="n">cv</span> <span class="c1">#assuming constant specific heats</span>
+<span class="n">work</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">P1</span><span class="o">*</span><span class="n">v1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">P2</span><span class="o">/</span><span class="n">P1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The isothermal and reversible work is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">work</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The isothermal and reversible work is  -400.574 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can visualize the decrease in compression work associated with isothermal compression by plotting pressure versus specific volume for each of the two cases - i.e., isentropic and isothermal. Lets start by defining the initial temperature and pressure of nitrogen to be 20 <span class="math notranslate nohighlight">\(^ \circ\)</span>C and 1 bar. And also, we can define a list of pressures, ranging from 1 bar to 10 bar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">P1</span><span class="p">,</span><span class="n">T1</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span><span class="mf">273.15</span> <span class="c1">#Pa,K</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+<span class="n">pressures</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the isentropic, or reversible and adiabatic case, the entropy is constant during the entire process. Therefore, we can determine the entropy at the first state and set this entropy with each of our corresponding pressures to determine the specific volume at each state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#isentropic case, or reversible and adiabatic</span>
+<span class="n">s1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">ST</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">v_isentropic</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pressures</span><span class="p">:</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">SP</span><span class="o">=</span><span class="n">s1</span><span class="p">,</span><span class="n">i</span>
+    <span class="n">v_isentropic</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And for the case of reversible and isothermal compression with cooling, the temperature remains constant throughout and we can set this with each of our corresponding pressures to determine the specific volumes at each state for this process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#isothermal and reversible case</span>
+<span class="n">v_isothermal</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pressures</span><span class="p">:</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">i</span>
+    <span class="n">v_isothermal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotting the results we see that isothermal cooling results in compression of the gas at smaller specific volumes, resulting in less work, consistent with <a class="reference internal" href="#equation-eq-ee">(9.33)</a>, or <span class="math notranslate nohighlight">\(w_{\rm rev} =  - \int_{1}^{2} vdp\)</span>.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="c1">#plt.annotate(&#39;n = 0&#39;, (0.25,110), color=&#39;Blue&#39;, fontsize=12)</span>
+<span class="c1">#plt.annotate(&#39;n = .5&#39;, (0.25,145), color=&#39;Orange&#39;, fontsize=12)</span>
+<span class="c1">#plt.annotate(&#39;n = 1&#39;, (0.25,203), color=&#39;Green&#39;, fontsize=12)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;isothermal,&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.11</span><span class="p">,</span><span class="mi">400000</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;with cooling&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.11</span><span class="p">,</span><span class="mi">330000</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Orange&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;isentropic&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.22</span><span class="p">,</span><span class="mi">800000</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$pv^\mathrm</span><span class="si">{k}</span><span class="s1"> = const$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.22</span><span class="p">,</span><span class="mi">730000</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">v_isentropic</span><span class="p">,</span><span class="n">pressures</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">v_isothermal</span><span class="p">,</span><span class="n">pressures</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$v$ $(\mathrm{m^3 kg^{-1}})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$p$ $({\mathrm</span><span class="si">{Pa}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Figures/isothermal_compression.png&#39;</span><span class="p">)</span><span class="c1"># used to save the figure if you desire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:13: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:13: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_15664/4046737556.py:8: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.annotate(&#39;$pv^\mathrm{k} = const$&#39;, (0.22,730000), color=&#39;Blue&#39;, fontsize=12)
+/tmp/ipykernel_15664/4046737556.py:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.xlabel(&#39;$v$ $(\mathrm{m^3 kg^{-1}})$&#39;,  fontsize=12)
+/tmp/ipykernel_15664/4046737556.py:13: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.ylabel(&#39;$p$ $({\mathrm{Pa})}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/08833cb83c8883d5e348553811fc16dc2367f696c673ae527df4d184265afe75.png" src="../_images/08833cb83c8883d5e348553811fc16dc2367f696c673ae527df4d184265afe75.png" />
+</div>
+</details>
+</div>
+<figure class="align-default" id="isothermal-compression-fig-a">
+<img alt="../_images/isothermal_compression.png" src="../_images/isothermal_compression.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.1 </span><span class="caption-text">Pressure verses volume for reversible processes with different polytropic exponents, <span class="math notranslate nohighlight">\(n\)</span>. The polytropic exponent dictates the path that is taken and is dependent on the amount of heat transfer during the expansion/compression process.</span><a class="headerlink" href="#isothermal-compression-fig-a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="example-isentropic-pumping">
+<span id="isentropicpumpingexample"></span><h3><span class="section-number">9.3.1. </span>Example - Isentropic Pumping<a class="headerlink" href="#example-isentropic-pumping" title="Link to this heading">#</a></h3>
+<p>Calculate the work per kg to pump water isentropically from 100 kPa, 30 °C to 5 MPa. Assume steady state, reversible and adiabatic and that the compressed water is incompressible. Compare the specific work to the reversible and non-adiabatic case. KE and PE can be neglected. Solve using cantera and afterwards attempt to solve using NIST Webook data <a class="reference external" href="https://webbook.nist.gov/chemistry/fluid/">https://webbook.nist.gov/chemistry/fluid/</a>.</p>
+<blockquote>
+<div><p><strong>Solution</strong> - We have two different strategies depending on if it is isothermal and reversible or adiabatic and reversible (i.e. isentropic). If isothermal, then we can use <a class="reference internal" href="#equation-eq-ddd">(9.32)</a> and we need only determine the specific volume. If isentropic, then we can calculate the inlet specific entropy (knowing temperature and pressure), and equate to the exit entropy. This will help set state 2s because we also know the exit pressure is 5 MPa.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#State 1</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">30</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1">#K</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa</span>
+
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define state 1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P1</span>
+<span class="n">s1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">ST</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg/K</span>
+<span class="n">h1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#State 2, if isothermal</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T1</span> <span class="c1"># if isentropic</span>
+<span class="n">P2</span> <span class="o">=</span><span class="mi">5</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa </span>
+
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define state 2</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P2</span>
+<span class="n">v</span><span class="o">=</span><span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#m^3/kg</span>
+<span class="n">iso_specific_work</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span><span class="o">*</span><span class="p">(</span><span class="n">P2</span><span class="o">-</span><span class="n">P1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The reversible and isothermal specific pump work is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">iso_specific_work</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot; kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The reversible and isothermal specific pump work is  -4.91  kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#State 2s, if isentropic</span>
+<span class="n">s2s</span><span class="o">=</span><span class="n">s1</span> <span class="c1"># if isentropic</span>
+<span class="n">P2s</span> <span class="o">=</span><span class="mi">5</span><span class="o">*</span><span class="mi">1000</span><span class="o">**</span><span class="mi">1000</span> <span class="c1"># Pa </span>
+
+<span class="n">species2s</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define state 2</span>
+<span class="n">species2s</span><span class="o">.</span><span class="n">SP</span> <span class="o">=</span> <span class="n">s2s</span><span class="p">,</span> <span class="n">P2</span>
+<span class="n">h2s</span><span class="o">=</span><span class="n">species2s</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg</span>
+<span class="n">isen_specific_work</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">h2s</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The isentropic specific pump work is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">isen_specific_work</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot; kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The isentropic specific pump work is  -4.92  kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="isentropic-efficiency">
+<h2><span class="section-number">9.4. </span>Isentropic Efficiency<a class="headerlink" href="#isentropic-efficiency" title="Link to this heading">#</a></h2>
+<p id="index-2">The <span class="xref std std-ref">isentropic efficiency</span> is a measure of the work input or output of a real process (i.e., irreversible) relative to the idealized or isentropic process. The comparison is always made for adiabatic systems between the same two pressures and for identical mass flowrates. As it is an efficiency, it is always a value that is constrained to be between 0 and 1. And thus, in the case of a turbine where the real work output will always be less than the reversible work output, the isentropic efficiency (<span class="math notranslate nohighlight">\(\eta_t\)</span>) is the ratio of the real work output relative to the isentropic work output, as seen below.</p>
+<div class="math notranslate nohighlight" id="equation-eq-hh">
+<span class="eqno">(9.36)<a class="headerlink" href="#equation-eq-hh" title="Link to this equation">#</a></span>\[\eta_{\rm t} = \frac{\dot W}{(\dot W)_{\rm s}} = \frac{h_1-h_2}{h_1-h_{2s}}\]</div>
+<p>Here, the subscript s refers to the isentropic state after expansion, state 1 refers to the inlet and state 2 to the exit.  This process can be seen below in <a class="reference internal" href="#isentropic-efficiency-turbine-fig-b"><span class="std std-numref">Figure 9.2</span></a> on a <span class="math notranslate nohighlight">\(T-s\)</span> diagram that uses air as the working fluid between 2 MPa to 500 kPa. Notice that the real expansion is associated with an increase in entropy because of the irreversibilities.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsolve</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpatches</span>
+<span class="n">species1</span><span class="p">,</span><span class="n">species2s</span><span class="p">,</span><span class="n">species2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">species_i</span><span class="p">,</span><span class="n">species_e</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span> <span class="c1"># for constant inlet pressures and exit pressures</span>
+<span class="n">pi</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#pa, inlet pressure of the turbine</span>
+<span class="n">pe</span><span class="o">=</span><span class="mi">500</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#pa, exit pressure of the turbine</span>
+<span class="n">T_list</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">900</span><span class="p">,</span><span class="mi">1500</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1">#Range of temperatures to consider, in K</span>
+<span class="n">s_i</span><span class="o">=</span><span class="p">[]</span> <span class="c1">#entropies at high P</span>
+<span class="n">s_e</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># entropies at low P</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">T_list</span><span class="p">:</span>
+    <span class="n">species_i</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">pi</span>
+    <span class="n">species_e</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">pe</span>
+    <span class="n">s_i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species_i</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">s_e</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species_e</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+<span class="n">T1</span> <span class="o">=</span> <span class="n">T_list</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="c1">#inlet temperature of turbine</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">pi</span>
+<span class="n">s1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s2s</span><span class="o">=</span><span class="n">s1</span>
+<span class="n">species2s</span><span class="o">.</span><span class="n">SP</span><span class="o">=</span><span class="n">s2s</span><span class="p">,</span><span class="n">pe</span>
+<span class="n">T2s</span><span class="o">=</span><span class="n">species2s</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">T_isen</span><span class="o">=</span><span class="p">[</span><span class="n">T1</span><span class="p">,</span><span class="n">T2s</span><span class="p">]</span>
+<span class="n">s_isen</span><span class="o">=</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span><span class="n">s2s</span><span class="p">]</span>
+
+<span class="n">T2</span><span class="o">=</span><span class="n">T2s</span><span class="o">/</span><span class="mf">0.9</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T2</span><span class="p">,</span><span class="n">pe</span>
+<span class="n">s2</span><span class="o">=</span><span class="n">species2</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">T_real</span><span class="o">=</span><span class="p">[</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">]</span>
+<span class="n">s_real</span><span class="o">=</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">]</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#plt.annotate(&#39;n = 0&#39;, (0.25,110), color=&#39;Blue&#39;, fontsize=12)</span>
+<span class="c1">#plt.annotate(&#39;n = .5&#39;, (0.25,145), color=&#39;Orange&#39;, fontsize=12)</span>
+<span class="c1">#plt.annotate(&#39;n = 1&#39;, (0.25,203), color=&#39;Green&#39;, fontsize=12)</span>
+<span class="c1">#plt.annotate(&#39;isothermal,&#39;, (0.11,400000), color=&#39;Orange&#39;, fontsize=12)</span>
+<span class="c1">#plt.annotate(&#39;with cooling&#39;, (0.11,330000), color=&#39;Orange&#39;, fontsize=12)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">74000</span><span class="p">,</span><span class="mi">1470</span><span class="p">,</span><span class="s1">&#39;state 1&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">78000</span><span class="p">,</span><span class="mi">1100</span><span class="p">,</span><span class="s1">&#39;state 2&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">76000</span><span class="p">,</span><span class="mi">950</span><span class="p">,</span><span class="s1">&#39;state 2s&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">72000</span><span class="p">,</span><span class="mi">1275</span><span class="p">,</span><span class="s1">&#39;2 MPa&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">80000</span><span class="p">,</span><span class="mi">1275</span><span class="p">,</span><span class="s1">&#39;500 kPa&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">73000</span><span class="p">,</span><span class="mi">1100</span><span class="p">,</span><span class="s1">&#39;isentropic&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">72000</span><span class="p">,</span><span class="mi">1050</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$(\dot W)_{\rm s}=h_1-h_</span><span class="si">{2s}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">76500</span><span class="p">,</span><span class="mi">1400</span><span class="p">,</span><span class="s1">&#39;real&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">76500</span><span class="p">,</span><span class="mi">1350</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$(\dot W)=h_1-h_2$&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_i</span><span class="p">,</span><span class="n">T_list</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_e</span><span class="p">,</span><span class="n">T_list</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_isen</span><span class="p">,</span><span class="n">T_isen</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_real</span><span class="p">,</span><span class="n">T_real</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">T</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">)</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="p">((</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">))</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">s</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="p">((</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">))</span><span class="o">*</span><span class="n">s1</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">))</span>
+<span class="n">m</span><span class="o">=</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dS</span><span class="p">(</span><span class="n">dT</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">dT</span><span class="o">/</span><span class="n">m</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">magnitude</span><span class="p">(</span><span class="n">dT</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">dT</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">dS</span><span class="p">(</span><span class="n">dT</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+
+   
+<span class="n">length</span><span class="o">=-</span><span class="mi">100</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">dT</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">length</span><span class="o">+</span><span class="n">magnitude</span><span class="p">(</span><span class="n">dT</span><span class="p">)</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">offset_T</span><span class="o">=</span><span class="mi">150</span>
+
+<span class="n">arrow1</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">FancyArrowPatch</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="p">),</span> <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="o">+</span><span class="n">length</span><span class="p">),</span>
+                                 <span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">arrow2</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">FancyArrowPatch</span><span class="p">((</span><span class="n">s</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="p">),</span> <span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="p">),</span> <span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="p">)</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">m</span><span class="p">,</span><span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                 <span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">arrow1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">arrow2</span><span class="p">)</span>
+<span class="c1">#plt.arrow(s1, T1-offset_T, 0, length, width = 100, head_width=300,head_length=50,color=&#39;r&#39;)</span>
+
+<span class="c1">#plt.arrow(s(T1-offset_T), T1-offset_T, root[0]/m,root[0],head_width=300,head_length=500,color=&#39;r&#39;)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$s$ $(\mathrm{J kg^{-1} K^{-1}})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$T$ $({\mathrm</span><span class="si">{K}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Figures/isentropic_efficiency_turbine.png&#39;</span><span class="p">)</span><span class="c1"># used to save the figure if you desire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_15664/1549023197.py:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  ax.set_xlabel(&#39;$s$ $(\mathrm{J kg^{-1} K^{-1}})$&#39;,  fontsize=12)
+/tmp/ipykernel_15664/1549023197.py:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  ax.set_ylabel(&#39;$T$ $({\mathrm{K})}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/56199508485d845bbd7f4f73479d283750326088d26df58a8a35fb7f93af358c.png" src="../_images/56199508485d845bbd7f4f73479d283750326088d26df58a8a35fb7f93af358c.png" />
+</div>
+</details>
+</div>
+<figure class="align-default" id="isentropic-efficiency-turbine-fig-b">
+<img alt="../_images/isentropic_efficiency_turbine.png" src="../_images/isentropic_efficiency_turbine.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.2 </span><span class="caption-text">Isentropic expansion of air from 2 MPa to 500 kPa is shown in green. The real and irreversible expansion of air between the same pressures is shown in blue. As seen, the real change in temperature (and therefore change in specific enthalpy) is always less than or equal to the isentropic case.</span><a class="headerlink" href="#isentropic-efficiency-turbine-fig-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In the case of a compressor or pump, the isentropic work is always less than the real work. Therefore, the isentropic efficiency (<span class="math notranslate nohighlight">\(\eta_c\)</span>) is the ratio of the isentropic work input relative to the real work input, as seen below.</p>
+<div class="math notranslate nohighlight" id="equation-eq-ii">
+<span class="eqno">(9.37)<a class="headerlink" href="#equation-eq-ii" title="Link to this equation">#</a></span>\[\eta_{\rm c} = \frac{(\dot W)_{\rm s}}{\dot W} = \frac{h_1-h_{2s}}{h_1-h_2}\]</div>
+<p>Like the turbine, the subscript s refers to the isentropic state after expansion, state 1 refers to the inlet and state 2 to the exit. A comparison of  isentropic and real compression is shown below in <a class="reference internal" href="#isentropic-efficiency-compressor-fig-c"><span class="std std-numref">Figure 9.3</span></a> on a <span class="math notranslate nohighlight">\(T-s\)</span> diagram, again with air as the working fluid, being compressed between 500 kPa and 2 MPa.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsolve</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpatches</span>
+<span class="n">species1</span><span class="p">,</span><span class="n">species2s</span><span class="p">,</span><span class="n">species2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">species_i</span><span class="p">,</span><span class="n">species_e</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span> <span class="c1"># for constant inlet pressures and exit pressures</span>
+<span class="n">pe</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#pa, inlet pressure of the turbine</span>
+<span class="n">pi</span><span class="o">=</span><span class="mi">500</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#pa, exit pressure of the turbine</span>
+<span class="n">T_list</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1">#Range of temperatures to consider, in K</span>
+<span class="n">s_i</span><span class="o">=</span><span class="p">[]</span> <span class="c1">#entropies at high P</span>
+<span class="n">s_e</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># entropies at low P</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">T_list</span><span class="p">:</span>
+    <span class="n">species_i</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">pi</span>
+    <span class="n">species_e</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">pe</span>
+    <span class="n">s_i</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species_i</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">s_e</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species_e</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+<span class="n">T1</span> <span class="o">=</span> <span class="n">T_list</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="c1">#inlet temperature of turbine</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">pi</span>
+<span class="n">s1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s2s</span><span class="o">=</span><span class="n">s1</span>
+<span class="n">species2s</span><span class="o">.</span><span class="n">SP</span><span class="o">=</span><span class="n">s2s</span><span class="p">,</span><span class="n">pe</span>
+<span class="n">T2s</span><span class="o">=</span><span class="n">species2s</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">T_isen</span><span class="o">=</span><span class="p">[</span><span class="n">T1</span><span class="p">,</span><span class="n">T2s</span><span class="p">]</span>
+<span class="n">s_isen</span><span class="o">=</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span><span class="n">s2s</span><span class="p">]</span>
+
+<span class="n">T2</span><span class="o">=</span><span class="n">T2s</span><span class="o">/</span><span class="mf">0.9</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T2</span><span class="p">,</span><span class="n">pe</span>
+<span class="n">s2</span><span class="o">=</span><span class="n">species2</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">T_real</span><span class="o">=</span><span class="p">[</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="p">]</span>
+<span class="n">s_real</span><span class="o">=</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">]</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#plt.annotate(&#39;n = 0&#39;, (0.25,110), color=&#39;Blue&#39;, fontsize=12)</span>
+<span class="c1">#plt.annotate(&#39;n = .5&#39;, (0.25,145), color=&#39;Orange&#39;, fontsize=12)</span>
+<span class="c1">#plt.annotate(&#39;n = 1&#39;, (0.25,203), color=&#39;Green&#39;, fontsize=12)</span>
+<span class="c1">#plt.annotate(&#39;isothermal,&#39;, (0.11,400000), color=&#39;Orange&#39;, fontsize=12)</span>
+<span class="c1">#plt.annotate(&#39;with cooling&#39;, (0.11,330000), color=&#39;Orange&#39;, fontsize=12)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">67000</span><span class="p">,</span><span class="mi">520</span><span class="p">,</span><span class="s1">&#39;state 1&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">64700</span><span class="p">,</span><span class="mi">825</span><span class="p">,</span><span class="s1">&#39;state 2s&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">66500</span><span class="p">,</span><span class="mi">910</span><span class="p">,</span><span class="s1">&#39;state 2&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">70000</span><span class="p">,</span><span class="mi">950</span><span class="p">,</span><span class="s1">&#39;2 MPa&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">70500</span><span class="p">,</span><span class="mi">650</span><span class="p">,</span><span class="s1">&#39;500 kPa&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">62500</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="s1">&#39;isentropic&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">62500</span><span class="p">,</span><span class="mi">550</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$(\dot W)_{\rm s}=h_1-h_</span><span class="si">{2s}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">68500</span><span class="p">,</span><span class="mi">800</span><span class="p">,</span><span class="s1">&#39;real&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">68500</span><span class="p">,</span><span class="mi">750</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;$(\dot W)=h_1-h_2$&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_i</span><span class="p">,</span><span class="n">T_list</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_e</span><span class="p">,</span><span class="n">T_list</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_isen</span><span class="p">,</span><span class="n">T_isen</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s_real</span><span class="p">,</span><span class="n">T_real</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">T</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">)</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="p">((</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">))</span><span class="o">*</span><span class="n">s1</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">s</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="p">((</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">))</span><span class="o">*</span><span class="n">s1</span><span class="p">))</span><span class="o">/</span><span class="p">((</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">))</span>
+<span class="n">m</span><span class="o">=</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s1</span><span class="o">-</span><span class="n">s2</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dS</span><span class="p">(</span><span class="n">dT</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">dT</span><span class="o">/</span><span class="n">m</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">magnitude</span><span class="p">(</span><span class="n">dT</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">dT</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">dS</span><span class="p">(</span><span class="n">dT</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+
+   
+<span class="n">length</span><span class="o">=</span><span class="mi">100</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">dT</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">length</span><span class="o">-</span><span class="n">magnitude</span><span class="p">(</span><span class="n">dT</span><span class="p">)</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">offset_T</span><span class="o">=-</span><span class="mi">100</span>
+
+<span class="n">arrow1</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">FancyArrowPatch</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span> <span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="p">),</span> <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="o">+</span><span class="n">length</span><span class="p">),</span>
+                                 <span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">arrow2</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">FancyArrowPatch</span><span class="p">((</span><span class="n">s</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="p">),</span> <span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="p">),</span> <span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="p">)</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">m</span><span class="p">,</span><span class="n">T1</span><span class="o">-</span><span class="n">offset_T</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                 <span class="n">mutation_scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">arrow1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">arrow2</span><span class="p">)</span>
+<span class="c1">#plt.arrow(s1, T1-offset_T, 0, length, width = 100, head_width=300,head_length=50,color=&#39;r&#39;)</span>
+
+<span class="c1">#plt.arrow(s(T1-offset_T), T1-offset_T, root[0]/m,root[0],head_width=300,head_length=500,color=&#39;r&#39;)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$s$ $(\mathrm{J kg^{-1} K^{-1}})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$T$ $({\mathrm</span><span class="si">{K}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Figures/isentropic_efficiency_compressor.png&#39;</span><span class="p">)</span><span class="c1"># used to save the figure if you desire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_15664/3388790894.py:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  ax.set_xlabel(&#39;$s$ $(\mathrm{J kg^{-1} K^{-1}})$&#39;,  fontsize=12)
+/tmp/ipykernel_15664/3388790894.py:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  ax.set_ylabel(&#39;$T$ $({\mathrm{K})}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/6d96e16f4f408bdb6edbeab6f5ec0d84f70efab6b41322a32d46658a196cb09e.png" src="../_images/6d96e16f4f408bdb6edbeab6f5ec0d84f70efab6b41322a32d46658a196cb09e.png" />
+</div>
+</details>
+</div>
+<figure class="align-default" id="isentropic-efficiency-compressor-fig-c">
+<img alt="../_images/isentropic_efficiency_compressor.png" src="../_images/isentropic_efficiency_compressor.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.3 </span><span class="caption-text">Isentropic compression of air from 500 kPa to 2 MPa is shown in green. The real and irreversible compresion of air between the same pressures is shown in blue. As seen, the real change in temperature (and therefore change in specific enthalpy) is always greater than or equal to the isentropic case.</span><a class="headerlink" href="#isentropic-efficiency-compressor-fig-c" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="example-isentropic-efficiency">
+<span id="isentropicefficiencyexample1"></span><h3><span class="section-number">9.4.1. </span>Example - Isentropic Efficiency<a class="headerlink" href="#example-isentropic-efficiency" title="Link to this heading">#</a></h3>
+<p>Consider an adiabatic steam turbine that is NOT reversible. Steam enters at 3 MPa and 400 °C and exits at 50 kPa and 100 °C. Determine the isentropic efficiency, <span class="math notranslate nohighlight">\(\eta_{\rm T}\)</span>, and the mass flowrate. The power output from the steam turbine is 2 MW.</p>
+<blockquote>
+<div><p><strong>Solution</strong> - We know the initial temperature and pressure, and the exit pressure. To determine state 2s we can use this pressure and the entropy at state 1. To determine state 2 we know the exit pressure and real temperature. Thus, each state can be defined and therefore the enthalpies at each state. Knowing the enthalpies we can solve for the isentropic turbine efficiency using <a class="reference internal" href="#equation-eq-hh">(9.36)</a>. To determine the mass flowrate we will draw a control volume around the turbine and use the open system energy conservation equation which reduces to <span class="math notranslate nohighlight">\(\dot W_{\rm net} = \dot m(h_{\rm 1}-h_{\rm 2})\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#State 1</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">400</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1">#K</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa</span>
+
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define state 1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P1</span>
+<span class="n">s1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">ST</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg/K</span>
+<span class="n">h1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg</span>
+
+<span class="c1">#State 2</span>
+<span class="n">T2</span><span class="o">=</span> <span class="mi">100</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1">#K</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mi">50</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa</span>
+
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define state 2</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P2</span>
+<span class="n">h2</span><span class="o">=</span><span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg</span>
+
+<span class="c1">#State 2s</span>
+<span class="n">s2s</span><span class="o">=</span><span class="n">s1</span> <span class="c1"># isentropic</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mi">50</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa # same as state 2</span>
+
+<span class="n">species2s</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define state 2</span>
+<span class="n">species2s</span><span class="o">.</span><span class="n">SP</span> <span class="o">=</span> <span class="n">s2s</span><span class="p">,</span> <span class="n">P2</span>
+<span class="n">h2s</span><span class="o">=</span><span class="n">species2s</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># part 1</span>
+
+<span class="n">eta_T</span><span class="o">=</span><span class="p">(</span><span class="n">h1</span><span class="o">-</span><span class="n">h2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">h1</span><span class="o">-</span><span class="n">h2s</span><span class="p">)</span> <span class="c1">#definition of isentropic efficiency for a turbine</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The isentropic efficiency is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">eta_T</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The isentropic efficiency is  0.67
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># part 2</span>
+
+<span class="n">power</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># W, power output of the real turbine</span>
+<span class="n">m_dot</span><span class="o">=</span><span class="n">power</span><span class="o">/</span><span class="p">(</span><span class="n">h1</span><span class="o">-</span><span class="n">h2</span><span class="p">)</span> <span class="c1">#open system energy conservation equation for an adiabatic turbine, ignoring changes in kinetic and potential energies</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The mass flowrate is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">m_dot</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot; kg/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mass flowrate is  3.65  kg/s
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-isentropic-efficiency-iterative-solution-approach">
+<span id="isentropicefficiencyexample2"></span><h3><span class="section-number">9.4.2. </span>Example - Isentropic Efficiency Iterative Solution Approach<a class="headerlink" href="#example-isentropic-efficiency-iterative-solution-approach" title="Link to this heading">#</a></h3>
+<p>Steam enters a vapor turbine with isentropic efficiency of 90%. If it enters at 2 MPa, 300 °C, and leaves as a saturated mixture with quality equal to 0.9, what is the exit pressure?</p>
+<blockquote>
+<div><p><strong>Solution</strong> - This problem requires more careful analysis compared to the prior example <a class="reference internal" href="#isentropicefficiencyexample1"><span class="std std-numref">Section 9.4.1</span></a> <a class="reference internal" href="#isentropicefficiencyexample1"><span class="std std-ref">Example - Isentropic Efficiency</span></a>. This is because we now are asked to solve for the exit pressure. Recall that in the isentropic efficiency equation (<a class="reference internal" href="#equation-eq-hh">(9.36)</a>), enthalpies at state 2 and 2s are required to solve for efficiency. And if we know the isentropic efficiency and one of these states then we can solve for the enthalpy of the other. In this problem, we know the efficiency, but both state 2 and state 2s depend on the same pressure and they cannot therefore be solved independently. Therefore, we will have to “guess” an exit pressure, calulate the enthalpy at state 2s, use this to solve for the enthalpy at state 2 with <a class="reference internal" href="#equation-eq-hh">(9.36)</a>, and then knowing enthalpy and pressure at state 2, we can calculate the quality and compare to the known quality. Alternatively we can set state 2 and 2s using a guessed pressure, s2s and the known x2, to determine the enthalpies at state 2 and 2s to calculate the isentropic efficiency and compare to the known efficiency of 90%. If incorrect, then we will have to try again until we converge on the solution. This is called an iterative solution approach (or guess and check approach) because we can not solve for the solution analytically. Lets see what this looks like when we use the first approach of checking to see if the quality is the same as the known quality of 0.9. Then we will follow up with a graphical and then numerical strategy to help us solve for the exact pressure rather than iterating ourselves.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">state1</span><span class="p">,</span><span class="n">state2s</span><span class="p">,</span><span class="n">state2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">(),</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">(),</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+
+<span class="n">eta_T</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">P1</span> <span class="o">=</span> <span class="mi">300</span><span class="o">+</span><span class="mf">273.15</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#K,Pa</span>
+<span class="n">x2</span><span class="o">=</span><span class="mf">0.9</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+<span class="n">s1</span><span class="o">=</span><span class="n">state1</span><span class="o">.</span><span class="n">ST</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg/K</span>
+<span class="n">h1</span><span class="o">=</span><span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg</span>
+<span class="n">s2s</span><span class="o">=</span><span class="n">s1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pguess</span> <span class="o">=</span> <span class="mi">50</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#Pa # try inputting different values, e.g. 100 kPa, 20 kPa and 50 kPa</span>
+<span class="n">state2s</span><span class="o">.</span><span class="n">SP</span><span class="o">=</span><span class="n">s2s</span><span class="p">,</span><span class="n">pguess</span>
+<span class="n">h2s</span><span class="o">=</span><span class="n">state2s</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span><span class="o">=</span><span class="n">h1</span><span class="o">-</span><span class="n">eta_T</span><span class="o">*</span><span class="p">(</span><span class="n">h1</span><span class="o">-</span><span class="n">h2s</span><span class="p">)</span> <span class="c1">#solve for h2</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">HP</span><span class="o">=</span><span class="n">h2</span><span class="p">,</span><span class="n">pguess</span>
+<span class="nb">round</span><span class="p">(</span><span class="n">state2</span><span class="o">.</span><span class="n">PQ</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># determine the quality at state 2 using the guessed pressure. As seen, when the guess is 50 kPa the quality approaches the known quality of 0.9</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.902
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Solution - graphical approach</strong> - Below is a graphical strategy to help solve for the exact pressure without having to iterate iterating ourselves.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">pguess</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#kPa, list pressure guesses</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">P1</span> <span class="o">=</span> <span class="mi">300</span><span class="o">+</span><span class="mf">273.15</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#K,Pa</span>
+<span class="n">quality</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># set empty array of qualities - we will solve for qualities at each pguess and compare to the known quality of 0.9</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pguess</span><span class="p">:</span> <span class="c1">#use a for loop to iterate</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+    <span class="n">s1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">h1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">s2s</span><span class="o">=</span><span class="n">s1</span>
+    <span class="n">species2s</span><span class="o">.</span><span class="n">SP</span><span class="o">=</span><span class="n">s2s</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># multiply by 1000 to ensure pressure in untis Pa</span>
+    <span class="n">h2s</span><span class="o">=</span><span class="n">species2s</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">h2</span><span class="o">=</span><span class="n">h1</span><span class="o">-</span><span class="mf">0.9</span><span class="o">*</span><span class="p">(</span><span class="n">h1</span><span class="o">-</span><span class="n">h2s</span><span class="p">)</span>
+    <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="o">=</span><span class="n">h2</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="mi">1000</span>
+    <span class="n">quality</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species2</span><span class="o">.</span><span class="n">PQ</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#calulate quality at pguess and append to list of qualities</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="c1">#plt.plot(quality,pguess)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span><span class="mi">49</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">quality</span><span class="p">,</span><span class="n">pguess</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;quality ($x$)&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;pressure $({\mathrm</span><span class="si">{kPa}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_15664/1278372899.py:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  ax.set_ylabel(&#39;pressure $({\mathrm{kPa})}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/a48b15e9f4f0a58116225c03a82169625abaa15f285262fa8e1f607997300f8e.png" src="../_images/a48b15e9f4f0a58116225c03a82169625abaa15f285262fa8e1f607997300f8e.png" />
+</div>
+</div>
+<blockquote>
+<div><p><strong>Solution - numerical approach</strong> - Below is a numerical strategy that uses the fsolve function in python to help solve for the exact pressure without having to iterate iterating ourselves. Note, we could also use a minimize function.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsolve</span>
+
+<span class="n">state1</span><span class="p">,</span><span class="n">state2s</span><span class="p">,</span><span class="n">state2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">(),</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">(),</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+
+<span class="n">eta_T</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">T1</span><span class="p">,</span><span class="n">P1</span> <span class="o">=</span> <span class="mi">300</span><span class="o">+</span><span class="mf">273.15</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#K,Pa</span>
+<span class="n">x2</span><span class="o">=</span><span class="mf">0.9</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+<span class="n">s1</span><span class="o">=</span><span class="n">state1</span><span class="o">.</span><span class="n">ST</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg/K</span>
+<span class="n">h1</span><span class="o">=</span><span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J/kg</span>
+<span class="n">s2s</span><span class="o">=</span><span class="n">s1</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">quality</span><span class="p">(</span><span class="n">p2</span><span class="p">):</span>
+    <span class="n">state2s</span><span class="o">.</span><span class="n">SP</span><span class="o">=</span><span class="n">s2s</span><span class="p">,</span><span class="n">p2</span>
+    <span class="n">h2s</span><span class="o">=</span><span class="n">state2s</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">h2</span><span class="o">=</span><span class="n">h1</span><span class="o">-</span><span class="n">eta_T</span><span class="o">*</span><span class="p">(</span><span class="n">h1</span><span class="o">-</span><span class="n">h2s</span><span class="p">)</span> <span class="c1">#solve for h2</span>
+    <span class="n">state2</span><span class="o">.</span><span class="n">HP</span><span class="o">=</span><span class="n">h2</span><span class="p">,</span><span class="n">p2</span>
+    <span class="k">return</span> <span class="n">state2</span><span class="o">.</span><span class="n">PQ</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">p2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x2</span><span class="o">-</span><span class="n">quality</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">80</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># the initial guess for pressure is 80 kPa</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The exact pressure, determined using the fsolve function is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kPa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The exact pressure, determined using the fsolve function is 47.43 kPa
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_15664/3904513878.py:16: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  state2s.SP=s2s,p2
+/tmp/ipykernel_15664/3904513878.py:19: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  state2.HP=h2,p2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Second%20Law%20of%20Thermodynamics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Exercise%20Solutions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Exercise Solutions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-change-of-ideal-gases">9.1. Entropy Change of Ideal Gases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-entropy-change-of-an-ideal-gas-with-and-without-specific-heats">9.1.1. Example - Evaluating Entropy Change of an Ideal Gas With and Without Specific Heats</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isentropic-processes-of-ideal-gases">9.2. Isentropic Processes of Ideal Gases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reversible-steady-state-work">9.3. Reversible Steady State Work</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-isentropic-pumping">9.3.1. Example - Isentropic Pumping</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isentropic-efficiency">9.4. Isentropic Efficiency</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-isentropic-efficiency">9.4.1. Example - Isentropic Efficiency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-isentropic-efficiency-iterative-solution-approach">9.4.2. Example - Isentropic Efficiency Iterative Solution Approach</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

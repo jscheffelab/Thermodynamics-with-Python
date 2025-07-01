@@ -1,0 +1,1716 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. First Law of Thermodynamics - Open Systems &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/First Law of Thermodynamics Open Systems';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators" href="Second%20Law%20of%20Thermodynamics.html" />
+    <link rel="prev" title="6. First Law of Thermodynamics - Boundary Work and Specific Heats" href="First%20Law%20of%20Thermodynamics%20Continued.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Exercise%20Solutions.html">10. Exercise Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References%20Cited.html">12. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/First Law of Thermodynamics Open Systems.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/First Law of Thermodynamics Open Systems.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>First Law of Thermodynamics - Open Systems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-work">7.1. Flow Work</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-mass-flowrate">7.2. More on Mass Flowrate</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-calculating-mass-flowrates">7.2.1. Example - Calculating Mass Flowrates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conservation-of-mass">7.3. Conservation of Mass</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-conservation-for-open-systems">7.4. Energy Conservation for Open Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-applying-open-system-energy-equation">7.4.1. Example - Applying Open System Energy Equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-using-cantera-for-other-pure-substances-and-gas-mixtures-such-as-air">7.4.2. Aside - Using Cantera for Other Pure Substances and Gas Mixtures Such as Air</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-typical-steady-state-devices">7.5. Some Typical Steady State Devices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-inlet-and-exit-steady-state-control-volumes">7.5.1. Single Inlet and Exit Steady State Control Volumes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pipes">7.5.1.1. Pipes</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#example-understanding-assumptions-about-neglecting-ke">7.5.1.1.1. Example - Understanding Assumptions about Neglecting KE</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nozzles-and-diffusers">7.5.1.2. Nozzles and Diffusers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#throttles">7.5.1.3. Throttles</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#turbines-and-compressors">7.5.1.4. Turbines and Compressors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-understanding-assumptions-about-neglecting-ke-and-pe-changes-in-turbines-and-compressors">7.5.1.5. Example - Understanding Assumptions about Neglecting KE and PE changes in Turbines and Compressors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pumps">7.5.1.6. Pumps</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-assuming-incompressibility-versus-a-real-fluid">7.5.1.7. Example - Assuming Incompressibility Versus a Real Fluid</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-inlet-and-exit-steady-state-control-volumes">7.5.2. Multiple Inlet and Exit Steady State Control Volumes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-exchangers">7.5.2.1. Heat Exchangers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mixing-chambers-and-separators">7.5.2.2. Mixing Chambers and Separators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transient-considerations">7.6. Transient Considerations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-open-system-analysis-of-a-turbine-and-plotting">7.6.1. Example - Open System Analysis of a Turbine and Plotting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-system-analysis-with-variable-specific-heats">7.6.2. Open System Analysis with Variable Specific Heats</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5">7.6.3. Exercise 5</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="first-law-of-thermodynamics-open-systems">
+<span id="firstlawopen"></span><h1><span class="section-number">7. </span>First Law of Thermodynamics - Open Systems<a class="headerlink" href="#first-law-of-thermodynamics-open-systems" title="Link to this heading">#</a></h1>
+<p id="index-0">In the previous two chapter’s <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-numref">Section 5</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-ref">First Law of Thermodynamics - Introduction to Closed Systems</span></a> and <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#firstlawapplications"><span class="std std-numref">Section 6</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#firstlawapplications"><span class="std std-ref">First Law of Thermodynamics - Boundary Work and Specific Heats</span></a>, we were focused on applying the energy conservation equation to closed systems, where there was no mass exchange with the surroundings. However, there are many thermodynamic systems where accounting for the mass transfer and energy transfer is critical, such as  turbines, mixing chambers, and so on. Recall that these are considered <span class="xref std std-ref">open systems</span>. To evaluate open systems, the energy conservation equation for a closed system is modified to account for the energy content of the mass entering and/or leaving the system. Further, a new concept called <span class="xref std std-ref">flow work</span> will have to be acocunted for, which is related to the work done by or to the fluid entering or leaving the system, and is the force behind it’s movement.</p>
+<section id="flow-work">
+<h2><span class="section-number">7.1. </span>Flow Work<a class="headerlink" href="#flow-work" title="Link to this heading">#</a></h2>
+<p>Flow work is the work required to push a fluid into the control volume (recall, a control volume is an open system), and work done by the system in the form of flow work to push fluid out. Consider the control volume below in <a class="reference internal" href="#first-law-open-fig-a"><span class="std std-numref">Figure 7.1</span></a> - the work required to push fluid into and out of the control volume can be evaluated by imagining a piston cylinder that the fluid is acting against.</p>
+<figure class="align-default" id="first-law-open-fig-a">
+<img alt="../_images/flow_work.png" src="../_images/flow_work.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text">Exemplary open system with 1 inlet and 1 exit. The flow work is represented at the inlet side as an imaginary piston-cylinder. The flow work is the work required to push the fluid into the system and the work required to push the fluid out of the system.</span><a class="headerlink" href="#first-law-open-fig-a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Recall, that the force (<span class="math notranslate nohighlight">\(F\)</span>) acting over an area (<span class="math notranslate nohighlight">\(A\)</span>) is pressure (<span class="math notranslate nohighlight">\(p\)</span>) and if the force is constant, the flow work (<span class="math notranslate nohighlight">\(W\)</span><sub>flow</sub>) is equal to the force times distance, or</p>
+<div class="math notranslate nohighlight" id="equation-eq-a">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-eq-a" title="Link to this equation">#</a></span>\[W_{\rm flow} = F \Delta x\]</div>
+<p>Thus, for a piston with area <span class="math notranslate nohighlight">\(A\)</span>,  <span class="math notranslate nohighlight">\(W\)</span><sub>flow</sub> is related to the pressure and volume (<span class="math notranslate nohighlight">\(V\)</span>) by,</p>
+<div class="math notranslate nohighlight" id="equation-eq-b">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-eq-b" title="Link to this equation">#</a></span>\[W_{\rm flow} = pA \Delta x = pV\]</div>
+<p>and in terms of mass specific properties</p>
+<div class="math notranslate nohighlight" id="equation-eq-c">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-eq-c" title="Link to this equation">#</a></span>\[w_{\rm flow} = pv\]</div>
+<p>The rate of flow work (<span class="math notranslate nohighlight">\(\dot W_{\rm flow}\)</span>) is the pressure times the <span class="xref std std-ref">volumetric flowrate</span>  (<span class="math notranslate nohighlight">\(\dot V\)</span>), or</p>
+<div class="math notranslate nohighlight" id="equation-eq-d">
+<span class="eqno">(7.4)<a class="headerlink" href="#equation-eq-d" title="Link to this equation">#</a></span>\[\dot W_{\rm flow} = p \dot V\]</div>
+<p>where the volumetric flowrate is the <span class="xref std std-ref">mass flowrate</span>  times the specific volume.</p>
+<div class="math notranslate nohighlight" id="equation-eq-e">
+<span class="eqno">(7.5)<a class="headerlink" href="#equation-eq-e" title="Link to this equation">#</a></span>\[\dot V = \dot m v\]</div>
+</section>
+<section id="more-on-mass-flowrate">
+<h2><span class="section-number">7.2. </span>More on Mass Flowrate<a class="headerlink" href="#more-on-mass-flowrate" title="Link to this heading">#</a></h2>
+<p id="index-1">Mass flowrate is another new term that was not introdced in prior sections. It is defined as the amount of mass flowing through a cross section per unit time. In differential form, the mass flowrate (<span class="math notranslate nohighlight">\(\delta \dot m\)</span>) crossing a differential cross sectional area (<span class="math notranslate nohighlight">\(dA_{\rm c}\)</span>) is related to the density (<span class="math notranslate nohighlight">\(\rho\)</span>) and velocity normal to the cross sectional area (<span class="math notranslate nohighlight">\(\rm{V}_{\rm n}\)</span>).</p>
+<div class="math notranslate nohighlight" id="equation-eq-e1">
+<span class="eqno">(7.6)<a class="headerlink" href="#equation-eq-e1" title="Link to this equation">#</a></span>\[\delta \dot m = \rho {\rm V_n} dA_{\rm c}\]</div>
+<p>To determine the mass flowrate over a finite cross-sectional area (<span class="math notranslate nohighlight">\(A_{\rm c}\)</span>), the differential mass flowrate should be integrated over <span class="math notranslate nohighlight">\(A_{\rm c}\)</span> - note the inexact differential that was discussed earlier in <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-numref">Section 5</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-ref">First Law of Thermodynamics - Introduction to Closed Systems</span></a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-e2">
+<span class="eqno">(7.7)<a class="headerlink" href="#equation-eq-e2" title="Link to this equation">#</a></span>\[\dot m = \int_{A_{\rm c}} \delta \dot m\]</div>
+<p>Therefore,</p>
+<div class="math notranslate nohighlight" id="equation-eq-e3">
+<span class="eqno">(7.8)<a class="headerlink" href="#equation-eq-e3" title="Link to this equation">#</a></span>\[\dot m = \int_{A_{\rm c}} \rho \rm {V_n} dA_{\rm c}\]</div>
+<p>For real systems, whether the flow is laminar or turbulent, the velocity over the inlet or exit diamater is not constant. In laminar flow systems, such as plug flow in a pipe, there is a velocity profile such that the maximum velocity occurs at the center and at the walls the velocity is equal to zero. This is depicted in <code class="xref std std-numref docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">%s</span></code>. Typically, an average velocity (<span class="math notranslate nohighlight">\(\rm {V_{avg}}\)</span>)  is used to enable straightforward evaluation of <span class="math notranslate nohighlight">\(\dot m\)</span>. <span class="math notranslate nohighlight">\(\rm {V_{avg}}\)</span> is related to the velocity profile through the following equation.</p>
+<div class="math notranslate nohighlight" id="equation-eq-e4">
+<span class="eqno">(7.9)<a class="headerlink" href="#equation-eq-e4" title="Link to this equation">#</a></span>\[{\rm V_{avg}} = \frac{1}{A_{\rm c}} \int_{A_{\rm c}} {\rm V} (y)dA_{\rm c}\]</div>
+<p><span class="math notranslate nohighlight">\(\delta \dot m = \rho \rm {V_n} dA_{\rm c}\)</span></p>
+<p>Therefore, assuming constant density over the cross-sectional area, the mass flowrate can be related to the average velocity.</p>
+<div class="math notranslate nohighlight" id="equation-eq-e5">
+<span class="eqno">(7.10)<a class="headerlink" href="#equation-eq-e5" title="Link to this equation">#</a></span>\[\dot m = \rho {\rm V_{avg}} A_{\rm c}\]</div>
+<p>And combining with <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-e">(8.5)</a></p>
+<div class="math notranslate nohighlight" id="equation-eq-e6">
+<span class="eqno">(7.11)<a class="headerlink" href="#equation-eq-e6" title="Link to this equation">#</a></span>\[\dot V = {\rm V_{avg}} A_{\rm c}\]</div>
+<figure class="align-default" id="first-law-open-fig-b">
+<img alt="../_images/velocity_profile.png" src="../_images/velocity_profile.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.2 </span><span class="caption-text">Exemplary velocity profile representative of simple plug flow, with maximum velocity at the center and velocity of zero at the walls. The velocity used in the energy equation is the average of this profile.</span><a class="headerlink" href="#first-law-open-fig-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In the ensuing discussions, the velocity terms are all average velocity but the subscript is removed for brevity.</p>
+<section id="example-calculating-mass-flowrates">
+<span id="massflowrate"></span><h3><span class="section-number">7.2.1. </span>Example - Calculating Mass Flowrates<a class="headerlink" href="#example-calculating-mass-flowrates" title="Link to this heading">#</a></h3>
+<p>N<sub>2</sub> gas flows in a 0.2 m diameter pipe at a uniform velocity of 0.1 <span class="math notranslate nohighlight">\(\frac{m}{s}\)</span>. <span class="math notranslate nohighlight">\(T\)</span> = 25 °C and <span class="math notranslate nohighlight">\(p\)</span> = 150 kPa. Determine <span class="math notranslate nohighlight">\(ṁ\)</span>, assuming steady state and ideal gas behavior. <span class="math notranslate nohighlight">\(M\)</span><sub>N2</sub> = 28 kg
+kmol-1</p>
+<blockquote>
+<div><p><strong>Solution</strong> First, we should recognize that we are provided temperature and pressure and thus have enough information to determine specific volume (i.e. density) at the given conditions. We also know the diameter, thus the area, and also are given the velocity&gt; Therefore, we also have enough information to solve for the volumetric flowrate using <a class="reference internal" href="#equation-eq-e6">(7.11)</a>, or <span class="math notranslate nohighlight">\(\dot V = {\rm V_{avg}} A_{\rm c}\)</span>. Knowing volumetric flowrate and the specific volume we can then use <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-e">(8.5)</a>, or <span class="math notranslate nohighlight">\(\dot V = \dot m v\)</span>, to solve for the mass flowrate.</p>
+</div></blockquote>
+<blockquote>
+<div><p>To determine specific volume we can either use the ideal gas equation or Cantera. For the sake of practice and to refresh your memory, lets do it both ways.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">25</span><span class="o">+</span><span class="mf">273.15</span><span class="p">,</span><span class="mi">150000</span>
+<span class="n">spec_vol</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Specific volume using Cantera is &quot;</span><span class="p">,</span> <span class="n">spec_vol</span><span class="p">,</span> <span class="s2">&quot;m^3/kg&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">vol</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">/</span><span class="n">M</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="n">p</span>
+<span class="n">spec_vol</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">vol</span><span class="p">(</span><span class="mf">298.15</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">28</span><span class="p">),</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Specific volume using ideal gas law is &quot;</span><span class="p">,</span> <span class="n">spec_vol</span><span class="p">,</span> <span class="s2">&quot;m^3/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Specific volume using Cantera is  0.5898 m^3/kg
+Specific volume using ideal gas law is  0.5902 m^3/kg
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Lets write <a class="reference internal" href="#equation-eq-e6">(7.11)</a> as a function to solve for <span class="math notranslate nohighlight">\(\dot V\)</span></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">V_dot</span><span class="p">(</span><span class="n">vel</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">vel</span><span class="o">*</span><span class="n">A</span>
+<span class="n">vol_rate</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">V_dot</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mf">.2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># Note we needed to input the area in terms of our known diameter</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The volumetric flowrate is &quot;</span><span class="p">,</span> <span class="n">vol_rate</span><span class="p">,</span> <span class="s2">&quot;m^3/s&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The volumetric flowrate is  0.0031 m^3/s
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Finally we can solve for <span class="math notranslate nohighlight">\(\dot m\)</span> using <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-e">(8.5)</a> <span class="math notranslate nohighlight">\(\dot V = \dot m v\)</span></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mass_flow</span> <span class="o">=</span> <span class="n">spec_vol</span><span class="o">*</span><span class="n">vol_rate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The mass flowrate is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mass_flow</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="s2">&quot;kg/s&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mass flowrate is  0.0018 kg/s
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that we could have also used the ideal gas law in the form, which is <span class="math notranslate nohighlight">\(p \dot V = \dot m RT\)</span>, and omitted solving for the specific volume explicitly.</p>
+</section>
+</section>
+<section id="conservation-of-mass">
+<h2><span class="section-number">7.3. </span>Conservation of Mass<a class="headerlink" href="#conservation-of-mass" title="Link to this heading">#</a></h2>
+<p id="index-2"><span class="xref std std-ref">Conservation of mass</span> says that the difference between the mass that enters (<span class="math notranslate nohighlight">\(m_{\rm i})\)</span> a system and leaves the system (<span class="math notranslate nohighlight">\(m_{\rm i})\)</span> must be equal to the change in mass of the system (<span class="math notranslate nohighlight">\(\Delta m_{\rm sys}\)</span>).</p>
+<div class="math notranslate nohighlight" id="equation-eq-p">
+<span class="eqno">(7.12)<a class="headerlink" href="#equation-eq-p" title="Link to this equation">#</a></span>\[\Delta m_{\rm sys} = m_{\rm i}-m_{\rm e}\]</div>
+<p>Conservation of mass in rate form analagously says that the rate of change of a system mass is equal to the difference in the inlet and exit mass flowrates. For multiple inlets and exits this is</p>
+<div class="math notranslate nohighlight" id="equation-eq-q">
+<span class="eqno">(7.13)<a class="headerlink" href="#equation-eq-q" title="Link to this equation">#</a></span>\[\frac {dm_{\rm sys}}{dt} = \sum \dot m_{\rm i} - \sum \dot m_{\rm e}\]</div>
+<p>where the summation represents one or more inlets or exits. Any time the properties of a system do not change with time, the system is said to operate at <span class="xref std std-ref">steady state</span>. For example, a turbine which  produces power from an inlet stream of gas typically operates at steady state and the power output is constant with time. At any point in time the system properties (such as temperature, pressure, mass, internal energy, etc.) remain unchanged. That is not to say the inlet and exit properties cannot be different from each other - only that their properties with respect to their positions do not vary with time.  This implies that during steady state operation the system mass remains unchanged and thus the left hand side of equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-q">(8.17)</a> is zero. Therefore, for a system at steady state the sum of the inlet flowrates should equal the sum of the exit flowrates.</p>
+<div class="math notranslate nohighlight" id="equation-eq-r">
+<span class="eqno">(7.14)<a class="headerlink" href="#equation-eq-r" title="Link to this equation">#</a></span>\[\sum \dot m_{\rm i} = \sum \dot m_{\rm e}\]</div>
+<p>And for a single inlet, single outlet, control volume the mass flowrates entering and exiting are equal.</p>
+<div class="math notranslate nohighlight" id="equation-eq-s">
+<span class="eqno">(7.15)<a class="headerlink" href="#equation-eq-s" title="Link to this equation">#</a></span>\[\dot m_{\rm i} = \dot m_{\rm e} = \dot m\]</div>
+</section>
+<section id="energy-conservation-for-open-systems">
+<h2><span class="section-number">7.4. </span>Energy Conservation for Open Systems<a class="headerlink" href="#energy-conservation-for-open-systems" title="Link to this heading">#</a></h2>
+<p>In addition to heat transfer and boundary work interactions that were considered in the closed system energy conservation equation, flow work and energy content of the mass entering or leaving the system need to also be accounted for in open systems. We have already defined the flow work above. The energy <span class="math notranslate nohighlight">\(E\)</span> of the mass that enters is it’s specific energy content, <span class="math notranslate nohighlight">\(e\)</span>, scaled by the mass, <span class="math notranslate nohighlight">\(m\)</span>, or <span class="math notranslate nohighlight">\(E = em\)</span>. And further, this can be broken down into the individual components, internal energy (<span class="math notranslate nohighlight">\(U\)</span>), kinetic energy (<span class="math notranslate nohighlight">\(KE\)</span>) and potential energy (<span class="math notranslate nohighlight">\(PE\)</span>). These terms should not be confused with the system’s energy which can also be broken down similarly. Thus, we can say the energy content that entered (<span class="math notranslate nohighlight">\(E\)</span><sub>i</sub>) or exited (<span class="math notranslate nohighlight">\(E\)</span><sub>e</sub>) the control volume is the following.</p>
+<div class="math notranslate nohighlight" id="equation-eq-g">
+<span class="eqno">(7.16)<a class="headerlink" href="#equation-eq-g" title="Link to this equation">#</a></span>\[E_{\rm i} = U_{\rm i} + KE_{\rm i} + PE_{\rm i}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-h">
+<span class="eqno">(7.17)<a class="headerlink" href="#equation-eq-h" title="Link to this equation">#</a></span>\[E_{\rm e} = U_{\rm e} + KE_{\rm e} + PE_{\rm e}\]</div>
+<p>Now, we can add these terms to the closed system energy conservation equation. Recall, for a stationary system this was <span class="math notranslate nohighlight">\(\Delta U = Q_{\rm net}-W_{\rm net}\)</span>, where <span class="math notranslate nohighlight">\(W_{\rm net}\)</span> does not include the flow work and is typically represented by boundary work, electrical work, etc. For a system with one inlet and one exit, adding the inlet and exit flow work and energy of the entering and exiting masses, the energy equation becomes the following.</p>
+<div class="math notranslate nohighlight" id="equation-eq-i">
+<span class="eqno">(7.18)<a class="headerlink" href="#equation-eq-i" title="Link to this equation">#</a></span>\[\Delta U = Q_{\rm net}-W_{\rm net} + W_{\rm flow,i}-W_{\rm flow,e} + E_{\rm i} - E_{\rm e}\]</div>
+<p>And</p>
+<div class="math notranslate nohighlight" id="equation-eq-j">
+<span class="eqno">(7.19)<a class="headerlink" href="#equation-eq-j" title="Link to this equation">#</a></span>\[\Delta U = Q_{\rm net}-W_{\rm net} + p_{\rm i}V_{\rm i}-p_{\rm e}V_{\rm e} + (U_{\rm i}+\frac{1}{2}m_{\rm i}{\rm V_i}^2+m_{\rm i}gz_{\rm i}) - (U_{\rm e}+\frac{1}{2}m_{\rm e}{\rm V_e}^2+m_{\rm e}gz_{\rm e})\]</div>
+<p>Recall that <span class="math notranslate nohighlight">\(H = U + pV\)</span>. Using this relationship, we can group the inlet and exit flow work terms with the inlet and exit internal energies, respectively, and simply call this the inlet and exit enthalpy. Below is the resulting generalized form of the energy conservation equation for open systems with a single inlet and exit.</p>
+<div class="math notranslate nohighlight" id="equation-eq-k">
+<span class="eqno">(7.20)<a class="headerlink" href="#equation-eq-k" title="Link to this equation">#</a></span>\[\Delta U = Q_{\rm net}-W_{\rm net} + (H_{\rm i}+\frac{1}{2}m_{\rm i}{\rm V_i}^2+m_{\rm i}gz_{\rm i}) - (H_{\rm e}+\frac{1}{2}m_{\rm e}{\rm V_e}^2+m_{\rm e}gz_{\rm e})\]</div>
+<p>The rate form of the open system energy conservation equation, with one inlet and one exit, becomes.</p>
+<div class="math notranslate nohighlight" id="equation-eq-m">
+<span class="eqno">(7.21)<a class="headerlink" href="#equation-eq-m" title="Link to this equation">#</a></span>\[\frac {dU}{dt} = \dot Q_{\rm net} - \dot W_{\rm net} + \dot m_{\rm i} (h_{\rm i}+\frac{{\rm V_i}^2}{2}+gz_{\rm i}) - \dot m_{\rm e} (h_{\rm e}+\frac{{\rm V_e}^2}{2}+gz_{\rm e})\]</div>
+<p>A more generalized form can be easily derived which is valid for an open system with multiple inlets and exits.</p>
+<div class="math notranslate nohighlight" id="equation-eq-n">
+<span class="eqno">(7.22)<a class="headerlink" href="#equation-eq-n" title="Link to this equation">#</a></span>\[\frac {dU}{dt} = \dot Q_{\rm net} - \dot W_{\rm net} + \sum \dot m_{\rm i} (h_{\rm i}+\frac{{\rm V_i}^2}{2}+gz_{\rm i}) -\sum \dot m_{\rm e} (h_{\rm e}+\frac{{\rm V_e}^2}{2}+gz_{\rm e})\]</div>
+<p>For systems opreating at steady state left hand side of the energy conservation equation becomes zero, as shown below.</p>
+<div class="math notranslate nohighlight" id="equation-eq-t">
+<span class="eqno">(7.23)<a class="headerlink" href="#equation-eq-t" title="Link to this equation">#</a></span>\[0 = \dot Q_{\rm net} - \dot W_{\rm net} + \sum \dot m_{\rm i} (h_{\rm i}+\frac{{\rm V_i}^2}{2}+gz_{\rm i}) -\sum \dot m_{\rm e} (h_{\rm e}+\frac{{\rm V_e}^2}{2}+gz_{\rm e})\]</div>
+<p>And finally, the simplified steady state energy conservation equation for a control volume with a single inlet and exit is the following.</p>
+<div class="math notranslate nohighlight" id="equation-eq-u">
+<span class="eqno">(7.25)<a class="headerlink" href="#equation-eq-u" title="Link to this equation">#</a></span>\[0 = \dot Q_{\rm net} - \dot W_{\rm net} + \dot m(h_{\rm i}-h_{\rm e}) + \dot m(\frac{{\rm V_i}^2}{2}-\frac{{\rm V_e}^2}{2}) +\dot m g(z_{\rm i} -z_{\rm e})\]</div>
+<section id="example-applying-open-system-energy-equation">
+<span id="opensystem"></span><h3><span class="section-number">7.4.1. </span>Example - Applying Open System Energy Equation<a class="headerlink" href="#example-applying-open-system-energy-equation" title="Link to this heading">#</a></h3>
+<p>Nitrogen enters a horizontal 28 cm diameter pipe at 200 kPa and 20 °C with a velocity of 5 <span class="math notranslate nohighlight">\(\frac{\rm m}{\rm s}\)</span>. The nitrogen is heated as it flows through the pipe and exits at 180 kPa and 40 °C. Determine <span class="math notranslate nohighlight">\(\rm V_{\rm e}\)</span> and <span class="math notranslate nohighlight">\(\dot V\)</span><sub>e</sub> at the exit. Determine the rate of heat transfer to the nitrogen. Assume the system is at steady state. <span class="math notranslate nohighlight">\(M\)</span><sub>N2</sub> = 28 <span class="math notranslate nohighlight">\(\frac {\rm kg} {\rm kmol}\)</span>.</p>
+<blockquote>
+<div><p><strong>Solution</strong> In this example, the system is operating at steady state and there is only a single inlet and exit. Therefore, the open system energy conservation equation reduces to <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-u">(8.21)</a>
+<span class="math notranslate nohighlight">\(0 = \dot Q_{\rm net} - \dot W_{\rm net} + \dot m(h_{\rm i}-h_{\rm e}) + \dot m(\frac{{\rm V_i}^2}{2}-\frac{{\rm V_e}^2}{2}) +\dot m g(z_{\rm i} -z_{\rm e})\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>Because the pipe is horizontal there is no change in elevation and therefore the height terms cancel and can be disregarded. Further, there is no mention of boundary work and we can assume this to be negligable and can also be disregarded. Therefore, <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-u">(8.21)</a> reduces further to.
+<span class="math notranslate nohighlight">\(0 = \dot Q_{\rm net} + \dot m(h_{\rm i}-h_{\rm e}) + \dot m(\frac{{\rm V_i}^2}{2}-\frac{{\rm V_e}^2}{2})\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>We are provided the inlet temperatures and pressures and therefore have enough information to determine the enthalpies. We also know the inlet velocity. The remaining unknown terms are <span class="math notranslate nohighlight">\(\dot Q_{\rm net}\)</span>, <span class="math notranslate nohighlight">\(\dot m\)</span>, and <span class="math notranslate nohighlight">\({\rm V_e}\)</span>. To help solve for <span class="math notranslate nohighlight">\(\dot m\)</span> and <span class="math notranslate nohighlight">\({\rm V_e}\)</span> we can use the mass conservation equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-s">(8.19)</a> and relationship between mass flowrate, velocity and area <a class="reference internal" href="#equation-eq-e5">(7.10)</a>. I.e.</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\dot m_{\rm i} = \dot m_{\rm e}\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\rho_{\rm i} {\rm V_i} A_{\rm i} = \rho_{\rm e} {\rm V_e} A_{\rm e}\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>Finally, representing the density as inverse specific volume and assuming that the inlet and exit areas are equal, we find.</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac {\rm V_i}{v_{\rm i}}  = \frac {\rm V_e}{v_{\rm e}}\)</span>, or
+<span class="math notranslate nohighlight">\({\rm V_e} = {\rm V_i} \frac {v_{\rm e}}{v_{\rm i}}\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>Therefore, knowing the specific volumes at the inlet and exit, we can solve for the exit velocity. Since we know both temperature and pressure at both inlet and exit we can either use ideal gas law  or Cantera to solve for specific volumes. Solution using Cantera is below.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span><span class="mf">273.15</span> <span class="c1"># Define inlet T in K</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="mi">200000</span> <span class="c1"># Define inlet P in Pa</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="mi">40</span> <span class="o">+</span> <span class="mf">273.15</span> <span class="c1"># Define exit T in K</span>
+<span class="n">Pe</span> <span class="o">=</span> <span class="mi">180000</span> <span class="c1"># Define exit P in Pa</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span><span class="n">Pi</span> <span class="c1"># set inlet T and P</span>
+<span class="n">vi</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># determine inlet specific volume</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inlet Specific Volume = &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">vi</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="s2">&quot;m^3&quot;</span><span class="p">)</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Te</span><span class="p">,</span><span class="n">Pe</span> <span class="c1"># set exit T and P</span>
+<span class="n">ve</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exit Specific Volume = &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">ve</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;m^3&quot;</span><span class="p">)</span>
+<span class="n">Vi</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># m/s, inlet velocity</span>
+<span class="n">Ve</span> <span class="o">=</span> <span class="n">Vi</span><span class="o">*</span><span class="n">ve</span><span class="o">/</span><span class="n">vi</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exit Velocity = &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Ve</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;m/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inlet Specific Volume =  0.435 m^3
+Exit Specific Volume =  0.516 m^3
+Exit Velocity =  5.937 m/s
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>We can solve for the massflowrate at either the inlet or exit, knowing <span class="math notranslate nohighlight">\(\dot m = \rho {\rm V} A = \frac{1}{v} {\rm V} A\)</span></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">Ai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">28</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># Solve for the inlet/exit area</span>
+<span class="n">m_dot</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">vi</span><span class="p">)</span><span class="o">*</span><span class="n">Vi</span><span class="o">*</span><span class="n">Ai</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mass Flowrate = &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">m_dot</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;kg/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mass Flowrate =  0.708 kg/s
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Finally we can solve for the heat transfer using our simpliefied form of the energy equation, i.e. <span class="math notranslate nohighlight">\(0 = \dot Q_{\rm net} + \dot m(h_{\rm i}-h_{\rm e}) + \dot m(\frac{{\rm V_i}^2}{2}-\frac{{\rm V_e}^2}{2})\)</span>, but first we need to determine the inlet and exit enthalpies. We will use Cantera just like we did for the specific volumes.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span><span class="mf">273.15</span> <span class="c1"># Define inlet T in K</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="mi">200000</span> <span class="c1"># Define inlet P in Pa</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="mi">40</span> <span class="o">+</span> <span class="mf">273.15</span> <span class="c1"># Define exit T in K</span>
+<span class="n">Pe</span> <span class="o">=</span> <span class="mi">180000</span> <span class="c1"># Define exit P in Pa</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span><span class="n">Pi</span> <span class="c1"># set inlet T and P</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># determine inlet specific volume</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inlet Specific Enthalpy = &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">hi</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="s2">&quot;J/kg&quot;</span><span class="p">)</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Te</span><span class="p">,</span><span class="n">Pe</span> <span class="c1"># set exit T and P</span>
+<span class="n">he</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exit Specific Enthalpy = &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">he</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;J/kg&quot;</span><span class="p">)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="o">-</span><span class="n">m_dot</span><span class="o">*</span><span class="p">(</span><span class="n">hi</span><span class="o">-</span><span class="n">he</span><span class="p">)</span><span class="o">-</span><span class="n">m_dot</span><span class="o">*</span><span class="p">(</span><span class="n">Vi</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">Ve</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Net Heat Transfer Rate is = &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;W or &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;kW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inlet Specific Enthalpy =  -5610.681 J/kg
+Exit Specific Enthalpy =  15273.079 J/kg
+The Net Heat Transfer Rate is =  14790.564 W or  14.791 kW
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Notice that the resulting heat transfer is positive, indicating that heat had to be transferred to the system. Which, given the fact that the temperature of the fluid increased going from the inlet to the exit, makes logical sense.</p>
+</div></blockquote>
+</section>
+<section id="aside-using-cantera-for-other-pure-substances-and-gas-mixtures-such-as-air">
+<h3><span class="section-number">7.4.2. </span>Aside - Using Cantera for Other Pure Substances and Gas Mixtures Such as Air<a class="headerlink" href="#aside-using-cantera-for-other-pure-substances-and-gas-mixtures-such-as-air" title="Link to this heading">#</a></h3>
+<p>You may have noticed that Cantera is limited to calling on a certain limited number of pure substances. These include such as Carbon Dioxide, Water, Nitrogen, Hydrogen, Oxygen and Helium (<a class="reference external" href="https://www.cantera.org/documentation/docs-2.6/sphinx/html/cython/importing.html">https://www.cantera.org/documentation/docs-2.6/sphinx/html/cython/importing.html</a>). However, there are many situations where other pure substances (e.g. argon or methane) or gas mixtures, such as air (primarily N<sub>2</sub> and O<sub>2</sub>), are the working fluids of interest. Understanding gas mixtures is a more advanced topic that will be discussed in later sections, but for now we will introduce how to implement other pure substances and gas mixtures such as air using Cantera.</p>
+<p>For this, we will have to rely on databases of gas mixtures that have been created and call them within the <span class="math notranslate nohighlight">\(Solution\)</span> function that is contained within the Cantera package. We will rely primarly in the gri30 database. We can define a species like we did prior for pure substances (e.g. species1 = ct.Water()), but rather we call <span class="math notranslate nohighlight">\(Solution\)</span> and within this function input ‘gri30.yaml’ which is our gas mixture database. Like below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span><span class="c1"># define species1 as a mixture of gases defined in the gri30 database. </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If no mole or mass fractions are defined (which we have not done yet), by default the gas mixutre is composed of H<sub>2</sub>, as we can see below when we call species1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gri30:
+
+       temperature   300 K
+          pressure   1.0133e+05 Pa
+           density   0.081894 kg/m^3
+  mean mol. weight   2.016 kg/kmol
+   phase of matter   gas
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy             26469             53361  J
+   internal energy       -1.2108e+06        -2.441e+06  J
+           entropy             64910        1.3086e+05  J/K
+    Gibbs function       -1.9447e+07       -3.9204e+07  J
+ heat capacity c_p             14311             28851  J/K
+ heat capacity c_v             10187             20536  J/K
+
+                      mass frac. Y      mole frac. X     chem. pot. / RT
+                     ---------------   ---------------   ---------------
+                H2                 1                 1           -15.717
+     [  +52 minor]                 0                 0  
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we would rather define species1 to be 100% methane, this is done by defining the mole fraction <span class="math notranslate nohighlight">\(X\)</span> as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;CH4:1&#39;</span> <span class="c1">#Here we set the mixture to only be methane. I.e. CH4 mole fraction = 1.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now when we call species1 we can see it is composed of only <span class="math notranslate nohighlight">\(\rm{CH}_4\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gri30:
+
+       temperature   300 K
+          pressure   12733 Pa
+           density   0.081894 kg/m^3
+  mean mol. weight   16.043 kg/kmol
+   phase of matter   gas
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy       -4.6459e+06       -7.4533e+07  J
+   internal energy       -4.8013e+06       -7.7028e+07  J
+           entropy             12706        2.0384e+05  J/K
+    Gibbs function       -8.4576e+06       -1.3568e+08  J
+ heat capacity c_p              2229             35761  J/K
+ heat capacity c_v            1710.8             27446  J/K
+
+                      mass frac. Y      mole frac. X     chem. pot. / RT
+                     ---------------   ---------------   ---------------
+               CH4                 1                 1           -54.397
+     [  +52 minor]                 0                 0  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, defining temperature, pressure or other extensive properties remains as we have learned for pure substances. For example, to set the temperature to 1000 K and pressure to 100 kPa you can type the following.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span><span class="mi">100000</span> <span class="c1"># define the temperature to be 100 K and pressure to be 100 kPa or 100000 Pa</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To define gas mixtures such as air that are about 0.8 mole fraction N<sub>2</sub> and 0.2 mole fraction O<sub>2</sub>, we can simply define more species and their corresponding mole fractions when calling the mole fraction function <span class="math notranslate nohighlight">\(X\)</span>, like below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.8 O2:0.2&#39;</span> <span class="c1">#Here we set the mixture to only be x= 0.8 N2 and x=0.2 O2.</span>
+<span class="n">species1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  gri30:
+
+       temperature   1000 K
+          pressure   55684 Pa
+           density   0.19295 kg/m^3
+  mean mol. weight   28.811 kg/kmol
+   phase of matter   gas
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy        7.5379e+05        2.1717e+07  J
+   internal energy         4.652e+05        1.3403e+07  J
+           entropy            8341.5        2.4033e+05  J/K
+    Gibbs function       -7.5877e+06       -2.1861e+08  J
+ heat capacity c_p            1151.9             33186  J/K
+ heat capacity c_v            863.28             24872  J/K
+
+                      mass frac. Y      mole frac. X     chem. pot. / RT
+                     ---------------   ---------------   ---------------
+                O2           0.22213               0.2           -28.774
+                N2           0.77787               0.8           -25.672
+     [  +51 minor]                 0                 0  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="some-typical-steady-state-devices">
+<h2><span class="section-number">7.5. </span>Some Typical Steady State Devices<a class="headerlink" href="#some-typical-steady-state-devices" title="Link to this heading">#</a></h2>
+<p id="index-3">Our discussion of the open system energy conservation equation ended with a consideration of steady state operation where the left hand side of the energy equation is set to zero because the internal energy of the system is constant with time. The general form with multiple inlets and exits is below and was discussed in <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-t">(8.20)</a>.</p>
+<p><span class="math notranslate nohighlight">\(0 = \dot Q_{\rm net} - \dot W_{\rm net} + \sum \dot m_{\rm i} (h_{\rm i}+\frac{{\rm V_i}^2}{2}+gz_{\rm i}) -\sum \dot m_{\rm e} (h_{\rm e}+\frac{{\rm V_e}^2}{2}+gz_{\rm e})\)</span></p>
+<p>Although there are potentially many terms to consider in this equation, in practice there are usually many that can be neglected, either because they are not pertinant or because they are insignificant relative to the other terms. Some typical examples include the following below. Note that we will go through examples later that will provide more context if the significance is not evident yet.</p>
+<ol class="arabic simple">
+<li><p>Single inlet and exit systems. In this case,  the mass flowrate entering and exiting should be equal, as discussed prior.</p></li>
+<li><p>Inlets and exits that are at the same elevation (e.g. horizontal pipe flow). In this case then there is no change in height and the potential energy terms can be neglected. Further, there are several cases where the inlets and exits may be at different heights, but the potential energy change is still small relative to the other energy terms and can thus be neglected. For example in turbines (discussed later in this chapter), the inlet and exit heights are often neglected because the overall change in potential energy is often more than an order or magnitude lower than the shaft work terms.</p></li>
+<li><p>Inlets and exits that are similar in area. In this case the kinetic energy terms can usually (but not always) be neglected because the change in kinetic energy is often small relative to the other energy terms.</p></li>
+<li><p>Adiabatic systems. In this case, the system is assumed to be perfectly insulated and there is no heat transfer. This is often applied for turbines, compressors and other shaft work devices (discussed later in this chapter).</p></li>
+<li><p>No shaft work. For devices such as nozzles and throttling devices (also discussed later in this chapter), there is no work done by or to the system and thus the work term can be negelected. Also, these devices are often adiabatic.</p></li>
+</ol>
+<section id="single-inlet-and-exit-steady-state-control-volumes">
+<h3><span class="section-number">7.5.1. </span>Single Inlet and Exit Steady State Control Volumes<a class="headerlink" href="#single-inlet-and-exit-steady-state-control-volumes" title="Link to this heading">#</a></h3>
+<section id="pipes">
+<h4><span class="section-number">7.5.1.1. </span>Pipes<a class="headerlink" href="#pipes" title="Link to this heading">#</a></h4>
+<p id="index-4">A simple horizontal <span class="xref std std-ref">pipe flow</span> system is shown below in <a class="reference internal" href="#first-law-fig-c"><span class="std std-numref">Figure 7.3</span></a> in which a fluid enters and exits the device through equal cross sectional areas and elevations.  Because there is a single inlet and exit, inlet and exit mass flowrates are idential because of mass conservation. Typically, there is no shaft work in pipe flow applications and this is indicated to be equal to zero. Depending on the application, tere may be energy transfer to or from the system in the form of heat transfer. In this example, the system is not adiabatic because heat transfer is indicated in the direction of the control volume. As mentioned above, we can often neglect changes in kinetic energy for systems like this with constant cross sectional area.</p>
+<figure class="align-default" id="first-law-fig-c">
+<img alt="../_images/pipe_flow.png" src="../_images/pipe_flow.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.3 </span><span class="caption-text">Exemplary pipe-flow open system with 1 inlet and 1 exit.</span><a class="headerlink" href="#first-law-fig-c" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>As mentioned above, we can often neglect changes in kinetic energy for systems like this with constant cross sectional area. This is not to say that the velocity change is negligible - rather for kinetic energy changes to be considered the velocity change typically has to be large, for example by an order or magnitude. And because of the relationship shown in <a class="reference internal" href="#equation-eq-e5">(7.10)</a>, i.e., <span class="math notranslate nohighlight">\(\dot m = \rho {\rm V} A\)</span>, recognizing that <span class="math notranslate nohighlight">\(\dot m_{\rm i} = \dot m_{\rm e}\)</span> and <span class="math notranslate nohighlight">\(A_{\rm i} = A_{\rm e}\)</span>, then the density change is propotional to the change in velocity. Thus, unless the change in density is very large, for example because the temperature change due to heat transfer is very large, we can usually neglect. Lets see why with a follow up to example <a class="reference internal" href="#opensystem"><span class="std std-ref">Example - Applying Open System Energy Equation</span></a> above.</p>
+<section id="example-understanding-assumptions-about-neglecting-ke">
+<span id="pipe-flow"></span><h5><span class="section-number">7.5.1.1.1. </span>Example - Understanding Assumptions about Neglecting KE<a class="headerlink" href="#example-understanding-assumptions-about-neglecting-ke" title="Link to this heading">#</a></h5>
+<p>From the example <a class="reference internal" href="#opensystem"><span class="std std-ref">Example - Applying Open System Energy Equation</span></a> above, compare the change in enthalpy to the change in kinetic energy.</p>
+<blockquote>
+<div><p>Recall the prior question from before: Nitrogen enters a horizontal 28 cm diameter pipe at 200 kPa and 20 °C with a velocity of 5 <span class="math notranslate nohighlight">\(\frac{\rm m}{\rm s}\)</span>. The nitrogen is heated as it flows through the pipe and exits at 180 kPa and 40 °C. Determine <span class="math notranslate nohighlight">\(\rm V_{\rm e}\)</span> and <span class="math notranslate nohighlight">\(\dot V\)</span><sub>e</sub> at the exit. Determine the rate of heat transfer to the nitrogen. Assume the system is at steady state. <span class="math notranslate nohighlight">\(M\)</span><sub>N2</sub> = 28 <span class="math notranslate nohighlight">\(\frac {\rm kg} {\rm kmol}\)</span>.</p>
+</div></blockquote>
+<blockquote>
+<div><p>This could be done one of a few ways. One way, for example, would be to calculate the change in kinetic energy with the simplified form of the energy equation that results after simplification. <span class="math notranslate nohighlight">\(0 = \dot Q_{\rm net} + \dot m(h_{\rm i}-h_{\rm e}) + \dot m(\frac{{\rm V_i}^2}{2}-\frac{{\rm V_e}^2}{2})\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>We determined that <span class="math notranslate nohighlight">\(Q\)</span> = 14790.6 W, <span class="math notranslate nohighlight">\(h_{\rm i}\)</span> = -5610.681 J/kg, <span class="math notranslate nohighlight">\(h_{\rm e}\)</span> =  15273.079 J/kg and <span class="math notranslate nohighlight">\(\dot m\)</span> = 0.708 kg/s. Therefore we can readily calculate <span class="math notranslate nohighlight">\(\Delta \rm KE\)</span> by</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\Delta \rm KE = -\dot Q_{\rm net} - \dot m(h_{\rm i}-h_{\rm e})\)</span></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Delta_KE</span> <span class="o">=</span> <span class="o">-</span><span class="mf">14790.6</span> <span class="o">-</span> <span class="mf">.708</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mf">5610.681</span><span class="o">-</span><span class="mf">15273.079</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The change in kinetic energy is &quot;</span> <span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Delta_KE</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The change in kinetic energy is  -4.9 J/s
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Of course we could have calculated the  <span class="math notranslate nohighlight">\(\Delta \rm KE\)</span>, since we calculated that the exit velocity was <span class="math notranslate nohighlight">\(\rm V_{\rm e}\)</span> = 5.937 m/s and we were given the inlet which was <span class="math notranslate nohighlight">\(\rm V_{\rm i}\)</span> = 5.937 m/s</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Delta_KE</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mf">0.708</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mf">5.937</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The change in kinetic energy is &quot;</span> <span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Delta_KE</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The change in kinetic energy is  -3.63 J/s
+</pre></div>
+</div>
+</div>
+</div>
+<p>The differences between the two approaches are presumably due to rounding differences. Regardless, it is nearly negligable compared to the change in enthalpy, which is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Delta_h</span> <span class="o">=</span> <span class="mf">.708</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mf">5610.681</span><span class="o">-</span><span class="mf">15273.079</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The change in enthalpy is &quot;</span> <span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Delta_h</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The change in enthalpy is  -14785.7 J/s
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>One common error regarding units is when <span class="math notranslate nohighlight">\(\rm \Delta KE\)</span> is compared to heat transfer or enthalpy in units kJ or kW. This is because when calculating KE, the units are <span class="math notranslate nohighlight">\(\rm kg \frac {\rm m^2}{\rm s^2}\)</span>, or <span class="math notranslate nohighlight">\(\rm J\)</span> (recall that <span class="math notranslate nohighlight">\(\rm J=Nm\)</span>, or <span class="math notranslate nohighlight">\(\rm kg \frac {\rm m^2}{\rm s^2}\)</span>). Therefore, the units are off by a factor of 1000 if the velocity used is in m/s.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="nozzles-and-diffusers">
+<h4><span class="section-number">7.5.1.2. </span>Nozzles and Diffusers<a class="headerlink" href="#nozzles-and-diffusers" title="Link to this heading">#</a></h4>
+<p id="index-5"><span class="xref std std-ref">Nozzles</span> and <span class="xref std std-ref">diffusers</span> are two types of steady state devices that have different cross-sectional areas at the inlets and exits, and are designed to accelerate (in the case of a nozzle) or decelerate (in the case of a diffuser) the velocity of a fluid. These are shown below in <a class="reference internal" href="#first-law-fig-d"><span class="std std-numref">Figure 7.4</span></a>.</p>
+<figure class="align-default" id="first-law-fig-d">
+<img alt="../_images/nozzle_diffuser.png" src="../_images/nozzle_diffuser.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.4 </span><span class="caption-text">Exemplary nozzle (left) and diffuser (right) steady state control volumes.</span><a class="headerlink" href="#first-law-fig-d" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Similar to pipes, there is typically no shaft work to consider, and the inlets and exits are at the same elevation and therefore potential energy changes can be disregarded. These systems are usually adiabatic and the inlet and exit mass flowrates are equal because of mass conservation. Therefore, our steady state open system energy conservation equation, with a single inlet and exit, as shown below, can be greatly simplified from</p>
+<p><span class="math notranslate nohighlight">\(0 = \dot Q_{\rm net} - \dot W_{\rm net} + \dot m(h_{\rm i}-h_{\rm e}) + \dot m(\frac{{\rm V_i}^2}{2}-\frac{{\rm V_e}^2}{2}) +\dot m g(z_{\rm i} -z_{\rm e})\)</span></p>
+<p>to</p>
+<p><span class="math notranslate nohighlight">\(\frac{{\rm V_e}^2}{2}-\frac{{\rm V_i}^2}{2} = h_{\rm i}-h_{\rm e}\)</span></p>
+</section>
+<section id="throttles">
+<h4><span class="section-number">7.5.1.3. </span>Throttles<a class="headerlink" href="#throttles" title="Link to this heading">#</a></h4>
+<p id="index-6"><span class="xref std std-ref">Throttling valves</span> are devices designed to decrease the pressure of a fluid without any resulting energy interactions with the surroundings; i.e., they are usually adiabatic and there is no shaft work. This is typically acheived by restricting the flow by means of a valve or porous plug, as seen below in <a class="reference internal" href="#first-law-fig-e"><span class="std std-numref">Figure 7.5</span></a>.</p>
+<figure class="align-default" id="first-law-fig-e">
+<img alt="../_images/throttle.png" src="../_images/throttle.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.5 </span><span class="caption-text">Exemplary throttle, represented here as a porous plug. A throttle is a steady state control volume designed to decrease the pressure of a fluid.</span><a class="headerlink" href="#first-law-fig-e" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In many cases, there is a phase change that occurs during the throttling process, from a liquid-vapor mixture to vapor. The inlet and exit areas are the same and therefore, like pipe flow, we can usually disregard changes in kinetic energy. Further, changes in potential energy can be disregarded and inlet and exit flowrates are identical because of mass conservation. Appling these assumptions to the steady state open system energy conservation equation with a single inlet and exit, shown below,</p>
+<p><span class="math notranslate nohighlight">\(0 = \dot Q_{\rm net} - \dot W_{\rm net} + \dot m(h_{\rm i}-h_{\rm e}) + \dot m(\frac{{\rm V_i}^2}{2}-\frac{{\rm V_e}^2}{2}) +\dot m g(z_{\rm i} -z_{\rm e})\)</span></p>
+<p><span class="math notranslate nohighlight">\(h_{\rm i} = h_{\rm e}\)</span>.</p>
+<p>Simply put, the enthalpies at the inlet and exit are equivilent. For ideal gases then this means that the temperature remains unchanged, but for real gases there is a corresponding increase in exit temperature as the pressure decreases. Lets see why this is the case. Imagine a liquid vapor mixutre of H<sub>2</sub>O enters a throttle at 1 MPa with a quality of 0.5 and exits at 10 kPa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;At 1 MPa and x = 0.5, the temperature is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;K and the enthalpy is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>At 1 MPa and x = 0.5, the temperature is  584.24 K and the enthalpy is  -13904.53 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we know the enthalpy at state 2, as well as the pressure, which was given, this state is fully defined and thus we can calculate the temperature (or any other state property).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">HP</span> <span class="o">=</span> <span class="o">-</span><span class="mf">13904.53</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#multiply both by 1000 to get units J and Pa</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;For an exit pressure of 10 kPa, the temperature is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For an exit pressure of 10 kPa, the temperature is  319.0 K
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="turbines-and-compressors">
+<h4><span class="section-number">7.5.1.4. </span>Turbines and Compressors<a class="headerlink" href="#turbines-and-compressors" title="Link to this heading">#</a></h4>
+<p id="index-7"><span class="xref std std-ref">Turbines</span> are steady-state, adiabatic devices that produce shaft work through the expansion of a gas or fluid across a series of blades connected to the rotating shaft. As a result of the expansion and corresponding net output in shaft work, there is a corresponding decrease in temperature and pressure of the working fluid. A schematic of a turbine is shown in <a class="reference internal" href="#first-law-fig-f"><span class="std std-numref">Figure 7.6</span></a>  on the left. Notice that the inlet area is smaller than the exit area as a result of expansion. Often, the change in kinetic energy and potential energy is negligable compared to the change in enthalpy of the fluid, especially in gas and vapor turbines, but not always. For example, changes in potential energy do need to be considered for liquid turbines, such as those operating in pumped-hydro facilties. <span class="xref std std-ref">Compressors</span>, on the other hand, which are seen on the right side of <a class="reference internal" href="#first-law-fig-f"><span class="std std-numref">Figure 7.6</span></a>, are adiabatic steady state devices designed to increase the pressure of the working fluid by applying shaft work to a gas. In contrast to a turbine, in which the working fluid can be gas, vapor or liquid, compressors are only used to increase the pressure of gases. The inlet area is larger than the exit area, and there is also an accompanying increase in temperature of the working fluid. Often, the change in kinetic energy and potential energy is negligable compared to the change in enthalpy of the fluid.</p>
+<figure class="align-default" id="first-law-fig-f">
+<img alt="../_images/turbine_compressor.png" src="../_images/turbine_compressor.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.6 </span><span class="caption-text">Exemplary turbine (left) and compressor (right). These are both adiabatic steady state devices that incorporate shaft work and result in a large change in pressure and enthalpy of the working fluid.</span><a class="headerlink" href="#first-law-fig-f" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>For both turbines and compressors, the single inlet/exit steady state energy equation, shown below</p>
+<p><span class="math notranslate nohighlight">\(0 = \dot Q_{\rm net} - \dot W_{\rm net} + \dot m(h_{\rm i}-h_{\rm e}) + \dot m(\frac{{\rm V_i}^2}{2}-\frac{{\rm V_e}^2}{2}) +\dot m g(z_{\rm i} -z_{\rm e})\)</span></p>
+<p>can be reduced assuming they are adiabatic and that changes in kinetic energy and potential energy are negligable compared to changes in enthalpy. Under these assumptions the energy equation becomes the following.</p>
+<p><span class="math notranslate nohighlight">\(\dot W_{\rm net} = \dot m(h_{\rm i}-h_{\rm e})\)</span></p>
+<p>Lets consider an example that compares the magnitude of the change in kinetic energy terms to the change in enthalpy to see why we can often negelect changes in velocity.</p>
+</section>
+<section id="example-understanding-assumptions-about-neglecting-ke-and-pe-changes-in-turbines-and-compressors">
+<span id="turbines"></span><h4><span class="section-number">7.5.1.5. </span>Example - Understanding Assumptions about Neglecting KE and PE changes in Turbines and Compressors<a class="headerlink" href="#example-understanding-assumptions-about-neglecting-ke-and-pe-changes-in-turbines-and-compressors" title="Link to this heading">#</a></h4>
+<p>A steam turbine inlet conditions are 5 MPa, 500 <sup>o</sup>C, and 80 m/s. The exit conditions are 30 kPa, 90 % quality, and 50 m/s. The mass flowrate of the steam is 12 kg/s. Determine a) change in kinetic energy, b) the change in enthalpy, c) the power output and d) the turbine inlet area</p>
+<blockquote>
+<div><p>a) We can readily calculate the change in kinetic enery knowing the mass flowrate and inlet/exit velocities.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta_KE</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">12</span><span class="o">*</span><span class="p">(</span><span class="mi">80</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">50</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The change in kinetic energy is &quot;</span><span class="p">,</span> <span class="n">delta_KE</span><span class="p">,</span> <span class="s2">&quot;J/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The change in kinetic energy is  23400.0 J/s
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>b) We know two independent properties at the inlet and exit of the turbine, thus these states are fully defined and we can therefore use Cantera to determine the specific enthalpy at the inlet and exit.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">500</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K, temperature at inlet</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa, pressure at inlet</span>
+<span class="n">Pe</span> <span class="o">=</span> <span class="mi">30</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa, pressure at exit</span>
+<span class="n">xe</span> <span class="o">=</span> <span class="mf">0.9</span> <span class="c1"># quality at exit</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span><span class="n">Pi</span>
+<span class="n">hi</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># specific enthalpy at inlet, kJ/kg</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Specific enthalpy at the inlet is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">hi</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">Pe</span><span class="p">,</span><span class="n">xe</span>
+<span class="n">he</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># specific enthalpy at exit, kJ/kg</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Specific enthalpy at the exit is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">he</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Specific enthalpy at the inlet is  -12537.03 kJ
+Specific enthalpy at the exit is  -13579.04 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Knowing the specific enthalpies, we can determine the change in enthalpy by multiplying their difference times the mass flowrate of steam.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta_H</span> <span class="o">=</span> <span class="mi">12</span><span class="o">*</span><span class="p">(</span><span class="n">hi</span><span class="o">-</span><span class="n">he</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The change in enthalpy is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">delta_H</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J/s, or &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">delta_H</span><span class="o">/</span><span class="mi">1000</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;MJ/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The change in enthalpy is  12504141.43 J/s, or  12.5 MJ/s
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Therefore, we can see that the change in enthalpy is about one order of magnitude larger than the change in kinetic energy</p>
+</div></blockquote>
+<blockquote>
+<div><p>c) If we assume we can neglect changes in kinetic energy, based off of our results from parts a and b, then the power output is simply <span class="math notranslate nohighlight">\(\dot W_{\rm net} = \dot m(h_{\rm i}-h_{\rm e})\)</span>, which we have determined already in part b.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">work</span> <span class="o">=</span> <span class="mi">12</span><span class="o">*</span><span class="p">(</span><span class="n">hi</span><span class="o">-</span><span class="n">he</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The power output is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">work</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J/s, or &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">work</span><span class="o">/</span><span class="mi">1000</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;MJ/s or MW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The power output is  12504141.43 J/s, or  12.5 MJ/s or MW
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>d) To calculate the inlet turbine area we can recall the equation <a class="reference internal" href="#equation-eq-e5">(7.10)</a> which says <span class="math notranslate nohighlight">\(\dot m = \rho {\rm V} A\)</span>. Thus, knowing the density, or specific volume of the steam at the inlet, we can solve for the area. And since we already determined that the inlet state is fully defined, we can also use cantera to help us solve for the inlet specific volume.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">500</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K, temperature at inlet</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa, pressure at inlet</span>
+<span class="n">mi</span> <span class="o">=</span> <span class="mi">12</span> <span class="c1"># kg/s, mass flowrate at inlet/exit</span>
+<span class="n">Vi</span> <span class="o">=</span> <span class="mi">80</span> <span class="c1"># m/s, inlet velocity</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span><span class="n">Pi</span>
+<span class="n">vi</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># specific volume at inlet, m^3/kg</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Specific volume at the inlet is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">vi</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;m^3/kg&quot;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">mi</span><span class="o">*</span><span class="n">vi</span><span class="o">/</span><span class="n">Vi</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The inlet area is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;m^2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Specific volume at the inlet is  0.069 m^3/kg
+The inlet area is  0.01 m^2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pumps">
+<h4><span class="section-number">7.5.1.6. </span>Pumps<a class="headerlink" href="#pumps" title="Link to this heading">#</a></h4>
+<p id="index-8"><span class="xref std std-ref">Pumps</span>, shown below in <a class="reference internal" href="#first-law-fig-g"><span class="std std-numref">Figure 7.7</span></a> are single inlet single exit steady state devices with a purpose similar to compressors; i.e., they are designed to increase the pressure of a fluid. However, in contract to compressors which increase the pressure of a gas, pumps can move both gases and liquids. For the purposes of this text, we will evaluate pumps almost exclusively with liquids, and thus can make liquid approxomations because of incompressibility. Pumps are typically treated as adiabatic systems, like compressors, and the velocity change contributing to changes in kinetic energy are usually negligable. The change in potential energy is often neglected because it is much smaller than the enthalpy change of the fluid, but this assumption is not good in cases of large elevation changes, for example in pump-hydro applications.</p>
+<figure class="align-default" id="first-law-fig-g">
+<img alt="../_images/pump.png" src="../_images/pump.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.7 </span><span class="caption-text">Exemplary pump, which is treated as a steady state, adiabatic device designed to increase the pressure of the working fluid.</span><a class="headerlink" href="#first-law-fig-g" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Neglecting both kinetic energy and potential energy terms, our energy equation becomes the same as for turbines and compressors, i.e.</p>
+<p><span class="math notranslate nohighlight">\(\dot W_{\rm net} = \dot m(h_{\rm i}-h_{\rm e})\)</span></p>
+<p>Notice in <a class="reference internal" href="#first-law-fig-g"><span class="std std-numref">Figure 7.7</span></a> that the inlet and exit temperatures are shown to be close to each other. In fact, compared to compressors, there is usually only a very small increase in temperature as pressure increases. And although the exit temperature will be higher, it is often assumed to be equal to the inlet because of limited compressed liquid data available in tabulated form. Since we will be using Cantera this is not an issue for this text, but it is worth taking some time to discuss the implications of these assumptions. We discussed prior in <a class="reference internal" href="Evaluation%20of%20Properties.html#liquidapproximation"><span class="std std-numref">Section 4.3.3</span></a> <a class="reference internal" href="Evaluation%20of%20Properties.html#liquidapproximation"><span class="std std-ref">Liquid Approximation and Incompressibility</span></a>, that <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(u\)</span> are functions of temperature only and independent of pressure for incomressible substances. Assuming liquid incompressibility can help us evaluate pumping work in the absense of some compressed liquid data. First, recalling the definition of enthalpy and differentiating, we see the following.</p>
+<p><span class="math notranslate nohighlight">\(h = u + pv\)</span></p>
+<p><span class="math notranslate nohighlight">\(dh = du + pdv + vdp\)</span></p>
+<p>Becuase of our liquid approximations for incompressible substances, we can equate <span class="math notranslate nohighlight">\(du\)</span> and <span class="math notranslate nohighlight">\(dv\)</span> terms to zero. Therefore,</p>
+<p><span class="math notranslate nohighlight">\(dh = vdp\)</span></p>
+<p>and upon integration, recognizing that  <span class="math notranslate nohighlight">\(v\)</span> is a function of temperature only for incompressible substances we see that</p>
+<div class="math notranslate nohighlight" id="equation-eq-u">
+<span class="eqno">(7.25)<a class="headerlink" href="#equation-eq-u" title="Link to this equation">#</a></span>\[\Delta h = v \Delta p\]</div>
+<p>We can use either the temperature at the inlet or exit to determine specific volume because the difference is usually negligable. Therefore, for pumps, when assuming incompressibility, we can also relate the work to the change in pressure of the fluid.</p>
+<p><span class="math notranslate nohighlight">\(\dot W_{\rm net} = \dot m v(p_{\rm i}-p_{\rm e})\)</span></p>
+<p>Lets consider an example to see how this assumption will affect the pumping work.</p>
+</section>
+<section id="example-assuming-incompressibility-versus-a-real-fluid">
+<span id="id1"></span><h4><span class="section-number">7.5.1.7. </span>Example - Assuming Incompressibility Versus a Real Fluid<a class="headerlink" href="#example-assuming-incompressibility-versus-a-real-fluid" title="Link to this heading">#</a></h4>
+<p>Determine the specific work of a pump that increases the pressure of water from 1 bar, 25 <sup>o</sup>C, to 10 MPa, with negligable temperature change. Assume the water is a) incompressible and b) a real substance</p>
+<blockquote>
+<div><p>a) We can readily calculate the speicifc work assuming incompressibility using our equation above in specific work form, <span class="math notranslate nohighlight">\(w_{\rm net} = v(p_{\rm i}-p_{\rm e})\)</span>. We just need to be careful of using correct units</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">#kPa, i.e. 1 bar  = 100 kPa</span>
+<span class="n">pe</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#kPa</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">25</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span><span class="n">pi</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># here we can set the pressure to be either the inlet or exit since we are assuming incompressibility</span>
+<span class="n">vi</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># specific volume in m^3/kg</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The specific volume of the incompressible fluid is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">vi</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;m^3/kg&quot;</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">vi</span><span class="o">*</span><span class="p">(</span><span class="n">pi</span><span class="o">-</span><span class="n">pe</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The specific work of the pump is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The specific volume of the incompressible fluid is  0.001 m^3/kg
+The specific work of the pump is -9.93 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>b) If we cannot assume incompressibility, we need to determine enthaly at the inlet and exit to determine the specific work. Because we know two properties at each state, we have enough information. The relevant equation in specific work form is <span class="math notranslate nohighlight">\(w_{\rm net} = (h_{\rm i}-h_{\rm e})\)</span>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">#kPa, i.e. 1 bar  = 100 kPa</span>
+<span class="n">pe</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#kPa</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">25</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="n">Ti</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span><span class="n">pi</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># here we have to set the pressure to be the inlet pressure because we are not assuming incompressibility</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># specific enthalpy in J/kg</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The specific enthalpy at the inlet is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">hi</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;J/kg&quot;</span><span class="p">)</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Te</span><span class="p">,</span><span class="n">pe</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># here we have to set the pressure to be the exit pressure because we are not assuming incompressibility</span>
+<span class="n">he</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># specific enthalpy in J/kg</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The specific enthalpy at the exit is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">he</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;J/kg&quot;</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">hi</span><span class="o">-</span><span class="n">he</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The specific work of the pump is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">w</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The specific enthalpy at the inlet is  -15865848.172 J/kg
+The specific enthalpy at the exit is  -15856713.991 J/kg
+The specific work of the pump is -9.13 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>We can see that the specific work of the pump assuming H<sub>2</sub>O is a real substance is about 10% less than for the case of incompressibility. While this is not negligable, when we begin to evaluate larger processes where the pump is only a small component, this term is usually relatively small compared to other more energy intensive components such as boilers and turbines.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="multiple-inlet-and-exit-steady-state-control-volumes">
+<h3><span class="section-number">7.5.2. </span>Multiple Inlet and Exit Steady State Control Volumes<a class="headerlink" href="#multiple-inlet-and-exit-steady-state-control-volumes" title="Link to this heading">#</a></h3>
+<p id="index-9">There are several examples of steady state devices with multiple inlets and/or exits. Common examples include <span class="xref std std-ref">heat exchangers</span> and <span class="xref std std-ref">mixing chambers</span> which are discussed in more detail below.</p>
+<section id="heat-exchangers">
+<h4><span class="section-number">7.5.2.1. </span>Heat Exchangers<a class="headerlink" href="#heat-exchangers" title="Link to this heading">#</a></h4>
+<p id="index-10">A <span class="xref std std-ref">heat exchanger</span> is a steady state flow device design to heat or cool a fluid through heat transfer. The fluid can be a gas, liquid, liquid-vapor mixture and undergo phase change during the heating or cooling process. Often, heat exchangers are designed with two separate fluid streams each with an inlet and exit, such that there is thermal contact (i.e., heat transfer) from one fluid (hot side) to another (cold side). The fluid flows can be counter to each other, in a so-called counter-flow heat exchanger, or parallel to each other, and with various configurations. The design and configuration of heat exchangers is beyond the scope of this text and we will consider them only from a control-volume perspective. For counter-flow heat exchangers, they are often assumed adiabatic, meaning there is no net-heat transfer to or from the system at large. But, as mentioned, there is internal heat transfer from one fluid to another, and if the control volume were drawn around the specific fluid of interest then heat transfer would need to be considered. An exemplary heat exchanger is shown below in <a class="reference internal" href="#first-law-fig-h"><span class="std std-numref">Figure 7.8</span></a>. In this example, the flows are counter to each other and there are two total inlets and exits to consider in the control volume. And although the heat exchanger is typically drawn this way, heat exchangers can also have only a single inlet and exit and include external heat transfer.</p>
+<figure class="align-default" id="first-law-fig-h">
+<img alt="../_images/heat_exchanger.png" src="../_images/heat_exchanger.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.8 </span><span class="caption-text">Exemplary counter flow heat exchanger, which is treated as a steady state, adiabatic device, with two separate fluid streams in thermal contact, each with their own inlet and exit.</span><a class="headerlink" href="#first-law-fig-h" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Typical assumptions used to simplify the open system energy conservation equation are no boundary/shaft work, and negligable changes in kinetic and potential energies of each fluid stream. Starting with <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-t">(8.20)</a>, the form of the steady state, open system energy equation with multiple inlets and exits, shown below</p>
+<p><span class="math notranslate nohighlight">\(0 = \dot Q_{\rm net} - \dot W_{\rm net} + \sum \dot m_{\rm i} (h_{\rm i}+\frac{{\rm V_i}^2}{2}+gz_{\rm i}) -\sum \dot m_{\rm e} (h_{\rm e}+\frac{{\rm V_e}^2}{2}+gz_{\rm e})\)</span></p>
+<p>this can be reduced to the simplified form below, in the case of counter flow heat exchangers like <a class="reference internal" href="#first-law-fig-h"><span class="std std-numref">Figure 7.8</span></a>.</p>
+<p><span class="math notranslate nohighlight">\(\dot m_{\rm 1} (h_{\rm 1}-h_{\rm 2}) = \dot m_{\rm 2} (h_{\rm 4}-h_{\rm 3})\)</span></p>
+<p>Also, if the control volume were to be drawn around only a single fluid element, for example the top in red, we could also show the following.</p>
+<p><span class="math notranslate nohighlight">\(\dot Q_{\rm net} =  \dot m_{\rm 1} (h_{\rm 1}-h_{\rm 2})\)</span></p>
+</section>
+<section id="mixing-chambers-and-separators">
+<h4><span class="section-number">7.5.2.2. </span>Mixing Chambers and Separators<a class="headerlink" href="#mixing-chambers-and-separators" title="Link to this heading">#</a></h4>
+<p id="index-11">A <span class="xref std std-ref">mixing chamber</span> is a steady state flow device design to bring two or more streams into thermal equilibrium with one another by combining their fluid flows. This is in contrast to heat exchangers where the fluids are only in thermal contact with one another, but there is no mixing of substances. The fluids can be gas, liquid, liquid-vapor mixture and leave as any of these. An exemplary mixing chamber is shown below in <a class="reference internal" href="#first-law-fig-i"><span class="std std-numref">Figure 7.9</span></a>. In this example, two streams enter and combine into a single exit stream. As a result of mass conservation, the two inlet mass flowrates must be equal to the exit mass flowrate. Typical assumptions used to simplify the open system energy conservation equation are no boundary/shaft work, adiabatic (i.e. only internal heat transfer) and negligable changes in kinetic and potential energies of each fluid stream. Similar to mixing chambers are <span class="xref std std-ref">separation devices</span>, that often have a single inlet and multiple outlets. These are useful in cases where saturated liquid-vapor mixtures are to be separated by supplying an outlet at the bottom for condensate and at the top for the vapor fraction.</p>
+<figure class="align-default" id="first-law-fig-i">
+<img alt="../_images/mixing_chamber.png" src="../_images/mixing_chamber.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.9 </span><span class="caption-text">Exemplary mixing chamber, which is treated as a steady state, adiabatic device. Here, it is shown with two separate fluid inlets and a single exit.</span><a class="headerlink" href="#first-law-fig-i" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Starting with <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-t">(8.20)</a>, the form of the steady state, open system energy equation with multiple inlets and exits, shown below</p>
+<p><span class="math notranslate nohighlight">\(0 = \dot Q_{\rm net} - \dot W_{\rm net} + \sum \dot m_{\rm i} (h_{\rm i}+\frac{{\rm V_i}^2}{2}+gz_{\rm i}) -\sum \dot m_{\rm e} (h_{\rm e}+\frac{{\rm V_e}^2}{2}+gz_{\rm e})\)</span></p>
+<p>this can be reduced to the simplified form below, in the case of two inlets and one exit mixing chambers, like shown in <a class="reference internal" href="#first-law-fig-h"><span class="std std-numref">Figure 7.8</span></a>.</p>
+<p><span class="math notranslate nohighlight">\(\dot m_{\rm 1} h_{\rm 1} + \dot m_{\rm 2} h_{\rm 2} = \dot m_{\rm 3} h_{\rm 3}\)</span>, where</p>
+<p><span class="math notranslate nohighlight">\(\dot m_{\rm 1} + \dot m_{\rm 2} = \dot m_{\rm 3} \)</span></p>
+</section>
+</section>
+</section>
+<section id="transient-considerations">
+<h2><span class="section-number">7.6. </span>Transient Considerations<a class="headerlink" href="#transient-considerations" title="Link to this heading">#</a></h2>
+<p>Until this point we have only considered steady state devices where the fluid properties are not changing with time. Unsteady flow devices are considerably more difficult to analyze because the properties at the inlet and exit may be changing with time, in addition to the system as a whole. In order to simplify calculations, which is generally a reasonable approach, we will assume that fluid properties at the inlet and exit do not change with time or position over the cross section, or in cases where they do, averaged properties will be used. We can start with either the rate or non-rate form of the open system energy equation, which were described in <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-k">(8.11)</a> or <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-m">(8.13)</a>. Starting from the non-rate form, shown again below</p>
+<p><span class="math notranslate nohighlight">\(\Delta U = Q_{\rm net}-W_{\rm net} + (H_{\rm i}+\frac{1}{2}m_{\rm i}{\rm V_i}^2+m_{\rm i}gz_{\rm i}) - (H_{\rm e}+\frac{1}{2}m_{\rm e}{\rm V_e}^2+m_{\rm e}gz_{\rm e})\)</span></p>
+<p>and ignoring kinetic and potential energy effect, we can see this reduces to the following.</p>
+<p><span class="math notranslate nohighlight">\(U_{\rm 2}-U_{\rm 1} = Q_{\rm net}-W_{\rm net} + H_{\rm i} - H_{\rm e}\)</span></p>
+<p>where the change in internal energy terms represent the change in system internal energy, and the i and e subscripts represent the property terms that entered or exited. For multiple inlet and exit devices we can therefore show a more general form.</p>
+<div class="math notranslate nohighlight" id="equation-eq-v">
+<span class="eqno">(7.26)<a class="headerlink" href="#equation-eq-v" title="Link to this equation">#</a></span>\[m_{\rm 2} u_{\rm 2}-m_{\rm 1} u_{\rm 1} = Q_{\rm net}-W_{\rm net} + \sum m_{\rm i} h_{\rm i} - \sum m_{\rm e} h_{\rm e}\]</div>
+<p>Notice that the masses at state 2 and state 1 are different. If provided information in rate form, then to determine the non-rate forms here they would need to be integrated over time. Or, another way to approach this is to start with the rate form of the energy equation shown prior in <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-n">(8.14)</a>.</p>
+<p><span class="math notranslate nohighlight">\(\frac {dU}{dt} = \dot Q_{\rm net} - \dot W_{\rm net} + \sum \dot m_{\rm i} (h_{\rm i}+\frac{{\rm V_i}^2}{2}+gz_{\rm i}) -\sum \dot m_{\rm e} (h_{\rm e}+\frac{{\rm V_e}^2}{2}+gz_{\rm e})\)</span></p>
+<p>Again, ignoring kinetic and potential energy terms and integrating from state 1 to state 2.</p>
+<div class="math notranslate nohighlight" id="equation-eq-w">
+<span class="eqno">(7.27)<a class="headerlink" href="#equation-eq-w" title="Link to this equation">#</a></span>\[\int {dU} = \int \dot Q_{\rm net} dt - \int \dot W_{\rm net} dt + \int \sum \dot m_{\rm i} h_{\rm i} dt -\int \sum \dot m_{\rm e} h_{\rm e} dt\]</div>
+<p>which is mathematically equivilent to the above derived equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-v">(8.22)</a> assuming the flows and energy terms are uniform with time.</p>
+<p><span class="math notranslate nohighlight">\(\int {dU} = \int \dot Q_{\rm net} dt - \int \dot W_{\rm net} dt + \int \sum \dot m_{\rm i} h_{\rm i} dt -\int \sum \dot m_{\rm e} h_{\rm e} dt\)</span></p>
+<p>If property values are changing with time, for example fluid flow temperature entering or exiting is changing, then assuming an average value is considered a resonable approach. But note that this is a simplifying assumption that can be more accurately solved through numerical integration techniques.</p>
+<section id="example-open-system-analysis-of-a-turbine-and-plotting">
+<h3><span class="section-number">7.6.1. </span>Example - Open System Analysis of a Turbine and Plotting<a class="headerlink" href="#example-open-system-analysis-of-a-turbine-and-plotting" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>Imagine a steady state steam turbine with an inlet temperature of 250 <sup>o</sup>C, and inlet pressure of 1.1 MPa. If the turbine should produce 1.1 MW and the exit vapor should be saturated with a quality of 1, plot the exhaust pressure as a function of mass flowrate in kg s<sup>-1</sup>.</p>
+</div></blockquote>
+<blockquote>
+<div><p>We should first make some assumptions. Although not explicitly stated, we will assume steady state operation and that the turbine is adiabatic. Further, we will assume that the change in kinetic and potential energies are negligable compared to the change in enthalpy. Therefore, our open system energy equation reduces to the following simplified form.</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\dot W_{\rm net} = \dot m (h_{\rm i}-h_{\rm e})\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p>At first glance, we know <span class="math notranslate nohighlight">\(\dot W_{\rm net}\)</span> because it is provided directly and we also have enough information to determine <span class="math notranslate nohighlight">\(h_{\rm i}\)</span> because we are provided with inlet temperature and pressure. Importantly, because H<sub>2</sub>O exits as a saturated vapor, the exit enthalpy is constrained knowing exit pressure. Thus, setting the pressure constrains the enthalpy which in turn constrains the mass flowrate. Thus we can solve for it directly knowing an exit pressure.</p>
+</div></blockquote>
+<blockquote>
+<div><p>First, we can generate a list of  saturated vapor enthalpies between saturated pressures of 10 kPa and 1.1 MPa. 10 kPa is chosen an an arbitary lower limit but typically pressures will not be lower than this. 1.1. MPa is the upper bound because the exit pressure must be lower than the inlet pressure. Then we will determine the staurated vapor enthalpy at each pressure and calculate the corresponding mass flowrate.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">exit_pres</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1100</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1">#list of pressures from 10 kPa to 1.1 MPa</span>
+<span class="n">x</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">enthalpy</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#here we create an array to append our enthalpy values</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">exit_pres</span><span class="p">:</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span><span class="n">x</span> <span class="c1"># set state to pressure i, in Pa</span>
+    <span class="n">enthalpy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The exit saturated vapor enthalpies, in J kg-1, are &quot;</span><span class="p">,</span> <span class="n">enthalpy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The exit saturated vapor enthalpies, in J kg-1, are  [-13386087.233977845, -13291069.311920043, -13261858.638301643, -13243912.725391736, -13231055.595396863, -13221148.414583094, -13213182.799353473, -13206598.909831911, -13201052.067371612, -13196314.2499662, -13192226.394429432]
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Instead of using a for loop, we could have alternatively created a function and vectorized it, like below. The result is now an array rather than a list.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">enthalpy</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span><span class="n">x</span>
+    <span class="k">return</span> <span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">enthalpy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">enthalpy</span><span class="p">)</span>
+<span class="n">enthalpy</span><span class="o">=</span><span class="n">enthalpy</span><span class="p">(</span><span class="n">exit_pres</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The exit saturated vapor enthalpies, in J kg-1, are &quot;</span><span class="p">,</span> <span class="n">enthalpy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The exit saturated vapor enthalpies, in J kg-1, are  [-13386087.23397784 -13291069.31192004 -13261858.63830164
+ -13243912.72539174 -13231055.59539686 -13221148.41458309
+ -13213182.79935347 -13206598.90983191 -13201052.06737161
+ -13196314.2499662  -13192226.39442943]
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Finally, we can calulate mass flowrate by rearranging our energy conservation equation. We will create a function m_flow that is a function of enthalpy. We also need to determine our inlet enthalpy.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W_net</span> <span class="o">=</span> <span class="mf">1.1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># J/s</span>
+<span class="n">T_in</span> <span class="o">=</span> <span class="mi">250</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># inlet temperature in K</span>
+<span class="n">p_in</span> <span class="o">=</span> <span class="mf">1.1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># inlet pressure in Pa</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T_in</span><span class="p">,</span><span class="n">p_in</span>
+<span class="n">h_in</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># inlet enthalpy in J/kg</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">m_flow</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1">#x will be our list/array of exit enthalpies</span>
+    <span class="k">return</span> <span class="n">W_net</span><span class="o">/</span><span class="p">(</span><span class="n">h_in</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+<span class="n">flowrates</span><span class="o">=</span><span class="n">m_flow</span><span class="p">(</span><span class="n">enthalpy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The mass flowrates, in kg s-1, are &quot;</span><span class="p">,</span> <span class="n">flowrates</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mass flowrates, in kg s-1, are  [3.10631335 4.24547156 4.78491938 5.19007426 5.52525351 5.81460788
+ 6.07020161 6.29906102 6.50570528 6.69325543 6.86398816]
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Now we can plot our results using <strong>matplotlib</strong></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">flowrates</span><span class="p">,</span><span class="n">exit_pres</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\dot m$, $\frac{\mathrm</span><span class="si">{kg}</span><span class="s1">}{\mathrm</span><span class="si">{s}</span><span class="s1">}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39; Exit Pressure, kPa&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/974d399642f83887992dc01c927039988ebdbae701b3a2ae9aff9a6d39c0d080.png" src="../_images/974d399642f83887992dc01c927039988ebdbae701b3a2ae9aff9a6d39c0d080.png" />
+</div>
+</div>
+<blockquote>
+<div><p>As can be seen,  he required mass flowrate increases as exit pressure increases. This is because the exit enthlpy also increases with increasing pressure, resulting in a smaller difference in specific enthalpy between the inlet and exit. Thus, to compensate for the smaller different, a larger mass flowrate is required.</p>
+</div></blockquote>
+</section>
+<section id="open-system-analysis-with-variable-specific-heats">
+<h3><span class="section-number">7.6.2. </span>Open System Analysis with Variable Specific Heats<a class="headerlink" href="#open-system-analysis-with-variable-specific-heats" title="Link to this heading">#</a></h3>
+<p id="index-12">Without readily available equations of state (such as those in Cantera) it is typical to evaluate thermodynamic processes with ideal gases using specific heats. However, if there is a large change in temperature during the process (e.g., in a turbine), then assuming constant specific heats may not be a good approxomation. But often, we may not know a priori what the inlet or exit temperature is, and thus the question of what temperature range should be used to evaluate specific heat arises. Recall, for an ideal gas that</p>
+<p><span class="math notranslate nohighlight">\(\Delta h = \int_{1}^{2} c_{\rm p} dT\)</span></p>
+<p>We discussed prior in section <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#id1"><span class="std std-numref">Section 6.7</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#id1"><span class="std std-ref">Determining Changes in Internal Energy or Enthalpy of Ideal Gases using Specific Heats</span></a> that to use variable specific heats and intrgrate over a temperature range we can use the <span class="xref std std-ref">Shomate Equation</span> - an example was discussed in <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#cpexample2"><span class="std std-numref">Section 6.7.2</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#cpexample2"><span class="std std-ref">Example - Evaluating Shomate Equation Knowing Specific Heats as a Function of Temperature</span></a>. The Shomate equation is</p>
+<p><span class="math notranslate nohighlight">\(c_{\rm p} = A + BT + CT^2 + DT^3 + \frac{E}{T^2}\)</span></p>
+<p>and thus the integrated form to determine change in enthalpy is</p>
+<p><span class="math notranslate nohighlight">\(\Delta h = \left. AT + \frac{BT^2}{2} + \frac{CT^3}{3} + \frac{DT^4}{4} - \frac{E}{T}  \right|_{T_1}^{T_2}\)</span></p>
+<p>Using a pencil and paper approach to solve a problem this way would be tedious and require trial and error, guessing the appropriate temperature until the energy equation is satisfied. However, since we are working with Python, we can take advantage of its built in solvers and/or minimization routines to help solve problems like this more easily. For example, lets assume we know the power output of an nitrogen-based gas turbine is 500 MW and the inlet temperature and pressure are 500 <sup>o</sup>C and 1.1 MPa. We also know that the mass flowrate is 50 kg/s and wish to know the exit temperature. The simplified open system energy conservation equation in this case is:</p>
+<p><span class="math notranslate nohighlight">\(\dot W_{\rm net} = \dot m (h_{\rm i}-h_{\rm e}) = \dot m \Delta h\)</span></p>
+<p>Becuase this is a gas turbine and we are assuming ideal gas behavior, the pressure is actually superfluous information. Let’s define a function for the enthalpy, i.e.:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">h</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span><span class="o">+</span><span class="n">B</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">C</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="o">+</span><span class="n">D</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">4</span><span class="o">-</span><span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="mi">1000</span><span class="p">))</span> <span class="c1">#kJ/mol</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can find the parameters A,B,C, etc. from the NIST Chemistry Webook (<a class="reference external" href="https://webbook.nist.gov/chemistry/name-ser/">https://webbook.nist.gov/chemistry/name-ser/</a>). What you will notice for N<sub>2</sub> is that there are different fitting parameters for different temperatures, as seen below.</p>
+<figure class="align-default" id="id2">
+<img alt="../_images/shomate_equation_2.png" src="../_images/shomate_equation_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.10 </span><span class="caption-text">Shomate equation and fitting parameters for nitrogen, obtained from NIST Chemistry WebBook (<a class="reference external" href="https://webbook.nist.gov/chemistry/">https://webbook.nist.gov/chemistry/</a>)</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>For the purposes of this example, we will also only use the fit for the temperature range 500-2000 K to limit the computational complexity. Also, notice the units of enthalpy after integration are in kJ/mol. To be consistent with our example we will need to convert from mol to kg - thus we will divide our change in enthalpy by 28 g/mol and multiply by 1000 to convert from g to kg. Before using more elaborate solution solutions, lets just try a guess and check approach. To do this we can define a function <span class="math notranslate nohighlight">\(func\)</span> which should equal zero if our exit temperature is correct. I.e.:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">E</span> <span class="o">=</span> <span class="mf">28.99</span><span class="p">,</span><span class="mf">1.85</span><span class="p">,</span><span class="o">-</span><span class="mf">9.65</span><span class="p">,</span><span class="mf">16.64</span><span class="p">,</span><span class="mf">.00012</span>
+<span class="n">W_net</span><span class="p">,</span><span class="n">m_dot</span><span class="p">,</span><span class="n">Ti</span> <span class="o">=</span> <span class="mi">500</span><span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">773.15</span> <span class="c1"># Work in kW, T in K</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">W_net</span> <span class="o">-</span> <span class="n">m_dot</span><span class="o">*</span><span class="p">(</span><span class="n">h</span><span class="p">(</span><span class="n">Ti</span><span class="p">)</span><span class="o">-</span><span class="n">h</span><span class="p">(</span><span class="n">T</span><span class="p">))</span><span class="o">*</span><span class="mi">1000</span><span class="o">/</span><span class="mi">28</span> <span class="c1"># divided by 28 because of the mole to g conversion. Multiplied by 1000 to convert from g to kg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can guess <span class="math notranslate nohighlight">\(T\)</span><sub>e</sub>, for example 600 K.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="p">(</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5365.913331265707
+</pre></div>
+</div>
+</div>
+</div>
+<p>then 400K</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-5217.670002067618
+</pre></div>
+</div>
+</div>
+</div>
+<p>and finally 500 K where we see it is approaching zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>31.61095031333025
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course, we could also plot our function versus temperature to see exactly where it approaches zero, like below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">700</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">temps</span><span class="p">,</span><span class="n">func</span><span class="p">(</span><span class="n">temps</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Temperature, K&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39; func, kW&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9feb1dacce7c65fb9f18bdc21650d870af5c257083dd1d875d651b12f70c6fa4.png" src="../_images/9feb1dacce7c65fb9f18bdc21650d870af5c257083dd1d875d651b12f70c6fa4.png" />
+</div>
+</div>
+<p>We can also solve directly for the exit temperature using the <em>fsolve</em> function within <em>scipy.optimize</em> package, like below. We just need to give an initial guess.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsolve</span>
+<span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">E</span> <span class="o">=</span> <span class="mf">28.99</span><span class="p">,</span><span class="mf">1.85</span><span class="p">,</span><span class="o">-</span><span class="mf">9.65</span><span class="p">,</span><span class="mf">16.64</span><span class="p">,</span><span class="mf">.00012</span>
+<span class="n">W_net</span><span class="p">,</span><span class="n">m_dot</span><span class="p">,</span><span class="n">Ti</span> <span class="o">=</span> <span class="mi">500</span><span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">773.15</span> <span class="c1"># Work in kW, T in K</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">W_net</span> <span class="o">-</span> <span class="n">m_dot</span><span class="o">*</span><span class="p">(</span><span class="n">h</span><span class="p">(</span><span class="n">Ti</span><span class="p">)</span><span class="o">-</span><span class="n">h</span><span class="p">(</span><span class="n">T</span><span class="p">))</span><span class="o">*</span><span class="mi">1000</span><span class="o">/</span><span class="mi">28</span> <span class="c1"># divided by 28 because of the mole to g conversion. Multiplied by 1000 to convert from g to kg</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The exit temperature is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot; K.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The exit temperature is  499.4  K.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how this compares to using Cantera to solve for exit enthalpy directly, and subsequently exit temperature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">W_net</span><span class="p">,</span><span class="n">m_dot</span><span class="p">,</span><span class="n">Ti</span> <span class="o">=</span> <span class="mi">500</span><span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">773.15</span> <span class="c1"># Work in kW, T in K</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span><span class="mi">100000</span> <span class="c1"># K and kPa, inlet conditions</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TH</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># inlet enthalpy in J/kg</span>
+<span class="n">he</span> <span class="o">=</span> <span class="n">hi</span><span class="o">/</span><span class="mi">1000</span><span class="o">-</span><span class="n">W_net</span><span class="o">/</span><span class="n">m_dot</span><span class="c1"># from W_net = m_dot*(hi-he)</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">HP</span> <span class="o">=</span> <span class="n">he</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span><span class="mi">100000</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The exit temperature is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot; K.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The exit temperature is  495.94  K.
+</pre></div>
+</div>
+</div>
+</div>
+<p>As seen, the answer is slightly less than what we calculated using the Shomate equation. However, lets also compare to the assumption of constant specific heat. We can get the value of <span class="math notranslate nohighlight">\(c_{\rm p}\)</span> at 300K from Cantera</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">W_net</span><span class="p">,</span><span class="n">m_dot</span><span class="p">,</span><span class="n">Ti</span> <span class="o">=</span> <span class="mi">500</span><span class="o">*</span><span class="mi">10</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">773.15</span> <span class="c1"># Work in kW, T in K</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">cp</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">cp</span><span class="o">/</span><span class="mi">1000</span> <span class="c1"># kJ/kg/K</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="n">Ti</span><span class="o">-</span><span class="n">W_net</span><span class="o">/</span><span class="n">m_dot</span><span class="o">/</span><span class="n">cp</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The exit temperature is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Te</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot; K.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The exit temperature is  484.85  K.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-5">
+<span id="exercise5"></span><h3><span class="section-number">7.6.3. </span>Exercise 5<a class="headerlink" href="#exercise-5" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Air enters a 1-m<sup>2</sup> pipe at 100 kPa and 20°C with a velocity of 180 m/s. Determine the volumetric flow rate, in m3/s, at the  inlet and the mass flow rate, in kg/s, at the exit.</p></li>
+<li><p>Air enters a nozzle steadily at 2.21 kg/m3 and 40 m/s and leaves at 0.762 kg/m3 and 180 m/s. If the inlet area of the nozzle is 90 cm2, determine (a) the mass flow rate through the nozzle, and (b) the exit area of the nozzle.</p></li>
+<li><p>Water is heated in an insulated, constant-diameter tube by a 7-kW electric resistance heater. If the water enters the heater steadily at 20°C and leaves at 75°C, determine the mass flow rate of water.</p></li>
+<li><p>Saturated liquid water is heated in a steady-flow steam boiler at a constant pressure of 2 MPa at a rate of 4 kg/s to an outlet temperature of 250°C. Determine the rate of heat transfer in the boiler.</p></li>
+<li><p>Steam enters an adiabatic turbine at 8 MPa and 500°C at a rate of 3 kg/s and leaves at 20 kPa. If the power output of the turbine is 2.5 MW, determine the temperature of the steam at the turbine exit. Neglect kinetic energy changes.</p></li>
+<li><p>An adiabatic air compressor compresses 10 L/s of air at 120 kPa and 20°C to 1000 kPa and 300°C. Determine (a) the work required by the compressor, in kJ/kg, and (b) the power required to drive the air compressor, in kW.</p></li>
+<li><p>A portion of the steam passing through a steam turbine is sometimes removed for the purposes of feedwater heating. Consider an adiabatic steam turbine with 12.5 MPa and 550°C steam entering at a rate of 20 kg/s. Steam is bled from this turbine at 1000 kPa and 200°C with a mass flow rate of 1 kg/s. The remaining steam leaves the turbine at 100 kPa and 100°C. Determine the power produced by this turbine.</p></li>
+<li><p>A well-insulated valve is used to throttle steam from 8 MPa and 350°C to 2 MPa. Determine the final temperature of the steam.</p></li>
+<li><p>Refrigerant-134a at 1 MPa and 90°C is to be cooled to 1 MPa and 30°C in a condenser by air. The air enters at 100 kPa and 27°C with a volume flow rate of 600 m3/min and leaves at 95 kPa and 60°C. Determine the mass flow rate of the refrigerant.</p></li>
+<li><p>Steam is to be condensed in the condenser of a steam power plant at a temperature of
+50°C with cooling water from a nearby lake, which enters the tubes of the condenser at
+18°C at a rate of 101 kg/s and leaves at 27°C. Determine the rate of condensation of the
+steam in the condenser.
+1.Two streams of water are mixed in an insulated container to form a third stream leaving
+the container. The first stream has a flow rate of 30 kg/s and a temperature of 90°C. The
+flow rate of the second stream is 200 kg/s, and its temperature is 50°C. What is the
+temperature of the third stream?</p></li>
+<li><p>The turbocharger of an internal combustion engine consists of a turbine and a compressor. Hot exhaust gases flow through the turbine to produce work, and the work output from the turbine is used as the work input to the compressor. The pressure of ambient air is increased as it flows through the compressor before it enters the engine cylinders. Thus, the purpose of a turbocharger is to increase the pressure of air so that more air gets into the cylinder. Consequently, more fuel can be burned and more power can be produced by the engine. In a turbocharger, exhaust gases enter the turbine at 400°C and 120 kPa at a rate of 0.02 kg/s and leave at 350°C. Air enters the compressor at 50°C and 100 kPa and leaves at 130 kPa at a rate of 0.018 kg/s. The compressor increases the air pressure with a side effect: It also increases the air temperature, which increases the possibility that a gasoline engine will experience an engine knock. To avoid this, an aftercooler is placed after the compressor to cool the warm air with cold ambient air before it enters the engine cylinders. It is estimated that the aftercooler must decrease the air temperature below 80°C if knock is to be avoided. The cold ambient air enters the aftercooler at 30°C and leaves at 40°C. Disregarding any frictional losses in the turbine and the compressor and treating the exhaust gases as air, determine:</p>
+<ol class="arabic simple">
+<li><p>the temperature of the air at the compressor outlet and</p></li>
+<li><p>the minimum volume flow rate of ambient air required to avoid knock.</p></li>
+</ol>
+</li>
+<li><p>A 2 m3 rigid insulated tank initially containing saturated water vapor at 1 MPa is connected through a valve to a supply line that carries steam at 400°C. Now the valve is opened, and steam is allowed to flow slowly into the tank until the pressure in the tank rises to 2 MPa. At this instant the tank temperature is measured to be 300 °C. Determine the mass of the steam that has entered and the pressure of the steam in the supply line.</p></li>
+<li><p>A 2 m3 rigid tank initially contains air at 100 kPa and 22°C. The tank is connected to a supply line through a valve. Air is flowing in the supply line at 600 kPa and 22°C. The valve is opened, and air is allowed to enter the tank until the pressure in the tank reaches the line pressure, at which point the valve is closed. A thermometer placed in the tank indicates that the air temperature at the final state is 77°C. Determine (a) the mass of air that has entered the tank and (b) the amount of heat transfer.</p></li>
+</ol>
+<p><a class="reference internal" href="Exercise_Solutions/Exercise%205.html#exercise5solutions"><span class="std std-numref">Section 10.5</span></a> <a class="reference internal" href="Exercise_Solutions/Exercise%205.html#exercise5solutions"><span class="std std-ref">Exercise 5 Solutions</span></a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="First%20Law%20of%20Thermodynamics%20Continued.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>First Law of Thermodynamics - Boundary Work and Specific Heats</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Second%20Law%20of%20Thermodynamics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-work">7.1. Flow Work</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-mass-flowrate">7.2. More on Mass Flowrate</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-calculating-mass-flowrates">7.2.1. Example - Calculating Mass Flowrates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conservation-of-mass">7.3. Conservation of Mass</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-conservation-for-open-systems">7.4. Energy Conservation for Open Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-applying-open-system-energy-equation">7.4.1. Example - Applying Open System Energy Equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-using-cantera-for-other-pure-substances-and-gas-mixtures-such-as-air">7.4.2. Aside - Using Cantera for Other Pure Substances and Gas Mixtures Such as Air</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-typical-steady-state-devices">7.5. Some Typical Steady State Devices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-inlet-and-exit-steady-state-control-volumes">7.5.1. Single Inlet and Exit Steady State Control Volumes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pipes">7.5.1.1. Pipes</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#example-understanding-assumptions-about-neglecting-ke">7.5.1.1.1. Example - Understanding Assumptions about Neglecting KE</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nozzles-and-diffusers">7.5.1.2. Nozzles and Diffusers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#throttles">7.5.1.3. Throttles</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#turbines-and-compressors">7.5.1.4. Turbines and Compressors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-understanding-assumptions-about-neglecting-ke-and-pe-changes-in-turbines-and-compressors">7.5.1.5. Example - Understanding Assumptions about Neglecting KE and PE changes in Turbines and Compressors</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pumps">7.5.1.6. Pumps</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-assuming-incompressibility-versus-a-real-fluid">7.5.1.7. Example - Assuming Incompressibility Versus a Real Fluid</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-inlet-and-exit-steady-state-control-volumes">7.5.2. Multiple Inlet and Exit Steady State Control Volumes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-exchangers">7.5.2.1. Heat Exchangers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mixing-chambers-and-separators">7.5.2.2. Mixing Chambers and Separators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transient-considerations">7.6. Transient Considerations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-open-system-analysis-of-a-turbine-and-plotting">7.6.1. Example - Open System Analysis of a Turbine and Plotting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-system-analysis-with-variable-specific-heats">7.6.2. Open System Analysis with Variable Specific Heats</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5">7.6.3. Exercise 5</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

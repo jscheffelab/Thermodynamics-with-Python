@@ -15,8 +15,15 @@ chapters:
 - file: chapters/Evaluation of Properties
 - file: chapters/First Law of Thermodynamics
 - file: chapters/First Law of Thermodynamics Continued
+- file: chapters/First Law of Thermodynamics Open Systems
+- file: chapters/Second Law of Thermodynamics
+- file: chapters/Entropy Change of Real Processes v2
+- file: chapters/Exercise Solutions
+  sections: 
+  - file: chapters/Exercise_Solutions/Exercise 1
+  - file: chapters/Exercise_Solutions/Exercise 2
+  - file: chapters/Exercise_Solutions/Exercise 3
+  - file: chapters/Exercise_Solutions/Exercise 4
+  - file: chapters/Exercise_Solutions/Exercise 5
+#- file: genindex
 - file: chapters/References Cited
-- file: chapters/Exercise 1
-- file: chapters/Exercise 2
-- file: chapters/Exercise 3
-- file: genindex

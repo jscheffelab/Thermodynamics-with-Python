@@ -1,0 +1,1122 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10.5. Exercise 5 Solutions &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Exercise_Solutions/Exercise 5';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="11. Index Title" href="../../genindex.html" />
+    <link rel="prev" title="10.4. Exercise 4 Solutions" href="Exercise%204.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Exercise%20Solutions.html">10. Exercise Solutions</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../References%20Cited.html">12. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/Exercise_Solutions/Exercise 5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Exercise_Solutions/Exercise 5.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exercise 5 Solutions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="exercise-5-solutions">
+<span id="exercise5solutions"></span><h1><span class="section-number">10.5. </span>Exercise 5 Solutions<a class="headerlink" href="#exercise-5-solutions" title="Link to this heading">#</a></h1>
+<p><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Open%20Systems.html#exercise5"><span class="std std-numref">Section 7.6.3</span></a> <a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Open%20Systems.html#exercise5"><span class="std std-ref">Exercise 5</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 1</span>
+<span class="c1">#Air enters a 1-m2 pipe at 100 kPa and 20°C with a velocity of 180 m/s. Determine the volumetric flow rate, in m3/s, at the inlet and the mass flow rate, in kg/s, at the exit.</span>
+
+
+<span class="n">A</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># m2</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># Pa</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="n">vel_i</span> <span class="o">=</span> <span class="mi">180</span> <span class="c1"># m/s</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">0.287</span> <span class="c1"># kPa*m^3/kgK</span>
+
+<span class="c1"># Find: volumetric flow rate at inlet, mass flow rate at exit </span>
+<span class="n">vdot</span> <span class="o">=</span> <span class="n">vel_i</span><span class="o">*</span><span class="n">A</span> 
+
+<span class="c1"># PV = mRT &gt; P*v = RT &gt; rho = P/RT</span>
+
+<span class="n">rho</span> <span class="o">=</span> <span class="n">Pi</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">Ti</span>
+
+<span class="c1"># kg/m^3 * m^3/s = kg/s</span>
+
+<span class="n">mdot_i</span> <span class="o">=</span> <span class="n">rho</span><span class="o">*</span><span class="n">vdot</span>
+<span class="n">mdot_e</span> <span class="o">=</span> <span class="n">mdot_i</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The volume flow rate at inlet is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">vdot</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3/s, and the mass flow rate at exit is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mdot_e</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">A</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># m2</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">Pi</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># Pa</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">Ti</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">vel_i</span> <span class="o">=</span> <span class="mi">180</span> <span class="c1"># m/s</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">R</span> <span class="o">=</span> <span class="mf">0.287</span> <span class="c1"># kPa*m^3/kgK</span>
+
+<span class="ne">NameError</span>: name &#39;Kc&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 2</span>
+<span class="c1"># Air enters a nozzle steadily at 2.21 kg/m3 and 40 m/s and leaves at 0.762 kg/m3 and 180 m/s. </span>
+<span class="c1">#If the inlet area of the nozzle is 90 cm2, determine (a) the mass flow rate through the nozzle, and (b) the exit area of the nozzle.</span>
+
+<span class="n">rho_i</span> <span class="o">=</span> <span class="mf">2.21</span> <span class="c1"># kg/m3 </span>
+<span class="n">vel_i</span> <span class="o">=</span> <span class="mi">40</span> <span class="c1"># m/s</span>
+<span class="n">rho_e</span> <span class="o">=</span> <span class="mf">0.762</span> <span class="c1">#kg/m3</span>
+<span class="n">vel_e</span> <span class="o">=</span> <span class="mi">180</span> <span class="c1"># m/s </span>
+<span class="n">A_i</span> <span class="o">=</span> <span class="mi">90</span><span class="o">/</span><span class="mf">100e2</span> <span class="c1"># m2</span>
+
+<span class="c1"># Find: a) mass flow rate through the nozzle, b) exit area</span>
+<span class="c1"># a)</span>
+<span class="n">vdot_i</span> <span class="o">=</span> <span class="n">vel_i</span><span class="o">*</span><span class="n">A_i</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="n">rho_i</span><span class="o">*</span><span class="n">vdot_i</span>
+<span class="c1"># b)</span>
+<span class="n">A_e</span> <span class="o">=</span> <span class="n">mdot</span><span class="o">/</span><span class="n">rho_e</span><span class="o">/</span><span class="n">vel_e</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The mass flow rate through the nozzle is </span><span class="si">{</span><span class="n">mdot</span><span class="si">}</span><span class="s2"> kg/s and the exit area is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">A_e</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2"> m2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mass flow rate through the nozzle is 0.7956 kg/s and the exit area is 0.0058 m2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 3</span>
+<span class="c1"># Water is heated in an insulated, constant-diameter tube by a 7-kW electric resistance heater. If the water enters the heater steadily at 20°C and leaves at 75°C, determine the mass flow rate of water.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">Wdot</span> <span class="o">=</span> <span class="o">-</span><span class="mi">7</span> <span class="c1"># kJ/s </span>
+<span class="n">T_i</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">T_e</span> <span class="o">=</span> <span class="mi">75</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+
+<span class="c1"># Wdot = mdot*cp*deltaT</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mf">100e3</span> <span class="c1"># assume specific heat independent of pressure and only dependent on temperature</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T_i</span><span class="p">,</span> <span class="n">P</span>
+<span class="n">cp1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">cp</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T_e</span><span class="p">,</span> <span class="n">P</span>
+<span class="n">cp2</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">cp</span>
+<span class="n">cpavg</span> <span class="o">=</span> <span class="p">(</span><span class="n">cp1</span> <span class="o">+</span> <span class="n">cp2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="n">Wdot</span><span class="o">/</span><span class="p">(</span><span class="n">cpavg</span><span class="o">*</span><span class="p">(</span><span class="n">T_i</span> <span class="o">-</span> <span class="n">T_e</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The mass flow rate using specific heats is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mdot</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+
+<span class="c1"># Wdot = mdot*(h_i-h_e)</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mf">100e3</span> <span class="c1"># assume enthalpy independent of pressure and only dependent on temperature</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T_i</span><span class="p">,</span> <span class="n">P</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T_e</span><span class="p">,</span> <span class="n">P</span>
+<span class="n">he</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="n">Wdot</span><span class="o">/</span><span class="p">(</span><span class="n">hi</span><span class="o">-</span><span class="n">he</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The mass flow rate is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mdot</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mass flow rate using specific heats is 0.03 kg/s
+The mass flow rate is 0.03 kg/s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 4</span>
+<span class="c1"># Saturated liquid water is heated in a steady-flow steam boiler at a constant pressure of 2 MPa at a rate of 4 kg/s to an outlet temperature of 250°C. Determine the rate of heat transfer in the boiler.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">Pi</span> <span class="o">=</span> <span class="mf">2e6</span> <span class="c1"># Pa</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Pe</span> <span class="o">=</span> <span class="n">Pi</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># kg/s</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="mi">250</span> <span class="o">+</span> <span class="n">Kc</span>
+
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">Pi</span><span class="p">,</span> <span class="n">xi</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Te</span><span class="p">,</span> <span class="n">Pe</span>
+<span class="n">he</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">deltah</span> <span class="o">=</span> <span class="n">he</span> <span class="o">-</span> <span class="n">hi</span>
+
+<span class="n">Qdot</span> <span class="o">=</span> <span class="n">mdot</span><span class="o">*</span><span class="n">deltah</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The rate of heat transfer is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Qdot</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> MJ/s (MW)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The rate of heat transfer is 7.97 MJ/s (MW)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 5</span>
+<span class="c1"># Steam enters an adiabatic turbine at 8 MPa and 500°C at a rate of 3 kg/s and leaves at 20 kPa. If the power output of the turbine is 2.5 MW, determine the temperature of the steam at the turbine exit. Neglect kinetic energy changes.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">Pi</span> <span class="o">=</span> <span class="mf">8e6</span> <span class="c1"># Pa</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">500</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># kg/s</span>
+<span class="n">Pe</span> <span class="o">=</span> <span class="mf">20e3</span> <span class="c1"># Pa</span>
+<span class="n">Wdot</span> <span class="o">=</span> <span class="mf">2.5e6</span> <span class="c1"># J/s</span>
+
+<span class="c1"># Find: Te</span>
+<span class="c1"># Wdot = mdot*deltah</span>
+<span class="n">inlet</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">inlet</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span> <span class="n">Pi</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">inlet</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">he</span> <span class="o">=</span> <span class="p">(</span><span class="n">mdot</span><span class="o">*</span><span class="n">hi</span> <span class="o">-</span> <span class="n">Wdot</span><span class="p">)</span><span class="o">/</span><span class="n">mdot</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">exit</span><span class="o">.</span><span class="n">HP</span> <span class="o">=</span> <span class="n">he</span><span class="p">,</span> <span class="n">Pe</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="n">exit</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Kc</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The exit temperature is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Te</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> deg C&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The exit temperature is 60.11 deg C
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 6</span>
+<span class="c1"># An adiabatic air compressor compresses 10 L/s of air at 120 kPa and 20°C to 1000 kPa and 300°C. Determine (a) the work required by the compressor, in kJ/kg, and (b) the power required to drive the air compressor, in kW.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">vdoti</span> <span class="o">=</span> <span class="mi">10</span><span class="o">/</span><span class="mi">1000</span> <span class="c1"># m3/s</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="mf">120e3</span> <span class="c1"># Pa</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">Pe</span> <span class="o">=</span> <span class="mf">1000e3</span> <span class="c1"># Pa</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">0.287</span>
+
+<span class="c1"># w = he - hi</span>
+<span class="n">inlet</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">inlet</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">inlet</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span><span class="n">Pi</span>
+
+<span class="n">exit</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">exit</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">exit</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Te</span><span class="p">,</span> <span class="n">Pe</span>
+
+<span class="n">hi</span> <span class="o">=</span> <span class="n">inlet</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">he</span> <span class="o">=</span> <span class="n">exit</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">he</span> <span class="o">-</span> <span class="n">hi</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The work required is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ&quot;</span><span class="p">)</span>
+
+<span class="c1"># have vdot, need mdot &gt; use ideal gas law </span>
+<span class="c1"># PVdot = mdotRT</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="n">Pi</span><span class="o">*</span><span class="n">vdoti</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">Ti</span>
+
+<span class="n">Wdot</span> <span class="o">=</span> <span class="n">mdot</span><span class="o">*</span><span class="n">w</span><span class="o">/</span><span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The power required to drive the compressor is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Wdot</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The work required is 287.9 kJ
+The power required to drive the compressor is 4.1 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 7</span>
+<span class="c1"># A portion of the steam passing through a steam turbine is sometimes removed for the purposes of feedwater heating. Consider an adiabatic steam turbine with 12.5 MPa and 550°C steam entering at a rate of 20 kg/s. Steam is bled from this turbine at 1000 kPa and 200°C with a mass flow rate of 1 kg/s. The remaining steam leaves the turbine at 100 kPa and 100°C. Determine the power produced by this turbine.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">Pi</span> <span class="o">=</span> <span class="mf">12.5e6</span> <span class="c1"># Pa</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">550</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">mdoti</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># kg/s </span>
+<span class="n">mdotb</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># kg/s</span>
+<span class="n">mdote</span> <span class="o">=</span> <span class="n">mdoti</span> <span class="o">-</span> <span class="n">mdotb</span> <span class="c1"># kg/s (mdote = mdoti - the mdot that is bled)</span>
+<span class="n">Pb</span> <span class="o">=</span> <span class="mf">1000e3</span> <span class="c1"># Pa</span>
+<span class="n">Tb</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">Pe</span> <span class="o">=</span> <span class="mf">100e3</span>  <span class="c1"># Pa</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+
+<span class="n">inlet</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">bled</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+
+<span class="n">inlet</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span><span class="n">Pi</span>
+<span class="n">exit</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Te</span><span class="p">,</span> <span class="n">Pe</span>
+<span class="n">bled</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Tb</span><span class="p">,</span> <span class="n">Pb</span>
+
+<span class="n">hi</span> <span class="o">=</span> <span class="n">inlet</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">he</span> <span class="o">=</span> <span class="n">exit</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">hb</span> <span class="o">=</span> <span class="n">bled</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">Wdot</span> <span class="o">=</span> <span class="n">mdoti</span><span class="o">*</span><span class="n">hi</span> <span class="o">-</span> <span class="n">mdotb</span><span class="o">*</span><span class="n">hb</span> <span class="o">-</span> <span class="n">mdote</span><span class="o">*</span><span class="n">he</span>
+<span class="n">Wdot</span> <span class="o">=</span> <span class="n">Wdot</span><span class="o">/</span><span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The power produced by the turbine is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Wdot</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> kW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The power produced by the turbine is 15826.9 kW
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 8</span>
+<span class="c1"># A well-insulated valve is used to throttle steam from 8 MPa and 350°C to 2 MPa. Determine the final temperature of the steam.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">Pi</span> <span class="o">=</span> <span class="mf">8e6</span> <span class="c1"># Pa</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">350</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">Pe</span> <span class="o">=</span> <span class="mf">2e6</span> <span class="c1"># Pa</span>
+
+<span class="c1"># throttle &gt; he = hi </span>
+
+<span class="n">inlet</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">inlet</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span><span class="n">Pi</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">inlet</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">hi</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">he</span> <span class="o">=</span> <span class="n">hi</span><span class="o">*</span><span class="mi">1000</span>
+<span class="n">exit</span><span class="o">.</span><span class="n">HP</span> <span class="o">=</span> <span class="n">he</span><span class="p">,</span> <span class="n">Pe</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="n">exit</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Kc</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The exit temperature is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Te</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> deg C&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The exit temperature is 284.6 deg C
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 9</span>
+<span class="c1"># Refrigerant-134a at 1 MPa and 90°C is to be cooled to 1 MPa and 30°C in a condenser by air. The air enters at 100 kPa and 27°C with a volume flow rate of 600 m3/min and leaves at 95 kPa and 60°C. Determine the mass flow rate of the refrigerant.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">Pir</span> <span class="o">=</span> <span class="mf">1e6</span> <span class="c1"># Pa</span>
+<span class="n">Tir</span> <span class="o">=</span> <span class="mi">90</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">Per</span> <span class="o">=</span> <span class="n">Pir</span>
+<span class="n">Ter</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+
+<span class="n">Pia</span> <span class="o">=</span> <span class="mf">100e3</span> <span class="c1"># Pa</span>
+<span class="n">Tia</span> <span class="o">=</span> <span class="mi">27</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">vdotair</span> <span class="o">=</span> <span class="mi">600</span> <span class="c1"># m3/s</span>
+<span class="n">Pea</span> <span class="o">=</span> <span class="mf">95e3</span> <span class="c1"># Pa</span>
+<span class="n">Tea</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+
+<span class="c1"># get enthalpy of inlet/exit for both refr and air</span>
+<span class="n">refri</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
+<span class="n">refri</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Tir</span><span class="p">,</span> <span class="n">Pir</span>
+<span class="n">refrex</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
+<span class="n">refrex</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ter</span><span class="p">,</span> <span class="n">Per</span>
+<span class="n">h_ri</span> <span class="o">=</span> <span class="n">refri</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span>
+<span class="n">h_re</span> <span class="o">=</span> <span class="n">refrex</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span>
+
+<span class="n">airi</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">airi</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">airi</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Tia</span><span class="p">,</span><span class="n">Pia</span>
+
+<span class="n">aire</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">aire</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">aire</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Tea</span><span class="p">,</span> <span class="n">Pea</span>
+
+<span class="n">h_ai</span> <span class="o">=</span> <span class="n">airi</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span>
+<span class="n">h_ae</span> <span class="o">=</span> <span class="n">aire</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">1000</span>
+
+<span class="c1"># have vdot, need mdot &gt; use ideal gas law </span>
+<span class="c1"># PVdot = mdotRT</span>
+<span class="n">mdotair</span> <span class="o">=</span> <span class="n">Pia</span><span class="o">*</span><span class="n">vdotair</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">Tia</span>
+
+<span class="c1"># Edotin = Edotout &gt;  mdotair*(h_ai - h_ae) = mdotr*(h_ri - h_re)</span>
+<span class="n">mdotr</span> <span class="o">=</span> <span class="n">mdotair</span><span class="o">*</span><span class="p">(</span><span class="n">h_ae</span> <span class="o">-</span> <span class="n">h_ai</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">h_ri</span> <span class="o">-</span> <span class="n">h_re</span><span class="p">)</span>
+<span class="n">mdotr</span> <span class="o">=</span> <span class="n">mdotr</span><span class="o">/</span><span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The mass flow rate is therefore </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mdotr</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg/min&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mass flow rate is therefore 100.65 kg/min
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 10</span>
+<span class="c1"># Steam is to be condensed in the condenser of a steam power plant at a temperature of</span>
+<span class="c1">#50°C with cooling water from a nearby lake, which enters the tubes of the condenser at</span>
+<span class="c1">#18°C at a rate of 101 kg/s and leaves at 27°C. Determine the rate of condensation of the</span>
+<span class="c1">#steam in the condenser.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">Ti</span> <span class="o">=</span> <span class="mi">18</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="n">Te</span> <span class="o">=</span> <span class="mi">27</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="n">Tc</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="mi">101</span> <span class="c1"># kg/s</span>
+
+<span class="c1"># Qdot = mdot_steam*latent heat of vaporization (hfg) @ Tc - this is the enthalpy change when a substance goes from saturated liquid to saturated vapor</span>
+
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti</span><span class="p">,</span> <span class="mf">100e3</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Te</span><span class="p">,</span> <span class="mf">100e3</span>
+<span class="n">cpavg</span> <span class="o">=</span> <span class="p">(</span><span class="n">state1</span><span class="o">.</span><span class="n">cv</span><span class="o">/</span><span class="mi">1000</span> <span class="o">+</span> <span class="n">state2</span><span class="o">.</span><span class="n">cv</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="n">Qdot</span> <span class="o">=</span> <span class="n">mdot</span><span class="o">*</span><span class="n">cpavg</span><span class="o">*</span><span class="p">(</span><span class="n">Te</span> <span class="o">-</span> <span class="n">Ti</span><span class="p">)</span>
+
+<span class="c1"># now find hfg = hg - hf</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">Tc</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">hf</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">Tc</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">hg</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">hfg</span> <span class="o">=</span> <span class="p">(</span><span class="n">hg</span> <span class="o">-</span> <span class="n">hf</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+
+<span class="n">mdot_steam</span> <span class="o">=</span> <span class="n">Qdot</span><span class="o">/</span><span class="n">hfg</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The rate of condensation of the steam in the condensor is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mdot_steam</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The rate of condensation of the steam in the condensor is 1.6 kg/s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 11</span>
+<span class="c1"># Two streams of water are mixed in an insulated container to form a third stream leaving the container. The first stream has a flow rate of 30 kg/s and a temperature of 90°C. The flow rate of the second stream is 200 kg/s, and its temperature is 50°C. What is the temperature of the third stream?</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">mdot1</span> <span class="o">=</span> <span class="mi">30</span>   <span class="c1"># kg/s</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">90</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">mdot2</span> <span class="o">=</span> <span class="mi">200</span> <span class="c1">#kg/s </span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">mdot3</span> <span class="o">=</span> <span class="n">mdot1</span> <span class="o">+</span> <span class="n">mdot2</span> 
+<span class="c1"># mdot1*h1 + mdot2*h2 = mdot3*h3</span>
+
+<span class="c1"># Find h1 and h2 </span>
+<span class="n">channel1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">channel1</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">channel2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">channel2</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">channel1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">channel2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h3</span> <span class="o">=</span> <span class="p">(</span><span class="n">mdot1</span><span class="o">*</span><span class="n">h1</span> <span class="o">+</span> <span class="n">mdot2</span><span class="o">*</span><span class="n">h2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">mdot3</span><span class="p">)</span>
+
+<span class="n">P</span> <span class="o">=</span> <span class="mf">100e3</span>
+<span class="n">channel3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">channel3</span><span class="o">.</span><span class="n">HP</span> <span class="o">=</span> <span class="n">h3</span><span class="p">,</span> <span class="n">P</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">channel3</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The temperature is about </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">Kc</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> deg C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temperature is about 55.21 deg C
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 12</span>
+<span class="c1"># The turbocharger of an internal combustion engine consists of a turbine and a compressor. Hot exhaust gases flow through the turbine to produce work, and the work output from the turbine is used as the work input to the compressor. </span>
+<span class="c1"># The pressure of ambient air is increased as it flows through the compressor before it enters the engine cylinders. Thus, the purpose of a turbocharger is to increase the pressure of air so that more air gets into the cylinder. </span>
+<span class="c1"># Consequently, more fuel can be burned and more power can be produced by the engine. In a turbocharger, exhaust gases enter the turbine at 400°C and 120 kPa at a rate of 0.02 kg/s and leave at 350°C. </span>
+<span class="c1">#Air enters the compressor at 50°C and 100 kPa and leaves at 130 kPa at a rate of 0.018 kg/s. The compressor increases the air pressure with a side effect: It also increases the air temperature, which increases the possibility that a gasoline engine will experience an engine knock. </span>
+<span class="c1">#To avoid this, an aftercooler is placed after the compressor to cool the warm air with cold ambient air before it enters the engine cylinders. It is estimated that the aftercooler must decrease the air temperature below 80°C if knock is to be avoided. </span>
+<span class="c1">#The cold ambient air enters the aftercooler at 30°C and leaves at 40°C. Disregarding any frictional losses in the turbine and the compressor and treating the exhaust gases as air, determine:</span>
+<span class="c1"># a) the temperature of the air at the compressor outlet and</span>
+<span class="c1"># b) the minimum volume flow rate of ambient air required to avoid knock.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="c1"># turbocharger</span>
+<span class="n">Ti_t</span> <span class="o">=</span> <span class="mi">400</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="n">Pi_t</span> <span class="o">=</span> <span class="mf">120e3</span>
+<span class="n">mdoti_t</span> <span class="o">=</span> <span class="mf">0.02</span> <span class="c1"># kg/s</span>
+<span class="n">Te_t</span> <span class="o">=</span> <span class="mi">350</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="c1"># compressor </span>
+<span class="n">Ti_c</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="n">Pi_c</span> <span class="o">=</span> <span class="mf">100e3</span>
+<span class="n">Pe_c</span> <span class="o">=</span> <span class="mf">130e3</span>
+<span class="n">mdot_c</span> <span class="o">=</span> <span class="mf">0.018</span> <span class="c1">#kg/s </span>
+<span class="c1"># aftercooler </span>
+<span class="n">Ti_a</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="n">Te_a</span> <span class="o">=</span> <span class="mi">40</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="n">Te_a_ka</span> <span class="o">=</span> <span class="mi">80</span> <span class="o">+</span> <span class="n">Kc</span>
+
+<span class="n">inlet</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">inlet</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">inlet</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti_t</span><span class="p">,</span><span class="n">Pi_t</span>
+<span class="n">cpi</span> <span class="o">=</span> <span class="n">inlet</span><span class="o">.</span><span class="n">cp</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">exit</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">exit</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Te_t</span><span class="p">,</span><span class="n">Pi_t</span>
+<span class="n">cpe</span> <span class="o">=</span> <span class="n">exit</span><span class="o">.</span><span class="n">cp</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">cpavg</span><span class="o">=</span> <span class="p">(</span><span class="n">cpi</span><span class="o">+</span><span class="n">cpe</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="c1"># WdotT = WdotC</span>
+<span class="n">WdotT</span> <span class="o">=</span> <span class="n">mdoti_t</span><span class="o">*</span><span class="n">cpavg</span><span class="o">*</span><span class="p">(</span><span class="n">Ti_t</span> <span class="o">-</span> <span class="n">Te_t</span><span class="p">)</span>  
+<span class="n">WdotC</span> <span class="o">=</span> <span class="n">WdotT</span>
+
+<span class="c1"># assuming eta = 1, WdotT = WdotC (work of turbine = work of compressor)</span>
+<span class="c1"># WdotC = mdota*cpa*(Tae - Tai)</span>
+<span class="n">air</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">air</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">air</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti_c</span><span class="p">,</span> <span class="mf">100e3</span>
+<span class="n">cpa</span> <span class="o">=</span> <span class="n">air</span><span class="o">.</span><span class="n">cp</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">Tae</span> <span class="o">=</span> <span class="p">(</span><span class="n">WdotC</span> <span class="o">+</span> <span class="n">mdot_c</span><span class="o">*</span><span class="n">cpa</span><span class="o">*</span><span class="n">Ti_c</span><span class="p">)</span><span class="o">/</span><span class="n">mdot_c</span><span class="o">/</span><span class="n">cpa</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The temperature of the air at the compressor outlet is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Tae</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Kc</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> deg C&quot;</span><span class="p">)</span>
+
+<span class="n">air</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">air</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">air</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Ti_a</span><span class="p">,</span> <span class="mf">100e3</span>
+<span class="n">cp_ca</span> <span class="o">=</span> <span class="n">air</span><span class="o">.</span><span class="n">cp</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">#kPa</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="n">mdot_c</span><span class="o">*</span><span class="n">cpa</span><span class="o">*</span><span class="p">(</span><span class="n">Tae</span><span class="o">-</span><span class="n">Te_a_ka</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cp_ca</span><span class="o">*</span><span class="p">(</span><span class="n">Te_a</span> <span class="o">-</span> <span class="n">Ti_a</span><span class="p">))</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">0.287</span> <span class="c1"># kJ/kgK</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">R</span><span class="o">*</span><span class="n">Ti_a</span><span class="o">/</span><span class="n">P</span>
+<span class="n">Vdot</span> <span class="o">=</span> <span class="n">v</span><span class="o">*</span><span class="n">mdot</span><span class="o">*</span><span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The minimum volume flow rate of ambient air required to avoid knock is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Vdot</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temperature of the air at the compressor outlet is 108.6 deg C
+The minimum volume flow rate of ambient air required to avoid knock is 44.9 m3/s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 13</span>
+<span class="c1"># A 2 m3 rigid insulated tank initially containing saturated water vapor at 1 MPa is connected through a valve to a supply line that carries steam at 400°C. Now the valve is opened, and steam is allowed to flow slowly into the tank until the pressure in the tank rises to 2 MPa. At this instant the tank temperature is measured to be 300 °C. Determine the mass of the steam that has entered and the pressure of the steam in the supply line.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="c1"># Given: </span>
+<span class="n">V_tank</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># m3</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mf">2e6</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+
+<span class="c1"># Find: mass of steam that entered, pressure of steam in the supply line </span>
+<span class="c1"># Q = mass*change in specific internal energy</span>
+<span class="c1"># m_entered = m_final - m_initial </span>
+
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">P1</span><span class="p">,</span> <span class="n">x1</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J</span>
+<span class="n">m_tanki</span> <span class="o">=</span> <span class="n">V_tank</span><span class="o">/</span><span class="n">v1</span> <span class="c1"># the mass of H20 that&#39;s originally in the tank </span>
+
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P2</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#J </span>
+<span class="n">m_tankf</span> <span class="o">=</span> <span class="n">V_tank</span><span class="o">/</span><span class="n">v2</span>
+<span class="n">m_entered</span> <span class="o">=</span> <span class="n">m_tankf</span> <span class="o">-</span> <span class="n">m_tanki</span>
+
+<span class="c1"># Pressure of the steam in the supply line </span>
+<span class="n">T_line</span> <span class="o">=</span> <span class="mi">400</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+
+<span class="n">hsteam</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_tankf</span><span class="o">*</span><span class="n">u2</span> <span class="o">-</span> <span class="n">m_tanki</span><span class="o">*</span><span class="n">u1</span><span class="p">)</span><span class="o">/</span><span class="n">m_entered</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">line</span><span class="o">.</span><span class="n">TH</span> <span class="o">=</span> <span class="n">T_line</span><span class="p">,</span> <span class="n">hsteam</span>
+<span class="n">P_line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">TQ</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The mass of steam that enters the tank is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">m_entered</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg and the pressure of the steam in the line is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P_line</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> MPa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mass of steam that enters the tank is 5.7 kg and the pressure of the steam in the line is 2255.0 MPa
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 14</span>
+<span class="c1"># A 2 m3 rigid tank initially contains air at 100 kPa and 22°C. The tank is connected to a supply line through a valve. Air is flowing in the supply line at 600 kPa and 22°C. The valve is opened, and air is allowed to enter the tank until the pressure in the tank reaches the line pressure, at which point the valve is closed. A thermometer placed in the tank indicates that the air temperature at the final state is 77°C. Determine (a) the mass of air that has entered the tank and (b) the amount of heat transfer.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">V_tank</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># m3</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># kPa</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">22</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">Pline</span> <span class="o">=</span> <span class="mi">600</span> <span class="c1"># kPa</span>
+<span class="n">Tline</span> <span class="o">=</span> <span class="mi">22</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K </span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">Pline</span> 
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">77</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">0.287</span> <span class="c1"># kPam3/kgK</span>
+
+<span class="c1"># air, so we have to use ideal gas law </span>
+<span class="c1"># initial mass</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">P1</span><span class="o">*</span><span class="n">V_tank</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">T1</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">P2</span><span class="o">*</span><span class="n">V_tank</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">T2</span>
+<span class="n">mt</span> <span class="o">=</span> <span class="n">m2</span> <span class="o">-</span> <span class="n">m1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The mass of air that has entered the tank is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg&quot;</span><span class="p">)</span>
+
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P1</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">u</span><span class="o">/</span><span class="mi">1000</span> <span class="c1">#kJ</span>
+
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P2</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">u</span><span class="o">/</span><span class="mi">1000</span> <span class="c1">#kJ</span>
+
+<span class="n">line</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">line</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2: 0.21&#39;</span>
+<span class="n">line</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">Tline</span><span class="p">,</span> <span class="n">Pline</span>
+<span class="n">ht</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">1000</span> <span class="c1">#kJ</span>
+
+<span class="c1"># find the amount of heat transfer</span>
+<span class="n">Qin</span> <span class="o">=</span> <span class="o">-</span><span class="n">mt</span><span class="o">*</span><span class="n">ht</span> <span class="o">+</span> <span class="n">m2</span><span class="o">*</span><span class="n">u2</span> <span class="o">-</span> <span class="n">m1</span><span class="o">*</span><span class="n">u1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The heat transfer is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Qin</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mass of air that has entered the tank is 9.6 kg
+The heat transfer is -339.1 kJ
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Exercise_Solutions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Exercise%204.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10.4. </span>Exercise 4 Solutions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../genindex.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Index Title</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
