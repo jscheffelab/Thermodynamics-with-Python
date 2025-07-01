@@ -1,0 +1,812 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Second Law of Thermodynamics';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. Entropy Change of Real and Idealized Processes" href="Entropy%20Change%20of%20Real%20Processes%20v2.html" />
+    <link rel="prev" title="7. First Law of Thermodynamics - Open Systems" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Exercise%20Solutions.html">10. Exercise Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="References%20Cited.html">11. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/Second Law of Thermodynamics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Second Law of Thermodynamics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directionality-qualitative-motivation-through-heat-engine-thermodynamic-cycles">8.1. Directionality - Qualitative Motivation through Heat Engine Thermodynamic Cycles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directionality-entropy-is-multiplicity-maximization">8.2. Directionality - Entropy is Multiplicity Maximization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamic-driving-forces">8.3. Thermodynamic Driving Forces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-1-constant-volume-equilibration">8.3.1. Process 1 - Constant Volume Equilibration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-2-variable-volume-equilibration">8.3.2. Process 2 - Variable Volume Equilibration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamic-definition-of-entropy">8.4. Thermodynamic Definition of Entropy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-reversible-heat-transfer-using-entropy">8.4.1. Example - Evaluating Reversible Heat Transfer Using Entropy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-generation">8.5. Entropy Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-definition-of-entropy">8.6. Statistical Definition of Entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carnot-heat-engines">8.7. Carnot Heat Engines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carnot-heat-pumps">8.8. Carnot Heat Pumps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="second-law-of-thermodynamics-directionality-of-processes-entropy-heat-engines-and-refrigerators">
+<span id="secondlaw"></span><h1><span class="section-number">8. </span>Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators<a class="headerlink" href="#second-law-of-thermodynamics-directionality-of-processes-entropy-heat-engines-and-refrigerators" title="Link to this heading">#</a></h1>
+<p id="index-0">So far, we have focused our attention on evaluating properties of substancies (e.g., enthalpy, volume) using various techniques and evaluating processes by applying the First Law of Thermodynamics, or conservation of energy. And we know that if the First Law of Thermodynamics is not satisfied then a process or cycle is not possible. Yet, there are numerous situations where the First Law of Thermodynamics is satisfied but the process is still not possible. For example, consider a closed system with a paddle wheel contained within it. We know from experience that if we do work to the system by rotating the paddle wheel, that the system will heat up, its internal energy will increase, etc. Yet, the reverse will not happen - i.e., we cannot heat up the system and spontanesouly expect the paddle wheel to rotate, resulting in work done by the system. Yet this in no way would violate the first law of thermodynamics. This implies that there is a directionality associated with processes that is important, and it is the directionality of a process that is the realm of the <a class="reference internal" href="../genindex.html"><span class="std std-ref">Second Law of Thermodynamics</span></a>. Thus, the Second Law of Thermodynamics adds further constraints to processes on top of the First Law. In fact, we will learn that no real process will happen spontaneously without an increase in a thermodynamic property which we will learn about called <a class="reference internal" href="../genindex.html"><span class="std std-ref">entropy</span></a> (<span class="math notranslate nohighlight">\(S\)</span>). Simply put,  entropy must always be increased for a process to occur (or for a reversible process, which is not possible in reality, entropy remains unchanged). Entropy can be thought of as a driving force for energy exchange - i.e, if it can be increased then energy transfer will occur. It is because of the Second Law that heat always flows from hot reservoirs to cold reservoirs, that pressures tend to equalize and that gases mix. In all of these cases we can show that entropy increases as a result. This is not to say that entropy cannot be decreased locally, but only that the total entropy of the control volume (i.e., the system) and the surroundings must be increased for a process to occur. As a result, the second law of thermodynamics is sometimes referred to as the increase in entropy principle.</p>
+<p>In the remainder of this chapter will will motivate the idea of process directionality from a qualitative perspective and build on the concept of entropy and increasing entropy (or entropy generation) as a necessary condition for a process to occur. In later chapters we will build a mathematical framework for the description of entropy.</p>
+<section id="directionality-qualitative-motivation-through-heat-engine-thermodynamic-cycles">
+<h2><span class="section-number">8.1. </span>Directionality - Qualitative Motivation through Heat Engine Thermodynamic Cycles<a class="headerlink" href="#directionality-qualitative-motivation-through-heat-engine-thermodynamic-cycles" title="Link to this heading">#</a></h2>
+<p id="index-1">As mentioned prior, we are already innately aware that there is a directionality to processes. Energy always flows from hot to cold, which really means from low entropy to high entropy - if the reverse were true then your cup of hot coffee would continue to increase in temperature and the surroundings would cool. Gases that are well mixed such as nitrogen and oxygen do not spontaneously separate, and so on. This directionality has profound influences on thermodynamic processes and cycles and can be exemplified through the introduction of a <a class="reference internal" href="../genindex.html"><span class="std std-ref">heat engine</span></a>. A heat engine operates on a thermodynamic cycle and is a device that takes advantage of the flow of heat to produce work. Now, when we mention the production of work within the context of a thermodynamic cycle, which we have learned prior means that we start and end at the same thermodynamic state, what we really mean is the net production of work resulting from the thermodynamic cycle. The entire framework for the Second Law of Thermodynamics was originally conceived by Sadi Carnot, who developed the concept of a heat engine and who at the time had no concept of entropy as a thermodynamic property. Yet, he recognized that it is impossible for any heat engine that operates on a cycle to produce a net amount of work without absorbing heat from the surroundings at a high temperature and rejecting a portion of it back to the surroundings at some lower temperature. That is, it is impossible to convert 100% of heat into work if operating on a cycle, and the direction of heat flow is from hot to cold. A schematic of an impossible process can be seen on the left side of <a class="reference internal" href="#heat-engine-fig-a"><span class="std std-numref">Figure 8.1</span></a>, where there is no heat rejection and thus no net work can be produced. Rather, some portion of the heat must be rejected at a lower temperature, as seen on the right side of <a class="reference internal" href="#heat-engine-fig-a"><span class="std std-numref">Figure 8.1</span></a>. And Carnot further observed that heat has an innate quality tied to it that is related to the heat engine efficiency, that is, the higher the temperature heat source the more efficient the heat engine can operate - we will learn later that this quality is closely tied to entropy. Carnot’s insights eventually formed the framework for one variation of the Second Law which is called the <a class="reference internal" href="../genindex.html"><span class="std std-ref">Kelvin-Plank statement</span></a>. The Kelvin-Plank statement states that “It is impossible to construct a device that will operate in a cycle and produce no effect other than the raising of a weight and the exchange of heat with a single reservoir”.</p>
+<figure class="align-default" id="heat-engine-fig-a">
+<img alt="../_images/heat_engine.png" src="../_images/heat_engine.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.1 </span><span class="caption-text">An example of an impossible process (left) which violates the second law of thermodynamcs because 100% of thermal energy cannot be converted to work. Rather, some smaller portion of the incident energy must be rejected at a lower temperature, as seen on the right side.</span><a class="headerlink" href="#heat-engine-fig-a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The process of converting heat into work via a heat engine and two thermal reservoirs can be imagined similarly to a turbine producing work from the flow of liquid (e.g. a waterfall). If we wish to extract work from the potential energy of water at a high elevation, we can use a turbine, but we still must release the water at some lower elevation (and lower potential energy). Otherwise, the exiting fluid would quickly rise in elevation, and an equilibrium would be established such that the exit and inlet heights are the same and the turbine ceases to rotate. Thus, just as fluid flow will always spontaneously occur from high elevation to low elevation, but never the reverse, heat flow will always spontaneously travel from high temperature to low temperature. And if we wish to extract work we must still reject some portion of the energy flow at a lower quality than the inlet.</p>
+<p>Let’s conceptualize why this must be true. Imagine a cycle that starts in one state, for example at given temperature, and we aim to extract energy in the form of work by adding heat to the system. For example, we could heat a piston filled with a gas and it will expand, producing work. An example is shown below in <a class="reference internal" href="#heat-engine-fig-b"><span class="std std-numref">Figure 8.2</span></a> where in the first 4 iterations we raise a mass (shown in green) to a higher elevation. Yet, to complete the cycle, we will have to get back to our original state. One way to do this would be to follow the same path that we took to extract the work, by replacing the mass and then rejecting heat at the same high temperature (shown in the remaining iterations in <a class="reference internal" href="#heat-engine-fig-b"><span class="std std-numref">Figure 8.2</span></a>) but then this would mean that the same amount of energy we got out in the form of work would have to be put back into the process (assuming both were reversible). Thus there would be no net production of work and our heat engine will not operate.</p>
+<figure class="align-default" id="heat-engine-fig-b">
+<img alt="../_images/heat_engine_a.png" src="../_images/heat_engine_a.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.2 </span><span class="caption-text">An example of an impossible process heat engine.</span><a class="headerlink" href="#heat-engine-fig-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This means that we must take a different path back to return to our original state if we want the chance of producing a net amout of work. What the system would have to do, it turns out, is to reject heat, and then compress the piston along a different path to get back to our original state. This is shown in <a class="reference internal" href="#heat-engine-fig-c"><span class="std std-numref">Figure 8.3</span></a>, where he piston is lowered first by rejecting heat to a low temperature reservoir. Then, to return to our initial state we can further compress the system by adding the mass back to the top of the piston, but from a lower elevation that before, thus requiring less work. In this way, we can decrease the work requirements to return to our original state, resulting in some net production of work. There are only two ways to impact the state of the system (and internal energy, volume, entropy etc) - through work or heat exchange - and by rejecting heat at a lower temperature instead of doing work following expansion, we can also locally decrease the energy and entropy of the system to help approach its initial value. The inevitable result is that if we return to our original state that the entropy (and energy, volume, etc) remain unchanged within the control volume, and thus the entropy will have to increase in the surroundings (unless we had a completely reversible heat engine). More on this later.</p>
+<figure class="align-default" id="heat-engine-fig-c">
+<img alt="../_images/heat_engine_b.png" src="../_images/heat_engine_b.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.3 </span><span class="caption-text">An example of a simple heat engine that works by rejecting heat at a lower temperature than it is absorbed.</span><a class="headerlink" href="#heat-engine-fig-c" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="directionality-entropy-is-multiplicity-maximization">
+<h2><span class="section-number">8.2. </span>Directionality - Entropy is Multiplicity Maximization<a class="headerlink" href="#directionality-entropy-is-multiplicity-maximization" title="Link to this heading">#</a></h2>
+<p>And now the logical questions is, why must heat always flow from hot to cold in a spontaneous process, and not vice versa? Why should gases spontaneously mix and not separate, why do gases expand in closed systems, and why do chemical reactions spontaneously occur in one direction but not the reverse, for example the combustion of hydrocarbons even if energy is conserved in an adiabatic chamber. The reason for this, in all of the above cases and more, is that the entropy is maximized. And whenever there is the potential to increase entropy, a process will spontaneously occur (given sufficient time). Then the next logical question is, what is entropy? Although you may have learned prior it is a measure of disorder of the system (and this analogy can be useful), a better explanation, I think, is that entropy is simply related to the number of possible ways a system can be arranged or configured from a microscopic perspective, referred to as the multiplicity (<span class="math notranslate nohighlight">\(W\)</span>) of the system. It is purely a statistical phenomenon - the system will always tend towards the state in which it can be arranged the greatest number of ways. For example, lets consider why gases tend to want to disperse. If we have a system of two particles (e.g., gas molecules) which can be distributed in any of 4 different boxes like shown below in <a class="reference internal" href="#multiplicity-fig-a"><span class="std std-numref">Figure 8.4</span></a> (imagine the number of boxes is related to the volume of the system), it is statistically more probable to find them in separate boxes rather than in the same. There are 4 configurations we can envision in which they are the same box (left side) and 6 in which they are separated (right side). And as the number of boxes increases, the chances that they are found in the same box become less probable. For example, if the number of boxes increased to 8, then there are only 8 configurations where they can be in the same box but 28 where they are different. When considered on the scale of real systems, with orders of magnitude more molecules, the probability of finding the molecules in a configuration not well dispursed becomes vanishingly small as the multiplicity increases. And thus from a statistical perspective, there are many more configurations available in which the molecules are well dispersed rather than confined near each other. Interestingly, this approach does not assume that it is impossible that the molecules remain in a clumped together configuration - is only statistically improbable. That is, the most statistically probable configuration is the one which is most likely to occur, and the most statistically probable outcome is the one with the largest number of possible configurations. Entropy is simply a measure of the number of ways we can arrange a system and thus this tends to want to be maximized because it is statistically more probable. Another way to think about multiplicity is that as it increases, our our uncertainty about the location of the molecules decreases. We can decscribe the multiplicity of a system (<span class="math notranslate nohighlight">\(W\)</span>) mathematically as</p>
+<div class="math notranslate nohighlight" id="equation-eq-a">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-eq-a" title="Link to this equation">#</a></span>\[W  = \frac {N!}{n_{\rm {1}}!n_{\rm {2}}!...n_{\rm {i}}!}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of objects (in this case boxes) with i categories (in this case a box is either empty or not, so two categories). For example, in the case of both particles contained in the same box only 1 is not emtpy, thus,  <span class="math notranslate nohighlight">\(N\)</span> = 4, <span class="math notranslate nohighlight">\(n_\rm {1}\)</span> = 1 and <span class="math notranslate nohighlight">\(n_\rm {1} = 3\)</span>. For the case of finding both particles in separate boxes, only 2 are empty, and thus,  <span class="math notranslate nohighlight">\(N\)</span> = 4, <span class="math notranslate nohighlight">\(n_\rm {1}\)</span> = 2 and <span class="math notranslate nohighlight">\(n_\rm {1} = 2\)</span>.</p>
+<figure class="align-default" id="multiplicity-fig-a">
+<img alt="../_images/multiplicity_a.png" src="../_images/multiplicity_a.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.4 </span><span class="caption-text">Why do gases tend to disperse rather than clump together? There are more ways to arrange the system in the latter case, thus the multiplicity, and entropy are greater. As seen on the left, there are 4 ways to arrange 2 gas molecules both in the same cube, with the remaining 3 empty. But if two are filled and two empty (more dispersed), when we can arrange the system 6 ways. Thus, the multiplicity of the latter is greater, thus also the probability that this outcome will occur. Entropy is simply a measure of the multiplicity - the system will more likely be in the configuration that maximizes multiplicity (because it is statistically more probable). So to will the entropy always be maximized.</span><a class="headerlink" href="#multiplicity-fig-a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A slighty more complex example can be used to show why heat flows from hot to cold - as you may have guessed it is because entropy is maximized. For this example, lets consider two separate and isolated systems, A and B, that are brought into thermal contact and allowed to exchange heat, as illustrated below in <a class="reference internal" href="#multiplicity-fig-b"><span class="std std-numref">Figure 8.5</span></a>. The internal energy of these systems are dictated by 1) the number of particles (e.g., gas molecules) in the system and 2) whether or not those particles are energized (<span class="math notranslate nohighlight">\(\epsilon\)</span>). For this example we are considering only very simplified systems with only a limited number of particles and limited energy states equal to only 0 or 1. System A is initially composed of 5 particles (<span class="math notranslate nohighlight">\(N_\rm {A} = 5\)</span>) with internal energy (<span class="math notranslate nohighlight">\(U_\rm {A} = 2\)</span>) and System B is initially composed of 5 particles (<span class="math notranslate nohighlight">\(N_\rm {A} = 5\)</span>) with internal energy (<span class="math notranslate nohighlight">\(U_\rm {A} = 4\)</span>), shown schematically on the top of <a class="reference internal" href="#multiplicity-fig-b"><span class="std std-numref">Figure 8.5</span></a>. Note that because the particles can only have energies of 0 or 1, system A must have two energized particles and system B must have 4. We can calculate the multiplicity to see the number of ways in which we can arrange each of these systems, according to <a class="reference internal" href="#equation-eq-a">(8.1)</a>, and we see that for System A, <span class="math notranslate nohighlight">\(W\)</span><sub>A</sub> = 10 and for System B, <span class="math notranslate nohighlight">\(W\)</span><sub>B</sub> = 5. Now, initially Systems A and B cannot exchange heat but we can consider the total multiplicity of the combined systems by drawing a control volume around both systems, shown in the green dash-dotted line. For the combined number of configurations it is simply the product of each (e.g., 10 configurations of A with the 1st of B, 10 configurations with the 2nd, and so on). So, the total multiplicity for systems A and B is 50.</p>
+<p>Now, if the adiabatic barrier between A and B is removed and energy can be exchanged, then the internal energy of each system can change but the total internal energy of the combined systems must remain constant (<span class="math notranslate nohighlight">\(U_\rm A\)</span> + <span class="math notranslate nohighlight">\(U_\rm B\)</span> = 6). We could imagine a scenario where the internal energy of A decreases to 1 and B increases to 5, in which case <span class="math notranslate nohighlight">\(W\)</span><sub>A</sub> = 5 and <span class="math notranslate nohighlight">\(W\)</span><sub>B</sub> = 1 and thus <span class="math notranslate nohighlight">\(W\)</span><sub>total</sub> = 5 which is lower than the initial value. Thus, this is not statistically probable and therefore the energy flow will likely not be from cold to hot. However, consider the reverse case of heat transfer from hot to cold, in which case the internal energy of A could increase to 3 and of B could decrease to 3. This scenario is shown on the bottom of <a class="reference internal" href="#multiplicity-fig-b"><span class="std std-numref">Figure 8.5</span></a>. In this scenario, <span class="math notranslate nohighlight">\(W\)</span><sub>A</sub> = 10 and <span class="math notranslate nohighlight">\(W\)</span><sub>B</sub> = 10 and thus <span class="math notranslate nohighlight">\(W\)</span><sub>total</sub> = 100 which is greater than the initial value of 50. Thus it is statistically more probable that energy will flow from the hotter system B to the lower temperature system A. Although we have only shown a few scenarios, ultimately the energies of each system will be determined by maximizing the multiplicity by considering all possible scenarios - however it turns out that the final condition considered here is where multiplicity is maximized. Thus, we can see that energy tends to want to flow from hot to cold (i.e., in this case higher specific internal energy to lower) and it does so because there are more ways to configure the system. Thus, it is statistically more probable that this occurs. And as mentioned, entropy is a measure of the multiplicity of the system and since this tends to want to increase, the entropy as well can be considered to want to increase.</p>
+<figure class="align-default" id="multiplicity-fig-b">
+<img alt="../_images/multiplicity_b.png" src="../_images/multiplicity_b.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.5 </span><span class="caption-text">An example showing why energy tends to want to flow from higher temperature to lower. On the top two systems are isolated with different internal energies (i.e., different temperatures) and the total multiplicity of the combined systems is 50. When we allow energy to transfer by removing the adiabatic barrier, as shown on the bottom, the multiplicity is increased when the internal energy of B decreases and A increases. Thus, there are more ways to arrange this system and therefore it is more statistically probably. Thus, we can see the multiplicity and thus entrpoy increase if energy flows from hot to cold. In the reverse case the multiplicity and entropy would decrease below the initial value, which is statistically improbable.</span><a class="headerlink" href="#multiplicity-fig-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p id="index-2">This insight leads to a different variation of the second law of thermodynamics - i.e., there is no process which results only in the transfer of heat from a cold reservoir to a hot reservoir. For this to be possible, work from an external source would have to be done to the system. This is commonly referred to as a heat pump, or refrigeration cycle. This was first formulated as the <a class="reference internal" href="../genindex.html"><span class="std std-ref">Clausius Statement</span></a>. It states that “It is impossible to construct a device that operates in a cycle and produces no effect other than the transfer of heat from a cooler body to a warmer body.” And from our statistical example above, we know that the reason for this has to do with multiplicity, or entropy, and its tendancy to be maximized.</p>
+</section>
+<section id="thermodynamic-driving-forces">
+<h2><span class="section-number">8.3. </span>Thermodynamic Driving Forces<a class="headerlink" href="#thermodynamic-driving-forces" title="Link to this heading">#</a></h2>
+<p>Now, at this point we have shown that multiplicity tends to increase for spontaneous processes - i.e. as processes go towards equilibrium their multiplicity increases. Further, we have said that multiplicity is a measure of entropy - but this has not been proven. Specifically, for now let’s postulate the following since as of yet entropy has not been definied explicitly.</p>
+<div class="math notranslate nohighlight" id="equation-eq-b">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-eq-b" title="Link to this equation">#</a></span>\[S \propto W\]</div>
+<p>We have shown that <span class="math notranslate nohighlight">\(W\)</span> depends on volume (<span class="math notranslate nohighlight">\(V\)</span>) and internal energy (<span class="math notranslate nohighlight">\(U\)</span>). For example, W increases as N (e.g., the number of boxes in <a class="reference internal" href="#multiplicity-fig-a"><span class="std std-numref">Figure 8.4</span></a>, or volume) increases, keeping the number of particles constant. Further, W decreases as the internal energy decreases, also keeping the number of particles constant, as was shown in <a class="reference internal" href="#multiplicity-fig-b"><span class="std std-numref">Figure 8.5</span></a>. We can also shown that <span class="math notranslate nohighlight">\(W\)</span> is a function of the number of particles in the system. For example, imagine in <a class="reference internal" href="#multiplicity-fig-b"><span class="std std-numref">Figure 8.5</span></a> that System A was initially composed of 6 particles instead of 5, with the same total internal energy. With 6 particles the multiplicity is 120 versus only 10 in the case of 5 particles. Thus, we can  say the the multiplicty is a function of <span class="math notranslate nohighlight">\(U\)</span>, <span class="math notranslate nohighlight">\(V\)</span> and the number of particles <span class="math notranslate nohighlight">\(N\)</span><sub>a</sub>, or</p>
+<div class="math notranslate nohighlight" id="equation-eq-c">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-eq-c" title="Link to this equation">#</a></span>\[W = f(U,V,N_{\rm a})\]</div>
+<p>and because <span class="math notranslate nohighlight">\(S \propto W\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq-d">
+<span class="eqno">(8.4)<a class="headerlink" href="#equation-eq-d" title="Link to this equation">#</a></span>\[S = f(U,V,N_{\rm a})\]</div>
+<p>For the time being we will consider only systems where the number of particles remains constant to simplify analysis. Further, all of our prior examples of thermodynamic systems were such that <span class="math notranslate nohighlight">\(N\)</span><sub>a</sub> = constant. I.e., they were constant mass and there were no chemical reactions considered that could change the number of moles. Thus we can say the following for <span class="math notranslate nohighlight">\(N\)</span><sub>a</sub> = constant.</p>
+<div class="math notranslate nohighlight" id="equation-eq-e">
+<span class="eqno">(8.5)<a class="headerlink" href="#equation-eq-e" title="Link to this equation">#</a></span>\[S = f(U,V)\]</div>
+<p>Taking the derivitive we can see how this depends on variations of the independent properties <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-f">
+<span class="eqno">(8.6)<a class="headerlink" href="#equation-eq-f" title="Link to this equation">#</a></span>\[dS = \left( \frac{\partial S}{\partial U} \right)_{\rm V} dU + \left( \frac{\partial S}{\partial V} \right)_{\rm U} dV\]</div>
+<p>With this as a starting framework, lets evaluate two different  processes as they approach equilibrium. For this we will make one important assumption, of which we can later test the validity. This assumption is that the entropy is an extensive thermodynamic property of the system, and therefore dependent on the system size, just like internal energy and volume. We know that extensive thermodynamic properties are additive.</p>
+<section id="process-1-constant-volume-equilibration">
+<h3><span class="section-number">8.3.1. </span>Process 1 - Constant Volume Equilibration<a class="headerlink" href="#process-1-constant-volume-equilibration" title="Link to this heading">#</a></h3>
+<p>Consider two separate systems, A and B, as shown in <a class="reference internal" href="#equilibration-fig-a"><span class="std std-numref">Figure 8.6</span></a> initially at different temperatures and internal energies, both with fixed volumes, separated by an adiabatic barrier. Then, the barrier is now diathermal and allowed to transfer heat until the total combined system (A + B) is equilibrated. We know from our prior example that at equilibrium, entropy is maximized and thus we can say that at the final state <span class="math notranslate nohighlight">\(dS = 0\)</span>. Further, because each of the subsystem volumes are constant, then the total system volume must also be constant, or <span class="math notranslate nohighlight">\(dV = 0\)</span>.</p>
+<figure class="align-default" id="equilibration-fig-a">
+<img alt="../_images/temperature_equilibration.png" src="../_images/temperature_equilibration.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.6 </span><span class="caption-text">For two fixed volume systems that are initially isolated and then allowed to exchange heat, it is equilibration of temperatures that dictates equilibrium.</span><a class="headerlink" href="#equilibration-fig-a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Conservation of energy states that the total internal energy of A and B must remain constant, and that the energy gained in one is lost in the other, i.e.</p>
+<div class="math notranslate nohighlight" id="equation-eq-g">
+<span class="eqno">(8.7)<a class="headerlink" href="#equation-eq-g" title="Link to this equation">#</a></span>\[(U_{\rm A,i} + U_{\rm B,i} = U_{\rm A,f} + U_{\rm B,f} = const.)\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-h">
+<span class="eqno">(8.8)<a class="headerlink" href="#equation-eq-h" title="Link to this equation">#</a></span>\[U_{\rm A,i} - U_{\rm A,f} = U_{\rm B,f} - U_{\rm B,i}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-i">
+<span class="eqno">(8.9)<a class="headerlink" href="#equation-eq-i" title="Link to this equation">#</a></span>\[\Delta U_{\rm A} = -\Delta U_{\rm B}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight" id="equation-eq-j">
+<span class="eqno">(8.10)<a class="headerlink" href="#equation-eq-j" title="Link to this equation">#</a></span>\[d U_{\rm A} = -d U_{\rm B}\]</div>
+<p>Starting from <a class="reference internal" href="#equation-eq-f">(8.6)</a>, recognizing <span class="math notranslate nohighlight">\(dV = 0\)</span> for each sub-system, as we approach equilibrium we can say for each of our two systems that</p>
+<div class="math notranslate nohighlight" id="equation-eq-k">
+<span class="eqno">(8.11)<a class="headerlink" href="#equation-eq-k" title="Link to this equation">#</a></span>\[dS_{\rm A} = \left( \frac{\partial S_{\rm A}}{\partial U_{\rm A}} \right)_{\rm V} dU_{\rm A}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-l">
+<span class="eqno">(8.12)<a class="headerlink" href="#equation-eq-l" title="Link to this equation">#</a></span>\[dS_{\rm B} = \left( \frac{\partial S_{\rm B}}{\partial U_{\rm B}} \right)_{\rm V} dU_{\rm B}\]</div>
+<p>And because of our assumption that entropy is an extensive thermodynamic property, the total system entropy at equilibrium is</p>
+<div class="math notranslate nohighlight" id="equation-eq-m">
+<span class="eqno">(8.13)<a class="headerlink" href="#equation-eq-m" title="Link to this equation">#</a></span>\[dS = dS_{\rm A} + dS_{\rm B} = 0\]</div>
+<p>Substituting from above</p>
+<div class="math notranslate nohighlight" id="equation-eq-n">
+<span class="eqno">(8.14)<a class="headerlink" href="#equation-eq-n" title="Link to this equation">#</a></span>\[\left( \frac{\partial S_{\rm A}}{\partial U_{\rm A}} \right)_{\rm V} dU_{\rm A} + \left( \frac{\partial S_{\rm B}}{\partial U_{\rm B}} \right)_{\rm V} dU_{\rm B} = 0\]</div>
+<p>and substituting <a class="reference internal" href="#equation-eq-j">(8.10)</a></p>
+<div class="math notranslate nohighlight" id="equation-eq-o">
+<span class="eqno">(8.15)<a class="headerlink" href="#equation-eq-o" title="Link to this equation">#</a></span>\[\left( \frac{\partial S_{\rm A}}{\partial U_{\rm A}} \right)_{\rm V} dU_{\rm A} - \left( \frac{\partial S_{\rm B}}{\partial U_{\rm B}} \right)_{\rm V} dU_{\rm A} = 0\]</div>
+<p>This can be rearranged to show</p>
+<div class="math notranslate nohighlight" id="equation-eq-p">
+<span class="eqno">(8.16)<a class="headerlink" href="#equation-eq-p" title="Link to this equation">#</a></span>\[dU_{\rm A} \left [ \left( \frac{\partial S_{\rm A}}{\partial U_{\rm A}} \right)_{\rm V}  - \left( \frac{\partial S_{\rm B}}{\partial U_{\rm B}} \right)_{\rm V} \right] = 0\]</div>
+<p>In other words, at equilibrium</p>
+<div class="math notranslate nohighlight" id="equation-eq-q">
+<span class="eqno">(8.17)<a class="headerlink" href="#equation-eq-q" title="Link to this equation">#</a></span>\[\left( \frac{\partial S_{\rm A}}{\partial U_{\rm A}} \right)_{\rm V}  = \left( \frac{\partial S_{\rm B}}{\partial U_{\rm B}} \right)_{\rm V}\]</div>
+<p>Now, this begs the question - what thermodynamic property of system A and system B are equal to each other at equilibrium that could represent the partial differentials that must be equal? The answer is intuitive - temperature! The thermodynamic property that is a driving force for energy exchange is temperature, not internal energy, volume, etc. Therefore, we can say that</p>
+<div class="math notranslate nohighlight" id="equation-eq-r">
+<span class="eqno">(8.18)<a class="headerlink" href="#equation-eq-r" title="Link to this equation">#</a></span>\[\frac{1}{T}=\left( \frac{\partial S}{\partial U} \right)_{\rm V}\]</div>
+<p>or more generally</p>
+<div class="math notranslate nohighlight" id="equation-eq-s">
+<span class="eqno">(8.19)<a class="headerlink" href="#equation-eq-s" title="Link to this equation">#</a></span>\[\frac{1}{T}=\left( \frac{\partial S}{\partial U} \right)_{\rm V, N_a}\]</div>
+<p>The reason that temperature is inverted has to do with the fact that we know enrgy flow must be from hot to cold and the entropy maximized. If instead we said <span class="math notranslate nohighlight">\(T=\left( \frac{\partial S}{\partial U} \right)_{\rm V, N_a}\)</span>, the entropy change towards equilirium dS would be negative unless the energy flow were from cold to hot. You can convince yourselve with a quick calculation. Thus, we can say for fixed volume systems, temperature is the driving force for heat exchange and that it is equalized when the system reaches equilibrium.</p>
+</section>
+<section id="process-2-variable-volume-equilibration">
+<h3><span class="section-number">8.3.2. </span>Process 2 - Variable Volume Equilibration<a class="headerlink" href="#process-2-variable-volume-equilibration" title="Link to this heading">#</a></h3>
+<p>Consider two separate systems, A and B, as shown in <a class="reference internal" href="#equilibration-fig-b"><span class="std std-numref">Figure 8.7</span></a> initially at different temperatures and internal energies, separated by an adiabatic fixed barrier. Then, the barrier is allowed to conduct heat and move, enabling system A and B to exchange heat and work (but not with the surroundings) until the total combined system (A + B) is equilibrated. Again, we know from our prior example that at equilibrium entropy is maximized and thus we can say that at the final state <span class="math notranslate nohighlight">\(dS = 0\)</span>.</p>
+<figure class="align-default" id="equilibration-fig-b">
+<img alt="../_images/temperature_pressure_equilibration.png" src="../_images/temperature_pressure_equilibration.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.7 </span><span class="caption-text">For two systems that are initially isolated and then allowed to exchange heat and work via a diathermal and movable membrane, equilibrium occures when the temperature and pressure of each side are equaized.</span><a class="headerlink" href="#equilibration-fig-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Conservation of energy states that the total internal energy of A and B must remain constant, and that the energy gained in one is lost in the other, i.e.</p>
+<div class="math notranslate nohighlight" id="equation-eq-t">
+<span class="eqno">(8.20)<a class="headerlink" href="#equation-eq-t" title="Link to this equation">#</a></span>\[(U_{\rm A,i} + U_{\rm B,i} = U_{\rm A,f} + U_{\rm B,f} = const.)\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-u">
+<span class="eqno">(8.21)<a class="headerlink" href="#equation-eq-u" title="Link to this equation">#</a></span>\[U_{\rm A,i} - U_{\rm A,f} = U_{\rm B,f} - U_{\rm B,i}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-v">
+<span class="eqno">(8.22)<a class="headerlink" href="#equation-eq-v" title="Link to this equation">#</a></span>\[\Delta U_{\rm A} = -\Delta U_{\rm B}\]</div>
+<p>, and</p>
+<div class="math notranslate nohighlight" id="equation-eq-w">
+<span class="eqno">(8.23)<a class="headerlink" href="#equation-eq-w" title="Link to this equation">#</a></span>\[d U_{\rm A} = -d U_{\rm B}\]</div>
+<p>Because the total volume of the combined systems is constant we can also say that</p>
+<div class="math notranslate nohighlight" id="equation-eq-w1">
+<span class="eqno">(8.24)<a class="headerlink" href="#equation-eq-w1" title="Link to this equation">#</a></span>\[d V_{\rm A} = -d V_{\rm B}\]</div>
+<p>Thus, starting from <a class="reference internal" href="#equation-eq-f">(8.6)</a>, as we approach equilibrium we can say for each of our two systems that</p>
+<div class="math notranslate nohighlight" id="equation-eq-x">
+<span class="eqno">(8.25)<a class="headerlink" href="#equation-eq-x" title="Link to this equation">#</a></span>\[dS_{\rm A} = \left( \frac{\partial S_{\rm A}}{\partial U_{\rm A}} \right)_{\rm V_A} dU_{\rm A} + \left( \frac{\partial S_{\rm A}}{\partial V_{\rm A}} \right)_{\rm U_A} dV_{\rm A}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-y">
+<span class="eqno">(8.26)<a class="headerlink" href="#equation-eq-y" title="Link to this equation">#</a></span>\[dS_{\rm B} = \left( \frac{\partial S_{\rm B}}{\partial U_{\rm B}} \right)_{\rm V_A} dU_{\rm B} + \left( \frac{\partial S_{\rm B}}{\partial V_{\rm B}} \right)_{\rm U_B} dV_{\rm B}\]</div>
+<p>And because of our assumption that entropy is an extensive thermodynamic property, the total system entropy at equilibrium is</p>
+<div class="math notranslate nohighlight" id="equation-eq-z">
+<span class="eqno">(8.27)<a class="headerlink" href="#equation-eq-z" title="Link to this equation">#</a></span>\[dS = dS_{\rm A} + dS_{\rm B} = 0\]</div>
+<p>Substituting <a class="reference internal" href="#equation-eq-x">(8.25)</a> and <a class="reference internal" href="#equation-eq-y">(8.26)</a> into <a class="reference internal" href="#equation-eq-z">(8.27)</a>, then substituting <a class="reference internal" href="#equation-eq-w">(8.23)</a> and <a class="reference internal" href="#equation-eq-w1">(8.24)</a> and rearranging we can see that</p>
+<div class="math notranslate nohighlight" id="equation-eq-a1">
+<span class="eqno">(8.28)<a class="headerlink" href="#equation-eq-a1" title="Link to this equation">#</a></span>\[\left[ \left( \frac{\partial S_{\rm A}}{\partial U_{\rm A}} \right)_{\rm V_A} - \left( \frac{\partial S_{\rm B}}{\partial U_{\rm B}} \right)_{\rm V_A} \right]dU_{\rm A} + \left[\left( \frac{\partial S_{\rm A}}{\partial V_{\rm A}} \right)_{\rm U_A} -\left( \frac{\partial S_{\rm B}}{\partial V_{\rm B}} \right)_{\rm U_B} \right]dV_{\rm A} =0 \]</div>
+<p>We know that at equilibrium the left hand terms equal zero because <span class="math notranslate nohighlight">\(T_{\rm a}\)</span> = <span class="math notranslate nohighlight">\(T_{\rm b}\)</span> and <span class="math notranslate nohighlight">\(\frac{1}{T}=\left( \frac{\partial S}{\partial U} \right)_{\rm V}\)</span>. Therefore the terms <span class="math notranslate nohighlight">\(\left( \frac{\partial S}{\partial V} \right)_{\rm U}\)</span> for systems A and B must also be equal. Does this partial differential also equal some measurable property like in the prior example where <span class="math notranslate nohighlight">\(\frac{1}{T}=\left( \frac{\partial S}{\partial U} \right)_{\rm V}\)</span>? To see, let’s first consider the units of entropy. We know that <span class="math notranslate nohighlight">\(\frac{1}{T}=\left( \frac{\partial S}{\partial U} \right)_{\rm V}\)</span>, and thus S has units kJ/K. Thus entropy per unit volume should have units kJ/K/m<sup>3</sup>. This can be rearranged as kN/m<sup>2</sup>/K which is the same units as we would expect for the ratio of properties, <span class="math notranslate nohighlight">\(p/T\)</span>. And therefore, not surprisingly it turns out that <span class="math notranslate nohighlight">\(\left( \frac{\partial S}{\partial V} \right)_{\rm U} = \frac{p}{T}\)</span>. That is, equilibration between systems with a diathermal and movable barrier results in the equality of the ratio of temperature to pressure. Physically, this make sense, as we intuitively know that the system at equilibrium should have equal temperatures and pressures.</p>
+</section>
+</section>
+<section id="thermodynamic-definition-of-entropy">
+<span id="thermodynamicentropy"></span><h2><span class="section-number">8.4. </span>Thermodynamic Definition of Entropy<a class="headerlink" href="#thermodynamic-definition-of-entropy" title="Link to this heading">#</a></h2>
+<p>Recall that we started with the discussion above with the assumption that entropy is proportional to multiplicity, and thus a function of energy and volume, or</p>
+<div class="math notranslate nohighlight" id="equation-eq-a2">
+<span class="eqno">(8.29)<a class="headerlink" href="#equation-eq-a2" title="Link to this equation">#</a></span>\[S = f(U,V)\]</div>
+<p>We then took the derivitive of this function and saw that</p>
+<div class="math notranslate nohighlight" id="equation-eq-a3">
+<span class="eqno">(8.30)<a class="headerlink" href="#equation-eq-a3" title="Link to this equation">#</a></span>\[dS = \left( \frac{\partial S}{\partial U} \right)_{\rm V} dU + \left( \frac{\partial S}{\partial V} \right)_{\rm U} dV\]</div>
+<p>Which reduces to the following because <span class="math notranslate nohighlight">\(\left( \frac{\partial S}{\partial U} \right)_{\rm V} = \frac{1}{T}\)</span> and <span class="math notranslate nohighlight">\(\left( \frac{\partial S}{\partial V} \right)_{\rm U} = \frac{p}{T}\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-a4">
+<span class="eqno">(8.31)<a class="headerlink" href="#equation-eq-a4" title="Link to this equation">#</a></span>\[dS = \frac{1}{T} dU + \frac{p}{T} dV\]</div>
+<p>Now, consider a reversible expansion or compression process of an ideal gas. Recall from <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#reversibility"><span class="std std-numref">Section 6.1</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#reversibility"><span class="std std-ref">More on Boundary Work - Reversible Processes</span></a> that a reversible process is one in which occurs very slowly and is not possible in reality - but it represents an ideal process. We can relate the reversible boundary work (<span class="math notranslate nohighlight">\(\delta W_{\rm rev}\)</span>) to <span class="math notranslate nohighlight">\(pdV\)</span>, or</p>
+<div class="math notranslate nohighlight" id="equation-eq-a5">
+<span class="eqno">(8.32)<a class="headerlink" href="#equation-eq-a5" title="Link to this equation">#</a></span>\[\delta W_{\rm rev} = pdV\]</div>
+<p>We also know from the First Law of Thermodynamics that</p>
+<div class="math notranslate nohighlight" id="equation-eq-a6">
+<span class="eqno">(8.33)<a class="headerlink" href="#equation-eq-a6" title="Link to this equation">#</a></span>\[dU = \delta Q_{\rm rev} - \delta W_{\rm rev}\]</div>
+<p>Thus, we we can substitute <a class="reference internal" href="#equation-eq-a5">(8.32)</a> and <a class="reference internal" href="#equation-eq-a6">(8.33)</a> into <a class="reference internal" href="#equation-eq-a4">(8.31)</a> to show that</p>
+<div class="math notranslate nohighlight" id="equation-eq-a7">
+<span class="eqno">(8.34)<a class="headerlink" href="#equation-eq-a7" title="Link to this equation">#</a></span>\[dS = \frac{1}{T} (\delta Q_{\rm rev} - \delta W_{\rm rev}) + \frac{\delta W_{\rm rev}}{T}\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight" id="equation-eq-a8">
+<span class="eqno">(8.35)<a class="headerlink" href="#equation-eq-a8" title="Link to this equation">#</a></span>\[dS = \frac{1}{T} \delta Q_{\rm rev}\]</div>
+<p>and also</p>
+<div class="math notranslate nohighlight" id="equation-eq-a9">
+<span class="eqno">(8.37)<a class="headerlink" href="#equation-eq-a9" title="Link to this equation">#</a></span>\[\delta Q_{\rm rev} = TdS \]</div>
+<p>Now, although there are infinite number of pressure volume temperature paths that we could take to go from State 1 to State 2 (and thus varying degrees of reversible work), the change in entropy is only dependent on the heat transfer to or from the system. This is significant because it ties the entropy change of the system to a measureable quantity, namely the heat transfer, rather than relating it to probabiities or multiplicity which is not readily measurable. Also, significantly, it shows that the entropy of the system can be increased or decreased, depending on the direction of heat transfer, lending credence to the idea that entropy can be decreased locally at a system level, which partly explains how order can rise from apparant disorder.</p>
+<section id="example-evaluating-reversible-heat-transfer-using-entropy">
+<span id="entropychangeexample1"></span><h3><span class="section-number">8.4.1. </span>Example - Evaluating Reversible Heat Transfer Using Entropy<a class="headerlink" href="#example-evaluating-reversible-heat-transfer-using-entropy" title="Link to this heading">#</a></h3>
+<p>A piston cylinder maintaining constant pressure contains 0.1 kg saturated liquid water at 100°C. It is now boiled to become saturated vapor in a reversible process. Find the work term and then the heat transfer from the energy equation. Find the heat transfer from the entropy equation, is it the same?</p>
+<blockquote>
+<div><p><strong>Solution</strong> - If using the energy equation, for a closed system like this, <span class="math notranslate nohighlight">\(\Delta U = Q_{\rm net}- W_{\rm net}\)</span>, and because this is a constant pressure process <span class="math notranslate nohighlight">\(W_{\rm net}=P \Delta V\)</span>. Thus, the heat transfer can be solved knowing internal energy and volume at the initial and final states. Or, more simply we can also say <span class="math notranslate nohighlight">\(Q_{\rm net}=\Delta H\)</span> because the process is constant pressure. We can use Cantera to solve.</p>
+</div></blockquote>
+<blockquote>
+<div><p>If using the entropy equation from above <a class="reference internal" href="#equation-eq-a9">(8.37)</a>, <span class="math notranslate nohighlight">\(\delta Q_{\rm rev} = TdS\)</span>, this can be readily integrated because the process occurs at constant temperature. Thus <span class="math notranslate nohighlight">\(Q_{\rm rev} = T \Delta S\)</span>. Thus, we need only the entropy at the initial and final states. We can use Cantera to solve.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#State 1</span>
+<span class="n">m</span><span class="o">=</span> <span class="mf">0.01</span> <span class="c1">#kg</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">+</span> <span class="mf">273.15</span> <span class="c1">#K</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># Sat. Liquid</span>
+
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define state 1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">x1</span>
+
+<span class="c1">#State 2</span>
+<span class="n">T2</span><span class="o">=</span><span class="n">T1</span> <span class="c1">#K</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Sat. Liquid</span>
+
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define state 2</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">x2</span>
+
+<span class="n">dh</span><span class="o">=</span><span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ds</span><span class="o">=</span><span class="n">species2</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">species1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">dh</span><span class="o">*</span><span class="n">m</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J, is Q using the Energy Equation&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">ds</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">T1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;J, is Q using the Entropy Equation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22570.44 J, is Q using the Energy Equation
+22570.44 J, is Q using the Entropy Equation
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="entropy-generation">
+<h2><span class="section-number">8.5. </span>Entropy Generation<a class="headerlink" href="#entropy-generation" title="Link to this heading">#</a></h2>
+<p>We have just stated that entropy can decrease locally, but this is seemingly at odds with the fact that the second law of thermodynamics earlier in this chapter was motivated by saying that any spontaneous process that tends toward equilibrium must result in an increase in entropy. At this point, it is important to consider the distinction between the system and surroundings, and that when we say entropy must always increase, this refers to the total, or combined, entropy of the system and surroundings. Thus, if the entropy of a system decreases (for example by rejecting heat), then the entropy of the surroundings must increase by at least as much, and even more unless the process were reversible. We can see why entropy must always be increased (or generated) in a real process by comparing it to a reversible one. Lets first consider the reversible and adiabatic expansion process between states 1 and 2, as shown on the left of <a class="reference internal" href="#id1"><span class="std std-numref">Figure 8.8</span></a>. Because it is adiabatic there is no heat transfer and so the change in entropy according to <a class="reference internal" href="#equation-eq-a8">(8.35)</a> is zero. If the expansion process is real (i.e., irreversible) and to the same pressure, then the path taken is different and the work is less. According to the conservation of energy equation, if the work is less, the change in internal energy is less and thus, the temperature change should also be less compared to the reversible process. Thus, <span class="math notranslate nohighlight">\(T\)</span><sub>3</sub> &gt; <span class="math notranslate nohighlight">\(T\)</span><sub>2</sub>. Now, the only way to get to State 3 from State 2 is to reject heat from the system. Considering entropy is a state property and doesn’t depend on the path, then <span class="math notranslate nohighlight">\(S\)</span><sub>2</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>1</sub> = <span class="math notranslate nohighlight">\(S\)</span><sub>2</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>3</sub> + <span class="math notranslate nohighlight">\(S\)</span><sub>3</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>1</sub>. Since <span class="math notranslate nohighlight">\(S\)</span><sub>2</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>1</sub> = 0 (reversible and adiabatic) and <span class="math notranslate nohighlight">\(S\)</span><sub>2</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>3</sub> &lt; 0 because of <a class="reference internal" href="#equation-eq-a8">(8.35)</a> and the heat transfer is negative (i.e. heat rejection), then <span class="math notranslate nohighlight">\(S\)</span><sub>3</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>1</sub> must be positive and thus <span class="math notranslate nohighlight">\(S\)</span><sub>3</sub> &gt; <span class="math notranslate nohighlight">\(S\)</span><sub>1</sub>. Entropy was generated during the irreversible and adiabatic expansion process!</p>
+<figure class="align-default" id="id1">
+<img alt="../_images/entropy_generation.png" src="../_images/entropy_generation.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.8 </span><span class="caption-text">Entropy is generated for both expansion and compression processes that are irreversible. All irreversible processes result in entropy generation.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Now, lets consider the reverse case. I.e., reversible and adiabatic compression versus irreversible and adiabatic compression, as shown on the right of <a class="reference internal" href="#id1"><span class="std std-numref">Figure 8.8</span></a>. In this case the temperature following irreversible compression will be greater than the reversible case because the work requirement will be greater and according to the first law the internal energy change must be greater. This compression process is shown going from State 2 to State 3a. Then, the only way to return back to State 1 is to again reject heat from the system. Again considering entropy is a state property and doesn’t depend on the path, then <span class="math notranslate nohighlight">\(S\)</span><sub>1</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>2</sub> = <span class="math notranslate nohighlight">\(S\)</span><sub>3a</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>2</sub> + <span class="math notranslate nohighlight">\(S\)</span><sub>1</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>3a</sub>. Since <span class="math notranslate nohighlight">\(S\)</span><sub>1</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>2</sub> = 0 (reversible and adiabatic) and <span class="math notranslate nohighlight">\(S\)</span><sub>1</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>3a</sub> &lt; 0 because of <a class="reference internal" href="#equation-eq-a8">(8.35)</a> and the heat transfer is negative (i.e. heat rejection), then <span class="math notranslate nohighlight">\(S\)</span><sub>3a</sub>-<span class="math notranslate nohighlight">\(S\)</span><sub>2</sub> must be positive and thus <span class="math notranslate nohighlight">\(S\)</span><sub>3a</sub> &gt; <span class="math notranslate nohighlight">\(S\)</span><sub>2</sub>. Entropy was also generated during the irreversible and adiabatic compression process! And in fact, the entropy change must always increase for an irreversible process.</p>
+<p>Mathematically, because entropy generation is always equal to or greater than zero,  the entropy change for a real process must be the entropy change due to heat transfer (from <a class="reference internal" href="#equation-eq-a8">(8.35)</a>) plus the entropy generation, or</p>
+<div class="math notranslate nohighlight" id="equation-eq-a9">
+<span class="eqno">(8.37)<a class="headerlink" href="#equation-eq-a9" title="Link to this equation">#</a></span>\[\Delta S = \int \frac {\delta Q}{T} + S_{\rm gen}\]</div>
+<p>Notice now that the heat transfer term is no longer necessarily reversible because of the added entropy generation term (<span class="math notranslate nohighlight">\(S\)</span><sub>gen</sub>). Of course in the absence of entropy generation the heat transfer would have to be reversible and thus the equations are consistent. Put another way, because the entropy generation is always positive, the entropy change of a real process must always be greater than or equal to the entropy change due to heat transfer, or</p>
+<div class="math notranslate nohighlight" id="equation-eq-a10">
+<span class="eqno">(8.38)<a class="headerlink" href="#equation-eq-a10" title="Link to this equation">#</a></span>\[\Delta S \geq \int \frac {\delta Q}{T}\]</div>
+</section>
+<section id="statistical-definition-of-entropy">
+<h2><span class="section-number">8.6. </span>Statistical Definition of Entropy<a class="headerlink" href="#statistical-definition-of-entropy" title="Link to this heading">#</a></h2>
+<p>To this point, we have used a statistical argument (i.e., increase in multiplicity), to derive the classical thermodynamic definition of entropy, assuming only that entropy is proportional to multiplicity and that it is an extensive property of the system. But we have not mathematically connnected the statistical interpretation of entropy to the classical, yet. It would be tempting to think that <span class="math notranslate nohighlight">\(W\)</span> and <span class="math notranslate nohighlight">\(S\)</span> are related only by a proportionality constant, but this cannot be true because entropy is an extensive thermodynamic property, and thus additive, and multiplicity is multiplicitive - i.e., the multiplicity of two  combined sub-systems is the product of each individual. How to reconcile this? In fact, the link between entropy and mltiplicity then must be a logarithm, and the statistical definition, first derived by Boltzmann, is</p>
+<div class="math notranslate nohighlight" id="equation-eq-a11">
+<span class="eqno">(8.39)<a class="headerlink" href="#equation-eq-a11" title="Link to this equation">#</a></span>\[S =  k \rm{ln} W\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is Boltzmanns constant, which is a proportionality factor to connect the statistical definition to the classical thermodynamic definition. The natural logarithm helps resolve the difference between the additive extensive entropy and multiplicative property, multiplicity. For example, two systems with individual multiplicity 5 and 10 have a total multiplicity of 50 but  entropy of <span class="math notranslate nohighlight">\(k\)</span>ln(5) + <span class="math notranslate nohighlight">\(k\)</span>ln(10).</p>
+</section>
+<section id="carnot-heat-engines">
+<h2><span class="section-number">8.7. </span>Carnot Heat Engines<a class="headerlink" href="#carnot-heat-engines" title="Link to this heading">#</a></h2>
+</section>
+<section id="carnot-heat-pumps">
+<h2><span class="section-number">8.8. </span>Carnot Heat Pumps<a class="headerlink" href="#carnot-heat-pumps" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>First Law of Thermodynamics - Open Systems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Entropy%20Change%20of%20Real%20Processes%20v2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Entropy Change of Real and Idealized Processes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directionality-qualitative-motivation-through-heat-engine-thermodynamic-cycles">8.1. Directionality - Qualitative Motivation through Heat Engine Thermodynamic Cycles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directionality-entropy-is-multiplicity-maximization">8.2. Directionality - Entropy is Multiplicity Maximization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamic-driving-forces">8.3. Thermodynamic Driving Forces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-1-constant-volume-equilibration">8.3.1. Process 1 - Constant Volume Equilibration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-2-variable-volume-equilibration">8.3.2. Process 2 - Variable Volume Equilibration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamic-definition-of-entropy">8.4. Thermodynamic Definition of Entropy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-evaluating-reversible-heat-transfer-using-entropy">8.4.1. Example - Evaluating Reversible Heat Transfer Using Entropy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy-generation">8.5. Entropy Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-definition-of-entropy">8.6. Statistical Definition of Entropy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carnot-heat-engines">8.7. Carnot Heat Engines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carnot-heat-pumps">8.8. Carnot Heat Pumps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

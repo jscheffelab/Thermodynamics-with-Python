@@ -1,0 +1,1028 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. First Law of Thermodynamics - Introduction to Closed Systems &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/First Law of Thermodynamics';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. First Law of Thermodynamics - Boundary Work and Specific Heats" href="First%20Law%20of%20Thermodynamics%20Continued.html" />
+    <link rel="prev" title="4. Evaluation of Properties" href="Evaluation%20of%20Properties.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Exercise%20Solutions.html">10. Exercise Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="References%20Cited.html">11. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/First Law of Thermodynamics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/First Law of Thermodynamics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>First Law of Thermodynamics - Introduction to Closed Systems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macroscopic-and-microscopic-forms-of-energy">5.1. Macroscopic and Microscopic Forms of Energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-transfer-and-the-first-law">5.2. Energy Transfer and The First Law</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-transfer">5.2.1. Heat Transfer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction-heat-transfer">5.2.1.1. Conduction Heat Transfer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convective-heat-transfer">5.2.1.2. Convective Heat Transfer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-heat-transfer">5.2.1.3. Radiative Heat Transfer</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#work-interactions">5.2.2. Work Interactions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanical-work">5.2.2.1. Mechanical Work</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-types-of-work">5.2.2.2. Other Types of Work</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#path-dependence">5.2.2.3. Path Dependence</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-constant-volume-system">5.2.2.4. Example - Constant Volume System</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-constant-pressure-system">5.2.2.5. Example - Constant Pressure System</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enthalpy">5.3. Enthalpy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-revisted-constant-pressure-system-using-enthalpy">5.3.1. Example Revisted - Constant Pressure System using Enthalpy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3">5.3.2. Exercise 3</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="first-law-of-thermodynamics-introduction-to-closed-systems">
+<span id="firstlaw"></span><h1><span class="section-number">5. </span>First Law of Thermodynamics - Introduction to Closed Systems<a class="headerlink" href="#first-law-of-thermodynamics-introduction-to-closed-systems" title="Link to this heading">#</a></h1>
+<section id="macroscopic-and-microscopic-forms-of-energy">
+<h2><span class="section-number">5.1. </span>Macroscopic and Microscopic Forms of Energy<a class="headerlink" href="#macroscopic-and-microscopic-forms-of-energy" title="Link to this heading">#</a></h2>
+<p id="index-0">The total energy of a system (<span class="math notranslate nohighlight">\(E\)</span>), may be comprised of <a class="reference internal" href="../genindex.html"><span class="std std-ref">macroscopic</span></a> and <a class="reference internal" href="../genindex.html"><span class="std std-ref">microscopic</span></a> forms of energy. The macroscopic forms, such as <a class="reference internal" href="../genindex.html"><span class="std std-ref">kinetic energy</span></a> (<span class="math notranslate nohighlight">\(KE\)</span>) and <a class="reference internal" href="../genindex.html"><span class="std std-ref">potential energy</span></a> (<span class="math notranslate nohighlight">\(PE\)</span>), are measured with respect to an external reference frame.  The <span class="math notranslate nohighlight">\(KE\)</span> of the system is related to it’s motion relative to an external reference frame, and the <span class="math notranslate nohighlight">\(PE\)</span> relative to its position as a result of gravity. Other external factors that contribute to the macroscopic energy of the system, such as magnetism, electricity and surface tension are typically ignored in introductory texts and only are applied in specialized cases. They are not considered further here. <span class="math notranslate nohighlight">\(KE\)</span> is related to the mass of the system and its velocity (<span class="math notranslate nohighlight">\(V\)</span>) by the equation below:</p>
+<div class="math notranslate nohighlight" id="equation-eq-a">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-eq-a" title="Link to this equation">#</a></span>\[KE = \frac{mV^2}{2}\]</div>
+<p><span class="math notranslate nohighlight">\(PE\)</span> is related to the mass of the system, its height (<span class="math notranslate nohighlight">\(z\)</span>) and the acceleration due to gravity (<span class="math notranslate nohighlight">\(g\)</span>) the equation below:</p>
+<div class="math notranslate nohighlight" id="equation-eq-b">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-eq-b" title="Link to this equation">#</a></span>\[PE = mgz\]</div>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> = 9.8 <span class="math notranslate nohighlight">\(\frac{\rm m}{\rm s^2}\)</span></p>
+<p id="index-1">Microscopic forms of energy include <a class="reference internal" href="../genindex.html"><span class="std std-ref">thermal energy</span></a>, <a class="reference internal" href="../genindex.html"><span class="std std-ref">chemical energy</span></a> and <a class="reference internal" href="../genindex.html"><span class="std std-ref">nuclear energy</span></a>. These microscopic forms of energy are broadly related to the aggregate energy of the molecules and electrons in the system, for example due to kinetic energy of the molecules (i.e. translational energy), rotational and vibrational energy of the molecules, electron translation and rotation, atomic bonding and nuclear forces. For a more rigorous discussion refer to <span id="id1">[<a class="reference internal" href="References%20Cited.html#id4" title="Yunus A. Cengel, Michael A. Boles, and Mehmet Kanoglu. Thermodynamics - An Engineering Approach, 9th Ed. McGraw-Hill Education, 2015.">Cengel <em>et al.</em>, 2015</a>]</span>. The total microscopic energy contained in a system, which is combined of thermal, chemical and nuclear energy, is referred to as the <a class="reference internal" href="../genindex.html"><span class="std std-ref">internal energy</span></a> (<span class="math notranslate nohighlight">\(U\)</span>). Therefore, we can mathematically express the total energy of a closed system as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-c">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-eq-c" title="Link to this equation">#</a></span>\[E = KE + PE + U\]</div>
+<p>And the total specific energy as</p>
+<div class="math notranslate nohighlight" id="equation-eq-d">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-eq-d" title="Link to this equation">#</a></span>\[e = ke + pe + u\]</div>
+<p>where <span class="math notranslate nohighlight">\(e\)</span> = <span class="math notranslate nohighlight">\(\frac{E}{m}\)</span>, <span class="math notranslate nohighlight">\(ke\)</span> = <span class="math notranslate nohighlight">\(\frac{KE}{m}\)</span>, <span class="math notranslate nohighlight">\(pe\)</span> = <span class="math notranslate nohighlight">\(\frac{PE}{m}\)</span> and <span class="math notranslate nohighlight">\(u\)</span> = <span class="math notranslate nohighlight">\(\frac{U}{m}\)</span>.</p>
+</section>
+<section id="energy-transfer-and-the-first-law">
+<span id="energytransfer"></span><h2><span class="section-number">5.2. </span>Energy Transfer and The First Law<a class="headerlink" href="#energy-transfer-and-the-first-law" title="Link to this heading">#</a></h2>
+<p id="index-2">Energy transfer to or from a closed system is always in the form of <a class="reference internal" href="../genindex.html"><span class="std std-ref">heat transfer</span></a> (<span class="math notranslate nohighlight">\(Q\)</span>) or <a class="reference internal" href="../genindex.html"><span class="std std-ref">work</span></a> interactions (<span class="math notranslate nohighlight">\(W\)</span>). A discussion of the different types of heat transfer and work are discussed later below, but for now we will treat these terms generally in the context of energy conservation. The <a class="reference internal" href="../genindex.html"><span class="std std-ref">First Law of Thermodynamics</span></a> states that energy is always conserved, and during a process, as it disaapears in one form, it reappears as another. This law, also referred to as the <a class="reference internal" href="../genindex.html"><span class="std std-ref">Conservation of Energy</span></a> principle, is very general and can be applied to any system, so far as it has a clearly defined boundary. This law should not be interpreted to mean that the energy of a system cannot change, but rather that the change in energy of the system is equal to the net heat transfer or work applied to or extrated from the system. Take Count Rumford’s pioneering experiments (discussed initially in <a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html#thermodynamicsystems"><span class="std std-numref">Section 3.1</span></a> <a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html#thermodynamicsystems"><span class="std std-ref">Thermodynamic Systems</span></a>) as an example <span id="id2">[<a class="reference internal" href="References%20Cited.html#id3" title="Benjamin Thompson. Iv. an inquiry concerning the source of the heat which is excited by friction. Philosophical Transactions of the Royal Society of London, 88:80-102, 1798. URL: https://royalsocietypublishing.org/doi/abs/10.1098/rstl.1798.0006, doi:https://doi.org/10.1098/rstl.1798.0006.">Thompson, 1798</a>]</span>. In these experiments, a paddle wheel was used to agitate an insulated system filled with liquid H<sub>2</sub>O - in other words, mechanical work was added to the system, the system being the insulated vessel. As a result of the work (i.e., energy) that was added to the system, the H<sub>2</sub>O eventually began to boil as a result. In the context of the First Law of Thermodynamics, this should be interpreted as, the change in energy of the H<sub>2</sub>O is equal to the work added to the system. Rumford’s experiments helped establish the First Law and explain the rationale for the portion of the statement “…as it disaapears in one form, it reappears as another”. But it wasn’t until Joule’s more precisly conducted measurements half a century later in 1850 that the premise of “energy is always conserved” was established <span id="id3">[<a class="reference internal" href="References%20Cited.html#id2" title="James Prescott Joule. Iii. on the mechanical equivalent of heat. Philosophical Transactions of the Royal Society of London, 140:61-82, 1850. URL: https://royalsocietypublishing.org/doi/abs/10.1098/rstl.1850.0004, doi:https://doi.org/10.1098/rstl.1850.0004.">Joule, 1850</a>]</span>. This was confirmed with a similar paddle wheel experiment to Rumford, but with more precise measurements of the mechanical work applied to the system and the corresponding temperature changes. The precise temperature measurements, which were critical to the interpretation of the experimental data, were attributed to Joule’s expertise in beer brewing.</p>
+<p>Combining the fact that energy transfer to or from a closed system always occurs via heat or work interactions, with the conservation of energy principle, we can formulate a mathematical expression of the First Law for a process. Knowing that the total energy of a system at any point in time (E) is the sum of the kinetic energy, potential energy and internal energy (equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-d">(8.4)</a>), we can also say that any change in energy of the system must correspond to changes in these energies, or:</p>
+<div class="math notranslate nohighlight" id="equation-eq-e">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-eq-e" title="Link to this equation">#</a></span>\[\Delta E = \Delta KE + \Delta PE + \Delta U\]</div>
+<p>Further, because <span class="math notranslate nohighlight">\(\Delta E\)</span> can only change via heat or work interactions we can also say,</p>
+<div class="math notranslate nohighlight" id="equation-eq-f">
+<span class="eqno">(5.8)<a class="headerlink" href="#equation-eq-f" title="Link to this equation">#</a></span>\[\Delta E = \Delta KE + \Delta PE + \Delta U = Q_{\rm net} - W_{\rm net}\]</div>
+<p id="index-3">where <span class="math notranslate nohighlight">\(Q_{\rm net}\)</span> and <span class="math notranslate nohighlight">\(W_{\rm net}\)</span> represent the <strong>net</strong> heat or work transfers to or from the system. That is, there can be multiple forms of heat transfer or work, but they are all captured here with this simple expression, which we typically call the energy conservation equation, or <a class="reference internal" href="../genindex.html"><span class="std std-ref">energy equation</span></a>. The negative sign is a matter of convention that will be useful when evaluating complex systems, and is a result of the fact that we attribute <strong>ALL</strong> heat transfer to the system as a positive quantity and from the system as a negative quantity, and <strong>ALL</strong> work interactions the opposite way - i.e., to the system as a negative quantity and from the system as a positive quantity. There is a historical basis for this that derives from the fact that heat engines were designed to take in heat and output work, thus those terms were always treated positively. And while the sign convention is arbitrary, it is important to remain consistent when evaluating property values using this equation. Further, this convention is appled only when adding numerical values of <span class="math notranslate nohighlight">\(Q\)</span> and/or <span class="math notranslate nohighlight">\(W\)</span> to the energy equation. If solving for <span class="math notranslate nohighlight">\(Q\)</span> or <span class="math notranslate nohighlight">\(W\)</span>, the resulting sign will be indicative of the direction of energy transfer.</p>
+<p>At first introduction this can seem confounding, but as long as you always use equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-f">(8.6)</a> consistently and treat heat inputs and work outputs as positive terms, and heat outputs and work inputs as negative terms, the First Law will be satisfied. It can be thought of similarly to balancing a budget, where the budget is now energy, instead of dollars, and the inputs and outputs are heat and work instead of debits and credits. Refer to <a class="reference internal" href="#first-law-fig-a"><span class="std std-numref">Figure 5.1</span></a> below which shows an arbitrary system with multiple heat transfer and work terms, labled with subscripts 1 and 2, with varying direction indicating to or from the system. We can see that if we apply the rules discussed above that the resulting energy conservation equation reduces to <span class="math notranslate nohighlight">\(\Delta E = (Q_1 - Q_2) - (W_2 - W_1)\)</span>. Notice that the original negative sign remains intact - positive or negative signs are only applied to the terms themselve while the negative sign in the equation remains unchanged <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-f">(8.6)</a>.</p>
+<figure class="align-default" id="first-law-fig-a">
+<img alt="../_images/energy_conservation.png" src="../_images/energy_conservation.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Top) Schematic showing generic system at initial state, then undergoing process via heat and work interactions, to arrive at a final state. Bottom Left) The typical representation of the system undergoing a process, drawn all with one diagram. Bottom Right) Closed system energy conservation analysis for the described process.</span><a class="headerlink" href="#first-law-fig-a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Again, <strong>It is important to note</strong> that applying the correct signage to heat transfer and work terms is only done when evaluating property values, for example internal energy changes. Refer to <a class="reference internal" href="#first-law-fig-test"><span class="std std-numref">Figure 5.2</span></a>  below which shows the same system as above, but this time numerical values for the heat transfer and work terms have been provided. Pay careful attention to the signs that are applied.</p>
+<figure class="align-default" id="first-law-fig-test">
+<img alt="../_images/energy_conservation_2.png" src="../_images/energy_conservation_2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Representation of a system undergoing a process with multiple heat transfer and work terms. On the right are assigned numberical values for each term - notice how they are applied in the energy conservation equation to arrive at the final determination for the change in energy of the system.</span><a class="headerlink" href="#first-law-fig-test" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>If the goal is to determine <span class="math notranslate nohighlight">\(Q\)</span> or <span class="math notranslate nohighlight">\(W\)</span> via evaluation of the energy equation, then no modification of the signs is needed. The resulting sign will indicate the direction of the energy transfer. For example, see below <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html#first-law-fig-c"><span class="std std-numref">Figure 7.3</span></a> where the net work was determined to be 40 kJ, indicating that work had to be done by the system system.</p>
+<figure class="align-default" id="first-law-fig-c">
+<img alt="../_images/energy_conservation_3.png" src="../_images/energy_conservation_3.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.3 </span><span class="caption-text">Representation of a system undergoing a process where the net work is to be determined. Upon solving for <span class="math notranslate nohighlight">\(W_{\rm net}\)</span>, the resulting sign indicates the direction of work. In this example, because the net work is positive, work was done by the system.</span><a class="headerlink" href="#first-law-fig-c" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Often, the thermodynamic system under consideration is stationary, in which case the kinetic energy and potential energy terms can be neglected. Thus, the most typical form of the closed system energy conservation equation for a process going from one thermodynamic equilibrium state to another is related to the change in internal energy.</p>
+<div class="math notranslate nohighlight" id="equation-eq-g">
+<span class="eqno">(5.9)<a class="headerlink" href="#equation-eq-g" title="Link to this equation">#</a></span>\[\Delta U = Q_{\rm net} - W_{\rm net}\]</div>
+<p>We can also express the First Law for closed systems in differential form, as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-f">
+<span class="eqno">(5.8)<a class="headerlink" href="#equation-eq-f" title="Link to this equation">#</a></span>\[dU = \delta Q_{\rm net} - \delta W_{\rm net}\]</div>
+<p>Recall the symbol <span class="math notranslate nohighlight">\(\delta \)</span>, which represents an inexact differential and integration depends on the path that is taken. And upon differentiation with respect to time we arrive at the rate form of the energy conservation for a stationary, closed system.</p>
+<div class="math notranslate nohighlight" id="equation-eq-g">
+<span class="eqno">(5.9)<a class="headerlink" href="#equation-eq-g" title="Link to this equation">#</a></span>\[\frac {dU}{dt} = \dot Q_{\rm net} - \dot W_{\rm net}\]</div>
+<p>Where</p>
+<div class="math notranslate nohighlight" id="equation-eq-g1">
+<span class="eqno">(5.10)<a class="headerlink" href="#equation-eq-g1" title="Link to this equation">#</a></span>\[\dot Q_{\rm net}=\frac {\delta Q}{dt}\]</div>
+<p>Notice the dot overheat the heat transfer and rate terms. The dot indicates that it is per unit time, for example <span class="math notranslate nohighlight">\(\frac {\rm kJ}{\rm s}\)</span> or <span class="math notranslate nohighlight">\(\rm W\)</span>. This will be encountered often whenever we are dealing with transient systems, i.e., not steady state, and we apply the same rule to properties that are changing with time. For example, the mass per unit time is the mass flow rate, or <span class="math notranslate nohighlight">\(\dot m\)</span> and the specific volume per unit time is the specific volumetric flowrate <span class="math notranslate nohighlight">\(\dot v\)</span>.</p>
+<section id="heat-transfer">
+<h3><span class="section-number">5.2.1. </span>Heat Transfer<a class="headerlink" href="#heat-transfer" title="Link to this heading">#</a></h3>
+<p id="index-4">Heat transfer to or from the system may occur via <a class="reference internal" href="../genindex.html"><span class="std std-ref">conduction</span></a>, <a class="reference internal" href="../genindex.html"><span class="std std-ref">convection</span></a> or <a class="reference internal" href="../genindex.html"><span class="std std-ref">radiative</span></a> heat transfer.  We will typically treat heat transfer as an energy source or sink to the system without consideration of the mechanism, but a brief discussion of each mode follows. A thorough discussion is beyond the scope of this text, but detailed discussion in any undergraduate heat transfer textbook, for example…, will cover these topics in more detail. Heat transfer will only spontaneously occur in the direction of high temperature to low temperature, as a result of the Second Law of Thermodynamics (discussed later). This implies that heat will always flow from a warm mug of coffee, thus decreasing the temperature of the coffee and simultaneously increasing the temperature of the surroundings. The reverse scenario, heat transfer from lower temperature surroundings to a warm cup of coffee, resulting in heating of the coffee and cooling of the surroundings, is impossible.</p>
+<p><a class="reference internal" href="#first-law-fig-b"><span class="std std-numref">Figure 5.4</span></a> above schematically depicts the different modes of heat transfer through a solid via conduction, and from the surface of the solid via convection and radiation. If the bottom surface T1 is higher than the top surface T2, conduction heat transfer will occur in the direction from high to low temperature. The rate of convective heat transfer is dictated by the difference between the surface temperature and the surrounding temperature. The intermediate region where the temperature decreases from the surface to the surroundings is called the boundary layer and has important implications in fluid dynamics and heat transfer, but are beyond the scope of this text. Radiative heat exchange will occur equally in all directions if the surface is a diffuse emitter.</p>
+<figure class="align-default" id="first-law-fig-b">
+<img alt="../_images/heat_transfer.png" src="../_images/heat_transfer.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.4 </span><span class="caption-text">Schematic depicting conductive, convective and radiative heat transfer modes.</span><a class="headerlink" href="#first-law-fig-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="conduction-heat-transfer">
+<h4><span class="section-number">5.2.1.1. </span>Conduction Heat Transfer<a class="headerlink" href="#conduction-heat-transfer" title="Link to this heading">#</a></h4>
+<p>Conductive heat transfer is a result of electron and phonon transport in a medium, and is usually the dominant mode of heat transfer in a solid. The one-dimensional, steady state rate of conductive heat transfer (<span class="math notranslate nohighlight">\(\dot{Q}_{\rm cond}\)</span>) is related to the thermal conductivity (<span class="math notranslate nohighlight">\(k\)</span>) which is a material dependent property, the cross sectional area (<span class="math notranslate nohighlight">\(A\)</span>), and the temperature gradient between top and bottom surfaces of the medium through which heat is being conducted.</p>
+<div class="math notranslate nohighlight" id="equation-eq-h">
+<span class="eqno">(5.11)<a class="headerlink" href="#equation-eq-h" title="Link to this equation">#</a></span>\[\dot{Q}_{\rm cond} = -kA\frac{dT}{dx}\]</div>
+<p>For example, for conductors such as metals, <span class="math notranslate nohighlight">\(k\)</span> is high, whereas for insulators it is low. Often, <span class="math notranslate nohighlight">\(k\)</span> is assumed to be independent of temperature, in which case we can replace the differentials with differences.</p>
+<div class="math notranslate nohighlight" id="equation-eq-i">
+<span class="eqno">(5.12)<a class="headerlink" href="#equation-eq-i" title="Link to this equation">#</a></span>\[\dot{Q}_{\rm cond} = -kA\frac{\Delta T}{\Delta x}\]</div>
+<p>The negative sign is applied only to ensure (<span class="math notranslate nohighlight">\(\dot{Q}\)</span>) remains a positive quantity, because the temperature graident increasing in the x-direction is negative as a result of heat transfer always occuring in the direction of high temperature to low temperature.</p>
+</section>
+<section id="convective-heat-transfer">
+<h4><span class="section-number">5.2.1.2. </span>Convective Heat Transfer<a class="headerlink" href="#convective-heat-transfer" title="Link to this heading">#</a></h4>
+<p>Convective heat transfer is usually the dominant mode for fluids (i.e. gases and liquids) and occurs as a result of bulk movement of the fluid. The steady state convective heat transfer rate (<span class="math notranslate nohighlight">\(\dot{Q}_{\rm conv}\)</span>) is related to the convective heat transfer coefficient (<span class="math notranslate nohighlight">\(h\)</span>), the cross sectional area (<span class="math notranslate nohighlight">\(A\)</span>) where the heat transport occurs, and the difference between the surface temperature (<span class="math notranslate nohighlight">\(T_s\)</span>) and fluid temperature far from the surface (<span class="math notranslate nohighlight">\(T_\infty\)</span>).</p>
+<div class="math notranslate nohighlight" id="equation-eq-j">
+<span class="eqno">(5.13)<a class="headerlink" href="#equation-eq-j" title="Link to this equation">#</a></span>\[\dot{Q}_{\rm conv} = hA(T_s-T_\infty)\]</div>
+<p>The convective heat transfer coefficient is a parameter that is related to the fluid properties and the specific flow situation (e.g. fluid velocity, turbulance, etc.).</p>
+</section>
+<section id="radiative-heat-transfer">
+<h4><span class="section-number">5.2.1.3. </span>Radiative Heat Transfer<a class="headerlink" href="#radiative-heat-transfer" title="Link to this heading">#</a></h4>
+<p>Radiative heat transfer occurs as a result of electromagnetic wave propogation from one surface to another, either through a vacuum or a medium. Radiative heat transfer is the only mode of heat transfer that does not require a medium to propogate, and is thus the only mode of heat transfer to occur in vacuum. Propogation through a vacuum is unmitigated and thus we feel the effects of the electromagnetic radiation emitted by the sun even from millions of miles away. The net radiative heat transfer rate (<span class="math notranslate nohighlight">\(\dot{Q}_{\rm rad}\)</span>) between two surfaces with identical emissivities (<span class="math notranslate nohighlight">\(\varepsilon\)</span>), a surface property of the material that varies from 0 to 1, at different temperatures <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> is described mathematically below.</p>
+<div class="math notranslate nohighlight" id="equation-eq-k">
+<span class="eqno">(5.14)<a class="headerlink" href="#equation-eq-k" title="Link to this equation">#</a></span>\[\dot{Q}_{\rm rad} = \sigma \varepsilon (T_{1}^{4}-T_{2}^{4})\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the Stefan-Boltzmann constant and equal to 5.67 E-8 <span class="math notranslate nohighlight">\(\frac{\rm W}{\rm m^2K^4}\)</span>. Because of the fourth order temperature dependence, radiative heat transfer is often the dominant heat transfer mode at elevated temperature. Often, at lower temperatures the magnitude is small compared to convection and conduction, but not always.</p>
+</section>
+</section>
+<section id="work-interactions">
+<h3><span class="section-number">5.2.2. </span>Work Interactions<a class="headerlink" href="#work-interactions" title="Link to this heading">#</a></h3>
+<section id="mechanical-work">
+<span id="mechanicalwork"></span><h4><span class="section-number">5.2.2.1. </span>Mechanical Work<a class="headerlink" href="#mechanical-work" title="Link to this heading">#</a></h4>
+<p id="index-5">A typical type of work often encountered in thermodynamic systems is <a class="reference internal" href="../genindex.html"><span class="std std-ref">mechanical work</span></a> (<span class="math notranslate nohighlight">\(W_{\rm mech}\)</span>). Mechanical work is performed any time an external force (<span class="math notranslate nohighlight">\(F_{\rm ext}\)</span>) acts through a distance, or</p>
+<div class="math notranslate nohighlight" id="equation-eq-l">
+<span class="eqno">(5.15)<a class="headerlink" href="#equation-eq-l" title="Link to this equation">#</a></span>\[W_{\rm mech} = \int_{1}^{2} F_{\rm ext}dx\]</div>
+<p>where the integration limits 1 and 2 represent the initial and final positions through which the force was applied. In the case of non-stationary systems where <span class="math notranslate nohighlight">\(KE\)</span> and <span class="math notranslate nohighlight">\(PE\)</span> cannot be ignored, the work associated with changing velocity or height can be determined with this expression. For example, in the case of <span class="math notranslate nohighlight">\(KE\)</span> the force can be expressed as <span class="math notranslate nohighlight">\(ma\)</span> and thus removing the mass outside the integral, the inside becomes <span class="math notranslate nohighlight">\(\frac {dV}{dt} dx\)</span>, or  <span class="math notranslate nohighlight">\(VdV\)</span> (i.e.,  <span class="math notranslate nohighlight">\(V = \frac {dx}{dt}\)</span>). Integrating from position 1 to 2 we see that the mechanical work required to change the velocity of an object with constant mass is the following.</p>
+<div class="math notranslate nohighlight" id="equation-eq-m">
+<span class="eqno">(5.16)<a class="headerlink" href="#equation-eq-m" title="Link to this equation">#</a></span>\[W_{\rm mech} = \frac {1}{2} m(V_2^2-V_1^2)\]</div>
+<p>In the case of gravitational <span class="math notranslate nohighlight">\(PE\)</span> the force can be expressed as <span class="math notranslate nohighlight">\(mg\)</span>, and thus integrating between heights 1 and 2 (<span class="math notranslate nohighlight">\(\int_{1}^{2} mgdx\)</span>), we see that the mechanical work required to change the elevation of an object with constant mass is the following.</p>
+<div class="math notranslate nohighlight" id="equation-eq-n">
+<span class="eqno">(5.17)<a class="headerlink" href="#equation-eq-n" title="Link to this equation">#</a></span>\[W_{\rm mech} = mg(h_2-h_1)\]</div>
+<p id="index-6">In the case of closed thermodynamic systems, <a class="reference internal" href="../genindex.html"><span class="std std-ref">boundary work</span></a> is especially relevent. Boundary work is a type of mechanical work that is relevant whenever the volume of a system changes due to expansion or compression, for example in the case of a piston-cylinder device. Starting from <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-l">(8.12)</a>, we can relate the volume of a system to its position by dividing by its cross sectional area, <span class="math notranslate nohighlight">\(A\)</span> - i.e. <span class="math notranslate nohighlight">\(dx = \frac {dV}{A}\)</span>. Then, recognizing the relationship between force and pressure, i.e., <span class="math notranslate nohighlight">\(p = \frac {F}{A}\)</span>, we can rearrange equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-l">(8.12)</a> in the form below,</p>
+<div class="math notranslate nohighlight" id="equation-eq-o">
+<span class="eqno">(5.18)<a class="headerlink" href="#equation-eq-o" title="Link to this equation">#</a></span>\[W_{\rm mech} = \int_{1}^{2} pdV\]</div>
+<p>where the integration limits 1 and 2 now represent the initial and final volumes during compression and expansion processes. It should be noted that this derivation is only valid for slow, or reversible processes, where the internal and external forces, are quasi-equal. I.e., the internal pressure is in equilibrium with the external force being applied. More on this is discussed in the next chapter in the section <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#reversibility"><span class="std std-numref">Section 6.1</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#reversibility"><span class="std std-ref">More on Boundary Work - Reversible Processes</span></a>.</p>
+<p>Note that for a constant pressure processes, the boundary work reduces to:</p>
+<div class="math notranslate nohighlight" id="equation-eq-p">
+<span class="eqno">(5.19)<a class="headerlink" href="#equation-eq-p" title="Link to this equation">#</a></span>\[W_{\rm mech} = p\Delta V\]</div>
+<p id="index-7">Other forms of mechanical work include <a class="reference internal" href="../genindex.html"><span class="std std-ref">rotational (or shaft) work</span></a>, <a class="reference internal" href="../genindex.html"><span class="std std-ref">flow work</span></a>, <a class="reference internal" href="../genindex.html"><span class="std std-ref">spring work</span></a>, work done on elastic solid bars and that associated with the stretching of liquid films. Flow work, which is related to the work required to push flow into and out of control volumes, will be especially important during our consideration of open systems.</p>
+</section>
+<section id="other-types-of-work">
+<h4><span class="section-number">5.2.2.2. </span>Other Types of Work<a class="headerlink" href="#other-types-of-work" title="Link to this heading">#</a></h4>
+<p id="index-8">In addition to mechanical work, there are several other forms of work inluding <a class="reference internal" href="../genindex.html"><span class="std std-ref">electric work</span></a>, <a class="reference internal" href="../genindex.html"><span class="std std-ref">magnetic work</span></a> and <a class="reference internal" href="../genindex.html"><span class="std std-ref">electrical polarization</span></a> work that will not be considered in detail here. But, for the sake of their application towards the First Law, we can treat these simply as work terms either to or from our system of interest, being sure to apply to correct signage.</p>
+</section>
+<section id="path-dependence">
+<h4><span class="section-number">5.2.2.3. </span>Path Dependence<a class="headerlink" href="#path-dependence" title="Link to this heading">#</a></h4>
+<p id="index-9">In differental form, boundary work is expressed as the following,</p>
+<div class="math notranslate nohighlight" id="equation-eq-q">
+<span class="eqno">(5.20)<a class="headerlink" href="#equation-eq-q" title="Link to this equation">#</a></span>\[\delta W_{\rm mech} = PdV\]</div>
+<p>where the use of <span class="math notranslate nohighlight">\(\delta\)</span> refers to the fact that this is an <a class="reference internal" href="../genindex.html"><span class="std std-ref">inexact differential</span></a> and its evaluation is dependent on the <a class="reference internal" href="../genindex.html"><span class="std std-ref">path</span></a> of the process. Recall discussion of <a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html#intro-fig-a"><span class="std std-numref">Figure 3.1</span></a> in <a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html#thermodynamicsystems"><span class="std std-numref">Section 3.1</span></a> <a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html#thermodynamicsystems"><span class="std std-ref">Thermodynamic Systems</span></a>. I.e., the boundary work depends on the volume dependence of pressure and to evaluate we would need to know the functional dependence of pressure on volume, or <span class="math notranslate nohighlight">\(p(V)\)</span>. We will see later after our introduction of the Second Law of Thermodynamics that we can also relate the reversible heat transfer to temperature and entropy via a similarly formed expression.</p>
+<div class="math notranslate nohighlight" id="equation-eq-r">
+<span class="eqno">(5.21)<a class="headerlink" href="#equation-eq-r" title="Link to this equation">#</a></span>\[\delta Q_{\rm rev} = TdS\]</div>
+</section>
+<section id="example-constant-volume-system">
+<span id="constv"></span><h4><span class="section-number">5.2.2.4. </span>Example - Constant Volume System<a class="headerlink" href="#example-constant-volume-system" title="Link to this heading">#</a></h4>
+<p>Initially, a constant volume, 1m<span class="math notranslate nohighlight">\(^3\)</span> system, composed of H<sub>2</sub>O is at 20 <span class="math notranslate nohighlight">\(^\circ\)</span>C and 100 kPa. Calculate the final internal energy and temperature after 20 kJ of heat have been added.</p>
+<blockquote>
+<div><p><strong>Solution</strong> - First we should recognize that this is a stationary, closed system and the volume remains constant. Because it is stationary we can neglect changes in kinetic and potential energies, and because the volume remains constant we can neglect any boundary work. Therefore, the closed system energy conservation equation reduces to:</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\Delta U = Q\)</span> and therefore <span class="math notranslate nohighlight">\(U_2-U_1\)</span> = 20 kJ. Notice that the heat transfer term remained positive because heat was added to the system. We can use Cantera to help us find property values, <span class="math notranslate nohighlight">\(v_1\)</span> and <span class="math notranslate nohighlight">\(u_1\)</span> at State 1.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define state 1 as water</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100000</span> 
+<span class="n">v1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="c1">#units m^3/kg</span>
+<span class="n">u1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u1</span><span class="p">)</span> <span class="c1">#units kJ/kg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0010017390901042916
+-15886873.004300132
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Knowing <span class="math notranslate nohighlight">\(v_1\)</span> and the total volume we can solve for the mass, <span class="math notranslate nohighlight">\(m\)</span>, and then subsequently <span class="math notranslate nohighlight">\(U_1\)</span>. Then we can directly solve for <span class="math notranslate nohighlight">\(U_2\)</span> using the energy equation.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">v1</span>
+<span class="n">U1</span> <span class="o">=</span> <span class="n">u1</span><span class="o">*</span><span class="n">m</span>
+<span class="n">U2</span> <span class="o">=</span> <span class="mi">20</span><span class="o">+</span><span class="n">U1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">U2</span><span class="p">)</span> <span class="c1"># units J</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-15859292246.05916
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Then we can also determine the temperature at State 2, recognizing that the specific volume remains the same and <span class="math notranslate nohighlight">\(u_2 = \frac {U_2}{m}\)</span></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span> <span class="o">=</span> <span class="n">U2</span><span class="o">/</span><span class="n">m</span><span class="p">,</span><span class="n">v1</span>
+<span class="n">T2</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">T2</span><span class="p">)</span> <span class="c1">#units in K</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>293.15
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-constant-pressure-system">
+<span id="constp"></span><h4><span class="section-number">5.2.2.5. </span>Example - Constant Pressure System<a class="headerlink" href="#example-constant-pressure-system" title="Link to this heading">#</a></h4>
+<p>Initially, a piston-cylinder filled with nitrogen gas (N<sub>2</sub>) with volume 1m<span class="math notranslate nohighlight">\(^3\)</span> is at 20 <span class="math notranslate nohighlight">\(^\circ\)</span>C and 100 kPa. Then, heat is added and the piston expands as a result until the temperature reaches 80 <span class="math notranslate nohighlight">\(^\circ\)</span>C. Calculate the heat transfer and work for this process.</p>
+<blockquote>
+<div><p><strong>Solution</strong> - First we should recognize that this is a stationary, closed system and the volume is not constant. Because it is stationary we can neglect changes in kinetic and potential energies, but we cannot neglect the boundary work because the volume changes. Therefore, the closed system energy conservation equation reduces to:</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\Delta U = Q - W\)</span>, where <span class="math notranslate nohighlight">\(W = p \Delta V\)</span> or <span class="math notranslate nohighlight">\(W = pm(v_2-v_1)\)</span>. We can solve for properties at State 1 and State 2 since we know both pressure and temperature at each state. Therefore, we can first solve for the boundary work. Then, knowing the boundary work we can use this to solve for the heat transfer using the energy equation. We can use Cantera to help us find property values at each state.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#First State 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span><span class="c1"># define state 1 as nitrogen</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100000</span> 
+<span class="n">v1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="c1">#units m^3/kg</span>
+<span class="n">u1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u1</span><span class="p">)</span> <span class="c1">#units J/kg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8698356662951862
+-92360.7771094957
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Now State 2</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mi">80</span><span class="p">,</span> <span class="mi">100000</span> <span class="c1">#redefine temperature</span>
+<span class="n">v2</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span> <span class="c1">#units m^3/kg</span>
+<span class="n">u2</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u2</span><span class="p">)</span> <span class="c1">#units J/kg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0482602451043912
+-47752.384543076914
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Knowing <span class="math notranslate nohighlight">\(v_1\)</span> and the initial total volume we can solve for the mass, <span class="math notranslate nohighlight">\(m\)</span>, and finally the work</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">v1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="c1"># units kg</span>
+<span class="n">W</span><span class="o">=</span><span class="mi">100</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">v2</span><span class="o">-</span><span class="n">v1</span><span class="p">)</span> <span class="c1">#notice units. Multiplied by a pressure of 100 kPa, thus units for work are kJ</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Boundary Work is &quot;</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1496424425307958
+Boundary Work is  20.512446858974297 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Then we can solve for the heat transfer during the process using the energy equation, or <span class="math notranslate nohighlight">\(\Delta U = Q - W\)</span>. And rearranging to solve for <span class="math notranslate nohighlight">\(Q\)</span> we see that <span class="math notranslate nohighlight">\(Q = W + m(u_2-u_1)\)</span>. Because the work is done by the system we insert the boundary work as a positive value. We need to be sure that our units are consistent. Our work was in kJ and specific internal energies in J/kg, so we will divide the internal energy terms by 1000 so that the units are kJ/kg.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">W</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">u2</span><span class="o">/</span><span class="mi">1000</span><span class="o">-</span><span class="n">u1</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Heat Transfer is &quot;</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;or with less significant digits&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Heat Transfer is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Heat Transfer is  71.79614824640458 kJ
+or with less significant digits
+The Heat Transfer is  71.8 kJ
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="enthalpy">
+<span id="id4"></span><h2><span class="section-number">5.3. </span>Enthalpy<a class="headerlink" href="#enthalpy" title="Link to this heading">#</a></h2>
+<p id="index-10">You may have noticed if you typed <span class="math notranslate nohighlight">\(species1()\)</span> into your jupyter notebook during the prior example that the specific property <a class="reference internal" href="../genindex.html"><span class="std std-ref">enthalpy</span></a> (<span class="math notranslate nohighlight">\(h\)</span>) is shown right above internal energy. See below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  nitrogen:
+
+       temperature   353.15 K
+          pressure   1e+05 Pa
+           density   0.95396 kg/m^3
+  mean mol. weight   28.013 kg/kmol
+    vapor fraction   1
+   phase of matter   supercritical
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy             57074        1.5988e+06  J
+   internal energy            -47752       -1.3377e+06  J
+           entropy              7016        1.9654e+05  J/K
+    Gibbs function       -2.4206e+06        -6.781e+07  J
+ heat capacity c_p            1041.5             29176  J/K
+ heat capacity c_v            743.77             20836  J/K
+</pre></div>
+</div>
+</div>
+</div>
+<p>Enthalpy (<span class="math notranslate nohighlight">\(H\)</span>) is an extensive property of a system that is related to the internal energy and boundary work, with units, J. Specific enthalpy is a property that is tabulated primarily for convenience. Whenever a piston-cylinder expands in a constant pressure process, we can re-write the energy equation like below becuase the boundary work reduces to <span class="math notranslate nohighlight">\(p \Delta V\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-s">
+<span class="eqno">(5.22)<a class="headerlink" href="#equation-eq-s" title="Link to this equation">#</a></span>\[(U_2-U_1) = Q - p(V_2-V_1)\]</div>
+<p>Rearranging the above equation, we can solve for the heat transfer as:</p>
+<div class="math notranslate nohighlight" id="equation-eq-t">
+<span class="eqno">(5.23)<a class="headerlink" href="#equation-eq-t" title="Link to this equation">#</a></span>\[Q = (U_2 + pV_2) -(U_1 + pV_1)\]</div>
+<p>The terms <span class="math notranslate nohighlight">\(U + pV\)</span> occur often enough in thermodynamic processes that these have also been tabulated, and we call this enthalpy. Thus,</p>
+<div class="math notranslate nohighlight" id="equation-eq-u">
+<span class="eqno">(5.24)<a class="headerlink" href="#equation-eq-u" title="Link to this equation">#</a></span>\[H = U + pV\]</div>
+<p>and <strong>for constant pressure processes the heat transfer is therefore the change in enthalpy</strong>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-v">
+<span class="eqno">(5.25)<a class="headerlink" href="#equation-eq-v" title="Link to this equation">#</a></span>\[Q = \Delta H \hspace{5em}p=\rm{const.} \]</div>
+<p>Thus, the change in enthalpy accounts for the changes in internal energy and boundary work of the system. Recall, that <strong>for constant volume processes the heat transfer is the change in internal energy</strong>, as a result of zero boundary work.</p>
+<div class="math notranslate nohighlight" id="equation-eq-w">
+<span class="eqno">(5.26)<a class="headerlink" href="#equation-eq-w" title="Link to this equation">#</a></span>\[Q = \Delta U \hspace{5em}v=\rm{const.}  \]</div>
+<p>Let’s revisit the constant pressure piston-cylinder example above and see how we could solve this more simply using enthalpy, rather than requiring evaluation of internal energy and volume.</p>
+<section id="example-revisted-constant-pressure-system-using-enthalpy">
+<h3><span class="section-number">5.3.1. </span>Example Revisted - Constant Pressure System using Enthalpy<a class="headerlink" href="#example-revisted-constant-pressure-system-using-enthalpy" title="Link to this heading">#</a></h3>
+<p>Initially, a piston-cylinder filled with nitrogen gas (N<sub>2</sub>) with volume 1m<span class="math notranslate nohighlight">\(^3\)</span> is at 20 <span class="math notranslate nohighlight">\(^\circ\)</span>C and 100 kPa. Then, heat is added and the piston expands as a result until the temperature reaches 80 <span class="math notranslate nohighlight">\(^\circ\)</span>C. Calculate the heat transfer for this process.</p>
+<blockquote>
+<div><p><strong>Solution</strong> - First we should recognize that this is a stationary, closed system and the volume is not constant. Because it is stationary we can neglect changes in kinetic and potential energies, but we cannot neglect the boundary work because the volume changes. Therefore, the closed system energy conservation equation reduces to:</p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\Delta U = Q - W\)</span>, where <span class="math notranslate nohighlight">\(W = p \Delta V\)</span> or <span class="math notranslate nohighlight">\(W = pm(v_2-v_1)\)</span>. But, because this is a constant pressure process, we also know that the heat transfer is the change in enthalpy, or <span class="math notranslate nohighlight">\(Q = \Delta H = m(h_2-h_1)\)</span>. Therefore, we can solve for the heat transfer by evaluating the specific enthalpy at each state, without having to determine anything related to the boundary work.  We can solve for specific enthalpies at State 1 and State 2 since we know both pressure and temperature at each state. Then, we can determine the specific volume at State 1 and knowing that and the initial volume we can solve for the mass of the system. We can use Cantera to help us find property values at each state.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#First State 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span><span class="c1"># define state 1 as nitrogen</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100000</span> 
+<span class="n">v1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span> <span class="c1">#units m^3/kg</span>
+<span class="n">h1</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># note that the .HP is used to get or set property values and needed for enthalpy</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h1</span><span class="p">)</span> <span class="c1">#units J/kg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8698356662951862
+-5377.210471401646
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Now State 2</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mi">80</span><span class="p">,</span> <span class="mi">100000</span> <span class="c1">#redefine temperature</span>
+<span class="n">h2</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h2</span><span class="p">)</span> <span class="c1">#units J/kg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>57073.6399838529
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Knowing <span class="math notranslate nohighlight">\(v_1\)</span> and the initial total volume we can solve for the mass, <span class="math notranslate nohighlight">\(m\)</span>, and finally the heat transfer.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">v1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="c1"># units kg</span>
+<span class="n">Q</span><span class="o">=</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span> <span class="c1">#notice units. Divided by 1000 to convert from J/kg to kJ/kg.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Heat Transfer is &quot;</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;or with less significant digits&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Heat Transfer is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.1496424425307958
+The Heat Transfer is  71.7961482555043 kJ
+or with less significant digits
+The Heat Transfer is  71.8 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Notice that the answer is identical to the prior example, when we used both internal energy and boundary work to determine the heat transfer. But in this case there was one fewer step because we did not need to evaluate the boundary work. Of course, we could also determine the boundary work without ever calculating the change in volume by understanding that we can also solve for the internal energies at states 1 and 2. With this and the heat transfer we could solve directly for the boundary work using the energy conservation equation, <span class="math notranslate nohighlight">\(W = Q - \Delta U\)</span>.</p>
+</div></blockquote>
+</section>
+<section id="exercise-3">
+<span id="exercise3"></span><h3><span class="section-number">5.3.2. </span>Exercise 3<a class="headerlink" href="#exercise-3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>A closed rigid container of 0.5 m<sup>3</sup> is placed on a hot plate. Initially it contains a two phase mixture of saturated liquid and saturated vapor H<sub>2</sub>O at <span class="math notranslate nohighlight">\(p_1\)</span> = 1 bar with x = 0.5. After heating <span class="math notranslate nohighlight">\(p_2\)</span> = 1.5 bar. Determine T at states 1 and 2. Determine the heat transfer during the process.</p></li>
+<li><p>A piston cylinder assembly initially (State 1) contains 10 kg of H<sub>2</sub>O at 1200 kPa.</p>
+<ol class="arabic simple">
+<li><p>If 8 kg is in the liquid form and the rest vapor, determine the temperature, specific volume and specific enthalpy.</p></li>
+<li><p>The cylinder continues to be heated at constant pressure until the temperature reaches 300 °C (State 2). Determine the final state (compressed liquid, saturated mixture, superheated vapor), specific volume and specific enthalpy.</p></li>
+<li><p>Determine the heat transfer and work for this process.</p></li>
+</ol>
+</li>
+<li><p>Water initially at 200 kPa and 300 °C is contained in a piston-cylinder fitted with stops. The water is allowed to cool at constant pressure until it exists as a saturated vapor and the piston rests on the stops. Then, the water continues to cool until the pressure is 100 kPa. Find:</p>
+<ol class="arabic simple">
+<li><p>The change in specific internal energy during initial cooling to the stops</p></li>
+<li><p>The change in specific volume during initial cooling to the stops</p></li>
+<li><p>The change in specific enthalpy during initial cooling to the stops</p></li>
+<li><p>The specific heat transfer during initial cooling to the stops, using answers from parts a and b.</p></li>
+<li><p>The specific heat transfer during initial cooling to the stops, using answer from part c.</p></li>
+<li><p>The change in specific internal energy during final cooling while resting on the stops</p></li>
+<li><p>The total specific heat transfer during the entire process</p></li>
+</ol>
+</li>
+<li><p>A piston-cylinder contains 0.005 m3 of liquid water and 0.9 m3 of water vapor at 600 kPa. Heat is transferred at constant presssure until the temperature reaches 200 °C.</p>
+<ol class="arabic simple">
+<li><p>Determine the heat transfer using enthalpies</p></li>
+<li><p>Determine the heat transfer without using enthalpies</p></li>
+</ol>
+</li>
+<li><p>A 1-m3 tank containing air at 10°C and 350 kPa is connected through a valve to another tank containing 3 kg of air at 35°C and 150 kPa. Now the valve is opened, and the entire system is allowed to reach thermal equilibrium with the surroundings, which are at 20°C. Determine the volume of the second tank and the final equilibrium pressure of air.</p></li>
+<li><p>A mass of 0.1 kg of helium fills a 0.2 m3 rigid vessel at 350 kPa. The vessel is heated until the pressure is 700 kPa. Calculate the temperature change of helium as a result of this heating.</p></li>
+<li><p>Determine the specific volume of refrigerant-134a vapor at 0.9 MPa and 70°C based on (a) the ideal-gas equation and (b) using Cantera.</p></li>
+<li><p>Carbon dioxide gas enters a pipe at 3 MPa and 500 K at a rate of 2 kg/s. CO2 is cooled at constant pressure as it flows in the pipe, and the temperature of the CO2 drops to 450 K at the exit. Determine the volume flow rate and the density of carbon dioxide at the inlet and the volume flow rate at the exit of the pipe using (a) the ideal-gas equation and (b) using Cantera.</p></li>
+<li><p>A rigid 10-L vessel initially contains a mixture of liquid water and vapor at 100°C with 12.3 percent quality. The mixture is then heated until its temperature is 180°C. Calculate the heat transfer required for this process.</p></li>
+<li><p>Two tanks (Tank A and Tank B) are separated by a partition. Initially Tank A contains 2 kg of steam at 1 MPa and 300°C while Tank B contains 3 kg of saturated liquid–vapor mixture at 150°C with a vapor mass fraction of 50 percent. The partition is now removed and the two sides are allowed to mix until mechanical and thermal equilibrium are established. If the pressure at the final state is 300 kPa, determine (a) the temperature and quality of the steam (if mixture) at the final state and (b) the amount of heat lost from the tanks.</p></li>
+<li><p>A 3 m<sup>3</sup> rigid tank contains hydrogen at 250 kPa and 550 K. The gas is now cooled until its temperature drops to 350 K. Determine (a) the final pressure in the tank with and without using the ideal gas law (i.e., Cantera property evaluation) and (b) the amount of heat transfer with and without using specific heats (i.e., Cantera property evaluation).</p></li>
+<li><p>A piston is filled with nitrogen at <em><em>T</em></em> = 700 K and <em><em>v</em></em> = 0.4 m<sup>3</sup>/kg. The piston then compresses at a constant pressure until T = 500 K.</p>
+<ol class="arabic simple">
+<li><p>What is the work (<em><em>W</em></em>) per kg of nitrogen done by the piston, assuming there is no heat transfer?</p></li>
+<li><p>The piston is then held in place and the nitrogen is heated 20°C, what is the pressure (<em><em>P</em></em>) and heat transfer per kg (<em><em>q</em></em>) of the heating?</p></li>
+</ol>
+</li>
+<li><p>A 0.4 kg of water at 800 K fills a 20L tank. It undergoes a constant pressure process, where it cools until the temperature of the water is half of its original value. Find the heat transfer from this process (<em><em>Q</em></em>).</p></li>
+<li><p>CO<sub>2</sub> at <em><em>v</em></em> = 0.45 m<sup>3</sup>/kg is heated 100°C in a piston. The piston head has a mass of 10kg and a 1 cm diameter. The piston head is free to move. What is the specific heat transfer (<em><em>q</em></em>) during this process? (<em>The values for pressure on Cantera is absolute pressure</em>)</p></li>
+<li><p>A rigid tank is filled with 100L of water at ambient conditions. 300 kJ of heat are transferred to the water by a natural gas heater. What is the final pressure (<em><em>P</em></em>) and temperature (<em><em>T</em></em>) in the tank after the heating process?</p></li>
+<li><p>A 50L tank of water at ambient conditions is sealed and placed under the sun for five hours. 100 kJ of heat are transfered to the tank. Assume the water does not reach the stagnation temperature. What is the temperature (<em><em>T</em></em>) and pressure (<em><em>P</em></em>) of the water after heating?</p></li>
+</ol>
+<p><a class="reference internal" href="Exercise_Solutions/Exercise%203.html#exercise3solutions"><span class="std std-numref">Section 10.3</span></a> <a class="reference internal" href="Exercise_Solutions/Exercise%203.html#exercise3solutions"><span class="std std-ref">Exercise 3 Solutions</span></a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Evaluation%20of%20Properties.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Evaluation of Properties</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="First%20Law%20of%20Thermodynamics%20Continued.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>First Law of Thermodynamics - Boundary Work and Specific Heats</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macroscopic-and-microscopic-forms-of-energy">5.1. Macroscopic and Microscopic Forms of Energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-transfer-and-the-first-law">5.2. Energy Transfer and The First Law</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-transfer">5.2.1. Heat Transfer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction-heat-transfer">5.2.1.1. Conduction Heat Transfer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convective-heat-transfer">5.2.1.2. Convective Heat Transfer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-heat-transfer">5.2.1.3. Radiative Heat Transfer</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#work-interactions">5.2.2. Work Interactions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanical-work">5.2.2.1. Mechanical Work</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-types-of-work">5.2.2.2. Other Types of Work</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#path-dependence">5.2.2.3. Path Dependence</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-constant-volume-system">5.2.2.4. Example - Constant Volume System</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-constant-pressure-system">5.2.2.5. Example - Constant Pressure System</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enthalpy">5.3. Enthalpy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-revisted-constant-pressure-system-using-enthalpy">5.3.1. Example Revisted - Constant Pressure System using Enthalpy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3">5.3.2. Exercise 3</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

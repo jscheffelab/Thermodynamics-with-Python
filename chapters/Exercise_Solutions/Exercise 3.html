@@ -1,0 +1,1350 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10.3. Exercise 3 Solutions &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Exercise_Solutions/Exercise 3';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="10.4. Exercise 4 Solutions" href="Exercise%204.html" />
+    <link rel="prev" title="10.2. Exercise 2 Solutions" href="Exercise%202.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Exercise%20Solutions.html">10. Exercise Solutions</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../References%20Cited.html">11. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/Exercise_Solutions/Exercise 3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Exercise_Solutions/Exercise 3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exercise 3 Solutions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="exercise-3-solutions">
+<span id="exercise3solutions"></span><h1><span class="section-number">10.3. </span>Exercise 3 Solutions<a class="headerlink" href="#exercise-3-solutions" title="Link to this heading">#</a></h1>
+<p><a class="reference internal" href="../First%20Law%20of%20Thermodynamics.html#exercise3"><span class="std std-numref">Section 5.3.2</span></a> <a class="reference internal" href="../First%20Law%20of%20Thermodynamics.html#exercise3"><span class="std std-ref">Exercise 3</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 1</span>
+<span class="c1">#A closed rigid container of 0.5 m3 is placed on a hot plate. Initially it contains a two phase mixture of saturated liquid and saturated vapor H2O at  𝑝1 = 1 bar with x = 0.5. After heating  𝑝2 = 1.5 bar. </span>
+<span class="c1">#Determine T at states 1 and 2. Determine the heat transfer during the process.</span>
+
+<span class="n">V1</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1">#m3</span>
+<span class="n">Q1</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#Pa</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mi">150</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#Pa</span>
+
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1</span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="o">=</span><span class="n">P1</span><span class="p">,</span><span class="n">Q1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial temperature:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TQ</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+
+<span class="n">v1</span> <span class="o">=</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Initial and final specific volume since it is a rigid container</span>
+
+<span class="c1">#define state 2</span>
+<span class="n">species2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+
+<span class="n">species2</span><span class="o">.</span><span class="n">PV</span><span class="o">=</span><span class="n">P2</span><span class="p">,</span><span class="n">v2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final temperature:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species2</span><span class="o">.</span><span class="n">TQ</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">V1</span><span class="o">/</span><span class="n">v1</span> <span class="c1"># kg</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">u2</span><span class="o">-</span><span class="n">u1</span><span class="p">)</span> <span class="c1"># From Delta_U = Q-W, work is zero because volume is fixed</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Heat Transfer:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initial temperature:  372.81 K
+Final temperature:  384.55 K
+Heat Transfer:  298.1 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 2</span>
+<span class="c1">#A piston cylinder assembly initially (State 1) contains 10 kg of H2O at 1200 kPa.</span>
+<span class="c1"># a) If 8 kg is in the liquid form and the rest vapor, determine the temperature, specific volume and specific enthalpy.</span>
+<span class="c1"># b) The cylinder continues to be heated at constant pressure until the temperature reaches 300 °C (State 2). Determine the final state (compressed liquid, saturated mixture, superheated vapor), specific volume and specific enthalpy.</span>
+<span class="c1"># c) Determine the heat transfer and work for this process.</span>
+
+<span class="c1"># part a</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span> <span class="c1">#kg</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">1200</span><span class="o">*</span><span class="mi">1000</span> <span class="c1">#Pa</span>
+<span class="n">mg</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#kg</span>
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">mg</span><span class="o">/</span><span class="n">m</span>
+
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1</span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="o">=</span><span class="n">P1</span><span class="p">,</span><span class="n">Q1</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial temperature:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial specific volume:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial specific enthalpy:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+
+<span class="c1"># part b</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">300</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K</span>
+<span class="n">P2</span><span class="o">=</span><span class="n">P1</span>
+
+<span class="c1">#define state 2</span>
+<span class="n">species2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T2</span><span class="p">,</span><span class="n">P2</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">phase</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">phase_of_matter</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final state of matter:  </span><span class="si">{</span><span class="n">phase</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final specific volume:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final specific enthalpy:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">h2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+
+<span class="c1"># part c</span>
+
+<span class="n">Q</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span> <span class="c1"># J, constant pressure process</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">P2</span><span class="o">*</span><span class="p">(</span><span class="n">v2</span><span class="o">-</span><span class="n">v1</span><span class="p">)</span> <span class="c1"># J,constant volume process</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Work:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Heat Transfer:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initial temperature:  461.18 K
+Initial specific volume:  0.033582 K
+Initial specific enthalpy:  -14774746.42 K
+Final state of matter:  gas
+Final specific volume:  0.213816 K
+Final specific enthalpy:  -12925000.32 K
+Work:  216.28 kJ
+Heat Transfer:  18497.46 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 3</span>
+<span class="c1">#Water initially at 200 kPa and 300C is contained in a piston-cylinder device fitted with stops. The water is allowed to cool at constant pressure until it exists as a saturated vapor and the piston rests on its stops. Then the water continues to cool until the pressure is 100 kPa.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mf">200e3</span> <span class="c1">#Pa</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">+</span> <span class="mf">273.15</span> <span class="c1">#K</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">P1</span>
+<span class="n">P3</span> <span class="o">=</span> <span class="mf">100e3</span> <span class="c1">#Pa</span>
+<span class="n">Q2</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P1</span>
+
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">P2</span><span class="p">,</span> <span class="n">Q2</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">v2</span>
+
+<span class="n">state3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state3</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="n">P3</span><span class="p">,</span> <span class="n">v3</span>
+
+<span class="c1"># Part A</span>
+
+<span class="c1"># Find internal energy change between states 1 and 3</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P1</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># P2 = P1, Q2 = 1</span>
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">P2</span><span class="p">,</span> <span class="n">Q2</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">deltau21</span> <span class="o">=</span> <span class="n">u2</span> <span class="o">-</span> <span class="n">u1</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A) : The change in internal energy between states 1 and 2 is </span><span class="si">{</span><span class="n">deltau21</span><span class="o">/</span><span class="mi">1000</span><span class="si">}</span><span class="s2"> kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A) : The change in internal energy between states 1 and 2 is -279.015197695978 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part B </span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;B) : The change in specific volume between states 1 and 2 is </span><span class="si">{</span><span class="p">(</span><span class="n">v2</span><span class="w"> </span><span class="o">-</span><span class="n">v1</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="si">}</span><span class="s2"> kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>B) : The change in specific volume between states 1 and 2 is -0.00043035589952211537 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part C</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;C): The change in specific enthalpy between states 1 and 2 is </span><span class="si">{</span><span class="nb">round</span><span class="p">((</span><span class="n">h2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">h1</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ/kg&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C): The change in specific enthalpy between states 1 and 2 is -365.09 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part D</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="p">(</span><span class="n">u2</span> <span class="o">-</span> <span class="n">u1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">P1</span><span class="o">*</span><span class="p">(</span><span class="n">v2</span> <span class="o">-</span> <span class="n">v1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;D) : The heat transfer between states 1 and 2 is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D) : The heat transfer between states 1 and 2 is -365.09 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part E</span>
+<span class="c1"># specific heat transfer from cooling to stops</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;E) : The heat transfer between states 1 and 2 is </span><span class="si">{</span><span class="nb">round</span><span class="p">((</span><span class="n">h2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">h1</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ/kg&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E) : The heat transfer between states 1 and 2 is -365.09 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part F</span>
+<span class="n">state3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state3</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="n">P3</span><span class="p">,</span> <span class="n">v3</span>
+<span class="n">u3</span> <span class="o">=</span> <span class="n">state3</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">deltau32</span> <span class="o">=</span> <span class="n">u3</span> <span class="o">-</span> <span class="n">u2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F) : The change in internal energy between states 2 and 3 is </span><span class="si">{</span><span class="n">deltau32</span><span class="o">/</span><span class="mi">1000</span><span class="si">}</span><span class="s2"> kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F) : The change in internal energy between states 2 and 3 is -1020.621570467569 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part G  (total specific heat transfer)</span>
+<span class="n">q12</span> <span class="o">=</span> <span class="n">h2</span> <span class="o">-</span> <span class="n">h1</span> 
+<span class="n">q23</span> <span class="o">=</span> <span class="n">u3</span> <span class="o">-</span> <span class="n">u2</span> 
+<span class="n">qtotal</span> <span class="o">=</span> <span class="n">q12</span> <span class="o">+</span> <span class="n">q23</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;G) : The total specific heat transfer is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">qtotal</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>G) : The total specific heat transfer is -1385.71 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 4</span>
+<span class="c1">#A piston-cylinder contains 0.005 m3 of liquid water and 0.9 m3 of water vapor at </span>
+<span class="c1">#600 kPa. Heat is transferred at constant presssure until the temperature reaches </span>
+<span class="c1">#200 °C.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">Vf</span> <span class="o">=</span> <span class="mf">0.005</span> <span class="c1"># m^3</span>
+<span class="n">Vg</span> <span class="o">=</span> <span class="mf">0.9</span>   <span class="c1"># m^3</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mf">600e3</span> <span class="c1"># kPa</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">P1</span>      
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">+</span> <span class="n">Kc</span> 
+
+<span class="c1"># Find: </span>
+<span class="c1"># a) Q using enthalpies </span>
+<span class="c1"># we already can define state 2 because we know two independent properties - P,T </span>
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P2</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># now find h1</span>
+<span class="c1"># how do we do this? we need to solve for a third independent property </span>
+<span class="c1"># we have Vg and Vf, so we can solve for quality (which is the ratio of mass of vapor to total mass of mixture)</span>
+
+<span class="n">state1_liq</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1_liq</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">P1</span><span class="p">,</span> <span class="mi">0</span> <span class="c1"># 0 percent of the mixture is gas </span>
+<span class="n">vf</span> <span class="o">=</span> <span class="n">state1_liq</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">state1_gas</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1_gas</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">P1</span><span class="p">,</span> <span class="mi">1</span> <span class="c1"># 100 percent of the mixture is gas </span>
+<span class="n">vg</span> <span class="o">=</span> <span class="n">state1_gas</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># now get the mass vapor, mass mixture</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">Vf</span><span class="o">/</span><span class="n">vf</span> 
+<span class="n">mg</span> <span class="o">=</span> <span class="n">Vg</span><span class="o">/</span><span class="n">vg</span>
+<span class="n">mtotal</span> <span class="o">=</span> <span class="n">mf</span> <span class="o">+</span> <span class="n">mg</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">mg</span><span class="o">/</span><span class="p">(</span><span class="n">mg</span><span class="o">+</span><span class="n">mf</span><span class="p">)</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">P1</span><span class="p">,</span><span class="n">x1</span> <span class="c1"># now we can set the state</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">q12</span> <span class="o">=</span> <span class="n">h2</span> <span class="o">-</span> <span class="n">h1</span>
+<span class="n">q12</span> <span class="o">=</span> <span class="n">q12</span><span class="o">*</span><span class="n">mtotal</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;q12 = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">q12</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ&#39;</span><span class="p">)</span>
+
+<span class="c1"># b) Q without using enthalpies </span>
+<span class="c1"># Q = W - change in internal energy</span>
+<span class="c1"># first find work</span>
+
+<span class="c1">#W = PdeltaV</span>
+<span class="c1"># find v1, v2</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">P1</span><span class="o">*</span><span class="p">(</span><span class="n">v2</span><span class="o">-</span><span class="n">v1</span><span class="p">)</span>
+
+<span class="c1"># find u1,u2</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">q12</span> <span class="o">=</span> <span class="n">W</span> <span class="o">-</span> <span class="p">(</span><span class="n">u1</span><span class="o">-</span><span class="n">u2</span><span class="p">)</span>
+<span class="n">q12</span> <span class="o">=</span> <span class="n">q12</span><span class="o">*</span><span class="n">mtotal</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;q12 = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">q12</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q12 = 10166.229 kJ
+q12 = 10166.229 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 5</span>
+<span class="c1">#A 1-m3 tank containing air at 10°C and 350 kPa is connected through a valve to </span>
+<span class="c1">#another tank containing 3 kg of air at 35°C and 150 kPa. Now the valve is opened, </span>
+<span class="c1">#and the entire system is allowed to reach thermal equilibrium with the surroundings,</span>
+<span class="c1">#which are at 20°C. Determine the volume of the second tank and the final </span>
+<span class="c1">#equilibrium pressure of air.</span>
+
+<span class="n">V1</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># m3</span>
+<span class="n">T_t1</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="mf">273.15</span> <span class="c1"># K</span>
+<span class="n">P_t1</span> <span class="o">=</span> <span class="mi">350</span>  <span class="c1"># kPa</span>
+<span class="n">m_air_t2</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># kg</span>
+<span class="n">T_t2</span> <span class="o">=</span> <span class="mi">35</span> <span class="o">+</span> <span class="mf">273.15</span> <span class="c1"># K</span>
+<span class="n">P_t2</span> <span class="o">=</span> <span class="mi">150</span>   <span class="c1"># kPa</span>
+<span class="n">T_atm</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K</span>
+
+<span class="c1"># Find:</span>
+<span class="c1"># a) Volume of tank 2 </span>
+<span class="c1"># use ideal gas law PV = mRT</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">0.287</span> <span class="c1"># kJ/kgK, R_bar/M_air, where M_air = 28.97 kg/kmol</span>
+<span class="n">V2</span> <span class="o">=</span> <span class="n">m_air_t2</span><span class="o">*</span><span class="n">R</span><span class="o">*</span><span class="n">T_t2</span><span class="o">/</span><span class="n">P_t2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Volume of tank 2: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">V2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1"> m^3&#39;</span><span class="p">)</span>
+
+<span class="c1"># b) final equilibrium pressure </span>
+<span class="c1"># again use ideal gas law </span>
+<span class="n">V_total</span> <span class="o">=</span> <span class="n">V1</span> <span class="o">+</span> <span class="n">V2</span>
+<span class="c1"># need to find m tank 1</span>
+<span class="n">m_air_t1</span> <span class="o">=</span> <span class="n">P_t1</span><span class="o">*</span><span class="n">V1</span><span class="o">/</span><span class="p">(</span><span class="n">R</span><span class="o">*</span><span class="n">T_t1</span><span class="p">)</span>
+<span class="n">m_total</span> <span class="o">=</span> <span class="n">m_air_t1</span> <span class="o">+</span> <span class="n">m_air_t2</span>
+<span class="c1"># the final temp is T_atm</span>
+<span class="n">P_final</span> <span class="o">=</span> <span class="n">m_total</span><span class="o">*</span><span class="n">R</span><span class="o">*</span><span class="n">T_atm</span><span class="o">/</span><span class="n">V_total</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The final pressure is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P_final</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kPa&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Volume of tank 2: 1.769 m^3
+The final pressure is 222.03 kPa
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 6</span>
+<span class="c1">#A mass of 0.1 kg of helium fills a 0.2 m3 rigid vessel at 350 kPa. </span>
+<span class="c1">#The vessel is heated until the pressure is 700 kPa. Calculate the temperature </span>
+<span class="c1">#change of helium as a result of this heating.</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="c1"># kg </span>
+<span class="n">V1</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># m^3</span>
+<span class="n">V2</span> <span class="o">=</span> <span class="n">V1</span> <span class="c1"># rigid vessel</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">350</span> <span class="c1"># kPa </span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mi">700</span> <span class="c1"># kPa</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">2.0769</span> <span class="c1"># kJ/kgK</span>
+<span class="c1"># find T1, T2</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">P1</span><span class="o">*</span><span class="n">V1</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">R</span><span class="p">)</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">P2</span><span class="o">*</span><span class="n">V2</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">R</span><span class="p">)</span>
+<span class="n">deltaT</span> <span class="o">=</span> <span class="n">T2</span><span class="o">-</span><span class="n">T1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The temperature change is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">deltaT</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1"> K&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temperature change is 337.041 K
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 7</span>
+<span class="c1">#Determine the specific volume of refrigerant-134a vapor at 0.9 MPa and 70°C </span>
+<span class="c1">#based on (a) the ideal-gas equation and (b) using Cantera.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="c1"># substance is R-134a</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mf">0.9E3</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">70</span> <span class="o">+</span> <span class="mf">273.15</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">0.08144</span> <span class="c1"># kJ/kgK</span>
+
+<span class="c1"># ideal gas equation </span>
+<span class="c1"># PV = mRT so Pv = RT, v = RT/P</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">R</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="n">P</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Based on ideal gas law, v = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># part b</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mf">0.9E6</span>
+<span class="n">state</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span><span class="n">P</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Using Cantera, v = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Based on ideal gas law, v = 0.031051 kJ/kg
+Using Cantera, v = 0.027414 kJ/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 8</span>
+<span class="c1">#Carbon dioxide gas enters a pipe at 3 MPa and 500 K at a rate of 2 kg/s. </span>
+<span class="c1">#CO2 is cooled at constant pressure as it flows in the pipe, and the temperature </span>
+<span class="c1">#of the CO2 drops to 450 K at the exit. Determine the volume flow rate and the </span>
+<span class="c1">#density of carbon dioxide at the inlet and the volume flow rate at the exit of the </span>
+<span class="c1">#pipe using (a) the ideal-gas equation and (b) using Cantera.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="n">P1</span> <span class="o">=</span> <span class="mf">3e6</span> <span class="c1"># Pa</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># K</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># kg/s </span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">P1</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">450</span> <span class="c1"># K</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">0.1889</span> <span class="c1"># kJ/kgK</span>
+
+<span class="c1"># Find: </span>
+<span class="c1"># volume flow rate (Vdot) of entrance and exit, density of CO2 using:</span>
+
+<span class="c1"># a) ideal gas equation</span>
+<span class="c1"># recall, Pv = RT, v is the reciprocal of density, therefore P/RT = rho</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">P2</span><span class="o">/</span><span class="mi">1000</span><span class="o">/</span><span class="p">(</span><span class="n">R</span><span class="o">*</span><span class="n">T1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The density of CO2 is approximately </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg/m^3 at the inlet&#39;</span><span class="p">)</span> 
+<span class="c1"># P*Vdot = mdot*R*T</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">vdot</span><span class="p">(</span><span class="n">mdot</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">mdot</span><span class="o">*</span><span class="n">R</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="n">P</span>
+<span class="n">Vdot_i</span> <span class="o">=</span> <span class="n">vdot</span><span class="p">(</span><span class="n">mdot</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span><span class="o">/</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Vdot_e</span> <span class="o">=</span> <span class="n">vdot</span><span class="p">(</span><span class="n">mdot</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">T2</span><span class="p">,</span><span class="n">P2</span><span class="o">/</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The vdot of the inlet is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Vdot_i</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s1"> m^3/s and exit is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Vdot_e</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1"> m^3/s&#39;</span><span class="p">)</span>
+
+<span class="c1"># b) using cantera</span>
+
+<span class="n">species1</span><span class="p">,</span><span class="n">species2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">CarbonDioxide</span><span class="p">(),</span><span class="n">ct</span><span class="o">.</span><span class="n">CarbonDioxide</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T2</span><span class="p">,</span><span class="n">P2</span>
+<span class="c1"># recall, Pv = RT, v is the reciprocal of density, therefore P/RT = rho</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The density of CO2 is approximately </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg/m^3 at the inlet&#39;</span><span class="p">)</span> 
+
+<span class="n">Vdot_i</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">mdot</span>
+<span class="n">Vdot_e</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">mdot</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The vdot of the inlet is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Vdot_i</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s1"> m^3/s and exit is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Vdot_e</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1"> m^3/s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The density of CO2 is approximately 31.763 kg/m^3 at the inlet
+The vdot of the inlet is 0.062967 m^3/s and exit is 0.057 m^3/s
+The density of CO2 is approximately 32.458 kg/m^3 at the inlet
+The vdot of the inlet is 0.061618 m^3/s and exit is 0.055 m^3/s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 9</span>
+<span class="c1">#A rigid 10-L vessel initially contains a mixture of liquid water and vapor at 100°C with 12.3 percent quality. </span>
+<span class="c1">#The mixture is then heated until its temperature is 180°C. Calculate the heat transfer required for this process.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="c1"># Given: </span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># m3</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mf">.123</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">180</span> <span class="o">+</span> <span class="n">Kc</span>
+
+<span class="c1"># Find: Q </span>
+<span class="c1"># Q = m(u2 - u1)</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">x1</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">v1</span>
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">v2</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">v1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The heat transfer required for this process is therefore </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">u2</span><span class="o">-</span><span class="n">u1</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The heat transfer required for this process is therefore 92.4 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 10</span>
+<span class="c1">#Two tanks (Tank A and Tank B) are separated by a partition. Initially Tank A contains 2 kg of steam at 1 MPa and 300°C </span>
+<span class="c1">#while Tank B contains 3 kg of saturated liquid–vapor mixture at 150°C with a vapor mass fraction of 50 percent. </span>
+<span class="c1">#The partition is now removed and the two sides are allowed to mix until mechanical and thermal equilibrium are established. </span>
+<span class="c1">#If the pressure at the final state is 300 kPa, determine (a) the temperature and quality of the steam (if mixture) at the final state and </span>
+<span class="c1">#(b) the amount of heat lost from the tanks.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="c1"># Given: </span>
+<span class="c1"># Tank A</span>
+<span class="n">m_a</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># kg</span>
+<span class="n">P_a</span> <span class="o">=</span> <span class="mf">1e6</span> <span class="c1"># Pa</span>
+<span class="n">T_a</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="c1"># Tank B</span>
+<span class="n">m_b</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># kg</span>
+<span class="n">T_b</span> <span class="o">=</span> <span class="mi">150</span> <span class="o">+</span> <span class="n">Kc</span> <span class="c1"># K</span>
+<span class="n">x_b</span> <span class="o">=</span> <span class="mf">0.5</span> 
+<span class="c1"># state2 </span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mf">300e3</span> <span class="c1"># Pa</span>
+
+<span class="c1"># Find: a) T2, x2 b) Qout</span>
+<span class="n">mtotal</span> <span class="o">=</span> <span class="n">m_a</span> <span class="o">+</span> <span class="n">m_b</span>
+<span class="n">tanka</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">tanka</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T_a</span><span class="p">,</span><span class="n">P_a</span>
+<span class="n">tankb</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">tankb</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">T_b</span><span class="p">,</span> <span class="n">x_b</span>
+<span class="n">v_a</span> <span class="o">=</span> <span class="n">tanka</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">v_b</span> <span class="o">=</span> <span class="n">tankb</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">u1a</span> <span class="o">=</span> <span class="n">tanka</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u1b</span> <span class="o">=</span> <span class="n">tankb</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">v_a</span><span class="o">*</span><span class="n">m_a</span> <span class="o">+</span> <span class="n">v_b</span><span class="o">*</span><span class="n">m_b</span>
+<span class="n">v_total</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">mtotal</span>
+
+<span class="n">state_final</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">state_final</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="n">P2</span><span class="p">,</span><span class="n">v_total</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">state_final</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">state_final</span><span class="o">.</span><span class="n">TQ</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">state_final</span><span class="o">.</span><span class="n">UV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The final temperature is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">Kc</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> C and the quality is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">deltaU_a</span> <span class="o">=</span> <span class="n">u2</span> <span class="o">-</span> <span class="n">u1a</span>
+
+<span class="n">deltaU_b</span> <span class="o">=</span> <span class="n">u2</span> <span class="o">-</span> <span class="n">u1b</span>
+
+<span class="n">Qloss</span> <span class="o">=</span> <span class="n">m_a</span><span class="o">*</span><span class="n">deltaU_a</span> <span class="o">+</span> <span class="n">m_b</span><span class="o">*</span><span class="n">deltaU_b</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The heat loss is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Qloss</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The final temperature is 133.58 C and the quality is 0.36
+The heat loss is -3955.2 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 11</span>
+<span class="c1"># A 3 m3 rigid tank contains hydrogen at 250 kPa and 550 K. The gas is now cooled until its temperature drops to 350 K. </span>
+<span class="c1"># Determine (a) the final pressure in the tank with and without using the ideal gas law (i.e., Cantera property evaluation) and</span>
+<span class="c1"># (b) the amount of heat transfer with and without using specific heats (i.e., Cantera property evaluation).</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="c1"># Given: </span>
+<span class="n">V</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># m3</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mf">250e3</span> <span class="c1"># Pa</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">550</span> <span class="c1"># K</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">350</span> <span class="c1"># K</span>
+
+<span class="c1"># Find: P2,Q using Cantera </span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P1</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">v1</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">v2</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The pressure using Cantera is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P2</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kPa&quot;</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">v2</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">deltaU</span> <span class="o">=</span> <span class="n">u2</span> <span class="o">-</span> <span class="n">u1</span> 
+<span class="n">Q</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">deltaU</span><span class="o">/</span><span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The heat transfer using Cantera is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ&quot;</span><span class="p">)</span>
+
+<span class="c1"># Find: P2,Q using ideal gas law and constant specific heats </span>
+<span class="n">R_bar</span> <span class="o">=</span> <span class="mf">8.314</span> <span class="c1">#kJ/kmol/K</span>
+<span class="n">M_H2</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># kg/kmol</span>
+<span class="n">R</span><span class="o">=</span><span class="n">R_bar</span><span class="o">/</span><span class="n">M_H2</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">R</span><span class="o">*</span><span class="n">T1</span><span class="o">/</span><span class="p">(</span><span class="n">P1</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">v1</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">R</span><span class="o">*</span><span class="n">T2</span><span class="o">/</span><span class="n">v2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The pressure using ideal gas law is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kPa&quot;</span><span class="p">)</span>
+
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P1</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">cv</span> <span class="c1">#set cv to be constant at initial temperature</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">v2</span>
+<span class="n">deltaU</span> <span class="o">=</span> <span class="n">cv</span><span class="o">*</span><span class="p">(</span><span class="n">T2</span> <span class="o">-</span> <span class="n">T1</span><span class="p">)</span> 
+<span class="n">Q</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">deltaU</span><span class="o">/</span><span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The heat transfer using Cantera is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kJ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The pressure using Cantera is 159.08 kPa
+The heat transfer using Cantera is -688.19 kJ
+The pressure using ideal gas law is 159.09 kPa
+The heat transfer using Cantera is -681.63 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 12</span>
+<span class="c1"># A piston of nitrogen with v = 0.4 undergoes a constant temperature process from T = 500 K to T = 700 K. find the work done in this process and specific volume after compression</span>
+<span class="c1"># The piston is then held in place and heated 30 degrees. Find the pressure after heating.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="c1">#state 1</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">700</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="c1">#state 2</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="c1">#state 3</span>
+<span class="n">delta_T</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="c1">#solve for pressure ar state one</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">v1</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1">#solve for work </span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P1</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">P1</span><span class="o">*</span><span class="p">(</span><span class="n">v2</span><span class="o">-</span><span class="n">v1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The work done on the system is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*-</span><span class="mi">1</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The specific volume after compression is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg/m</span><span class="se">\u00b3</span><span class="s1">.&#39;</span><span class="p">)</span>
+<span class="c1">#state 3</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="n">T2</span> <span class="o">+</span> <span class="n">delta_T</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T3</span><span class="p">,</span> <span class="n">v2</span>
+<span class="n">P3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pressure after heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P3</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kPa.&#39;</span><span class="p">)</span>
+<span class="c1">#heat transfer for constant volume dQ = dU + pdV; dV = 0 -&gt; dQ = dU</span>
+<span class="n">U1</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">U2</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dQ</span> <span class="o">=</span> <span class="n">U2</span> <span class="o">-</span> <span class="n">U1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The heat transfer during the heating process is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">dQ</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The work done on the system is 59.49 kJ/kg.
+The specific volume after compression is 0.2857 kg/m³.
+The pressure after heating is 541.4 kPa.
+The heat transfer during the heating process is 15.2 kJ/kg.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 13</span>
+
+<span class="c1"># 0.4 kg fills a 20L tank at T = 700 K. Find the heat transfer if the water cools until T is half of its original value at constant pressure.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#state 1</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">800</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">0.020</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">m</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">v</span>
+<span class="c1">#find P at state 1</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T1</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span><span class="n">P1</span>
+<span class="c1"># use u = q - w -&gt; dq = du + Pdv -&gt; dq = dh to find heat transfer</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The heat transfer during the cooling process is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The heat transfer during the cooling process is -1174.99 kJ/kg.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 14</span>
+
+<span class="c1">#The piston is heated at a constant pressure with v = 0.45 m^3/kg</span>
+<span class="c1">#The pressure is equal to the F/A where the force is mg and the area is (pi/4)*d^2</span>
+<span class="c1">#find the change in q by using the equations dq = du + Pdv and h = u + Pdv so constant p -&gt; dq = dh</span>
+<span class="c1">#state 1</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">CarbonDioxide</span><span class="p">()</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="mf">0.45</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">Fg</span> <span class="o">=</span> <span class="mf">9.81</span><span class="o">*</span><span class="n">m</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.1415</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">#find gauge pressure -&gt; P = F/A</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">Fg</span><span class="o">/</span><span class="n">A</span>
+<span class="c1">#pressure is gauge plus atmospheric</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">P</span> <span class="o">+</span> <span class="mi">101000</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="n">P</span><span class="p">,</span> <span class="n">v1</span>
+<span class="c1">#find temperature </span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">CarbonDioxide</span><span class="p">()</span>
+<span class="n">delta_T</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T1</span> <span class="o">+</span> <span class="n">delta_T</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span><span class="n">P1</span>
+<span class="c1">#Find the heat transfer from this process; dq = dh</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dq</span> <span class="o">=</span> <span class="n">h2</span> <span class="o">-</span> <span class="n">h1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The heat transfer during this process per kg of carbon dioxide is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">dq</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The heat transfer during this process per kg of carbon dioxide is 41.93 kJ/kg.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 15</span>
+
+<span class="c1"># A 100l tank is filled with water. The water starts at ambient conditions P = 100 kPa and T = 300 K. 300 kJ of heat is transferred to the water</span>
+<span class="c1">#state 1</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">.1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P1</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">v</span>
+<span class="c1">#to find state two dq = du when dV = 0</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">delta_q</span> <span class="o">=</span> <span class="mi">300000</span><span class="o">/</span><span class="n">m</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">u1</span> <span class="o">+</span> <span class="n">delta_q</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">UV</span> <span class="o">=</span> <span class="n">u2</span><span class="p">,</span> <span class="n">v</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The temperature of the water after heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> K.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pressure of the water after heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P2</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kPa.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temperature of the water after heating is 300.73 K.
+The pressure of the water after heating is 547.1 kPa.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 16</span>
+
+<span class="c1"># V = 50L at ambient temperatures. Heat transfer is 100 kJ. What is the pressure and temp after heating. v1 = v2 -0&gt; dv = 0</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#state 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">0.050</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">v</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#Q = dU for constant v</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">u1</span> <span class="o">+</span> <span class="mi">100000</span><span class="o">/</span><span class="n">m</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">UV</span> <span class="o">=</span> <span class="n">u2</span><span class="p">,</span> <span class="n">v</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pressure in the tank after heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P2</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kPa.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The temperature in the tank after heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> K.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The pressure in the tank after heating is 396.49 kPa.
+The temperature in the tank after heating is 300.49 K.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Exercise_Solutions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Exercise%202.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10.2. </span>Exercise 2 Solutions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Exercise%204.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10.4. </span>Exercise 4 Solutions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,848 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Brief Introduction to Python &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Brief Introduction to Python';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties" href="Brief%20Introduction%20to%20Thermodynamics.html" />
+    <link rel="prev" title="1. Preface" href="About.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="About.html">1. Preface</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Exercise%20Solutions.html">10. Exercise Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="References%20Cited.html">11. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/Brief Introduction to Python.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Brief Introduction to Python.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Brief Introduction to Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-python">2.1. Installing Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-a-notebook">2.2. Opening a Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-examples-demonstrating-cell-evaluation">2.3. Simple Examples Demonstrating Cell Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-and-calling-functions">2.4. Importing Packages and Calling Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-functions">2.5. Declaring Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-arrays-and-indexing">2.6. Lists, Arrays and Indexing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-using-matplotlib">2.7. Plotting Using Matplotlib</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cantera-package">2.8. Cantera Package</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="brief-introduction-to-python">
+<h1><span class="section-number">2. </span>Brief Introduction to Python<a class="headerlink" href="#brief-introduction-to-python" title="Link to this heading">#</a></h1>
+<p>As mentioned, this book is designed to help understand and solve thermodynamics problems using Python, and for this a small introduction to Python is necessary. This introduction will cover the basics in terms of it’s installation, writing some basic code, evaluation, and creating figures. No prior Python experience is necessary and this textbook will take a hands-on approach - you will learn more advanced skills as we progress throughout the chapters. This is not intended to be a comprehensive Python course however, and for a more thorough overview of Python I recommend other, more dedicated resources. Specifically for data analysis I reccommend the book “Python for Data Analysis” by Wes McKinney <span id="id1">[<a class="reference internal" href="References%20Cited.html#id12" title="Wes McKinney. Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter. O'Reilly Media, Inc., 2022.">McKinney, 2022</a>]</span>.</p>
+<section id="installing-python">
+<h2><span class="section-number">2.1. </span>Installing Python<a class="headerlink" href="#installing-python" title="Link to this heading">#</a></h2>
+<p id="index-0">Download <a class="reference internal" href="../genindex.html"><span class="std std-ref">Python</span></a> from <a class="reference external" href="https://www.anaconda.com/">https://www.anaconda.com/</a> (“Anaconda Distribution”). This distribution includes many useful applications but most commonly we will use JupyterLab, which is a notebook style Python editor that allows you to evaluate Python code line by line or cell by cell, rather than an entire file. This is useful for a variety of reasons, as we will see shortly. In fact, this entire textbook is written in a Jupyter Notebook! You can format text in cells in a markdown language if markdown is selected or edit Python code if the cell is indicated as code. These indicators are options in a drop down menu at the top of the notebook.</p>
+</section>
+<section id="opening-a-notebook">
+<h2><span class="section-number">2.2. </span>Opening a Notebook<a class="headerlink" href="#opening-a-notebook" title="Link to this heading">#</a></h2>
+<p>Jupyter notebook files have a .ipny extension. To open a Jupyter Notebook, first locate the Anadonda Navigator that was installed on your computer. Then on the Home screen, locate the <a class="reference internal" href="../genindex.html"><span class="std std-ref">JupyterLab</span></a> application and click “Launch”. This will open JupyterLab in your preferred browser. Click the + icon on the top left and select the notebook option - this will open a Jupyter Notbook as a new tab within JupyterLab. You should see a blank cell at the top which is where you can enter your Python code or markdown content.  Pressing shift-enter (or the play icon) will evaluate the contents in that cell and only that cell, whether it is Python code or markdown. You can add a new cell with the + icon within the notebook (not the one originally clicked on the far left of the screen that creates a new file). It is up to you when you create new cells versus adding content to an existing cell in a new line, but in general I find it is good practice to break content into small chunks, similar to writing paragraphs. The nice thing about individual cells is that only the content in that cell is updated when you evaluate it, and therefore you can update variables or other content without having to compile the rest of your code, which can result in more efficient evaluation. Don’t worry if this is overwhelming at this point, we will try some simple examples below!</p>
+</section>
+<section id="simple-examples-demonstrating-cell-evaluation">
+<h2><span class="section-number">2.3. </span>Simple Examples Demonstrating Cell Evaluation<a class="headerlink" href="#simple-examples-demonstrating-cell-evaluation" title="Link to this heading">#</a></h2>
+<p>Go ahead and open a new notebook and type the content below from the first line (the second line is output that is generated) into your notebook and press shift-enter. You should see the same output of 4 generated in your notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, lets define a variable x, as x = 5. Enter this into your own notebook in a new cell and press shift-enter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then lets add another cell that calculates the value of 10 times x. Enter as below and press shift-enter. The result of 50 as below should appear in the output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="o">*</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, go back to the second cell where x is defined and change the value from 5 to 10, or whatever you would like. Evaluate the cell and notice that the output below the cell with 10 times x didn’t change. To update its output you would need to evaluate that cell again by pressing shift-enter. It should be apparant that the tradiational top-down heirarchy of coding doesn’t apply here when working with notebooks - it is the evaluation order of cells that matters.</p>
+</section>
+<section id="importing-packages-and-calling-functions">
+<h2><span class="section-number">2.4. </span>Importing Packages and Calling Functions<a class="headerlink" href="#importing-packages-and-calling-functions" title="Link to this heading">#</a></h2>
+<p id="index-1">In Python, there are several powerful computing packages commonly used that should be declared within your code in order to use their functions. For example, some of the more popular computational packages useful for engineering include <a class="reference internal" href="../genindex.html"><span class="std std-ref">numpy</span></a>, <a class="reference internal" href="../genindex.html"><span class="std std-ref">scipy</span></a>, <a class="reference internal" href="../genindex.html"><span class="std std-ref">matplotlib</span></a> and <a class="reference internal" href="../genindex.html"><span class="std std-ref">pandas</span></a>, among others. These must be installed on your computer, either manually using a package installer (e.g. pip installer <a class="reference external" href="https://pip.pypa.io/en/stable/">https://pip.pypa.io/en/stable/</a>), or are installed by default with many Python distributions, including the Anaconda Distribution that we have used. For example, if we want to utilize the numpy package we can use the import function and say</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>which allows us to call the numpy package simply by typing np. We don’t need to install anything because the numpy package comes by default with Anaconda. If we wish to use numpy package to calculate the cosine of an angle, for example we would first need to call it by typing np followed by a period and then the function contained within the package we wish to utilize, in this case cos, and the value within it (in this case the numerical value pi which is also called using the numpy package as <span class="math notranslate nohighlight">\(np.pi\)</span>) contained within parenthesis. For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-1.0)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="declaring-functions">
+<h2><span class="section-number">2.5. </span>Declaring Functions<a class="headerlink" href="#declaring-functions" title="Link to this heading">#</a></h2>
+<p id="index-2"><a class="reference internal" href="../genindex.html"><span class="std std-ref">Functions</span></a> are declared (i.e., created) in Python by defining them using <span class="math notranslate nohighlight">\(def\)</span> followed by the proposed function name, and parenthesis that include any variables the function is dependent on, followed by a colon.  The body of the function is then started on a new, indented line and the value that is returned by the function must be declared at the end using <span class="math notranslate nohighlight">\(return\)</span> For example, if we wish to define a function y that depends on x and is a linear line with slope m and intercept y we would write</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">y</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and to evaluate the function, for example at x=3, we would simply call it by defining m and b to equal some arbitrary constants and typing the following.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">5</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lists-arrays-and-indexing">
+<span id="listsarraysindexing"></span><h2><span class="section-number">2.6. </span>Lists, Arrays and Indexing<a class="headerlink" href="#lists-arrays-and-indexing" title="Link to this heading">#</a></h2>
+<p id="index-3"><a class="reference internal" href="../genindex.html"><span class="std std-ref">Lists</span></a> and <a class="reference internal" href="../genindex.html"><span class="std std-ref">Arrays</span></a> in Python are both data structures that allow indexing and iterating, and they can be sometimes used interchangeably but in other cases one is preferred. A list is a built-in data structure native to Python, while an array is a data structure that is part of the numpy computing package. In general arrays are more suited for numerical operations compared to lists. We can create a list and convert it to an array, or vice versa. To create a list you insert the values separated by a comma, all contained within brackets. For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">testlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">testlist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>To convert it to an array we call the <span class="math notranslate nohighlight">\(numpy\)</span> package and include the list name inside parenthesis of the function <span class="math notranslate nohighlight">\(np.array\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">testarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">testlist</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">testarray</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 2 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then convert from an array back to a list by using the function, <span class="math notranslate nohighlight">\(list\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">testlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">testarray</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">testlist</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.int64(1), np.int64(2), np.int64(3)]
+</pre></div>
+</div>
+</div>
+</div>
+<p id="index-4">If an array is inserted as a parameter within a function, it will be evaluated at each index of the array. This will not work if a list is inserted however and would need to be done in an iterative manner, for example using a for loop.</p>
+<p>To conveniently create an array of x values to be evaluated within a function we can use the numpy function <a class="reference internal" href="../genindex.html"><span class="std std-ref">arange</span></a>. To use this we will have to call the numpy package and arange by <span class="math notranslate nohighlight">\(np.arange\)</span> and within this function we include the starting value, ending value and spacing, all separated by commas. For example, to create an array called x_vals from 1 to 10 with a spacing of 1 we type.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_vals</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 1  2  3  4  5  6  7  8  9 10]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can evaluate the function <span class="math notranslate nohighlight">\(y\)</span> we defined above at each index of the array <em>x_vals</em> by inserting this array into the function, like below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">x_vals</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 7  9 11 13 15 17 19 21 23 25]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Indexing of lists and arrays in Python is straightforward. However, it is important to note that the first index starts with 0, the second 1, and so on. To recall an indexed part of a list or array we follow the name of the list or array with <span class="math notranslate nohighlight">\([index]\)</span>. An example using a list is below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">testlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">43</span><span class="p">]</span>
+<span class="n">testlist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>23
+</pre></div>
+</div>
+</div>
+</div>
+<p>And below is an example using an array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">testlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">43</span><span class="p">]</span>
+<span class="n">testarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">testlist</span><span class="p">)</span>
+<span class="n">testarray</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(23)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, a range of indexes can be selected by following the list or array with <span class="math notranslate nohighlight">\([index1:index2]\)</span>. See below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">testarray</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">testarray</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 4, 5, 6, 7])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-using-matplotlib">
+<span id="plotting"></span><h2><span class="section-number">2.7. </span>Plotting Using Matplotlib<a class="headerlink" href="#plotting-using-matplotlib" title="Link to this heading">#</a></h2>
+<p id="index-5">To <a class="reference internal" href="../genindex.html"><span class="std std-ref">plot</span></a> functions or lists/arrays of data, we can use the package <a class="reference internal" href="../genindex.html"><span class="std std-ref">Matplotlib</span></a>. To use this package, it is as simple importing the function <span class="math notranslate nohighlight">\(matplotlib.pyplot\)</span> and creating lists or arrays of x and y values to be plotted.</p>
+<p>For example, lets import <span class="math notranslate nohighlight">\(matplotlib\)</span> and plot the function <span class="math notranslate nohighlight">\(y\)</span> we have defined above between x = 0 and 5, keeping m and b equal to 2 and 5, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> <span class="c1"># this package allows us to plot functions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span><span class="n">y</span><span class="p">(</span><span class="n">x_vals</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span><span class="c1">#needed to display plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/199fd2f835cbbe1056c58aa9a18cdf1147fed4b83aa4c995af9cb4e21c9f0780.png" src="../_images/199fd2f835cbbe1056c58aa9a18cdf1147fed4b83aa4c995af9cb4e21c9f0780.png" />
+</div>
+</div>
+<p>Notice that the definitions from prior cells still apply in new cells. For example, we didn’t need to redefine <em>x_vals</em> since it was already created above. If we update a definition in a different cell, for example, <em>x_vals</em>, and then evaluate any cells afterwards that contain it they will be updated - regardless if they appear above or below. For example, to update the plot to vary from x = 1 to 100 we could  redefine <span class="math notranslate nohighlight">\(x_vals=np.arange(1,101,1)\)</span> anywhere, and then evaluate the above plotting cell again to update it. This is one advantage of notebook style evaluation compared to traditional compilers that evaluate all lines of code sequentially.</p>
+</section>
+<section id="cantera-package">
+<span id="cantera"></span><h2><span class="section-number">2.8. </span>Cantera Package<a class="headerlink" href="#cantera-package" title="Link to this heading">#</a></h2>
+<p id="index-6"><a class="reference internal" href="../genindex.html"><span class="std std-ref">Cantera</span></a> is a Python package that we will use extensively to evaluate properties of real substances. This will be discussed throughout several sections later, but for now we just need to get the package installed. As mentionened, the anaconda distribution that we downloaded comes with many useful data analysis and computation packages but it does not come with Cantera. Using this link <a class="reference external" href="https://cantera.org/install/conda-install.html">https://cantera.org/install/conda-install.html</a>, install the Cantera module using instructions under Option 1: Create a new environment for Cantera. Copy and paste the instructions in the cmd .exe prompt found on your Anaconda Navigator home screen. Once installed you will have to work from the environment you created, called ct-env, if you want to use Cantera. To operate from this environment click the “Application on” tab at the top of your Anaconda Navigator home screen and then install Jupyter Notebook in this environment.</p>
+<p>Now we are ready to use Python and Cantera using  Jupyter! We are going to evaluate a few simple properties of H<sub>2</sub>O just to confirm this is working as expected.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define species1 as water</span>
+<span class="n">species1</span><span class="p">()</span> <span class="c1">#show properties of species 1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  water:
+
+       temperature   300 K
+          pressure   1.0132e+05 Pa
+           density   996.63 kg/m^3
+  mean mol. weight   18.016 kg/kmol
+    vapor fraction   0
+   phase of matter   liquid
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy       -1.5858e+07        -2.857e+08  J
+   internal energy       -1.5858e+07        -2.857e+08  J
+           entropy            3913.2             70500  J/K
+    Gibbs function       -1.7032e+07       -3.0685e+08  J
+ heat capacity c_p            4180.8             75321  J/K
+ heat capacity c_v              4131             74424  J/K
+</pre></div>
+</div>
+</div>
+</div>
+<p id="index-7">The output should show the default temperature and pressure which are 300 K and 1.0132e+05 Pa, the corresponding density, molecular weight, vapor fraction and phase. Details of these properties will all be discussed in <a class="reference internal" href="Evaluation%20of%20Properties.html#evaluationofproperties"><span class="std std-numref">Section 4</span></a> <a class="reference internal" href="Evaluation%20of%20Properties.html#evaluationofproperties"><span class="std std-ref">Evaluation of Properties</span></a>. Below that are listed even more properties including <a class="reference internal" href="../genindex.html"><span class="std std-ref">enthalpy</span></a>, <a class="reference internal" href="../genindex.html"><span class="std std-ref">internal energy</span></a>, <a class="reference internal" href="../genindex.html"><span class="std std-ref">entropy</span></a>, <a class="reference internal" href="../genindex.html"><span class="std std-ref">Gibbs function</span></a>, and two forms of <a class="reference internal" href="../genindex.html"><span class="std std-ref">heat capacity</span></a> - again, the meaning of these properties is not important at this point and will be dicussed in later sections. These properties are shown on a per kg or per kmol basis.</p>
+<p>We can change the temperature and pressure at which corresponding properties are evaluated by calling <span class="math notranslate nohighlight">\(species1\)</span>, followed by <span class="math notranslate nohighlight">\(TP\)</span>. For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span> <span class="mi">100000</span> <span class="c1">#Redefine Temperature in K and Pressure in Pa at State 1</span>
+<span class="n">species1</span><span class="p">()</span> <span class="c1">#show properties of species 1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  water:
+
+       temperature   303.15 K
+          pressure   1e+05 Pa
+           density   995.73 kg/m^3
+  mean mol. weight   18.016 kg/kmol
+    vapor fraction   0
+   phase of matter   liquid
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy       -1.5845e+07       -2.8546e+08  J
+   internal energy       -1.5845e+07       -2.8546e+08  J
+           entropy            3956.8             71286  J/K
+    Gibbs function       -1.7044e+07       -3.0707e+08  J
+ heat capacity c_p            4178.6             75282  J/K
+ heat capacity c_v            4116.1             74156  J/K
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar strategies can be used to set other combinations of properties as discussed later when we formally introduce Cantera to evaluate properties of real substances in <a class="reference internal" href="Evaluation%20of%20Properties.html#evaluationofproperties"><span class="std std-numref">Section 4</span></a> <a class="reference internal" href="Evaluation%20of%20Properties.html#evaluationofproperties"><span class="std std-ref">Evaluation of Properties</span></a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="About.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Preface</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Brief%20Introduction%20to%20Thermodynamics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-python">2.1. Installing Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-a-notebook">2.2. Opening a Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-examples-demonstrating-cell-evaluation">2.3. Simple Examples Demonstrating Cell Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-and-calling-functions">2.4. Importing Packages and Calling Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-functions">2.5. Declaring Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists-arrays-and-indexing">2.6. Lists, Arrays and Indexing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-using-matplotlib">2.7. Plotting Using Matplotlib</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cantera-package">2.8. Cantera Package</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

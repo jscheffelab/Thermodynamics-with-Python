@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10.1. Exercise 1 Solutions &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Exercise_Solutions/Exercise 1';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="10.2. Exercise 2 Solutions" href="Exercise%202.html" />
+    <link rel="prev" title="10. Exercise Solutions" href="../Exercise%20Solutions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Exercise%20Solutions.html">10. Exercise Solutions</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../References%20Cited.html">11. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/Exercise_Solutions/Exercise 1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Exercise_Solutions/Exercise 1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exercise 1 Solutions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="exercise-1-solutions">
+<span id="exercise1solutions"></span><h1><span class="section-number">10.1. </span>Exercise 1 Solutions<a class="headerlink" href="#exercise-1-solutions" title="Link to this heading">#</a></h1>
+<p><a class="reference internal" href="../Evaluation%20of%20Properties.html#exercise1"><span class="std std-numref">Section 4.2.5</span></a> <a class="reference internal" href="../Evaluation%20of%20Properties.html#exercise1"><span class="std std-ref">Exercise 1</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.4.1 Exercise 1</span>
+<span class="c1">#A mass of 0.1 kg of helium (He,  𝑀He = 4  kg/kmol) at 500 kPa is contained within </span>
+<span class="c1">#a 0.4 m3 rigid tank. The tank is heated until the pressure is 700 kPa. </span>
+<span class="c1">#Calculate the temperature change of helium (in K) as a result of this heating.</span>
+
+<span class="n">m</span><span class="o">=</span><span class="mf">0.1</span> <span class="c1">#kg</span>
+<span class="n">R_bar</span> <span class="o">=</span> <span class="mf">8.314</span> <span class="c1"># kJ/kg/K</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#kg/kmol</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">0.4</span> <span class="c1">#m3</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1">#kPa</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mi">700</span> <span class="c1">#kPa</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">T</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">P</span><span class="o">*</span><span class="n">V</span><span class="o">/</span><span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="n">R_bar</span><span class="o">/</span><span class="n">M</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The temperature change as a result of heating is &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="p">(</span><span class="n">P2</span><span class="p">)</span><span class="o">-</span><span class="n">T</span><span class="p">(</span><span class="n">P1</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot; K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temperature change as a result of heating is  384.89  K
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.4.1 Exercise 2</span>
+
+<span class="c1">#given: 3 kg of nitrogen (N2) at 35°C and 150 kPa</span>
+
+<span class="c1"># 2a: specific volume calc</span>
+<span class="c1">#change temp to Kelvin </span>
+<span class="n">T</span><span class="o">=</span><span class="mi">35</span><span class="o">+</span><span class="mf">273.15</span>
+<span class="n">P</span><span class="o">=</span><span class="mi">150</span>
+<span class="n">M</span><span class="o">=</span><span class="mi">28</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">P</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2a: Specific volume:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot; m^3/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2a: Specific volume:0.6099902619047619 m^3/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.4.1 Exercise 2</span>
+
+<span class="c1">#given: 3 kg of nitrogen (N2) at 35°C and 150 kPa</span>
+
+<span class="c1"># 2b: absolute volume calc</span>
+<span class="c1">#change temp to Kelvin </span>
+<span class="n">T</span><span class="o">=</span><span class="mi">35</span><span class="o">+</span><span class="mf">273.15</span>
+<span class="n">P</span><span class="o">=</span><span class="mi">150</span>
+<span class="n">M</span><span class="o">=</span><span class="mi">28</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">3</span> <span class="c1"># kg</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">P</span><span class="p">)</span>
+
+<span class="n">absv</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2b: Absolute volume:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">absv</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; m^3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2b: Absolute volume:1.8299707857142857 m^3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.4.1 Exercise 2</span>
+<span class="c1"># 2c: Does the specific volume of the nitrogen change with temperature or pressure?</span>
+<span class="c1"># The Ideal Gas EOS tells us the specific volume of the nitrogen changes with temperature/pressure, as it&#39;s </span>
+<span class="c1"># inversely proportional to pressure and proportional to temperature. We can verify this by creating a plot  </span>
+<span class="c1"># of specific volume versus temperature, and versus pressure, using an array of values for T and P </span>
+<span class="c1">#holding pressure constant, changing the temperature by creating an array from 150 to 450 using increments of 25</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">P</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2c&quot;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> 
+<span class="n">temps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">450</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="n">temps</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="n">v_ideal</span><span class="p">(</span><span class="n">temps</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature, K&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Specific Volume, v&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Temperature vs Specific Volume&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#holding temperature constant, changing the pressure by creating an array from 50 to 250 using increments of 25</span>
+<span class="n">pressures</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">250</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="n">pressures</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="n">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">pressures</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Pressure, kPa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Specific Volume, v&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Pressure vs Specific Volume&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#Since pressure and volume are inversely proportional, we can get a linear representation of the data by doing 1/P vs v</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">yvals</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;1/P, kPa^-1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Specific Volume, v&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;1/P vs Specific Volume&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2c
+</pre></div>
+</div>
+<img alt="../../_images/94a76ae0d0eab20ee76da082e773b98408665c54043f5edfe78cdd6eba6147b0.png" src="../../_images/94a76ae0d0eab20ee76da082e773b98408665c54043f5edfe78cdd6eba6147b0.png" />
+<img alt="../../_images/9ecc55671614b2b1d038f09923046ca2b79a4c6fd7b579374ea212381948eccf.png" src="../../_images/9ecc55671614b2b1d038f09923046ca2b79a4c6fd7b579374ea212381948eccf.png" />
+<img alt="../../_images/62f54af67fed2fe342ff9b7b3d4e0254eeabcf0d7e24e452002f59e3d8c49ebd.png" src="../../_images/62f54af67fed2fe342ff9b7b3d4e0254eeabcf0d7e24e452002f59e3d8c49ebd.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.4.1 Exercise 2</span>
+<span class="c1">#2d: Plot the pressure as a function of temperature between 0°C and 500°C with and without using a minimizing function</span>
+<span class="c1">#Using a minimizing function </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> 
+
+<span class="k">def</span><span class="w"> </span><span class="nf">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">P</span><span class="p">)</span>
+<span class="n">temps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">273.15</span><span class="p">,</span><span class="mf">773.15</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+<span class="n">v</span><span class="o">=</span><span class="n">absv</span><span class="o">/</span><span class="mi">3</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">R</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">8.314</span><span class="o">/</span><span class="n">M</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">idealEOS</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">R</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">con1</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">P</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">con2</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">con3</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">T</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">con4</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">M</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span> 
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">M</span><span class="p">]</span> 
+<span class="n">cons</span> <span class="o">=</span> <span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con2</span><span class="p">},{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con3</span><span class="p">},{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con4</span><span class="p">})</span> 
+<span class="n">pres</span><span class="o">=</span><span class="p">[]</span> 
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temps</span><span class="p">:</span> 
+    <span class="n">T</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="mi">28</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">M</span><span class="p">]</span> 
+    <span class="n">res</span><span class="o">=</span><span class="n">minimize</span><span class="p">(</span><span class="n">idealEOS</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">constraints</span><span class="o">=</span><span class="n">cons</span><span class="p">)</span>
+    <span class="n">pres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="n">temps</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="n">pres</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature, K&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Pressure, kPa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Temperature vs Pressure using Minimizing Function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1">#Without a minimizing function </span>
+<span class="k">def</span><span class="w"> </span><span class="nf">P_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="n">M</span><span class="o">/</span><span class="n">v</span>
+<span class="n">v</span><span class="o">=</span><span class="n">absv</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">temps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">273.15</span><span class="p">,</span><span class="mf">773.15</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="n">temps</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="n">P_ideal</span><span class="p">(</span><span class="n">temps</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature, K&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Pressure, kPa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Temperature vs Pressure using Solved Function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2d
+</pre></div>
+</div>
+<img alt="../../_images/52547868d8a70a38dc48bc4af3a78214d5585ca42908d032c012e83f44644b47.png" src="../../_images/52547868d8a70a38dc48bc4af3a78214d5585ca42908d032c012e83f44644b47.png" />
+<img alt="../../_images/bde8dadb512cc5372122d516cb0ab7dd8708ac3fde70819f8c4ace1fd74b5c8c.png" src="../../_images/bde8dadb512cc5372122d516cb0ab7dd8708ac3fde70819f8c4ace1fd74b5c8c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.4.1 Exercise 2</span>
+
+<span class="c1">#2e: Now imagine it is connected to a second tank through a valve with volume 1m3 also containing N2 at 10°C and 450 kPa. </span>
+<span class="c1">#The valve is opened, and the entire system is allowed to reach thermal equilibrium with the surroundings, which are at 25°C.</span>
+<span class="c1">#Determine the final equilibrium pressure of N2.</span>
+<span class="c1">#Given data: m1=3kg, T1=35°C, P1=150kPa, V2=1m^3, P2=450kPa, T2=10°C, surroundingT=25°C, Find: final equilibrium pressure</span>
+<span class="c1">#From 2b: V1=1.83 m^3</span>
+<span class="c1">#Using values for tank 2, find initial mass of nitrogen w/in tank 2 by rearranging PV=(m/M)RT for m </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2e&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">m_ideal</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">V</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">P</span><span class="o">*</span><span class="n">V</span><span class="o">*</span><span class="n">M</span><span class="o">/</span><span class="mf">8.314</span><span class="o">/</span><span class="n">T</span>
+<span class="n">m2</span><span class="o">=</span><span class="n">m_ideal</span><span class="p">(</span><span class="mi">450</span><span class="p">,</span><span class="mf">283.15</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#Now that we have our m2 value, we can find our equilibrium mass by adding m1 and m2</span>
+<span class="n">m1</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">meq</span><span class="o">=</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span>
+<span class="c1">#using V from part 2b, we can find our equilibrium volume by adding v1 and v2</span>
+<span class="n">v2</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">Veq</span><span class="o">=</span><span class="n">absv</span><span class="o">+</span><span class="n">v2</span>
+<span class="c1">#convert equilibrium temp to kelvin</span>
+<span class="n">Teq</span><span class="o">=</span><span class="mi">25</span><span class="o">+</span><span class="mf">273.15</span>
+<span class="n">M</span><span class="o">=</span><span class="mi">28</span>
+<span class="c1">#Now we have meq,Teq,veq,and M, which we can use to find Peq using the ideal gas EOS rearranged for pressure </span>
+<span class="k">def</span><span class="w"> </span><span class="nf">P_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="n">M</span><span class="o">/</span><span class="n">v</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The final equilibrium pressure is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">P_ideal</span><span class="p">(</span><span class="n">Teq</span><span class="p">,</span><span class="n">Veq</span><span class="o">/</span><span class="n">meq</span><span class="p">,</span><span class="n">M</span><span class="p">))</span> <span class="o">+</span><span class="s2">&quot; kPa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2e
+The final equilibrium pressure is: 261.284222107384 kPa
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.4.1 Exercise 3</span>
+
+<span class="c1">#A frictionless piston–cylinder contain 5 kg of nitrogen at 100 kPa and 250 K. </span>
+<span class="c1">#The system is compressed until it reaches a final temperature of 450 K. </span>
+<span class="c1">#Assume the compression occurs according to to the relation  𝑝𝑉^2 = constant.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.4.1 Exercise 3</span>
+<span class="c1">#a) Calculate the volume and pressure after compression.</span>
+
+<span class="n">m</span><span class="o">=</span><span class="mi">5</span> <span class="c1">#kg</span>
+<span class="n">R_bar</span> <span class="o">=</span> <span class="mf">8.314</span> <span class="c1"># kJ/kg/K</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">28</span> <span class="c1">#kg/kmol</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">250</span> <span class="c1">#K</span>
+<span class="n">T2</span><span class="o">=</span><span class="mi">450</span> <span class="c1">#K</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">#kPa</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">P_ideal</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">T</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">R_bar</span><span class="o">/</span><span class="n">M</span><span class="p">)</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="n">V</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">const</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="n">T1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">P1</span><span class="o">*</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">R_bar</span><span class="o">/</span><span class="n">M</span><span class="p">)</span><span class="o">*</span><span class="n">T1</span><span class="o">/</span><span class="n">P1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1">#P*V**2=const</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">P_exp</span><span class="p">(</span><span class="n">V</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">const</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="n">T1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">V</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+            
+<span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">V</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">P_ideal</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="n">T2</span><span class="p">)</span><span class="o">-</span><span class="n">P_exp</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsolve</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The volume after compression is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;m^3&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The pressure after compression is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">P_exp</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;kPa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The volume after compression is 2.06 m^3
+The pressure after compression is 324.0 kPa
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Exercise_Solutions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Exercise%20Solutions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Exercise Solutions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Exercise%202.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10.2. </span>Exercise 2 Solutions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1643 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Evaluation of Properties &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Evaluation of Properties';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. First Law of Thermodynamics - Introduction to Closed Systems" href="First%20Law%20of%20Thermodynamics.html" />
+    <link rel="prev" title="3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties" href="Brief%20Introduction%20to%20Thermodynamics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Exercise%20Solutions.html">10. Exercise Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="References%20Cited.html">11. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/Evaluation of Properties.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/Evaluation of Properties.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Evaluation of Properties</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-substances">4.1. Pure Substances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal-gas-equation-of-state">4.2. Ideal Gas Equation of State</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-python-to-solve-the-ideal-gas-eos">4.2.1. Using Python to Solve the Ideal Gas EOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example">4.2.1.1. Example</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.2.1.2. Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-learning-to-use-minimize">4.2.2. <strong>Optional</strong> - Learning to use Minimize</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-results-using-matplotlib">4.2.3. Visualizing Results using Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-lists-and-plotting-using-output-from-minimize">4.2.4. <strong>Optional</strong> - Lists and Plotting Using Output From Minimize</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">4.2.5. Exercise 1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-transitions-other-equations-of-state-and-cantera">4.3. Phase Transitions, Other Equations of State and Cantera</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-cantera-to-evaluate-properties">4.3.1. Using Cantera to Evaluate Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quality">4.3.2. Quality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#liquid-approximation-and-incompressibility">4.3.3. Liquid Approximation and Incompressibility</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#idealgascompare">4.3.4. Ideal Gas Law Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">4.3.5. Exercise 2</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="evaluation-of-properties">
+<span id="evaluationofproperties"></span><h1><span class="section-number">4. </span>Evaluation of Properties<a class="headerlink" href="#evaluation-of-properties" title="Link to this heading">#</a></h1>
+<section id="pure-substances">
+<h2><span class="section-number">4.1. </span>Pure Substances<a class="headerlink" href="#pure-substances" title="Link to this heading">#</a></h2>
+<p id="index-0">An <a class="reference internal" href="../genindex.html"><span class="std std-ref">equation of state</span></a> (EOS) is a mathematical representation describing the relationship between <a class="reference internal" href="../genindex.html"><span class="std std-ref">state properties</span></a> of pure substances, such as pressure (<span class="math notranslate nohighlight">\(p\)</span>), temperature (<span class="math notranslate nohighlight">\(T\)</span>), specific volume (<span class="math notranslate nohighlight">\(v\)</span>) and specific internal energy (<span class="math notranslate nohighlight">\(u\)</span>). State properties, or state variables, are the independent variables that fully describe the state of a system, or the state function. Equations of state can range from very simplistic relationships, such as the ideal gas law, to more complex consisting of hundreds of equations, the results of which are usually tabulated for convenience. Knowing information about any two independent variables fixes the state of the system and the remaining proerties, which can be determined readily with an appropriate equation of state.</p>
+<p>A <a class="reference internal" href="../genindex.html"><span class="std std-ref">pure substance</span></a> is a substance that has a fixed composition throughout, for example H<sub>2</sub>O or CO<sub>2</sub>. However, it can also be composed of multiple compositions, or chemical elements, as long as they are distributed homogeneously. An example of the latter is air, which is primarily N<sub>2</sub> and O<sub>2</sub> with other trace gases such as CO<sub>2</sub>, Ar, etc. A pure substance can consist of multiple phases, for example boiling H<sub>2</sub>O which is composed of both liquid and vapor.</p>
+<p><a class="reference internal" href="../genindex.html"><span class="std std-ref">Phase</span></a> is defined as a pure substance that has a homogeneous physical structure. Physical structure referes to solids, liquids and gases. Note that a fluid is representative of both liquid and gas phases. There are many applications where substances undergo phase transitions and where two or more phases exist in equilibrium.</p>
+</section>
+<section id="ideal-gas-equation-of-state">
+<h2><span class="section-number">4.2. </span>Ideal Gas Equation of State<a class="headerlink" href="#ideal-gas-equation-of-state" title="Link to this heading">#</a></h2>
+<p id="index-1">Perhaps the simplist and best known EOS is the <a class="reference internal" href="../genindex.html"><span class="std std-ref">ideal gas</span></a> EOS and thus we will use this to introduce evaluation of properties. The ideal gas EOS, or relationship between <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(v\)</span> (or  <span class="math notranslate nohighlight">\(\bar{v}\)</span>) of an ideal gas is shown below.</p>
+<div class="math notranslate nohighlight" id="equation-eq-a">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-eq-a" title="Link to this equation">#</a></span>\[p\bar{v} = \bar{R}T\]</div>
+<p id="index-2">This equation of state can be derived from the kinetic theory of gases and assumes zero molecular interaction (e.g. Van der Waals) with molecules that are point center of masses and do not occupy a meaningful volume compared to the total volume of gas. Here, <span class="math notranslate nohighlight">\(\bar{R}\)</span> is the <a class="reference internal" href="../genindex.html"><span class="std std-ref">universal gas constant</span></a> and is equal to 8.314 <span class="math notranslate nohighlight">\(\frac{\rm kJ}{\rm kmol K}\)</span>. Keep in mind that the ideal gas law is a very good approximation for many gases, especially at elevated temperatures and volumes, or low pressures, but as temperature and pressure approach their saturation values (discussed later) where molecules tend to become closer together and interact more, other equations of state are more appropriate.</p>
+<p>The molar specific volume may be related to the specific volume, <span class="math notranslate nohighlight">\(v\)</span>, and molecular mass, <span class="math notranslate nohighlight">\(M\)</span>, with the relationship below.</p>
+<div class="math notranslate nohighlight" id="equation-eq-b">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-eq-b" title="Link to this equation">#</a></span>\[\bar{v} =vM\]</div>
+<p id="index-3">Also, the <a class="reference internal" href="../genindex.html"><span class="std std-ref">gas constant</span></a>, <span class="math notranslate nohighlight">\(R\)</span>, is defined as.</p>
+<div class="math notranslate nohighlight" id="equation-eq-c">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-eq-c" title="Link to this equation">#</a></span>\[R = \frac{\bar{R}}{M}\]</div>
+<p>Then, by combining equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-a">(8.1)</a> with equations <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-b">(8.2)</a> and <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-c">(8.3)</a>, the ideal gas equation can be rearranged as a function of mass specific variables, <span class="math notranslate nohighlight">\(v\)</span> as shown in equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-d">(8.4)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-d">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-eq-d" title="Link to this equation">#</a></span>\[Pv = RT = \frac{\bar{R}}{M} T\]</div>
+<section id="using-python-to-solve-the-ideal-gas-eos">
+<h3><span class="section-number">4.2.1. </span>Using Python to Solve the Ideal Gas EOS<a class="headerlink" href="#using-python-to-solve-the-ideal-gas-eos" title="Link to this heading">#</a></h3>
+<p id="index-4">Now, we will use Python try and solve for properties (<span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(v\)</span> (or  <span class="math notranslate nohighlight">\(\bar{v}\)</span>), or <span class="math notranslate nohighlight">\(T\)</span>) using the ideal gas EOS. We could simply equate a variable, such as <span class="math notranslate nohighlight">\(v\)</span>, to <span class="math notranslate nohighlight">\(\frac{\bar{R}T}{Mp}\)</span> in a single line of code, like below, assuming <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(M\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are defined.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># Temperature in K</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">16</span> <span class="c1"># Molecular mass of oxygen</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># pressure in kPa</span>
+<span class="n">v</span> <span class="o">=</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="n">M</span><span class="o">/</span><span class="n">p</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;specific volume is &quot;</span><span class="p">,</span><span class="n">v</span><span class="p">,</span> <span class="s2">&quot; m^3/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>specific volume is  5.19625  m^3/kg
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, it will prove to be more convenient to use functions when we are plotting or doing more complex calculations, so we will focus on this method. For this we will define <a class="reference internal" href="../genindex.html"><span class="std std-ref">functions</span></a> and rearrange the ideal gas EOS to solve explicitly for the property of interest. For example, to solve for pressure we can define pressure as a function of independent variables <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(M\)</span>. Let’s define the function <em>P_ideal</em> using <span class="math notranslate nohighlight">\(def\)</span> and indicate the independent variables in parenthesis. Then, for the function to output the pressure we rearrange equation <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-d">(8.4)</a> to get everything in terms of <span class="math notranslate nohighlight">\(p\)</span>, and use <span class="math notranslate nohighlight">\(return\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">p_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="n">M</span><span class="o">/</span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="example">
+<h4><span class="section-number">4.2.1.1. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h4>
+<p>Solve for the pressure of Nitrogen (N<sub>2</sub>) gas (<span class="math notranslate nohighlight">\(M\)</span> = 28 kg kmol<sup>-1</sup>), knowing the temperature is 500 K and <span class="math notranslate nohighlight">\(v\)</span> is .01 m<sup>3</sup> kg<sup>-1</sup>.</p>
+<p><strong>Solution:</strong> Simply call the function p_ideal and input values  <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(M\)</span>. To display the result the function should be contained within <span class="math notranslate nohighlight">\(print\)</span> To change the number of significant digits that are displayed used the  <span class="math notranslate nohighlight">\(round\)</span> command. The units are kPa because <span class="math notranslate nohighlight">\(\frac{\rm kJ}{\rm kmol K} \frac{\rm kmol}{\rm kg} \frac{\rm K}{\rm m^3}\)</span> reduces to <span class="math notranslate nohighlight">\(\frac{\rm kN m}{\rm kg} \frac{1}{\rm m^3}\)</span> which reduces to <span class="math notranslate nohighlight">\(\frac{\rm kN}{\rm m^2}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">p_ideal</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mf">.01</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p_ideal</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mf">.01</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14846.428571428572
+14846.43
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h4><span class="section-number">4.2.1.2. </span>Example<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Now, let’s solve for the pressure of N<sub>2</sub> gas (<span class="math notranslate nohighlight">\(M\)</span> = 28 kg kmol<sup>-1</sup>), knowing the temperature is 500 K and <span class="math notranslate nohighlight">\(V\)</span> is .01 m<sup>3</sup> with mass, <span class="math notranslate nohighlight">\(m\)</span> equal to 2 kg.</p>
+<p><strong>Solution:</strong> Simply call the function and input <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(M\)</span>, undestanding that now we should insert the specific volume as <span class="math notranslate nohighlight">\(V/m\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">p_ideal</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mf">.01</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">p_ideal</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mf">.01</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29692.857142857145
+29692.86
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="optional-learning-to-use-minimize">
+<h3><span class="section-number">4.2.2. </span><strong>Optional</strong> - Learning to use Minimize<a class="headerlink" href="#optional-learning-to-use-minimize" title="Link to this heading">#</a></h3>
+<p id="index-5">The function <span class="math notranslate nohighlight">\(p_{\rm ideal}\)</span> is nice if the goal is to solve for pressure, but it is not useful if solving for a different state property, such as <span class="math notranslate nohighlight">\(v\)</span> or <span class="math notranslate nohighlight">\(T\)</span>. To solve for these other properties it would be necessary to define a second function, for example v_ideal, which is a function of <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(M\)</span>. However, this would quickly become tedius if we were to take this approach for solving all problems of interest. Thus, to make the ideal gas EOS more universal in a Python script, a nice approach would be to create a function that takes the known and unknown variables, and solves for those that are unknown.</p>
+<p>To do this will require a bit more work on the front end because it will be more general than the prior functions. In order to solve for an unknown state variable we will arrange the ideal gas EOS so that everything is equal to zero. Then, knowing two of the three variables we will iterate to solve for the unknown by utilizing a minimizing function. We will write all of our variables into an array, <span class="math notranslate nohighlight">\(t\)</span>, such that the first index of <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(t[0]\)</span> which is representative of <span class="math notranslate nohighlight">\(p\)</span>, the second index of <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(t[1]\)</span> which represents <span class="math notranslate nohighlight">\(v\)</span>, the third index is <span class="math notranslate nohighlight">\(t[2]\)</span> which is <span class="math notranslate nohighlight">\(T\)</span> and the fourth index is <span class="math notranslate nohighlight">\(t[3]\)</span> which is <span class="math notranslate nohighlight">\(M\)</span>. In Python, the first index of a list is called by referencing 0, the second by 1, and so on. We will also define <span class="math notranslate nohighlight">\(R\)</span> by entering it as a function that depends on <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">R</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">8.314</span><span class="o">/</span><span class="n">M</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">idealEOS</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">R</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>The reason for the <span class="math notranslate nohighlight">\(abs\)</span> around the result is that we are going to <a class="reference internal" href="../genindex.html"><span class="std std-ref">minimize</span></a> the function idealEOS, where the correct result is equal to zero. However, without the <span class="math notranslate nohighlight">\(abs\)</span> the minimize function would try to find a value much less than zero. Don’t worry to much right now if you don’t quite understand. Now, let’s assign values for <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(M\)</span> for a situation where we are trying to solve for <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span> <span class="o">=</span> <span class="mi">14500</span><span class="p">,</span><span class="mf">.01</span><span class="p">,</span><span class="mi">28</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To evaluate the function idealEOS we need to input a list of 4 values, but we don’t know temperature. We could guess a value for <span class="math notranslate nohighlight">\(T\)</span> and see what the value of the function is, knowing that if we have guessed correctly if the function value approaches zero. For example, if we guess that <span class="math notranslate nohighlight">\(T\)</span> = 600 K, our list t would look like the following.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="n">M</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see the value of the function by calling the list t inside the function idealEOS</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idealEOS</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>33.157142857142844
+</pre></div>
+</div>
+</div>
+</div>
+<p>We know that the function should be zero when the value of <span class="math notranslate nohighlight">\(T\)</span> is correct. Therefore, 600K is not the correct temperature. At this point we could guess and check <span class="math notranslate nohighlight">\(T\)</span> a few times until we converge on the correct value, or plot the function as a function of <span class="math notranslate nohighlight">\(T\)</span> . For example, lets observe how the function varies as we change the value of T using <span class="math notranslate nohighlight">\(matplotlib\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> <span class="c1"># numpy is a powerful computing package</span>
+<span class="n">temps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># creates an array of values, from 400 to 600 with a spacing of 10</span>
+<span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">temps</span><span class="p">,</span><span class="n">M</span><span class="p">]</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> <span class="c1"># this package allows us to plot functions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">temps</span><span class="p">,</span><span class="n">idealEOS</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature, K&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;IdealEOS&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span><span class="c1">#needed to display plot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/311e31494dda514c0d77c05ba04d10287d7cb30cc55a83284430c44b8d853073.png" src="../_images/311e31494dda514c0d77c05ba04d10287d7cb30cc55a83284430c44b8d853073.png" />
+</div>
+</div>
+<p>Here we can see that the minimum value of the function is near 480 K, which is the correct answer.</p>
+<p>Our goal now is to utilize a minimize function that will iteratively vary the value of <span class="math notranslate nohighlight">\(T\)</span> such that the function idealEOS is minimized, to arrive at the same result. In order to use the <span class="math notranslate nohighlight">\(minimize\)</span> function in Python we will need to take a few steps. First, we need to define constraints. The constraints will be the known values for <span class="math notranslate nohighlight">\(p\)</span>,<span class="math notranslate nohighlight">\(v\)</span>,<span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(M\)</span> (you will know 3 of the 4 values, where the fourth is the state variable you are solving for).  We write these as functions called <span class="math notranslate nohighlight">\(con1\)</span>, <span class="math notranslate nohighlight">\(con2\)</span>, <span class="math notranslate nohighlight">\(con3\)</span> and <span class="math notranslate nohighlight">\(con4\)</span>. For the constraint <span class="math notranslate nohighlight">\(t[0]\)</span> = <span class="math notranslate nohighlight">\(p\)</span>, in Python this is written as  <span class="math notranslate nohighlight">\(p-t[0]\)</span>, where <span class="math notranslate nohighlight">\(p\)</span> was defined eariler, and so on…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">con1</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">p</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">con2</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">con3</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">T</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">con4</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">M</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also need to give an initial guess for temperature. Lets keep it as 600 K. Thus,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="n">M</span><span class="p">]</span> <span class="c1"># These are our initial guesses</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To use the <span class="math notranslate nohighlight">\(minimize\)</span> function we will have to import it and then define the constraints that we wish to apply. In this case if we are solving for <span class="math notranslate nohighlight">\(T\)</span>, our constraints ar <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(M\)</span>, or <span class="math notranslate nohighlight">\(con1\)</span>, <span class="math notranslate nohighlight">\(con2\)</span> and <span class="math notranslate nohighlight">\(con4\)</span>. These are the first two lines in the coded cell below. Constraints can be equalities or inequalities and we have to indicate they are equalities by defining the ‘type’ to be ‘eq’ and then indicating which functions we are using as the constraints. Then, inside the <span class="math notranslate nohighlight">\(minimize\)</span> function in the third line we indicate the function we are minimzing (<span class="math notranslate nohighlight">\(idealEOS\)</span>), the initial guesses (<span class="math notranslate nohighlight">\(t\)</span>), and the constraints. We  equate the output of the <span class="math notranslate nohighlight">\(minimize\)</span> function to <span class="math notranslate nohighlight">\(res\)</span>. The output we are interested in can be accessed by calling ‘x’, which gives the value of the array that minmizies the function, under the constraints provided. To see this we type <span class="math notranslate nohighlight">\(res.x\)</span> as shown in the fourth line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span> <span class="c1"># scipy is a powerful scientific computing package</span>
+<span class="n">cons</span> <span class="o">=</span> <span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con1</span><span class="p">},{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con2</span><span class="p">},{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con4</span><span class="p">})</span><span class="c1"># Here we formally indicate constraints for minimize function</span>
+<span class="n">res</span><span class="o">=</span><span class="n">minimize</span><span class="p">(</span><span class="n">idealEOS</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">constraints</span><span class="o">=</span><span class="n">cons</span><span class="p">)</span>
+<span class="n">res</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.45000000e+04, 1.00000000e-02, 4.88332932e+02, 2.80000000e+01])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we know <span class="math notranslate nohighlight">\(T\)</span> is the third value in the list we could have also called <span class="math notranslate nohighlight">\(res.x[2]\)</span> on the last line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(488.3329324097054)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, lets see what this would look like putting everything together. Lets assume we know <span class="math notranslate nohighlight">\(T\)</span> = 500 K, <span class="math notranslate nohighlight">\(v\)</span> = 0.01 m<sup>3</sup> kg<sup>-1</sup> for Nitrogen (<span class="math notranslate nohighlight">\(M\)</span> = 28 kg kmol<sup>-1</sup>), and we want to solve for pressure, <span class="math notranslate nohighlight">\(p\)</span>, in <span class="math notranslate nohighlight">\(\frac{\rm kN}{\rm m^2}\)</span> or kPa. All we need to do is define our new state variables and <span class="math notranslate nohighlight">\(M\)</span>, change the initial guess list, t, and change the constraints. We will guess <span class="math notranslate nohighlight">\(P\)</span> is equal to 10000 kPa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#p,v,M = 14500,.01,28</span>
+<span class="n">T</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span><span class="mf">.01</span><span class="p">,</span><span class="mi">28</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">M</span><span class="p">]</span> <span class="c1"># These are our initial guesses</span>
+
+<span class="n">cons</span> <span class="o">=</span> <span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con2</span><span class="p">},{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con3</span><span class="p">},{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con4</span><span class="p">})</span><span class="c1"># Here we formally indicate constraints for minimize function</span>
+<span class="n">res</span><span class="o">=</span><span class="n">minimize</span><span class="p">(</span><span class="n">idealEOS</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">constraints</span><span class="o">=</span><span class="n">cons</span><span class="p">)</span>
+<span class="n">res</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.48464286e+04, 1.00000000e-02, 5.00000000e+02, 2.80000000e+01])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-results-using-matplotlib">
+<span id="matplotlib"></span><h3><span class="section-number">4.2.3. </span>Visualizing Results using Matplotlib<a class="headerlink" href="#visualizing-results-using-matplotlib" title="Link to this heading">#</a></h3>
+<p id="index-6">It can often be beneficial to display results graphically, for example, if you want to visualize how pressure changes with temperature. We saw above a brief example that plotted results of our minimization function using a function called <a class="reference internal" href="../genindex.html"><span class="std std-ref">Matplotlib</span></a>. In this section we will discuss in more detail to show how to <a class="reference internal" href="../genindex.html"><span class="std std-ref">plot</span></a> functions. To do so we will define pressure as a function of independent variables <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">p_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="n">M</span><span class="o">/</span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remember, we can insert arrays of values for <span class="math notranslate nohighlight">\(T\)</span>,<span class="math notranslate nohighlight">\(v\)</span> or <span class="math notranslate nohighlight">\(M\)</span>, in addition to scalar values. For example, if we want to see how <span class="math notranslate nohighlight">\(p\)</span> changes as temperatures varies from 700 K to 900 K, we can create an array for temperatures using the <span class="math notranslate nohighlight">\(np.arange\)</span> function, and then insert this array into our function <em>P_ideal</em>. Lets assume <span class="math notranslate nohighlight">\(v\)</span> = 0.01 m<sup>3</sup> kg<sup>-1</sup> and the gas is Nitrogen (<span class="math notranslate nohighlight">\(M\)</span> = 28 kg kmol<sup>-1</sup>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span><span class="mi">900</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p_ideal</span><span class="p">(</span><span class="n">temps</span><span class="p">,</span><span class="mf">.01</span><span class="p">,</span><span class="mi">28</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[20785.         21527.32142857 22269.64285714 23011.96428571
+ 23754.28571429 24496.60714286 25238.92857143 25981.25      ]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As discussed in <a class="reference internal" href="Brief%20Introduction%20to%20Python.html#plotting"><span class="std std-numref">Section 2.7</span></a> <a class="reference internal" href="Brief%20Introduction%20to%20Python.html#plotting"><span class="std std-ref">Plotting Using Matplotlib</span></a>, to plot values using <span class="math notranslate nohighlight">\(matplotlib\)</span> it is as simple importing the function <span class="math notranslate nohighlight">\(matplotlib.pyplot\)</span>, creating lists or arrays of x and y values to be plotted and inserting the lists we wish to plot into the function. For example, lets import <span class="math notranslate nohighlight">\(matplotlib\)</span>, create a list of x and y values and plot them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="n">temps</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="n">p_ideal</span><span class="p">(</span><span class="n">temps</span><span class="p">,</span><span class="mf">.01</span><span class="p">,</span><span class="mi">28</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d5c36dc6c110ed0f1ad4afd9dc8f30709f6bdb15bdf605f0a3fa984fbec2f705.png" src="../_images/d5c36dc6c110ed0f1ad4afd9dc8f30709f6bdb15bdf605f0a3fa984fbec2f705.png" />
+</div>
+</div>
+<p>There are numerous ways to make the plots look more customized, by changing the font type, size, colors, aspect ratios, tick marks, etc. But, this is outside the scope of this exercise. For now let’s just label the x and y axis by using the functions <span class="math notranslate nohighlight">\(xlabel\)</span> and <span class="math notranslate nohighlight">\(ylabel\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature, K&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Pressure, kPa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ded9b4df6bb63fcdb1915b57e8da620a1fa57269e2eae750d96c836e724b1ba9.png" src="../_images/ded9b4df6bb63fcdb1915b57e8da620a1fa57269e2eae750d96c836e724b1ba9.png" />
+</div>
+</div>
+</section>
+<section id="optional-lists-and-plotting-using-output-from-minimize">
+<h3><span class="section-number">4.2.4. </span><strong>Optional</strong> - Lists and Plotting Using Output From Minimize<a class="headerlink" href="#optional-lists-and-plotting-using-output-from-minimize" title="Link to this heading">#</a></h3>
+<p>As seen, inputting an array of values into a function generates a resulting array of values. However, it is not possible to input a list or array of values into the <span class="math notranslate nohighlight">\(minimize\)</span> function. Thus, if we want to solve for multiple state variables using minimize, we would need to loop over the mimimize function and append the output to a list. For example, if we wanted to use the same array of temps and solve for pressure we could do the following.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cons</span> <span class="o">=</span> <span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con2</span><span class="p">},{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con3</span><span class="p">},{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span><span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">con4</span><span class="p">})</span><span class="c1"># Here we formally indicate constraints for minimize function</span>
+
+<span class="n">pres</span><span class="o">=</span><span class="p">[]</span> <span class="c1">#here we define an empty list for pressures that we will append results to during each loop</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temps</span><span class="p">:</span> <span class="c1">#this loops from temp[0] to temp[1], etc</span>
+    <span class="n">T</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="mf">.01</span><span class="p">,</span><span class="mi">28</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">M</span><span class="p">]</span> <span class="c1"># These are our initial guesses</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">minimize</span><span class="p">(</span><span class="n">idealEOS</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">constraints</span><span class="o">=</span><span class="n">cons</span><span class="p">)</span>
+    <span class="n">pres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pres</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.float64(20785.000000529493), np.float64(21527.32142816202), np.float64(22269.642857129387), np.float64(23011.964284286223), np.float64(23754.285713875357), np.float64(24496.607139730266), np.float64(25238.928575756574), np.float64(25981.250000011623)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can plot the same way as above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xvals</span> <span class="o">=</span> <span class="n">temps</span>
+<span class="n">yvals</span> <span class="o">=</span> <span class="n">pres</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span><span class="n">yvals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature, K&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Pressure, kPa&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/79187843f8f1ed5c10d5baa1ebbfcf9fd8845acced2045e96631368a49733c0e.png" src="../_images/79187843f8f1ed5c10d5baa1ebbfcf9fd8845acced2045e96631368a49733c0e.png" />
+</div>
+</div>
+</section>
+<section id="exercise-1">
+<span id="exercise1"></span><h3><span class="section-number">4.2.5. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>A mass of 0.1 kg of helium (He, <span class="math notranslate nohighlight">\(M\)</span><sub>He</sub> = 4 <span class="math notranslate nohighlight">\(\frac{\rm kg}{\rm kmol}\)</span>) at 500 kPa is contained within a 0.4 m<sup>3</sup> rigid tank. The tank is
+heated until the pressure is 700 kPa. Calculate the temperature change of helium (in K) as a result of this heating.</p></li>
+<li><p>A rigid tank contains 3 kg of nitrogen (N<sub>2</sub>) at 35°C and 150 kPa.</p>
+<ol class="arabic simple">
+<li><p>Determine the specific volume (<span class="math notranslate nohighlight">\(v\)</span>) and absolute volume (<span class="math notranslate nohighlight">\(V\)</span>) using the ideal gas law. For this calculation define a function their function through rearrangement of</p></li>
+<li><p>Determine the specific volume (<span class="math notranslate nohighlight">\(v\)</span>) and absolute volume (<span class="math notranslate nohighlight">\(V\)</span>) using the ideal gas law and a minimizing function.</p></li>
+<li><p>Does the specific volume of the nitrogen change with temperature or pressure?</p></li>
+<li><p>Plot the pressure as a function of temperature between 0°C and 500°C with and without using a minimizing function.</p></li>
+<li><p>Now imagine it is connected to a second tank through a valve with volume 1m<sup>3</sup> also containing N<sub>2</sub> at 10°C and 450 kPa. The valve is opened, and
+the entire system is allowed to reach thermal equilibrium with the surroundings, which are at 25°C. Determine the final equilibrium pressure of N<sub>2</sub>.</p></li>
+</ol>
+</li>
+<li><p>A frictionless piston–cylinder contain 5 kg of nitrogen at 100 kPa and 250 K. The system is compressed until it reaches a final temperature of 450 K.  Assume the compression occurs according to to the relation <span class="math notranslate nohighlight">\(pV^2\)</span> = constant.</p>
+<ol class="arabic simple">
+<li><p>Calculate the volume and pressure after compression.</p></li>
+<li><p>Plot the pressure as a function of volume during the compression process.</p></li>
+</ol>
+</li>
+</ol>
+<p><a class="reference internal" href="Exercise_Solutions/Exercise%201.html#exercise1solutions"><span class="std std-numref">Section 10.1</span></a> <a class="reference internal" href="Exercise_Solutions/Exercise%201.html#exercise1solutions"><span class="std std-ref">Exercise 1 Solutions</span></a></p>
+</section>
+</section>
+<section id="phase-transitions-other-equations-of-state-and-cantera">
+<h2><span class="section-number">4.3. </span>Phase Transitions, Other Equations of State and Cantera<a class="headerlink" href="#phase-transitions-other-equations-of-state-and-cantera" title="Link to this heading">#</a></h2>
+<p>There are several other, relatively simple, equations of state that can more accurately describe the <span class="math notranslate nohighlight">\(P\)</span>,<span class="math notranslate nohighlight">\(v\)</span>,<span class="math notranslate nohighlight">\(T\)</span> relationship of pure substances by, for example, taking into account intermolectular interactions that become important at higher <span class="math notranslate nohighlight">\(P\)</span>, lower <span class="math notranslate nohighlight">\(T\)</span> or lower <span class="math notranslate nohighlight">\(v\)</span>. In general, the approach to solving for state properties with these other EOS is conceptually similar to using the ideal gas EOS described above. These relatively simple equations can usually work well for gases but should not be used for two phase substances (e.g., liquid-vapor mixtures), or substances that are near the phase transition points or critical points. In these situtations, more complicated equations of state must be used that are computationally difficult to solve, and typically software have been developed to perform these computations, or values are tabulated. To solve for properties of pure substances that are not ideal we will take advantage of the Cantera package in Python that has complex equations of state for many pure substances - thus,  reaching into the appendices of your thermodynamics textbook and interpolating or extrapolating values from tables will not be necessary! But before we get there, a bit more background on phase changes will be discussed.</p>
+<p id="index-7">There are many situations where pure substances undergo a <a class="reference internal" href="../genindex.html"><span class="std std-ref">phase transition</span></a>, where two or more phases can co-exist in equilibrium. For example, H<sub>2</sub>O is a well known molecule that we have experience with as either solid, liquid, vapor, or a mixture of these depending on its temperature and pressure. Imagine heating liquid H<sub>2</sub>O contained in a vertically oriented piston-cylinder device, where the piston is free to move, as shown in <a class="reference internal" href="#eval-fig-a"><span class="std std-numref">Figure 4.1</span></a>. Initially, at the temperature where heating begins (State 1), if we were to add an incremental amount of heat and it were remain a liquid (State 2), it is called a <a class="reference internal" href="../genindex.html"><span class="std std-ref">compressed liquid</span></a>. Thus, the compressed liquid region is where a liquid is not about to vaporize. During this heat addition, the temperature will increase but there is very little change in the specific volume. If heat is added until the point where the addition of any more heat would cause it to vaporize, or boil, this is referred to as a <a class="reference internal" href="../genindex.html"><span class="std std-ref">saturated liquid</span></a> (State 3).  For H<sub>2</sub>O, at ambient pressure of 1 bar, this occurs near 100 °C. After this point, as heat continues to be added to the system, H<sub>2</sub>O begins to vaporize and change phase and forms a <a class="reference internal" href="../genindex.html"><span class="std std-ref">saturated mixture</span></a>, composed of both liquid and vapor (State 4). During this phase transition, the temperature remains constant, but the specific volume increases as the fraction of vapor increases. If more heat is added just until the last fraction of liquid has vaporized (or the point where vapor is about to condense), it is referred to as a <a class="reference internal" href="../genindex.html"><span class="std std-ref">saturated vapor</span></a> (State 5). Then, as more heat is added, the specific volume continues to increase along with temperature and in this region is referred to as a <a class="reference internal" href="../genindex.html"><span class="std std-ref">superheated vapor</span></a> (State 6). The temperature at which a fluid transitions from liquid to vapor, or vapor to liquid, at a specified pressure is referred to as the <a class="reference internal" href="../genindex.html"><span class="std std-ref">saturated temperature</span></a> (<span class="math notranslate nohighlight">\(T_{\rm sat}\)</span>).The pressure at which a fluid transitions from liquid to vapor, or vapor to liquid at a specified temperature is referred to as the <a class="reference internal" href="../genindex.html"><span class="std std-ref">saturated pressure</span></a> (<span class="math notranslate nohighlight">\(P_{\rm sat}\)</span>).</p>
+<figure class="align-default" id="eval-fig-a">
+<img alt="../_images/phase_transition.png" src="../_images/phase_transition.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">From left to right - the phase transition of H<sub>2</sub>O from a compressed liquid to superheated vapor in a piston cylinder that is free to move.</span><a class="headerlink" href="#eval-fig-a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>During the entire heating process described above, if the mass of the piston is constant and the external pressure is constant, then the pressure contained within the cyclinder can be assumed to remain constant as it rises during heating. This is an idealized approximation but a good one as long as the expansion (or contraction) occurs very slowly, or reversibly, as we will learn about in later chapters. We can see this from a force balance on the piston (<a class="reference internal" href="#eval-fig-b"><span class="std std-numref">Figure 4.2</span></a>), where:</p>
+<p><span class="math notranslate nohighlight">\(\sum F = 0\)</span></p>
+<p>thus, <span class="math notranslate nohighlight">\(\sum F_{\rm up} = \sum F_{\rm down}\)</span></p>
+<p>thus, <span class="math notranslate nohighlight">\(p_{\rm ext}A_{\rm piston} + m_{\rm piston}g = p_{\rm int}A_{\rm piston}\)</span>, where <span class="math notranslate nohighlight">\(p_{\rm ext}\)</span> is the pressure external to the piston, typically atmospheric and assumed constant, <span class="math notranslate nohighlight">\(A_{\rm piston}\)</span> is the cross-sectional area of the piston which is constant, <span class="math notranslate nohighlight">\(m_{\rm piston}\)</span> is the piston mass which is constant, <span class="math notranslate nohighlight">\(g\)</span> is the acceleration due to gravity which is constant and <span class="math notranslate nohighlight">\(p_{\rm int}\)</span> is the pressure inside the piston-cylinder.</p>
+<p>thus, <span class="math notranslate nohighlight">\(p_{\rm int} =  {\rm Constant}\)</span></p>
+<figure class="align-default" id="eval-fig-b">
+<img alt="../_images/piston_force_balance.png" src="../_images/piston_force_balance.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">A simplified view of the internal and external forces acting on a piston during expansion or compression. The downwards acting forces are due to the external pressure and mass of the piston, while the upwards acting forces are a result of the internal pressure in the cylinder.</span><a class="headerlink" href="#eval-fig-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="using-cantera-to-evaluate-properties">
+<h3><span class="section-number">4.3.1. </span>Using Cantera to Evaluate Properties<a class="headerlink" href="#using-cantera-to-evaluate-properties" title="Link to this heading">#</a></h3>
+<p id="index-8">As mentioned, it would not be suitable to use the ideal gas EOS to determine property values during the aforementioned heating process, except in the superheated region far away from the saturated vapor points - see further discussion below in <a class="reference internal" href="#idealgascompare"><span class="std std-numref">Section 4.3.4</span></a> <a class="reference internal" href="#idealgascompare"><span class="std std-ref">Ideal Gas Law Comparison</span></a>. Typically, tabulated values calculated from more complex equations of state would be used, coupled with interpolation and extrapolation which can be both tedius and introduce error. To avoid this and to enable evaluation easily within our Python scripts, we will use <a class="reference internal" href="../genindex.html"><span class="std std-ref">Cantera</span></a> (As mentioned in <a class="reference internal" href="Brief%20Introduction%20to%20Python.html#cantera"><span class="std std-numref">Section 2.8</span></a> <a class="reference internal" href="Brief%20Introduction%20to%20Python.html#cantera"><span class="std std-ref">Cantera Package</span></a>), a Python package useful for evaluating properties of pure substances that can evaluate EOS’s with relative ease.</p>
+<p>Let’s use Cantera to show how the specific volume and temperature change during the phase transition of H<sub>2</sub>O at constant pressure, as exemplified by the piston-cylinder example above in <a class="reference internal" href="#eval-fig-a"><span class="std std-numref">Figure 4.1</span></a>. At this point, you should have already installed the Cantera package. Be sure to navigate to the correct environment in anaconda - refer to <a class="reference internal" href="Brief%20Introduction%20to%20Python.html#cantera"><span class="std std-numref">Section 2.8</span></a> <a class="reference internal" href="Brief%20Introduction%20to%20Python.html#cantera"><span class="std std-ref">Cantera Package</span></a>). Import cantera and define a species as H<sub>2</sub>O, like below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define species1 as water</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will start by assuming the process begins at ambient pressure (100 kPa) and temperature (298.15 K), and that the entire heating process occurs at constant pressure. To calculate property values, we will need to know any two independent properties (more on this later) and this will fully define the state of our system. For example, we can define the temperature and pressure as follows to fix the state of our system.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mf">273.15</span><span class="o">+</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100000</span> <span class="c1">#Redefine Temperature in K and Pressure in Pa at State 1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And after the state is fixed, we can determine the specific volume by calling <span class="math notranslate nohighlight">\(species1\)</span> preceded by <span class="math notranslate nohighlight">\(.PV[1]\)</span>. Without the addition of <span class="math notranslate nohighlight">\([1]\)</span> both the pressure and specific volume would be displayed, as shown in the first line of code below. The <span class="math notranslate nohighlight">\([1]\)</span> ensures that we only select the second value in the list, or specific volume, as shown in the second line of code below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="c1"># will output a list of the pressure in Pa and specific volume in m^3 per kg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(99999.99997029465, 0.0010028874407073288)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#will output only specific volume in m^3 per kg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0010028874407073288
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you are unsure of the units you can always type the species name followed by parenthesis in an empty cell, like below. As seen, units for density are shown as <span class="math notranslate nohighlight">\(\frac{\rm kg}{\rm m^3}\)</span>, and specific volume therefore has the inverse of this, or <span class="math notranslate nohighlight">\(\frac{\rm m^3}{\rm kg}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  water:
+
+       temperature   298.15 K
+          pressure   1e+05 Pa
+           density   997.12 kg/m^3
+  mean mol. weight   18.016 kg/kmol
+    vapor fraction   0
+   phase of matter   liquid
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy       -1.5866e+07       -2.8584e+08  J
+   internal energy       -1.5866e+07       -2.8584e+08  J
+           entropy            3887.3             70034  J/K
+    Gibbs function       -1.7025e+07       -3.0672e+08  J
+ heat capacity c_p            4182.4             75350  J/K
+ heat capacity c_v            4139.6             74579  J/K
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned, we need to provide two independent properties to fully define the state of our system and determine other state properties. However, temperature and pressure are not always independent, for example in the phase change region. This is because during a phase change temperature and pressure remain constant, while specific volume increases. Therefore, constraining only <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(P\)</span> in the region where the phase is changing does not provide enough information to determine specific volume or other state properties. Therefore, rather than defining temperature and pressure, we can alternatively define pressure and specific volume to calculate the corresponding temperature, like below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span><span class="mf">.001003</span> <span class="c1"># Redefine pressure in Pa at State 1 and specific volume</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span> <span class="c1"># we can see the temperature is nearly 298.15, but not exactly, with differences due to rounding</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(298.5856144896108, 0.001003)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, lets calculate a range of temperatures during the heating process in the piston-cylinder by defining a range of volumes where it is to be calculated. To do this, we can create a list of specific volumes, ranging from .001003 to 2, like below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.001003</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">.00001</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we can determine temperature at each of these volumes by iterating through the list of volumes, setting the pressure and volume at each iteration and appending the resulting temperature to a new list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temps</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called temps</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vols</span><span class="p">:</span> <span class="c1"># iterate over each value in vols, i.e. .001003,.0010013,.0010023, etc</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span><span class="n">i</span> <span class="c1"># set the pressure and ith volume</span>
+    <span class="n">temps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># append the temperature value (species1.TV[0]) at the specified pressure and volume to the temps list   </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p id="index-9">The reason we needed to iterate is that we can only evaluate temperature with a single volume, not a list or array of values. Cantera will not accept anything but scalar inputs, unlike functions which can also accept a list of values. Understandably, if iterating using loops at this point is a bit intimidating, we can alternatively take advantage of a function called <a class="reference internal" href="../genindex.html"><span class="std std-ref">vectorize</span></a> within the numpy package. By using the vectorize function we can input a list of values, or volumes in this case, rather than only one at a time. To do this we first need to define a function that we call <span class="math notranslate nohighlight">\(temps\)</span> below. Right now this would only accept a single scalar value as it’s input</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">temp</span><span class="p">(</span><span class="n">vol</span><span class="p">):</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span><span class="n">vol</span>
+    <span class="k">return</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, to enable this function to accept an array of values, we then <span class="math notranslate nohighlight">\(vectorize\)</span> it by including the function <span class="math notranslate nohighlight">\(temps\)</span> in the function <span class="math notranslate nohighlight">\(np.vectorize\)</span>, and calling this <span class="math notranslate nohighlight">\(tempsvector\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tempsvector</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result is the same as using the iterative approach above. Try for yourself by inputing  an array of volumes into tempsvector. See below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_vols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">.05</span><span class="p">,</span><span class="mf">.01</span><span class="p">)</span>
+<span class="n">tempsvector</span><span class="p">(</span><span class="n">test_vols</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([372.80884382, 372.80884382, 372.80884382, 372.80884382])
+</pre></div>
+</div>
+</div>
+</div>
+<p id="index-10">Now, we can plot the resulting <span class="math notranslate nohighlight">\(temps\)</span> list as a function of <span class="math notranslate nohighlight">\(vols\)</span> list, like below and as we did above in <a class="reference internal" href="#matplotlib"><span class="std std-numref">Section 4.2.3</span></a> <a class="reference internal" href="#matplotlib"><span class="std std-ref">Visualizing Results using Matplotlib</span></a>. The basic plotting is the same but we have added some annotations, which you can see by calling the “.annotate” function.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vols</span><span class="p">,</span><span class="n">temps</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$T$ $({\mathrm</span><span class="si">{K}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Saturated Liquid Point, $v_\mathrm</span><span class="si">{f}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">375</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.15</span><span class="p">,</span><span class="mi">400</span><span class="p">),</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Saturated Vapor Point, $v_\mathrm</span><span class="si">{g}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.70</span><span class="p">,</span><span class="mi">370</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.05</span><span class="p">,</span><span class="mi">345</span><span class="p">),</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$p$ = 100 kPa&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">377</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Figures/sat_liquid_vapor.png&#39;</span><span class="p">)</span><span class="c1"># used to save the figure if you desire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:4: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:4: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18599/3770111974.py:4: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.xlabel(&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;,  fontsize=12)
+/tmp/ipykernel_18599/3770111974.py:5: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.ylabel(&#39;$T$ $({\mathrm{K})}$&#39;,  fontsize=12)
+/tmp/ipykernel_18599/3770111974.py:6: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.annotate(&#39;Saturated Liquid Point, $v_\mathrm{f}$&#39;, (0,375), (0.15,400), arrowprops=dict(color=&#39;orange&#39;, shrink=0.05), fontsize=12)
+/tmp/ipykernel_18599/3770111974.py:7: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.annotate(&#39;Saturated Vapor Point, $v_\mathrm{g}$&#39;, (1.70,370), (1.05,345), arrowprops=dict(color=&#39;orange&#39;, shrink=0.05), fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/22445a015f2c71e96b41d1f8f84cdb543c3facd872cbfdc350ea7f5ccbce0077.png" src="../_images/22445a015f2c71e96b41d1f8f84cdb543c3facd872cbfdc350ea7f5ccbce0077.png" />
+</div>
+</details>
+</div>
+<figure class="align-default" id="properties-fig-a">
+<img alt="../_images/sat_liquid_vapor.png" src="../_images/sat_liquid_vapor.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Temperature versus specific volume at constant pressure of 100 kPa. Notice how temperature remains constant during the phase transition, between the saturated liquid point and saturated vapor point.</span><a class="headerlink" href="#properties-fig-a" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The saturated liquid and saturated vapor points, where the phase transition begins and ends, can be seen above and as mentioned prior, temperature remains constant in this region. We can see that (<span class="math notranslate nohighlight">\(T_{\rm sat}\)</span>) is about 373 K (it is exactly 372.76 K) at 100 kPa. Thus, (<span class="math notranslate nohighlight">\(P_{\rm sat}\)</span>) is 100 kPa at a temperature of 372.76 K. The specific volume of a saturated liquid, denoted by the symbol <span class="math notranslate nohighlight">\(v_\rm f\)</span>, and the specific volume of a saturated vapor by <span class="math notranslate nohighlight">\(v_\rm g\)</span>. Notice that the specific volume in the compressed liquid region is for the most part independent of temperature.</p>
+</section>
+<section id="quality">
+<h3><span class="section-number">4.3.2. </span>Quality<a class="headerlink" href="#quality" title="Link to this heading">#</a></h3>
+<p id="index-11">At this point, it makes sense to introduce a new, intensive thermodynamic property called <a class="reference internal" href="../genindex.html"><span class="std std-ref">quality</span></a> (<span class="math notranslate nohighlight">\(x\)</span>), which is a measure of the fraction of vapor in the system. Thus, quality can range from 0 at the saturated liquid point to 1 at the saturated vapor point. Mathematically, quality is defined as the mass of vapor (<span class="math notranslate nohighlight">\(m_\rm {vapor}\)</span>) relative to the total mass(<span class="math notranslate nohighlight">\(m\)</span>), or:</p>
+<div class="math notranslate nohighlight" id="equation-eq-e">
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-eq-e" title="Link to this equation">#</a></span>\[x = \frac{m_\rm {vapor}}{m_\rm {total}}\]</div>
+<p>Quality is related to <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(v_\rm f\)</span> and <span class="math notranslate nohighlight">\(v_\rm g\)</span>. This can be derived by understanding that the total volume of the system (<span class="math notranslate nohighlight">\(V\)</span>) is composed of liquid and vapor, or <span class="math notranslate nohighlight">\(V_\rm f\)</span> and <span class="math notranslate nohighlight">\(V_\rm g\)</span>. Therefore:</p>
+<div class="math notranslate nohighlight" id="equation-eq-e">
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-eq-e" title="Link to this equation">#</a></span>\[V = V_\rm f + V_\rm g\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-f">
+<span class="eqno">(4.7)<a class="headerlink" href="#equation-eq-f" title="Link to this equation">#</a></span>\[m v = m_\rm f v_\rm f + m_\rm g v_\rm g\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-g">
+<span class="eqno">(4.8)<a class="headerlink" href="#equation-eq-g" title="Link to this equation">#</a></span>\[v = (1-x)v_\rm f + xv_\rm g\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-h">
+<span class="eqno">(4.9)<a class="headerlink" href="#equation-eq-h" title="Link to this equation">#</a></span>\[v = x(v_\rm g-v_\rm f)+v_\rm f\]</div>
+<p>In Cantera, we can set or call the quality of a species in the two phase region by following the <span class="math notranslate nohighlight">\(species1\)</span> with <span class="math notranslate nohighlight">\(.PQ\)</span> or <span class="math notranslate nohighlight">\(.TQ\)</span> where <span class="math notranslate nohighlight">\(Q\)</span> is the quality, or vapor fraction. For example, lets set the quality to 0 and 1 at a pressure of 100 kPa and read out temperature and specific volume.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(372.8088438181153, 0.0010432439474862992)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(372.8088438181153, 1.694166798232878)
+</pre></div>
+</div>
+</div>
+</div>
+<p id="index-12">As seen, the outputs compare well with the <span class="math notranslate nohighlight">\(T-v\)</span> diagram above. Now lets construct a series of saturation points at different pressures using this new tool. We will vary our calculations from 10 kPa to 22.06 MPa. The reason for selecting 22.06 MPa is that this is right below the <a class="reference internal" href="../genindex.html"><span class="std std-ref">critical pressure</span></a> (<span class="math notranslate nohighlight">\(P_{\rm crit}\)</span>) for H<sub>2</sub>O. The critical pressure is the point at which, when the pressure is increased beyond it, the substance becomes a <a class="reference internal" href="../genindex.html"><span class="std std-ref">supercritical fluid</span></a>. Likewise, the <a class="reference internal" href="../genindex.html"><span class="std std-ref">critical temperature</span></a> (<span class="math notranslate nohighlight">\(T_{\rm crit}\)</span>), which occurs at <span class="math notranslate nohighlight">\(P_{\rm crit}\)</span> (and vice versa) is the point at which, when the temperature is increased beyond it, the substance becomes a <a class="reference internal" href="../genindex.html"><span class="std std-ref">supercritical fluid</span></a>.  A supercritical fluid is one in that is neither liquid or vapor, and in this higher pressure range there is no phase change that occurs. Lets construct the list of pressures like below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pres</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="mi">22060000</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span> <span class="c1"># pressure in Pa</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, lets calulate the associated saturated fluid specific volumes (<span class="math notranslate nohighlight">\(v_{\rm f}\)</span> and <span class="math notranslate nohighlight">\(v_{\rm g}\)</span>) and saturated temperatures (<span class="math notranslate nohighlight">\(T_{\rm sat}\)</span>) at each pressure. To do this we will again iterate over each pressure and set the quality to 0 when we calculate <span class="math notranslate nohighlight">\(v_{\rm f}\)</span> and 1 when we calculate <span class="math notranslate nohighlight">\(v_{\rm g}\)</span>. To determine the saturated temperature we can use either quality (or anything in between), since this is constant in the saturated region. We will break these calculations down into three separate cells for visualization purposes below, but of course they could all be done within the same loop. Lets first calculate the <span class="math notranslate nohighlight">\(v_{\rm f}\)</span> values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vfs</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called vfs that will store our saturated fluid volumes at the different pressures</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span> <span class="c1"># iterate over each value in pres, i.e. 10000,20000,30000, etc</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="mi">0</span> <span class="c1"># set the ith pressure and quality of 0 to get saturated fluid values</span>
+    <span class="n">vfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># append the vf value (species1.TV[1]) at the specified pressure and quality to the vfs list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then lets calculate <span class="math notranslate nohighlight">\(v_{\rm g}\)</span> values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vgs</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called vgs that will store our saturated vapor volumes at the different pressures</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span> <span class="c1"># iterate over each value in pres, i.e. 10000,20000,30000, etc</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="mi">1</span> <span class="c1"># set the ith pressure and quality of 1 so we can get saturated vapor values</span>
+    <span class="n">vgs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># append the vg value (species1.TV[1]) at the specified pressure and quality to the vgs list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then lets calculate <span class="math notranslate nohighlight">\(T_{\rm sat}\)</span> values. Remember, we can use any quality between 0 and 1 - we will use 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sattemps</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># create an empty list called sattemps that will store our saturated temperatures the different pressures</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span> <span class="c1"># iterate over each value in pres, i.e. 10000,20000,30000, etc</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="mi">0</span> <span class="c1"># set the ith pressure and quality of 0 to get saturated values</span>
+    <span class="n">sattemps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># append the saturated temperature value (species1.TV[0]) at the specified pressure and quality. The quality could have been anything between 0 and 1 because T_sat remains constant</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we can plot the resulting <span class="math notranslate nohighlight">\(sattemps\)</span> list as a function of the <span class="math notranslate nohighlight">\(vfs\)</span> and <span class="math notranslate nohighlight">\(vgs\)</span> lists, like below. The basic plotting is the same as before but instead of calling <span class="math notranslate nohighlight">\(plt.plot()\)</span> we have used <span class="math notranslate nohighlight">\(plt.semilogx()\)</span> in order to show the x-values in log scale.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">vfs</span><span class="p">,</span><span class="n">sattemps</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">vgs</span><span class="p">,</span><span class="n">sattemps</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">700</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$T$ $({\mathrm</span><span class="si">{K}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Saturated Fluid Volumes, $v_\mathrm</span><span class="si">{f}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.0011</span><span class="p">,</span><span class="mi">400</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.002</span><span class="p">,</span><span class="mi">350</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Saturated Vapor Volumes, $v_\mathrm</span><span class="si">{g}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">.05</span><span class="p">,</span><span class="mi">540</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mi">600</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Saturation Dome&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.002</span><span class="p">,</span><span class="mi">475</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$T_{\mathrm</span><span class="si">{crit}</span><span class="s1">}$&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.0021</span><span class="p">,</span><span class="mi">655</span><span class="p">),</span>  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="c1"># plt.annotate(&#39;$T_{\mathrm{crit}}$&#39;, (0.0031,650), (0.0007,675), color=&#39;green&#39;, arrowprops=dict(color=&#39;green&#39;, shrink=0.005), fontsize=12)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Figures/sat_dome.png&#39;</span><span class="p">)</span><span class="c1"># used to save the figure if you desire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:11: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:11: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18599/1448736236.py:6: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.xlabel(&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;,  fontsize=12)
+/tmp/ipykernel_18599/1448736236.py:7: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.ylabel(&#39;$T$ $({\mathrm{K})}$&#39;,  fontsize=12)
+/tmp/ipykernel_18599/1448736236.py:8: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.annotate(&#39;Saturated Fluid Volumes, $v_\mathrm{f}$&#39;, (0.0011,400), (0.002,350),color=&#39;blue&#39;, arrowprops=dict(color=&#39;blue&#39;, shrink=0.05), fontsize=12)
+/tmp/ipykernel_18599/1448736236.py:9: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.annotate(&#39;Saturated Vapor Volumes, $v_\mathrm{g}$&#39;, (.05,540), (0.05,600), color=&#39;orange&#39;, arrowprops=dict(color=&#39;orange&#39;, shrink=0.05), fontsize=12)
+/tmp/ipykernel_18599/1448736236.py:11: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.annotate(&#39;$T_{\mathrm{crit}}$&#39;, (0.0021,655),  color=&#39;green&#39;, fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/10f44541a491425cbb5eecfd19e6e4f22855c920f4d5630e407881dcc4ce5683.png" src="../_images/10f44541a491425cbb5eecfd19e6e4f22855c920f4d5630e407881dcc4ce5683.png" />
+</div>
+</details>
+</div>
+<figure class="align-default" id="properties-fig-b">
+<img alt="../_images/sat_dome.png" src="../_images/sat_dome.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Temperature versus specific volume along the saturation dome. On the left in blue are saturated fluid points and on the right in orange are saturated vapor points. The formation of the points represents the saturation dome, beneath which everything is a saturated liquid-vapor mixture. On top of the dome is the critical point.</span><a class="headerlink" href="#properties-fig-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Everything inside of the <a class="reference internal" href="../genindex.html"><span class="std std-ref">saturation dome</span></a> is a saturated mixture. To the left, the fluid is a compressed fluid, to the right a superheated fluid, and above a supercritical fluid. At the critical pressure (<span class="math notranslate nohighlight">\(P_{\rm crit}\)</span>) of 22.06 (top of the dome), <span class="math notranslate nohighlight">\(T\)</span>  = <span class="math notranslate nohighlight">\(T_{\rm crit}\)</span> = 644 K. In general, as pressure increases <span class="math notranslate nohighlight">\(T_{\rm sat}\)</span> increases, as shown in the green constant pressure lines of 100 kPa, 1 MPa and 10 MPa on the <span class="math notranslate nohighlight">\(T-v\)</span> diagram in <a class="reference internal" href="#properties-fig-c"><span class="std std-numref">Figure 4.5</span></a> below.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pres</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100000</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">vf</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called vf that will store our saturated fluid volumes at the different pressures</span>
+<span class="n">sattemp</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called sattemp that will store our saturated temperatures at the different pressures</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span> <span class="c1"># iterate over each value in pres, i.e. 100000,1000000,etc</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="mi">0</span> <span class="c1"># set the ith pressure and quality of 0 to get saturated fluid values</span>
+    <span class="n">vf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># append the vf value (species1.TV[1]) at the specified pressure and quality to the vfs list</span>
+    <span class="n">sattemp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># append the sat. temp value (species1.TV[0]) at the specified pressure</span>
+<span class="n">vg</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called vg that will store our saturated fluid volumes at the different pressures</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span> <span class="c1"># iterate over each value in pres, i.e. 10000,100000,etc</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="mi">1</span> <span class="c1"># set the ith pressure and quality of 1 to get saturated vapor values</span>
+    <span class="n">vg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># append the vg value (species1.TV[1]) at the specified pressure and quality to the vgs list</span>
+
+<span class="n">vols</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called vols</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span>
+    <span class="n">vols</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span> <span class="c1"># create a list of lists within vols to hold volumes at each pressure</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pres</span><span class="p">)):</span>
+    <span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.001003</span><span class="p">,</span><span class="n">vf</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mf">.00001</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vols</span><span class="p">)):</span>
+    <span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vf</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">vg</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mf">.001</span><span class="p">))</span>
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vols</span><span class="p">)):</span>
+    <span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vg</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mf">1.5</span><span class="o">*</span><span class="n">vg</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mf">.001</span><span class="p">))</span>
+    
+<span class="n">temps</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called temps</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span>
+    <span class="n">temps</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span> <span class="c1"># create a list of lists within temps to hold temperatures at each pressure</span>
+
+<span class="n">k</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">vols</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="c1"># iterate over each value in vols</span>
+        <span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="c1"># set the pressure and ith volume</span>
+        <span class="n">temps</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># append the temperature value (species1.TV[0]) at the specified pressure and volume to the temps list</span>
+    <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span>
+    
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">vfs</span><span class="p">,</span><span class="n">sattemps</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">vgs</span><span class="p">,</span><span class="n">sattemps</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vols</span><span class="p">)):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">temps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;100 kPa&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.002</span><span class="p">,</span><span class="mi">377</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;1 MPa&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.002</span><span class="p">,</span><span class="mi">460</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;10 MPa&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.002</span><span class="p">,</span><span class="mi">590</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$T$ $({\mathrm</span><span class="si">{K}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Figures/sat_dome_pressures.png&#39;</span><span class="p">)</span><span class="c1"># used to save the figure if you desire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:46: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:47: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:46: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:47: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18599/3324521175.py:46: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.xlabel(&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;,  fontsize=12)
+/tmp/ipykernel_18599/3324521175.py:47: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.ylabel(&#39;$T$ $({\mathrm{K})}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/4a907e76e8cd94a02f09cae57b64bdce512513322c99466b1df57955346e470b.png" src="../_images/4a907e76e8cd94a02f09cae57b64bdce512513322c99466b1df57955346e470b.png" />
+</div>
+</details>
+</div>
+<figure class="align-default" id="properties-fig-c">
+<img alt="../_images/sat_dome_pressures.png" src="../_images/sat_dome_pressures.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Temperature versus specific volume with multiple constant pressure lines shown. As pressure increases the saruration temperature also increases, until the critical point is reached. In the compressed liquid region, specific volume is largely independent of pressure and assumed to be incompressible.</span><a class="headerlink" href="#properties-fig-c" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="liquid-approximation-and-incompressibility">
+<span id="liquidapproximation"></span><h3><span class="section-number">4.3.3. </span>Liquid Approximation and Incompressibility<a class="headerlink" href="#liquid-approximation-and-incompressibility" title="Link to this heading">#</a></h3>
+<p id="index-13">Notice that in the compressed liquid region on the left hand side of the saturation dome, the specific saturated fluid volumes (<span class="math notranslate nohighlight">\(v_{\rm f}\)</span>) in blue are nearly indistinguishable from the compressed liquid specific volumes that are green at all at different pressures - indeed they all appear to overlap. While there are very small differences, they are not observable at this scale. Because of the very small differences in <span class="math notranslate nohighlight">\(v\)</span> as pressure changes in the compressed liquid region, we can often assume that specific volume is a function of temperature only - i.e. <span class="math notranslate nohighlight">\(v\)</span> at some given <span class="math notranslate nohighlight">\(P\)</span>,<span class="math notranslate nohighlight">\(T\)</span> = <span class="math notranslate nohighlight">\(v\)</span> at the same <span class="math notranslate nohighlight">\(T\)</span> but different pressure. In this region it is referred to as an <a class="reference internal" href="../genindex.html"><span class="std std-ref">incompressible fluid</span></a>. In addition to specific volume, we can also assume that specific internal energy (<span class="math notranslate nohighlight">\(u\)</span>, discussed next chapter in <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-numref">Section 5</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics.html#firstlaw"><span class="std std-ref">First Law of Thermodynamics - Introduction to Closed Systems</span></a>)  is a function of temperature only - i.e. <span class="math notranslate nohighlight">\(u\)</span> at some given <span class="math notranslate nohighlight">\(P\)</span>,<span class="math notranslate nohighlight">\(T\)</span> = <span class="math notranslate nohighlight">\(u\)</span> at the same <span class="math notranslate nohighlight">\(T\)</span> but different pressure. We can verify with some simple calculations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span><span class="c1"># define species1 as water</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">298</span><span class="p">,</span><span class="mi">100000</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># specific volume</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001002849132867957
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">298</span><span class="p">,</span><span class="mi">1000000</span> <span class="c1"># increasing the pressure by 1 order of magnitude</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># specific volume, nearly identical to above</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001002438215634586
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is especially useful in regions where compressed liquid data is not available, often at lower pressures.</p>
+<p>Also, if we only know saturated properties we can use this to help us determine properties in the compressed region, i.e., <span class="math notranslate nohighlight">\(v\)</span> at some given <span class="math notranslate nohighlight">\(P\)</span>,<span class="math notranslate nohighlight">\(T\)</span> = <span class="math notranslate nohighlight">\(v_{\rm g}\)</span> at the same <span class="math notranslate nohighlight">\(T\)</span>. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">298</span><span class="p">,</span><span class="mi">1000000</span> <span class="c1"># P = 1 MPa</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># specific volume</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001002438215634586
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="mi">298</span><span class="p">,</span><span class="mi">0</span> <span class="c1"># Set quality to be 0 at the same temperature of 298 K</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="c1"># pressure and specific volume</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3134.055266591048, 0.001002893444924276)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As seen, at 298 K and <span class="math notranslate nohighlight">\(x\)</span> = 0, <span class="math notranslate nohighlight">\(v_{\rm g}\)</span> = 0.001, which is nearly the same as at 1MPa but at a much lower pressure of <span class="math notranslate nohighlight">\(P_{\rm sat}\)</span>  =  3.134 kPa.</p>
+</section>
+<section id="idealgascompare">
+<span id="ideal-gas-law-comparison"></span><h3><span class="section-number">4.3.4. </span>Ideal Gas Law Comparison<a class="headerlink" href="#idealgascompare" title="Link to this heading">#</a></h3>
+<p>Now that we have learned how to evaluate properties of real substances using Cantera, and properties assuming gas ideality, lets explore the superheated vapor region of some candidate gases (H<sub>2</sub>O, CO<sub>2</sub>, N<sub>2</sub>, etc.) to see how well the ideal gas law describes their <span class="math notranslate nohighlight">\(p-v-T\)</span> dependence. Lets start with H<sub>2</sub>O. We will use Cantera to help us determine the specific volume of H<sub>2</sub>O at 100 kPa as a function of temperature, starting from the saturated vapor point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span><span class="mi">1</span> <span class="c1"># Set quality to be 1 at 100000 kPa</span>
+<span class="n">vg</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># v_g at 100</span>
+<span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vg</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">vg</span><span class="p">,</span><span class="mf">.3</span><span class="p">)</span> <span class="c1"># generate list of specific volumes at which to calculate temperatures</span>
+<span class="n">T</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># define a blank list that will hold temperature values</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span> <span class="c1"># iterate over volumes</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span><span class="n">i</span> <span class="c1"># set pressure and volume, at each iteration of volume</span>
+    <span class="n">T</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#solve for temperature at set pressure and volume</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets also calculate the associated temperatures using ideal gas law EOS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="o">=</span><span class="mi">100</span> <span class="c1">#set pressure to be 100 kPa</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">18</span> <span class="c1"># molecular weight of H2O</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">T_ideal</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">P</span><span class="o">*</span><span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">8.314</span><span class="o">/</span><span class="n">M</span><span class="p">)</span>
+<span class="n">Tideal</span><span class="o">=</span><span class="n">T_ideal</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span><span class="p">)</span> <span class="c1">#calculated at 100 kPa and each volume, &quot;v&quot; from cell above</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now lets plot the difference in temperatures between values calculated using Cantera and the ideal gas law EOS, shown in <a class="reference internal" href="#properties-fig-d"><span class="std std-numref">Figure 4.6</span></a>.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">T</span><span class="o">-</span><span class="n">Tideal</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;$v_{\mathrm</span><span class="si">{g}</span><span class="s1">} $ @ 100 kPa&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.71</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mf">5.6</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$\Delta T$ $({\mathrm</span><span class="si">{K}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Figures/dT_ideal.png&#39;</span><span class="p">)</span><span class="c1"># used to save the figure if you desire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:4: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:4: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:6: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/tmp/ipykernel_18599/1468324816.py:4: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.annotate(&#39;$v_{\mathrm{g}} $ @ 100 kPa&#39;, (1.71,6),(2,5.6), color=&#39;Green&#39;, arrowprops=dict(color=&#39;green&#39;, shrink=0.05), fontsize=12)
+/tmp/ipykernel_18599/1468324816.py:5: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.xlabel(&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;,  fontsize=12)
+/tmp/ipykernel_18599/1468324816.py:6: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+  plt.ylabel(&#39;$\Delta T$ $({\mathrm{K})}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/31e7ec8afdd8348b90a6e02986c45d90b86537a2dc4cea41ffd677cd4969f6c5.png" src="../_images/31e7ec8afdd8348b90a6e02986c45d90b86537a2dc4cea41ffd677cd4969f6c5.png" />
+</div>
+</details>
+</div>
+<figure class="align-default" id="properties-fig-d">
+<img alt="../_images/dT_ideal.png" src="../_images/dT_ideal.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Temperature difference (<span class="math notranslate nohighlight">\(T_{\rm real}\)</span>-<span class="math notranslate nohighlight">\(T_{\rm ideal}\)</span>) versus specific volume calculated at 100 kPa for H<sub>2</sub>O. As the volume approaches <span class="math notranslate nohighlight">\(v_{\rm g}\)</span> the ideal gas EOS becomes less appropriate to use.</span><a class="headerlink" href="#properties-fig-d" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The difference increases as the saturation point is approached. In addition, the difference becomes magnified for calculations at higher pressures. For example, <a class="reference internal" href="#properties-fig-e"><span class="std std-numref">Figure 4.7</span></a> below compares <span class="math notranslate nohighlight">\(T\)</span> verses <span class="math notranslate nohighlight">\(v\)</span> in the superheated region of H<sub>2</sub>O at 100 l kPa, 1 MPa, and 10 MPa. Green lines are computed using Cantera and blue lines using ideal gas law EOS. As seen, at high pressure and low specific volume, temperature estimates are as much as 200 K different. Thus, as can be seen from these results, it is NOT recomended to assume ideal gas behavior for H<sub>2</sub>O unless there is a high degree of confidence that the pressure is low enough, or volume/temperature are large enough. For other gases, such as N<sub>2</sub>, O<sub>2</sub>, Ar, He, etc that all have very low saturation temperatures, it is typical to assume ideal gas behavior under most <span class="math notranslate nohighlight">\(T-p-v\)</span>. CO<sub>2</sub>, like H<sub>2</sub>O, has regions where it behaves non-ideally and others where ideal gas assumptions are usually fine. We will see in the excercises below some examples of this.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pres</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100000</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">vg</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called vg that will store our saturated vapor specific volumes at the different pressures</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span> <span class="c1"># iterate over each value in pres, i.e. 10000,100000,etc</span>
+    <span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="mi">1</span> <span class="c1"># set the ith pressure and quality of 1 to get saturated vapor values</span>
+    <span class="n">vg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># append the vg value (species1.TV[1]) at the specified pressure and quality to the vgs list</span>
+
+
+<span class="n">vols</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called vols</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span>
+    <span class="n">vols</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span> <span class="c1"># create a list of lists within vols to hold volumes at each pressure</span>
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pres</span><span class="p">)):</span>
+    <span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vg</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">3</span><span class="o">*</span><span class="n">vg</span><span class="p">[</span><span class="n">i</span><span class="p">],(</span><span class="mi">3</span><span class="o">*</span><span class="n">vg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">vg</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># create a list of lists of vols</span>
+    
+<span class="n">temps</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called temps</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span>
+    <span class="n">temps</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span> <span class="c1"># create a list of lists within temps to hold temperatures at each pressure</span>
+
+<span class="n">k</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">vols</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> <span class="c1"># iterate over each value in vols</span>
+        <span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="c1"># set the pressure and ith volume</span>
+        <span class="n">temps</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># append the temperature value (species1.TV[0]) at the specified pressure and volume to the temps list</span>
+    <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span>
+    
+    
+<span class="n">tempsideal</span><span class="o">=</span><span class="p">[]</span> <span class="c1"># create an empty list called temps</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">18</span> <span class="c1"># molecular weight of H2O</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">T_ideal</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">P</span><span class="o">/</span><span class="mi">1000</span><span class="o">*</span><span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">8.314</span><span class="o">/</span><span class="n">M</span><span class="p">)</span>
+<span class="n">k</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pres</span><span class="p">:</span>
+    <span class="n">tempsideal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T_ideal</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">vols</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">M</span><span class="p">))</span>
+    <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span>
+    
+<span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vols</span><span class="p">)):</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">temps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">tempsideal</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;100 kPa&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">800</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Gray&#39;</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">75</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;1 MPa&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">.2</span><span class="p">,</span><span class="mi">800</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Gray&#39;</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">75</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;10 MPa&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">.02</span><span class="p">,</span><span class="mi">800</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Gray&#39;</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">75</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;More Ideal&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">.06</span><span class="p">,</span><span class="mi">500</span><span class="p">),</span> <span class="p">(</span><span class="mf">1.9</span><span class="p">,</span><span class="mi">1100</span><span class="p">),</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Less Ideal&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">.03</span><span class="p">,</span><span class="mi">450</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$T$ $({\mathrm</span><span class="si">{K}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;Figures/T_ideal_multiple_P.png&#39;</span><span class="p">)</span><span class="c1"># used to save the figure if you desire</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:46: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:47: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:46: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:47: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18599/2195804014.py:46: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.xlabel(&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;,  fontsize=12)
+/tmp/ipykernel_18599/2195804014.py:47: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.ylabel(&#39;$T$ $({\mathrm{K})}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../_images/91470fa50c01d2efa20d39215049248f0588216b3cc4ea8c44a707ec4518456f.png" src="../_images/91470fa50c01d2efa20d39215049248f0588216b3cc4ea8c44a707ec4518456f.png" />
+</div>
+</details>
+</div>
+<figure class="align-default" id="properties-fig-e">
+<img alt="../_images/T_ideal_multiple_P.png" src="../_images/T_ideal_multiple_P.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.7 </span><span class="caption-text">Temperature of real (<span class="math notranslate nohighlight">\(T_{\rm real}\)</span>) and ideal (<span class="math notranslate nohighlight">\(T_{\rm ideal}\)</span>) H<sub>2</sub> shown in green and blue, respectively, at  100 kPa,  1 MPa  and  10 MPa. As pressure increases and volume decreases, the ideal gas EOS becomes less appropriate to use.</span><a class="headerlink" href="#properties-fig-e" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="exercise-2">
+<span id="exercise2"></span><h3><span class="section-number">4.3.5. </span>Exercise 2<a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Using Cantera, determine the specific volume (<span class="math notranslate nohighlight">\(v\)</span>) of water vapor where <span class="math notranslate nohighlight">\(p\)</span> = 8 bar and <span class="math notranslate nohighlight">\(T\)</span> = 200 <span class="math notranslate nohighlight">\(^\circ\)</span>C. What about <span class="math notranslate nohighlight">\(T\)</span> = 220 <span class="math notranslate nohighlight">\(^\circ\)</span>C?</p></li>
+<li><p>What is the composition (compressed, saturated, superheated) and pressure of H<sub>2</sub>O with <span class="math notranslate nohighlight">\(v\)</span> =  65 m<sup>3</sup> kg<sup>-1</sup> and T = 15 <span class="math notranslate nohighlight">\(^\circ\)</span>C? What is the quality, x (if applicable)? Use Cantera to solve.</p></li>
+<li><p>What is the composition (compressed, saturated, superheated) and temperature of H<sub>2</sub>O with <span class="math notranslate nohighlight">\(v\)</span> =  1 m<sup>3</sup> kg<sup>-1</sup> and <span class="math notranslate nohighlight">\(p\)</span> = 0.5 MPa? What is the quality, x (if applicable)? Use Cantera to solve.</p></li>
+<li><p>What is the composition (compressed, saturated, superheated) and pressure of H<sub>2</sub>O with <span class="math notranslate nohighlight">\(v\)</span> =  1 m<sup>3</sup> kg<sup>-1</sup> and T =  150 <span class="math notranslate nohighlight">\(^\circ\)</span>C? What is the quality, x (if applicable)? Use Cantera to solve.</p></li>
+<li><p>A rigid tank contains 50 kg of saturated liquid water at 90 <span class="math notranslate nohighlight">\(^\circ\)</span>C. Determine the pressure in the tank and the tank volume.</p></li>
+<li><p>Compare the specific volume of nitrogen (N<sub>2</sub>) at 35°C and 150 kPa using the ideal gas law and Cantera. In Cantera us ct.Nitrogen() rather than ct.Water() as we have been for H<sub>2</sub>O.</p></li>
+<li><p>The critical pressure of CO<sub>2</sub> is 7.38 MPa. Although it is often okay to assume CO<sub>2</sub> is an ideal gas at near ambient conditions, it is not okay to assume so at higher pressures.</p>
+<ol class="arabic simple">
+<li><p>Determine <span class="math notranslate nohighlight">\(v_{\rm f}\)</span> and <span class="math notranslate nohighlight">\(v_{\rm g}\)</span> of CO<sub>2</sub> at 5 MPa.</p></li>
+<li><p>What is the saturated temperature of CO<sub>2</sub> at 5 MPa?</p></li>
+<li><p>Compare the specific volume of CO<sub>2</sub> at 5 MPa at saturated vapor conditions using Cantera and the ideal gas law at the same <span class="math notranslate nohighlight">\(T_{\rm sat}\)</span> and <span class="math notranslate nohighlight">\(P_{\rm sat}\)</span>. In Cantera us ct.CarbonDioxide() rather than ct.Water() like we did for H<sub>2</sub>O.</p></li>
+<li><p>Plot specific volume  from the saturated vapor point at 5 MPa to 5 times <span class="math notranslate nohighlight">\(v_{\rm g}\)</span> at the same pressure.  Use both Cantera and the ideal gas EOS.</p></li>
+</ol>
+</li>
+<li><p>A 2.1 m<sup>3</sup> rigid tank contains steam at 230°C. One-half of the volume is in the liquid phase and the rest is in the vapor form. Using Cantera, determine:</p>
+<ol class="arabic simple">
+<li><p>the pressure of the steam,</p></li>
+<li><p>the quality of the saturated mixture, and</p></li>
+<li><p>the density of the mixture.</p></li>
+</ol>
+</li>
+<li><p>What is the specific volume of water at 5 MPa and 100°C? What would it be if the incompressible liquid approximation were used? Use Cantera to solve.</p></li>
+<li><p>Water initially at 200 kPa and 300°C is contained in a piston–cylinder device fitted with stops, State 1.</p>
+<ol class="arabic simple">
+<li><p>The water is allowed to cool at constant pressure until it exists as a saturated vapor and the piston rests on the stops, State 2. Determine the change in specific volume during the process. Use Cantera to solve.</p></li>
+<li><p>Then the water continues to cool at constant volume until the pressure is 100 kPa, State 3. What is the temperature at State 3? Use Cantera to solve.</p></li>
+</ol>
+</li>
+<li><p>One kilogram of water fills a 150-L rigid container at an initial pressure of 2 MPa. The container is then cooled to 40°C. Determine the initial temperature and the final pressure of the water. Use Cantera to solve.</p></li>
+<li><p>A piston–cylinder device contains 0.6 kg of steam at 300°C and 0.5 MPa. Steam is cooled at constant pressure until one-half of the mass condenses.</p>
+<ol class="arabic simple">
+<li><p>Determine the final temperature. Use Cantera to solve.</p></li>
+<li><p>Determine the change in volume. Use Cantera to solve.</p></li>
+</ol>
+</li>
+<li><p>10 kg of R-134a fill a 1.115-m3 rigid container at an initial temperature of –30°C. The container is then heated until the pressure is 200 kPa. Determine the final temperature and the initial pressure.</p></li>
+<li><p>1 kg of R-134a fills a 0.14 m3 weighted piston cylinder device at -26.4 °C. The container is now heated until the temperature is 100 °C. Determine the final volume of the R-134a.</p></li>
+<li><p>A tank contains saturated water vapor where <em><em>P</em></em> = 5 MPa. Determine the temperature (<em><em>T</em></em>) and specific volume (<em><em>v</em></em>).</p></li>
+<li><p>Find the specific volume (<em><em>v</em></em>) of a tank of CO<sub>2</sub> at <em><em>T</em></em> = 500 K when <em><em>P</em></em> = 1 MPa and <em><em>P</em></em> = 5 MPa.</p>
+<ol class="arabic simple">
+<li><p>Using ideal gas law approximation.</p></li>
+<li><p>Using Cantera to approximate values.</p></li>
+</ol>
+</li>
+<li><p>0.0025 kg of steam fills a 1L piston at <em><em>P</em></em> = 500 kPa. The piston then compresses at a constant temperature until the volume is a third the original size. Find the pressure (<em><em>P</em></em>) and quality (<em><em>x</em></em>) after the substance has been compressed.</p></li>
+<li><p>A 5L rigid container is filled with 0.015 kg of nitrogen at <em><em>P</em></em> = 50 kPa. The container is then heated 20°C.</p>
+<ol class="arabic simple">
+<li><p>Find the temperature before heating (<em><em>T</em></em>).</p></li>
+<li><p>Find the pressure after heating (<em><em>P</em></em>).</p></li>
+<li><p>What phase is the nitrogen before and after heating?</p></li>
+</ol>
+</li>
+<li><p>A 0.025L piston of saturated water vapor at <em><em>T</em></em> = 500 K expands isothermically until the volume increases by a factor of 20.</p>
+<ol class="arabic simple">
+<li><p>What is the mass (<em><em>m</em></em>) of the water?</p></li>
+<li><p>What is the pressure (<em><em>P</em></em>) in the piston after expansion?</p></li>
+</ol>
+</li>
+</ol>
+<p><a class="reference internal" href="Exercise_Solutions/Exercise%202.html#exercise2solutions"><span class="std std-numref">Section 10.2</span></a> <a class="reference internal" href="Exercise_Solutions/Exercise%202.html#exercise2solutions"><span class="std std-ref">Exercise 2 Solutions</span></a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Brief%20Introduction%20to%20Thermodynamics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="First%20Law%20of%20Thermodynamics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>First Law of Thermodynamics - Introduction to Closed Systems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pure-substances">4.1. Pure Substances</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal-gas-equation-of-state">4.2. Ideal Gas Equation of State</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-python-to-solve-the-ideal-gas-eos">4.2.1. Using Python to Solve the Ideal Gas EOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example">4.2.1.1. Example</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.2.1.2. Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-learning-to-use-minimize">4.2.2. <strong>Optional</strong> - Learning to use Minimize</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-results-using-matplotlib">4.2.3. Visualizing Results using Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-lists-and-plotting-using-output-from-minimize">4.2.4. <strong>Optional</strong> - Lists and Plotting Using Output From Minimize</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">4.2.5. Exercise 1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-transitions-other-equations-of-state-and-cantera">4.3. Phase Transitions, Other Equations of State and Cantera</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-cantera-to-evaluate-properties">4.3.1. Using Cantera to Evaluate Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quality">4.3.2. Quality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#liquid-approximation-and-incompressibility">4.3.3. Liquid Approximation and Incompressibility</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#idealgascompare">4.3.4. Ideal Gas Law Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">4.3.5. Exercise 2</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1305 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10.2. Exercise 2 Solutions &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Exercise_Solutions/Exercise 2';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="10.3. Exercise 3 Solutions" href="Exercise%203.html" />
+    <link rel="prev" title="10.1. Exercise 1 Solutions" href="Exercise%201.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Exercise%20Solutions.html">10. Exercise Solutions</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">10.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../References%20Cited.html">11. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/Exercise_Solutions/Exercise 2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Exercise_Solutions/Exercise 2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exercise 2 Solutions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="exercise-2-solutions">
+<span id="exercise2solutions"></span><h1><span class="section-number">10.2. </span>Exercise 2 Solutions<a class="headerlink" href="#exercise-2-solutions" title="Link to this heading">#</a></h1>
+<p><a class="reference internal" href="../Evaluation%20of%20Properties.html#exercise2"><span class="std std-numref">Section 4.3.5</span></a> <a class="reference internal" href="../Evaluation%20of%20Properties.html#exercise2"><span class="std std-ref">Exercise 2</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 1</span>
+<span class="c1">#Using Cantera, determine the specific volume (𝑣) of water vapor where  𝑝  = 8 bar and  𝑇  = 200  ∘ C. What about  𝑇  = 220  ∘ C?</span>
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1 as water </span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#define pressure in Pa</span>
+<span class="n">P1</span><span class="o">=</span><span class="mi">800</span><span class="o">*</span><span class="mi">1000</span>
+<span class="c1">#define temperature in K</span>
+<span class="n">T1</span><span class="o">=</span><span class="mi">200</span><span class="o">+</span><span class="mf">273.15</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Specific volume using Cantera:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m^3/kg&quot;</span><span class="p">)</span>
+<span class="n">T2</span><span class="o">=</span><span class="mi">220</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1">#redefine T to be 220 C</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T2</span><span class="p">,</span><span class="n">P1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;At 220 </span><span class="se">\N{DEGREE SIGN}</span><span class="s2">C, specific volume using Cantera:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m^3/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Specific volume using Cantera:  0.26 m^3/kg
+At 220 °C, specific volume using Cantera:  0.27 m^3/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 2</span>
+<span class="c1"># What is the composition (compressed, saturated, superheated) and pressure of H2O with  𝑣  = 65 m3 kg-1 and T = 15  ∘ C? What is the quality, x (if applicable)? Use Cantera to solve.</span>
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1 as water </span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#define specific volume in m3/kg</span>
+<span class="n">v</span><span class="o">=</span><span class="mi">65</span> <span class="c1">#m3/kg</span>
+<span class="c1">#define temperature in K</span>
+<span class="n">T</span><span class="o">=</span><span class="mi">15</span><span class="o">+</span><span class="mf">273.15</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="n">v</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">species1</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pressure using Cantera:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Phase:  </span><span class="si">{</span><span class="n">species1</span><span class="o">.</span><span class="n">phase_of_matter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Phase is saturated with a quality of:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  water:
+
+       temperature   288.15 K
+          pressure   1701.6 Pa
+           density   0.015385 kg/m^3
+  mean mol. weight   18.016 kg/kmol
+    vapor fraction   0.83244
+   phase of matter   liquid-gas-mix
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy       -1.3855e+07       -2.4961e+08  J
+   internal energy       -1.3966e+07       -2.5161e+08  J
+           entropy             10868         1.958e+05  J/K
+    Gibbs function       -1.6987e+07       -3.0603e+08  J
+ heat capacity c_p   inf               inf              J/K
+ heat capacity c_v   nan               nan              J/K
+
+None
+Pressure using Cantera:  1701.64 Pa
+Phase:  liquid-gas-mix
+Phase is saturated with a quality of:  0.83
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 3</span>
+<span class="c1"># What is the composition (compressed, saturated, superheated) and temperature of H2O with  𝑣  = 1 m3 kg-1 and  𝑝  = 0.5 MPa? What is the quality, x (if applicable)? Use Cantera to solve.</span>
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1 as water </span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#define specific volume in m3/kg</span>
+<span class="n">v</span><span class="o">=</span><span class="mi">1</span> <span class="c1">#m3/kg</span>
+<span class="c1">#define pressure in Pa</span>
+<span class="n">P</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="o">=</span><span class="n">P</span><span class="p">,</span><span class="n">v</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">species1</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temperature using Cantera:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TQ</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Phase:  </span><span class="si">{</span><span class="n">species1</span><span class="o">.</span><span class="n">phase_of_matter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  water:
+
+       temperature   1084.4 K
+          pressure   5e+05 Pa
+           density   1 kg/m^3
+  mean mol. weight   18.016 kg/kmol
+    vapor fraction   1
+   phase of matter   supercritical
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy       -1.1787e+07       -2.1236e+08  J
+   internal energy       -1.2287e+07       -2.2137e+08  J
+           entropy             12366        2.2278e+05  J/K
+    Gibbs function       -2.5197e+07       -4.5394e+08  J
+ heat capacity c_p            2351.4             42363  J/K
+ heat capacity c_v            1886.8             33993  J/K
+
+None
+Temperature using Cantera:  1084.4 K
+Phase:  supercritical
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 4</span>
+<span class="c1"># What is the composition (compressed, saturated, superheated) and pressure of H2O with  𝑣  = 1 m3 kg-1 and T = 150  ∘ C? What is the quality, x (if applicable)? Use Cantera to solve.</span>
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1 as water </span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#define specific volume in m3/kg</span>
+<span class="n">v</span><span class="o">=</span><span class="mi">1</span> <span class="c1">#m3/kg</span>
+<span class="c1">#define temperature in K</span>
+<span class="n">T</span><span class="o">=</span><span class="mi">150</span><span class="o">+</span><span class="mf">273.15</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="n">v</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">species1</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pressure using Cantera:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Phase:  </span><span class="si">{</span><span class="n">species1</span><span class="o">.</span><span class="n">phase_of_matter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  water:
+
+       temperature   423.15 K
+          pressure   1.9207e+05 Pa
+           density   1 kg/m^3
+  mean mol. weight   18.016 kg/kmol
+    vapor fraction   1
+   phase of matter   gas
+
+                          1 kg             1 kmol     
+                     ---------------   ---------------
+          enthalpy       -1.3201e+07       -2.3784e+08  J
+   internal energy       -1.3393e+07        -2.413e+08  J
+           entropy             10819        1.9492e+05  J/K
+    Gibbs function        -1.778e+07       -3.2032e+08  J
+ heat capacity c_p            2054.2             37008  J/K
+ heat capacity c_v            1536.7             27686  J/K
+
+None
+Pressure using Cantera:  192066.2 Pa
+Phase:  gas
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 5</span>
+<span class="c1">#A rigid tank contains 50 kg of saturated liquid water at 90  ∘ C. Determine the pressure in the tank and the tank volume.</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># kg</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">90</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K</span>
+<span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="c1"># saturated liquid</span>
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1 as water </span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+
+<span class="n">species1</span><span class="o">.</span><span class="n">TQ</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="n">x</span>
+<span class="c1">#print(species1())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pressure using Cantera:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">m</span> <span class="c1">#m3</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Volume is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">V</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> m^3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pressure using Cantera:  70042.36 Pa
+Volume is 0.052 m^3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 6</span>
+
+<span class="c1">#Compare the specific volume of nitrogen (N2) at 35°C and 150 kPa using the ideal gas law and Cantera. </span>
+<span class="c1">#In Cantera use ct.Nitrogen() rather than ct.Water() as we have been for H2O.</span>
+
+<span class="c1">#Using the ideal gas law:</span>
+<span class="c1">#define known values</span>
+<span class="c1">#convert temperature to kelvin</span>
+<span class="n">T</span><span class="o">=</span><span class="mi">35</span><span class="o">+</span><span class="mf">273.15</span>
+<span class="n">P</span><span class="o">=</span><span class="mi">150</span>
+<span class="n">M</span><span class="o">=</span><span class="mi">28</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">P</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Specific volume using Ideal Gas Law:  </span><span class="si">{</span><span class="n">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">)</span><span class="si">}</span><span class="s2"> m^3/kg&quot;</span><span class="p">)</span>
+
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1 as nitrogen </span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="c1">#redefine pressure in Pa</span>
+<span class="n">P</span><span class="o">=</span><span class="mi">150</span><span class="o">*</span><span class="mi">1000</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="n">P</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Specific volume using Cantera:  </span><span class="si">{</span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> m^3/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Specific volume using Ideal Gas Law:  0.6099902619047619 m^3/kg
+Specific volume using Cantera:  0.6096046212951401 m^3/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 7</span>
+<span class="c1">#given: CO2, pressure is 5 MPa, near the critical pressure (7.38 MPa), therefore cannot assume ideal gas behavior</span>
+
+<span class="c1">#2a</span>
+<span class="c1">#determine vf and vg of CO2 at 5MPa</span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">CarbonDioxide</span><span class="p">()</span>
+<span class="c1">#get saturated liquid (vf) values (quality=0)</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="o">=</span><span class="mi">5000000</span><span class="p">,</span><span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saturated liquid value:   </span><span class="si">{</span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> m^3/kg&quot;</span><span class="p">)</span>
+<span class="c1">#get saturated vapor (vg) values (quality=1)</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="o">=</span><span class="mi">5000000</span><span class="p">,</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saturated vapor value: </span><span class="si">{</span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> m^3/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saturated liquid value:   0.0012052903896509952 m^3/kg
+Saturated vapor value: 0.006414524448873753 m^3/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7b</span>
+<span class="c1">#What is the saturated temperature of CO2 at 5 MPa?</span>
+<span class="c1">#can use either 1 or 0 for the quality- either one will yield the saturation temperature </span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="o">=</span><span class="mi">5000000</span><span class="p">,</span><span class="mi">1</span>
+<span class="c1">#print the saturation temperature </span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saturated temperature of CO2 at 5 MPa:  </span><span class="si">{</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saturated temperature of CO2 at 5 MPa:  287.4532698240636 K
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7c</span>
+<span class="c1">#Compare the specific volume of CO2 at 5 MPa at saturated vapor conditions using Cantera and the ideal gas law </span>
+<span class="c1">#at the same Tsat and Psat.</span>
+
+<span class="c1">#intuitively we know these should differ because CO2 does not exhibit ideal gas behavior at high pressures</span>
+
+<span class="c1">#using Cantera </span>
+<span class="c1">#saturated vapor, quality=1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="o">=</span><span class="mi">5000000</span><span class="p">,</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saturated vapor value: </span><span class="si">{</span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> m^3/kg&quot;</span><span class="p">)</span>
+<span class="n">satvap</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">Tsat</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#using the Ideal Gas Law </span>
+<span class="c1">#molar mass for CO2</span>
+<span class="n">M</span><span class="o">=</span><span class="mi">44</span>
+<span class="c1">#convert pressure to kPa</span>
+<span class="n">P</span><span class="o">=</span><span class="mi">500</span>
+<span class="n">T</span><span class="o">=</span><span class="n">Tsat</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">8.314</span><span class="o">*</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="n">M</span><span class="o">*</span><span class="n">P</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Specific volume using ideal gas law: </span><span class="si">{</span><span class="n">v_ideal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">)</span><span class="si">}</span><span class="s2"> m^3/kg&quot;</span><span class="p">)</span>
+
+<span class="c1">#as expected, these values differ by several orders of magnitude </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saturated vapor value: 0.006414524448873753 m^3/kg
+Specific volume using ideal gas law: 0.1086312038780575 m^3/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7d</span>
+<span class="c1">#Plot specific volume from the saturated vapor point at 5 MPa to 5 times vg at the same pressure. </span>
+<span class="c1">#Use both Cantera and the ideal gas EOS.</span>
+
+<span class="c1">#import relevant libraries </span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="c1">#using previously calculated vg</span>
+<span class="n">satvap</span><span class="o">=</span><span class="mf">0.006414524448873753</span>
+<span class="n">P</span><span class="o">=</span><span class="mi">5000000</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="o">=</span><span class="n">P</span><span class="p">,</span><span class="mi">1</span>
+<span class="c1">#create an array of specific volume values from vg @ 5 MPa to 5 times that </span>
+<span class="n">sv</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">satvap</span><span class="p">,</span><span class="mi">5</span><span class="o">*</span><span class="n">satvap</span><span class="p">,</span><span class="mf">.003</span><span class="p">)</span>
+<span class="c1">#create an empty array in which to hold the temperature values </span>
+<span class="n">T</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sv</span><span class="p">:</span> 
+    <span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="o">=</span><span class="p">[</span><span class="n">P</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">T</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">P</span><span class="o">=</span><span class="mi">5000</span> <span class="c1">#convert pressure to kPa</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">44</span> <span class="c1"># molecular weight of CO2</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">T_ideal</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">sv</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">P</span><span class="o">*</span><span class="n">sv</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">8.314</span><span class="o">/</span><span class="n">M</span><span class="p">)</span>
+<span class="n">Tideal</span><span class="o">=</span><span class="n">T_ideal</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">sv</span><span class="p">,</span><span class="n">M</span><span class="p">)</span> 
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span><span class="n">Tideal</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$T$ $({\mathrm</span><span class="si">{K}</span><span class="s1">)}$&#39;</span><span class="p">,</span>  <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Cantera&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">.008</span><span class="p">,</span><span class="mi">400</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;Ideal Gas Law&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">.0125</span><span class="p">,</span><span class="mi">250</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="n">rotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:27: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:28: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:27: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:28: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_19157/2263413414.py:27: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.xlabel(&#39;$v$ $(\mathrm{m^3} \mathrm{kg^{-1}})$&#39;,  fontsize=12)
+/tmp/ipykernel_19157/2263413414.py:28: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.ylabel(&#39;$T$ $({\mathrm{K})}$&#39;,  fontsize=12)
+</pre></div>
+</div>
+<img alt="../../_images/1048197e4dcba8137b74e3d2ba0c6b212d90c16a6433670226fb2ff14ad61df4.png" src="../../_images/1048197e4dcba8137b74e3d2ba0c6b212d90c16a6433670226fb2ff14ad61df4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 8</span>
+<span class="c1">#A 2.1 m3 rigid tank contains liquid-vapor mixture of H2O at 230°C. One-half of the volume is in the liquid phase and the rest is in the vapor form. Using Cantera, determine:</span>
+<span class="c1"># a) the pressure of the steam,</span>
+<span class="c1"># b) the quality of the saturated mixture, and</span>
+<span class="c1"># c) the density of the mixture.</span>
+
+<span class="n">V</span> <span class="o">=</span> <span class="mf">2.1</span> <span class="c1"># m3</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">230</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K</span>
+<span class="n">Vf</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">V</span>
+<span class="n">Vg</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">V</span>
+<span class="c1">#need to know mass of liquid and gas to determine quality. For this we can use vf and vg, recognizing V=m*v </span>
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1 as water </span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+
+<span class="n">species1</span><span class="o">.</span><span class="n">TQ</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="mi">0</span>
+<span class="n">vf</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">species1</span><span class="o">.</span><span class="n">TQ</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="mi">1</span>
+<span class="n">vg</span><span class="o">=</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">mg</span><span class="o">=</span><span class="n">Vg</span><span class="o">/</span><span class="n">vg</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">Vf</span><span class="o">/</span><span class="n">vf</span>
+<span class="n">x</span><span class="o">=</span><span class="n">mg</span><span class="o">/</span><span class="p">(</span><span class="n">mf</span><span class="o">+</span><span class="n">mg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The quality is&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">species1</span><span class="o">.</span><span class="n">TQ</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="n">x</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pressure:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Density:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">DPQ</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg/m3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The quality is 0.017
+Pressure:  2792630.52 Pa
+Density:  420.62 kg/m3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 9</span>
+<span class="c1">#What is the specific volume of water at 5 MPa and 100°C? What would it be if the incompressible liquid approximation were used? Use Cantera to solve.</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">100</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K</span>
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1 as water </span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="n">P</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Real specific volume:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3/kg&quot;</span><span class="p">)</span>
+
+<span class="n">species1</span><span class="o">.</span><span class="n">TQ</span><span class="o">=</span><span class="n">T</span><span class="p">,</span><span class="mi">0</span> <span class="c1">#set quality to be zero at temperature of interest - different pressure</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Incompressible assumption specific volume:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3/kg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Real specific volume:  0.001041 m3/kg
+Incompressible assumption specific volume:  0.001044 m3/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 10</span>
+<span class="c1">#Water initially at 200 kPa and 300°C is contained in a piston–cylinder device fitted with stops, State 1.</span>
+<span class="c1">#a) The water is allowed to cool at constant pressure until it exists as a saturated vapor and the piston rests on the stops, State 2. Determine the change in specific volume during the process. Use Cantera to solve.</span>
+<span class="c1">#b) Then the water continues to cool at constant volume until the pressure is 100 kPa, State 3. What is the temperature at State 3? Use Cantera to solve.</span>
+
+<span class="c1">#part a</span>
+<span class="n">P1</span><span class="o">=</span><span class="n">P2</span> <span class="o">=</span> <span class="mi">200</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa, initial and final pressures in part a</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">300</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K, initial temperature in part a</span>
+<span class="n">Q2</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Quality after it reaches the stops in part a</span>
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1 as water at conditions of state 1</span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+
+<span class="c1">#and define state 2</span>
+<span class="n">species2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">PQ</span><span class="o">=</span><span class="n">P2</span><span class="p">,</span><span class="n">Q2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Specific volume state 1:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3/kg&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Specific volume state 2:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3/kg&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Change in specific volume:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3/kg&quot;</span><span class="p">)</span>
+
+<span class="c1">#part b</span>
+<span class="n">P3</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa, final pressure</span>
+<span class="n">v3</span><span class="o">=</span><span class="n">v2</span><span class="o">=</span><span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1">#and define state 3</span>
+<span class="n">species3</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">PV</span><span class="o">=</span><span class="n">P3</span><span class="p">,</span><span class="n">v3</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temperature state 3:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species3</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Specific volume state 1:  1.316165 m3/kg
+Specific volume state 2:  0.885809 m3/kg
+Change in specific volume:  -0.430356 m3/kg
+Temperature state 3:  372.81 K
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 11</span>
+<span class="c1"># One kilogram of water fills a 150-L rigid container at an initial pressure of 2 MPa. The container is then cooled to 40°C. </span>
+<span class="c1"># Determine the initial temperature and the final pressure of the water. Use Cantera to solve.</span>
+
+<span class="n">m1</span><span class="o">=</span> <span class="mi">1</span> <span class="c1">#kg, system mass</span>
+<span class="n">V1</span><span class="o">=</span><span class="mi">150</span><span class="o">*</span><span class="mf">.001</span> <span class="c1"># m3, initial volume</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">v2</span><span class="o">=</span> <span class="n">V1</span><span class="o">/</span><span class="n">m1</span> <span class="c1">#m3/kg, initial an final specific volume because it is rigid and fixed mass</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa, initial pressure</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">40</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K, final temperature</span>
+<span class="c1">#Using Cantera:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1</span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="o">=</span><span class="n">P1</span><span class="p">,</span><span class="n">v1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial temperature:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+
+<span class="c1">#define state 2</span>
+<span class="n">species2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="o">=</span><span class="n">T2</span><span class="p">,</span><span class="n">v2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final pressure:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kPa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initial temperature:  668.36 K
+Final pressure:  7.37 kPa
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 12</span>
+
+<span class="c1">#A piston–cylinder device contains 0.6 kg of steam at 300°C and 0.5 MPa. Steam is cooled at constant pressure until one-half of the mass condenses.</span>
+<span class="c1"># a) Determine the final temperature. Use Cantera to solve.</span>
+<span class="c1"># b) Determine the change in volume. Use Cantera to solve</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.6</span> <span class="c1"># kg</span>
+<span class="n">mg</span> <span class="o">=</span> <span class="n">mf</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">m</span> <span class="c1"># half of the mass condenses</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">300</span><span class="o">+</span><span class="mf">273.15</span> <span class="c1"># K, initial temperature</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">P2</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># Pa, initial pressure</span>
+<span class="n">Q2</span> <span class="o">=</span> <span class="n">mg</span><span class="o">/</span><span class="n">m</span> <span class="c1">#quality after condensation</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#define state 1</span>
+<span class="n">species1</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="o">=</span><span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial specific volume:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3/kg&quot;</span><span class="p">)</span>
+
+<span class="c1">#define state 2</span>
+<span class="n">species2</span><span class="o">=</span><span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">PQ</span><span class="o">=</span><span class="n">P2</span><span class="p">,</span><span class="n">Q2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final temperature:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final specific volume:  </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3/kg&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Change in volume:  </span><span class="si">{</span><span class="n">m</span><span class="o">*</span><span class="nb">round</span><span class="p">(</span><span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3/kg&quot;</span><span class="p">)</span> <span class="c1">#make sure to multiply by the mass</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initial specific volume:  0.52 m3/kg
+Final temperature:  425.04 K
+Final specific volume:  0.19 m3/kg
+Change in volume:  -0.198 m3/kg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 13</span>
+
+<span class="c1">#10 kg of R-134a fill a 1.115-m3 rigid container at an initial temperature of –30°C.</span>
+<span class="c1">#The container is then heated until the pressure is 200 kPa. </span>
+<span class="c1">#Determine the final temperature and the initial pressure.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="c1"># Given: </span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># kg</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">1.115</span> <span class="c1"># m3</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">30</span> <span class="o">+</span> <span class="n">Kc</span> 
+<span class="n">P2</span> <span class="o">=</span> <span class="mf">200e3</span>
+
+<span class="c1"># Find: T2, P1</span>
+
+<span class="n">v1</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">M</span> 
+<span class="n">v2</span> <span class="o">=</span> <span class="n">v1</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">v1</span>
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="n">P2</span><span class="p">,</span> <span class="n">v2</span>
+
+<span class="c1"># final temperature</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># initial pressure</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The intial pressure is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P1</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kPa, and final temperature is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T2</span><span class="o">-</span><span class="n">Kc</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> C&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The intial pressure is 84.38 kPa, and final temperature is 14.18 C
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 14</span>
+
+<span class="c1">#1 kg of R-134a fills a 0.14 m3 weighted piston cylinder device at -26.4 °C. </span>
+<span class="c1">#The container is now heated until the temperature is 100 °C. </span>
+<span class="c1">#Determine the final volume of the R-134a.</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+
+<span class="c1"># Given:</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># kg</span>
+<span class="n">V1</span> <span class="o">=</span> <span class="mf">0.14</span> <span class="c1"># m3</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">26.4</span> <span class="o">+</span> <span class="n">Kc</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">Kc</span>
+
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">V1</span><span class="o">/</span><span class="n">M</span> <span class="c1"># get specific volume</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span><span class="n">V1</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">P1</span>
+
+<span class="n">state2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P2</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The final volume is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> m3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The final volume is 0.302 m3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 15</span>
+
+<span class="c1">#Find the temperature, T, and specific volume, v, of a saturated vapor at 5 MPa</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#Saturated Vapor so the quality, Q = 1, anf given that P = 5 MPa = 5000000 Pa</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="mi">5000000</span><span class="p">,</span> <span class="mi">1</span>
+<span class="c1">#Print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The temperature T of the substance is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> K&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The specific volume, v, is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg/m</span><span class="se">\u00b3</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temperature T of the substance is 537.18 K
+The specific volume, v, is 0.03945 kg/m³
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 16</span>
+
+<span class="c1">#Find the specific volume, v, at 1MPa and 5 MPa using the ideal gas law</span>
+<span class="c1">#given T = 500 K and M = 44 kg/kmol</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#ideal gas law: Pv = RT/M</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">44</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">v_ideal_gas</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">8314</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="o">*</span><span class="n">M</span><span class="p">)</span>
+<span class="c1">#1 MPa</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">v_ideal_gas</span><span class="p">(</span><span class="mi">1000000</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+<span class="c1">#5 MPa</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">v_ideal_gas</span><span class="p">(</span><span class="mi">5000000</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+<span class="c1">#print ideal gas specific volume approximations</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ideal gas approximation:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;At 1 MPa the specific volume is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg/m</span><span class="se">\u00b3</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;At 5 MPa the specific volume is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg/m</span><span class="se">\u00b3</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1">#find using cantera</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">CarbonDioxide</span><span class="p">()</span>
+<span class="c1">#1 MPa</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="mi">10000000</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1">#5 MPa</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="mi">5000000</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cantera approximation:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;At 1 MPa the specific volume is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg/m</span><span class="se">\u00b3</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;At 5 MPa the specific volume is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg/m</span><span class="se">\u00b3</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ideal gas approximation:
+At 1 MPa the specific volume is 0.094477 kg/m³
+At 5 MPa the specific volume is 0.018895 kg/m³
+Cantera approximation:
+At 1 MPa the specific volume is 0.008849 kg/m³
+At 5 MPa the specific volume is 0.018237 kg/m³
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 17</span>
+
+<span class="c1">#Find the pressure and quality at state 2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mi">500000</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.0025</span>
+<span class="c1">#find specific volume</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">m</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The specific volume at state one is </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1"> kg/m</span><span class="se">\u00b3</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1">#set up with given values</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="n">P</span><span class="p">,</span> <span class="n">v</span>
+<span class="c1">#find the temperature at state one</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The temperature at state 1 is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> K&#39;</span><span class="p">)</span>
+<span class="c1">#set up values for state 2 where T1 = T2 and v = v/3</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="n">v</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">PQ</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1">#Print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pressure at state 2 is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> KPa&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The quality at state 2 is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The specific volume at state one is 0.4 kg/m³
+The temperature at state 1 is 448.75 K
+The pressure at state 2 is 903.9 KPa
+The quality at state 2 is 0.6207
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 18</span>
+
+<span class="c1">#Find the temperature at state one and the pressure at state 2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="c1">#solve for specific volume</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">0.005</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.015</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">m</span>
+<span class="c1">#Set up state one</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="mi">50000</span><span class="p">,</span> <span class="n">v</span>
+<span class="c1">#find the temperature</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The temperature at state 1 is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> K&#39;</span><span class="p">)</span>
+<span class="c1">#show state of matter</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The substance at state 1 is a </span><span class="si">{</span><span class="n">species1</span><span class="o">.</span><span class="n">phase_of_matter</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+<span class="c1">#Set up state 2</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T1</span> <span class="o">+</span> <span class="mi">20</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">v</span>
+<span class="c1">#Find pressure</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pressure at state 2 is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P2</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> KPa&#39;</span><span class="p">)</span>
+<span class="c1">#show state of matter</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The substance at state 2 is a </span><span class="si">{</span><span class="n">species1</span><span class="o">.</span><span class="n">phase_of_matter</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temperature at state 1 is 71.75 K
+The substance at state 1 is a liquid-gas-mix.
+The pressure at state 2 is 80.04 KPa
+The substance at state 2 is a gas.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#4.3.5 Exercise 19</span>
+
+<span class="c1">#Find the mass inside the piston and the pressure after expansion</span>
+<span class="c1">#State 1: given</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">V1</span> <span class="o">=</span> <span class="mf">0.000025</span> <span class="c1">#m^3</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1">#State 1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1</span>
+<span class="c1">#find the mass</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">v</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The mass of water in the piston is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg&#39;</span><span class="p">)</span>
+<span class="c1">#Set up state 2</span>
+<span class="n">V2</span> <span class="o">=</span> <span class="n">V1</span><span class="o">*</span><span class="mi">20</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="n">V2</span>
+<span class="c1">#find the pressure at state 2</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">PV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#print pressure</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pressure at state 2 is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> KPa&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The mass of water in the piston is 0.0659 kg
+The pressure at state 2 is 903.9 KPa
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Exercise_Solutions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Exercise%201.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10.1. </span>Exercise 1 Solutions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Exercise%203.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">10.3. </span>Exercise 3 Solutions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
