@@ -1012,6 +1012,209 @@ The heat transfer is -339.1 kJ
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 15</span>
+
+<span class="c1">#steam enters at Ti = 700 K and Pi = 5 MPa and Pe = 1 MPa at T2 = 400 K. The Vi 4 m/s and d = 1 m. </span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#state 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">5000000</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.1415</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">#state 2</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span><span class="n">P2</span>
+<span class="n">vi</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1">#to find dm = pVA = VA/v</span>
+<span class="n">dm</span> <span class="o">=</span> <span class="p">(</span><span class="n">V</span><span class="o">*</span><span class="n">A</span><span class="p">)</span><span class="o">/</span><span class="n">vi</span>
+
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P2</span>
+<span class="c1">#the equation Q-W = (me)exit - (me)inlet; Q = 0, me = mi  -&gt; W = m(hi - he)</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">dm</span><span class="o">*</span><span class="p">(</span><span class="n">h1</span><span class="o">-</span><span class="n">h2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The power created by the turbine with the steam is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> MW.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The power created by the turbine with the steam is 14.92 MW.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 16</span>
+
+<span class="c1">#refigerant enters at -10C as saturated liquid and leaves at 10C at 500 kPa. What is the work?</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#state 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">263</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="mf">.001</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="mi">263</span><span class="p">,</span> <span class="mi">0</span>
+<span class="c1">#find dm as dm = pQ = Q/v</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">dm</span> <span class="o">=</span> <span class="n">Q</span><span class="o">/</span><span class="n">v</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hfc134a</span><span class="p">()</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">283</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mi">500000</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span><span class="n">P2</span>
+<span class="c1">#for compressors there is no Q and it is steady state; W = dm(h1 - h2)</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">dm</span><span class="o">*</span><span class="p">(</span><span class="n">h1</span><span class="o">-</span><span class="n">h2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The power necessary for the compressor is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*-</span><span class="mi">1</span><span class="si">}</span><span class="s1"> kW.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The power necessary for the compressor is 35.7 kW.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 17</span>
+
+<span class="c1">#20kg/s of water at 1MPa enters as saturated vapor. At x = 0.5 4 kg/s leaves the exchanger. The rest of the water cools to a saturated liquid.</span>
+<span class="c1">#What is the heat transfer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#state 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">5000000</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">P1</span><span class="p">,</span><span class="n">x1</span>
+<span class="c1">#state 2; T from x = 1 to x = 0</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">-</span> <span class="mi">4</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="n">x2</span>
+<span class="c1">#state 3</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">T</span><span class="p">,</span> <span class="n">x3</span>
+<span class="c1">#calculate change in heat</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#first portion 1 -&gt; 2</span>
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">m1</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span>
+<span class="c1">#second portion 2 -&gt; 3</span>
+<span class="n">Q2</span> <span class="o">=</span> <span class="n">m2</span><span class="o">*</span><span class="p">(</span><span class="n">h3</span><span class="o">-</span><span class="n">h2</span><span class="p">)</span>
+<span class="c1">#total change</span>
+<span class="n">Qtotal</span> <span class="o">=</span> <span class="n">Q1</span><span class="o">+</span><span class="n">Q2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The total heat transfer from the fluid is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Qtotal</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*-</span><span class="mi">1</span><span class="si">}</span><span class="s1"> MW.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total heat transfer from the fluid is 29.52 MW.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 18</span>
+
+<span class="c1">#Water is throttled at 5 MPa as a saturated liquid. If the temperature drops 10°C during this process</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#state 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">5000000</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">P1</span><span class="p">,</span><span class="n">x1</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># h2 = h1; throttle</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># state 2</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T1</span> <span class="o">-</span> <span class="mi">15</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TH</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">h</span>
+<span class="c1">#what is the pressure change?</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">delta_P</span> <span class="o">=</span> <span class="n">P1</span> <span class="o">-</span> <span class="n">P2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pressure change through the throttle is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">delta_P</span><span class="o">/</span><span class="mi">1000000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> MPa.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The pressure change through the throttle is 1.09 MPa.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 19</span>
+
+<span class="c1">#nitrogen at T = 225 K and 1 bar at 50L/s. The water enters at 1L/s as a saturated vapor at 1 MPa and leaves as a saturated fluid. </span>
+<span class="c1">#If the nitrogen stays at a constant pressure, what is the final temperature of the nitrogen leaving the condensor?</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#need to find change in energy of water; the sum of the change in energy of water and that of the nitrogen is zero</span>
+<span class="c1">#water</span>
+<span class="n">Vw</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="c1">#state 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PQ</span> <span class="o">=</span> <span class="n">P1</span><span class="p">,</span> <span class="n">x1</span>
+<span class="n">T12</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1">#find mass flowrate</span>
+<span class="n">mw</span> <span class="o">=</span> <span class="n">Vw</span><span class="o">/</span><span class="n">v1</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#T is constant </span>
+<span class="n">x2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TQ</span> <span class="o">=</span> <span class="n">T12</span><span class="p">,</span> <span class="n">x2</span>
+<span class="c1">#Find difference in energy</span>
+<span class="c1">#for heat exchanger, there is not work or other effects so dq = dh</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">mw</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span>
+<span class="c1">#Nitrogen</span>
+<span class="c1">#state 1</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">Pn</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="mi">225</span>
+<span class="n">Vn</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T3</span><span class="p">,</span> <span class="n">Pn</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">h3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#find mass flowrate</span>
+<span class="n">mn</span> <span class="o">=</span> <span class="n">Vn</span><span class="o">/</span><span class="n">v3</span>
+<span class="c1">#state 2</span>
+<span class="n">species4</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="c1">#change in energy is equal to change in h of nitrogen multiplied by mass flowrate; m(h2-h1) = Q</span>
+<span class="n">delta_h</span> <span class="o">=</span> <span class="p">(</span><span class="n">Q</span><span class="o">/</span><span class="n">mn</span><span class="p">)</span><span class="o">*-</span><span class="mi">1</span>
+<span class="n">h4</span> <span class="o">=</span> <span class="n">h3</span> <span class="o">+</span> <span class="n">delta_h</span>
+<span class="n">species4</span><span class="o">.</span><span class="n">HP</span> <span class="o">=</span> <span class="n">h4</span><span class="p">,</span> <span class="n">Pn</span>
+<span class="c1">#find temperature</span>
+<span class="n">T4</span> <span class="o">=</span> <span class="n">species4</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The final temperature of the nitrogen leaving the condensor is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> K.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The final temperature of the nitrogen leaving the condensor is 357.78 K.
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

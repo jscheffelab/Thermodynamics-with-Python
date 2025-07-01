@@ -397,7 +397,12 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamic-systems">3.1. Thermodynamic Systems</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-and-processes">3.2. Properties and Processes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units-and-dimensional-homogeneity">3.3. Units and Dimensional Homogeneity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units-and-dimensional-homogeneity">3.3. Units and Dimensional Homogeneity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">3.3.1. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.3.2. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.3.3. Example</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-and-the-zeroth-law-of-thermodynamics">3.4. Temperature and the Zeroth Law of Thermodynamics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure">3.5. Pressure</a></li>
 </ul>
@@ -477,7 +482,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:38: SyntaxWarning: invalid escape sequence &#39;\d&#39;
 &lt;&gt;:38: SyntaxWarning: invalid escape sequence &#39;\d&#39;
-/tmp/ipykernel_17328/2189996880.py:38: SyntaxWarning: invalid escape sequence &#39;\d&#39;
+/tmp/ipykernel_18076/2189996880.py:38: SyntaxWarning: invalid escape sequence &#39;\d&#39;
   ax.annotate(&#39;$\delta W_{\mathrm{mech}}$&#39;, (2.25,11), (1.5,14.5), arrowprops=dict(color=&#39;orange&#39;, shrink=0.05), fontsize=12)
 </pre></div>
 </div>
@@ -553,9 +558,8 @@ document.write(`
 <p>A typical unit for electrical energy is kWh, which can be related to the SI unit for energy, J, on the basis of understanding dimensional homogeneity. For example,</p>
 <p><span class="math notranslate nohighlight">\({1\rm kWh} = 1 \frac{{\rm kJ}}{{\rm s}} {\rm h} = 1 \frac{{\rm kJ}}{{\rm s}} \frac{{\rm 3600s}}{{\rm h}} = 3600 {\rm kJ}\)</span></p>
 <p>There are many where cases you can infer the solution to a problem only by analyzing the units, without understanding what all of the properties mean. More complex examples are shown below.</p>
-<blockquote>
-<div><h3 class="rubric" id="example">Example</h3>
-</div></blockquote>
+<section id="example">
+<h3><span class="section-number">3.3.1. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
 <p>The specific heat of water is roughly 4.2 <span class="math notranslate nohighlight">\(\frac{{\rm kJ}}{{\rm kg°C}}\)</span> and its density is 1 <span class="math notranslate nohighlight">\(\frac{{\rm g}}{{\rm mL}}\)</span>. How much energy, in kJ, is required to heat 10 gallons of water to 50 °C? (Note: there are roughly 3.8 L per gallon)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -572,9 +576,9 @@ document.write(`
 </div>
 </div>
 </div>
-<blockquote>
-<div><h3 class="rubric" id="id7">Example</h3>
-</div></blockquote>
+</section>
+<section id="id7">
+<h3><span class="section-number">3.3.2. </span>Example<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <p>The average electric utility rate in Gainesville, FL is <span class="math notranslate nohighlight">\(\frac{\$ 0.10}{{\rm kWh}}\)</span>. If your electric bill per month, on average, is $150 determine your total electrical energy consumption over the course of a year, in GJ.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -591,9 +595,9 @@ document.write(`
 </div>
 </div>
 </div>
-<blockquote>
-<div><h3 class="rubric" id="id8">Example</h3>
-</div></blockquote>
+</section>
+<section id="id8">
+<h3><span class="section-number">3.3.3. </span>Example<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <p>Imagine you  installed a solar panel on your home that produces power 8 hours per day with a rated power of 5 kW. The lifetime of the panels is 30 years and they cost $10,000 to install. Will these panels save you money over this time period?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -620,6 +624,7 @@ Therefore, the solar panel will save you money over a 30 year period.
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="temperature-and-the-zeroth-law-of-thermodynamics">
 <h2><span class="section-number">3.4. </span>Temperature and the Zeroth Law of Thermodynamics<a class="headerlink" href="#temperature-and-the-zeroth-law-of-thermodynamics" title="Link to this heading">#</a></h2>
@@ -719,7 +724,12 @@ Therefore, the solar panel will save you money over a 30 year period.
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamic-systems">3.1. Thermodynamic Systems</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-and-processes">3.2. Properties and Processes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units-and-dimensional-homogeneity">3.3. Units and Dimensional Homogeneity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units-and-dimensional-homogeneity">3.3. Units and Dimensional Homogeneity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">3.3.1. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.3.2. Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.3.3. Example</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-and-the-zeroth-law-of-thermodynamics">3.4. Temperature and the Zeroth Law of Thermodynamics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure">3.5. Pressure</a></li>
 </ul>

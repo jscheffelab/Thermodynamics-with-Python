@@ -1050,6 +1050,197 @@ The heat transfer using Cantera is -681.63 kJ
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 12</span>
+<span class="c1"># A piston of nitrogen with v = 0.4 undergoes a constant temperature process from T = 500 K to T = 700 K. find the work done in this process and specific volume after compression</span>
+<span class="c1"># The piston is then held in place and heated 30 degrees. Find the pressure after heating.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="c1">#state 1</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">700</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="c1">#state 2</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="c1">#state 3</span>
+<span class="n">delta_T</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="c1">#solve for pressure ar state one</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">v1</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1">#solve for work </span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P1</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">P1</span><span class="o">*</span><span class="p">(</span><span class="n">v2</span><span class="o">-</span><span class="n">v1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The work done on the system is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*-</span><span class="mi">1</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The specific volume after compression is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg/m</span><span class="se">\u00b3</span><span class="s1">.&#39;</span><span class="p">)</span>
+<span class="c1">#state 3</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="n">T2</span> <span class="o">+</span> <span class="n">delta_T</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T3</span><span class="p">,</span> <span class="n">v2</span>
+<span class="n">P3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pressure after heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P3</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kPa.&#39;</span><span class="p">)</span>
+<span class="c1">#heat transfer for constant volume dQ = dU + pdV; dV = 0 -&gt; dQ = dU</span>
+<span class="n">U1</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">U2</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dQ</span> <span class="o">=</span> <span class="n">U2</span> <span class="o">-</span> <span class="n">U1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The heat transfer during the heating process is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">dQ</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The work done on the system is 59.49 kJ/kg.
+The specific volume after compression is 0.2857 kg/m³.
+The pressure after heating is 541.4 kPa.
+The heat transfer during the heating process is 15.2 kJ/kg.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 13</span>
+
+<span class="c1"># 0.4 kg fills a 20L tank at T = 700 K. Find the heat transfer if the water cools until T is half of its original value at constant pressure.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#state 1</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">800</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">0.020</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">m</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TV</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">v</span>
+<span class="c1">#find P at state 1</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T1</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span><span class="n">P1</span>
+<span class="c1"># use u = q - w -&gt; dq = du + Pdv -&gt; dq = dh to find heat transfer</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The heat transfer during the cooling process is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Q</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The heat transfer during the cooling process is -1174.99 kJ/kg.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 14</span>
+
+<span class="c1">#The piston is heated at a constant pressure with v = 0.45 m^3/kg</span>
+<span class="c1">#The pressure is equal to the F/A where the force is mg and the area is (pi/4)*d^2</span>
+<span class="c1">#find the change in q by using the equations dq = du + Pdv and h = u + Pdv so constant p -&gt; dq = dh</span>
+<span class="c1">#state 1</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">CarbonDioxide</span><span class="p">()</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="mf">0.45</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">Fg</span> <span class="o">=</span> <span class="mf">9.81</span><span class="o">*</span><span class="n">m</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.1415</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">#find gauge pressure -&gt; P = F/A</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">Fg</span><span class="o">/</span><span class="n">A</span>
+<span class="c1">#pressure is gauge plus atmospheric</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">P</span> <span class="o">+</span> <span class="mi">101000</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="n">P</span><span class="p">,</span> <span class="n">v1</span>
+<span class="c1">#find temperature </span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">CarbonDioxide</span><span class="p">()</span>
+<span class="n">delta_T</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T1</span> <span class="o">+</span> <span class="n">delta_T</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span><span class="n">P1</span>
+<span class="c1">#Find the heat transfer from this process; dq = dh</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dq</span> <span class="o">=</span> <span class="n">h2</span> <span class="o">-</span> <span class="n">h1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The heat transfer during this process per kg of carbon dioxide is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">dq</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The heat transfer during this process per kg of carbon dioxide is 41.93 kJ/kg.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 15</span>
+
+<span class="c1"># A 100l tank is filled with water. The water starts at ambient conditions P = 100 kPa and T = 300 K. 300 kJ of heat is transferred to the water</span>
+<span class="c1">#state 1</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">.1</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P1</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">v</span>
+<span class="c1">#to find state two dq = du when dV = 0</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">delta_q</span> <span class="o">=</span> <span class="mi">300000</span><span class="o">/</span><span class="n">m</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">u1</span> <span class="o">+</span> <span class="n">delta_q</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">UV</span> <span class="o">=</span> <span class="n">u2</span><span class="p">,</span> <span class="n">v</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The temperature of the water after heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> K.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pressure of the water after heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P2</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kPa.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temperature of the water after heating is 300.73 K.
+The pressure of the water after heating is 547.1 kPa.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5.3.2 Exercise 16</span>
+
+<span class="c1"># V = 50L at ambient temperatures. Heat transfer is 100 kJ. What is the pressure and temp after heating. v1 = v2 -0&gt; dv = 0</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#state 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">V</span> <span class="o">=</span> <span class="mf">0.050</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span><span class="n">P1</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">V</span><span class="o">/</span><span class="n">v</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Water</span><span class="p">()</span>
+<span class="c1">#Q = dU for constant v</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">u1</span> <span class="o">+</span> <span class="mi">100000</span><span class="o">/</span><span class="n">m</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">UV</span> <span class="o">=</span> <span class="n">u2</span><span class="p">,</span> <span class="n">v</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pressure in the tank after heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">P2</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kPa.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The temperature in the tank after heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">T2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> K.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The pressure in the tank after heating is 396.49 kPa.
+The temperature in the tank after heating is 300.49 K.
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

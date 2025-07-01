@@ -564,7 +564,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T2 using fsolve 582.3 K
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_17638/1343756491.py:15: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_19233/1343756491.py:15: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   species2.TP = Tguess,P1
 </pre></div>
 </div>
@@ -919,6 +919,165 @@ Isobaric: The heat transfer required is 92.82 kJ
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The work done is -150.1 kJ, and the heat transfer for the process is -37.4 kJ
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#6.7.3 Exercise 11</span>
+
+<span class="c1">#polytropic process m = 1 kg, n = 2, T2 = 750 K, and V1/V2 = 1/2</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">750</span>
+<span class="n">x_V</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="mi">2</span>
+<span class="c1">#find T1</span>
+<span class="c1"># eq T2/T1 = (V1/V2)^(n-1)</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="n">T2</span><span class="o">/</span><span class="p">(</span><span class="n">x_V</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The intial temperature of the nitrogen is </span><span class="si">{</span><span class="n">T1</span><span class="si">}</span><span class="s1"> K.&#39;</span><span class="p">)</span>
+<span class="c1">#find work</span>
+<span class="c1">#eq W = (mR(T2-T1))/(1-n)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="mf">8.314</span><span class="o">*</span><span class="p">(</span><span class="n">T2</span><span class="o">-</span><span class="n">T1</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The work done during this process is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The intial temperature of the nitrogen is 1500.0 K.
+The work done during this process is 6235.5 kJ.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#6.7.3 Exercise 12</span>
+
+<span class="c1">#Carbon dioxide is heated 115 kJ/kg from 350 to 500. What is the average molar specific heat assuming ideal gas; not dependent on p</span>
+<span class="c1"># q = cdT</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">115000</span> <span class="c1">#J/kg</span>
+<span class="n">delta_T</span> <span class="o">=</span> <span class="mi">500</span><span class="o">-</span><span class="mi">350</span> <span class="c1">#K</span>
+<span class="n">Cavg</span> <span class="o">=</span> <span class="n">q</span><span class="o">/</span><span class="n">delta_T</span> <span class="c1">#J/kgK</span>
+<span class="n">Cavg</span> <span class="o">=</span> <span class="n">Cavg</span><span class="o">/</span><span class="mi">1000</span> <span class="c1">#kJ/kgK</span>
+<span class="c1">#molar mass</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">44</span> <span class="c1">#kg/kmol</span>
+<span class="n">CavgM</span> <span class="o">=</span> <span class="n">M</span><span class="o">*</span><span class="n">Cavg</span> <span class="c1">#kJ/kmolK</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The molar average specific heat during this heating is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">CavgM</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> J/molK.&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The molar average specific heat during this heating is 33.73 J/molK.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#6.7.3 Exercise 13</span>
+
+<span class="c1">#Nitrogen is heated in a rigid container from T = 400 to T = 750. Assume ideal gas. What is the change in specific internal energy (u)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#state 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span> 
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mi">100000</span> <span class="c1">#ideal gas so pressure doesn&#39;t matter; choose one bar</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span> 
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">750</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P</span>
+<span class="c1">#Using average specific heats</span>
+<span class="n">Cavg</span> <span class="o">=</span> <span class="p">(</span><span class="n">species1</span><span class="o">.</span><span class="n">cv</span> <span class="o">+</span> <span class="n">species2</span><span class="o">.</span><span class="n">cv</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="c1"># q = cdT</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">Cavg</span><span class="o">*</span><span class="p">(</span><span class="n">T2</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
+<span class="c1"># u = q - w; dV = 0 -&gt; w = 0 -&gt; du = dq</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The change in specfic internal energies using average specific heats is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">q</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+<span class="c1">#Using cantera</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">du</span> <span class="o">=</span> <span class="n">u2</span> <span class="o">-</span> <span class="n">u1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The change in specfic internal energies using cantera is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">du</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The change in specfic internal energies using average specific heats is 272.63 kJ/kg.
+The change in specfic internal energies using cantera is 270.96 kJ/kg.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#6.7.3 Exercise 14</span>
+
+<span class="c1">#Polytropic process where T2/T1 = 3 and V1/V2 = 2. T1 = 300 K.</span>
+<span class="c1">#What is the work done per kg?</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">x_T</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x_V</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="c1"># T2/T1 = (V1/V2)^n</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x_T</span><span class="p">)</span><span class="o">/</span><span class="n">x_V</span>
+<span class="c1">#find T2 -&gt; T2/T1 = (V1/V2)**n</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T1</span><span class="o">*</span><span class="p">(</span><span class="n">x_V</span><span class="p">)</span><span class="o">**</span><span class="n">n</span>
+<span class="c1">#find work -&gt; W = mR(T2-T1)/(1-n)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="mf">8.314</span><span class="o">*</span><span class="p">(</span><span class="n">T2</span><span class="o">-</span><span class="n">T1</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The work per kg done during this process is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">w</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The work per kg done during this process is 2.56 kJ/kg.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#6.7.3 Exercise 15</span>
+
+<span class="c1">#Calculate change in specific internal energy of hydrogen from 400 K to 500 K </span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#state 1</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mi">100000</span> <span class="c1">#ideal gas so pressure doesn&#39;t matter; choose one bar</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span> <span class="n">P</span>
+<span class="c1">#state 2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span> <span class="n">P</span>
+<span class="c1">#using average Cv values</span>
+<span class="n">Cv1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">cv</span>
+<span class="n">Cv2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">cv</span>
+<span class="n">Cv_avg</span> <span class="o">=</span> <span class="p">(</span><span class="n">Cv1</span><span class="o">+</span><span class="n">Cv2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="c1"># for constant v; u = q = cdT</span>
+<span class="n">u_avg</span> <span class="o">=</span> <span class="n">Cv_avg</span><span class="o">*</span><span class="p">(</span><span class="n">T2</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
+<span class="c1">#using room temperature Cv values</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Hydrogen</span><span class="p">()</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T3</span><span class="p">,</span> <span class="n">P</span>
+<span class="n">Cv_rt</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">cv</span>
+<span class="c1"># for constant v; u = q = cdT</span>
+<span class="n">u_rt</span> <span class="o">=</span> <span class="n">Cv_rt</span><span class="o">*</span><span class="p">(</span><span class="n">T2</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
+<span class="c1">#using cantera</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># du = u2 - u1</span>
+<span class="n">u_ct</span> <span class="o">=</span> <span class="n">u2</span> <span class="o">-</span> <span class="n">u1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The change in specific internal energy using average Cv values is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">u_avg</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The change in specific internal energy using room temperature Cv values is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">u_rt</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The change in specific internal energy using Cantera values is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">u_ct</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The change in specific internal energy using average Cv values is 1041.05 kJ/kg.
+The change in specific internal energy using room temperature Cv values is 1073.66 kJ/kg.
+The change in specific internal energy using Cantera values is 1040.23 kJ/kg.
 </pre></div>
 </div>
 </div>
