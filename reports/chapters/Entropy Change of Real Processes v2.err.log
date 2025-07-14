@@ -18,22 +18,13 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-s2=s1
-state1 = ct.Hfc134a()# define species1 as r134
-state2.ST = s2,Tl
-x2 = state2.TQ[1]
-print("The quality after expansion is", round(x2,2))
+{numref}`Exercise7Solutions` {ref}`Exercise7Solutions`
 ------------------
 
 
-[31m---------------------------------------------------------------------------[39m
-[31mNameError[39m                                 Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[9][39m[32m, line 3[39m
-[32m      1[39m s2=s1
-[32m      2[39m state1 = ct.Hfc134a()[38;5;66;03m# define species1 as r134[39;00m
-[32m----> [39m[32m3[39m [43mstate2[49m.ST = s2,Tl
-[32m      4[39m x2 = state2.TQ[[32m1[39m]
-[32m      5[39m [38;5;28mprint[39m([33m"[39m[33mThe quality after expansion is[39m[33m"[39m, [38;5;28mround[39m(x2,[32m2[39m))
+  [36mCell[39m[36m [39m[32mIn[22][39m[32m, line 1[39m
+[31m    [39m[31m{numref}`Exercise7Solutions` {ref}`Exercise7Solutions`[39m
+            ^
+[31mSyntaxError[39m[31m:[39m invalid syntax
 
-[31mNameError[39m: name 'state2' is not defined
 

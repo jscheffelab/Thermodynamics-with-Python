@@ -73,7 +73,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Exercise_Solutions/Exercise 5';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="11. References Cited" href="../References%20Cited.html" />
+    <link rel="next" title="10.6. Exercise 6 Solutions" href="Exercise%206.html" />
     <link rel="prev" title="10.4. Exercise 4 Solutions" href="Exercise%204.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -208,6 +208,8 @@
 <li class="toctree-l2"><a class="reference internal" href="Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">10.5. Exercise 5 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%206.html">10.6. Exercise 6 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%207.html">10.7. Exercise 7 Solutions</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../References%20Cited.html">11. References Cited</a></li>
@@ -416,7 +418,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7.6.3 Exercise 1</span>
 <span class="c1">#Air enters a 1-m2 pipe at 100 kPa and 20°C with a velocity of 180 m/s. Determine the volumetric flow rate, in m3/s, at the inlet and the mass flow rate, in kg/s, at the exit.</span>
 
-
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span><span class="c1"># correction from C to K</span>
 <span class="n">A</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># m2</span>
 <span class="n">Pi</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># Pa</span>
 <span class="n">Ti</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span> <span class="n">Kc</span>
@@ -439,16 +441,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">A</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># m2</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">Pi</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># Pa</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">Ti</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span> <span class="n">Kc</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">vel_i</span> <span class="o">=</span> <span class="mi">180</span> <span class="c1"># m/s</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">R</span> <span class="o">=</span> <span class="mf">0.287</span> <span class="c1"># kPa*m^3/kgK</span>
-
-<span class="ne">NameError</span>: name &#39;Kc&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The volume flow rate at inlet is 180 m3/s, and the mass flow rate at exit is 213.9 kg/s
 </pre></div>
 </div>
 </div>
@@ -809,6 +802,9 @@ The power required to drive the compressor is 4.1 kJ
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The rate of condensation of the steam in the condensor is 1.6 kg/s
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -918,7 +914,9 @@ The power required to drive the compressor is 4.1 kJ
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The temperature of the air at the compressor outlet is 108.6 deg C
-The minimum volume flow rate of ambient air required to avoid knock is 44.9 m3/s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The minimum volume flow rate of ambient air required to avoid knock is 44.9 m3/s
 </pre></div>
 </div>
 </div>
@@ -1270,11 +1268,11 @@ The heat transfer is -339.1 kJ
       </div>
     </a>
     <a class="right-next"
-       href="../References%20Cited.html"
+       href="Exercise%206.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>References Cited</p>
+        <p class="prev-next-title"><span class="section-number">10.6. </span>Exercise 6 Solutions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
