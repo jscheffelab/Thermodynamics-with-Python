@@ -18,6 +18,7 @@ chapters:
 - file: chapters/First Law of Thermodynamics Open Systems
 - file: chapters/Second Law of Thermodynamics
 - file: chapters/Entropy Change of Real Processes v2
+- file: chapters/Gas Power Cycles
 - file: chapters/Exercise Solutions
   sections: 
   - file: chapters/Exercise_Solutions/Exercise 1
@@ -27,5 +28,6 @@ chapters:
   - file: chapters/Exercise_Solutions/Exercise 5
   - file: chapters/Exercise_Solutions/Exercise 6
   - file: chapters/Exercise_Solutions/Exercise 7
+  - file: chapters/Exercise_Solutions/Exercise 8
 #- file: genindex
 - file: chapters/References Cited

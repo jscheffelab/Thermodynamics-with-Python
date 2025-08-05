@@ -1,0 +1,1151 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11.8. Exercise 8 Solutions &#8212; Thermodynamics with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-Q47V714GTG"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-Q47V714GTG');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-Q47V714GTG');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Exercise_Solutions/Exercise 8';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="12. References Cited" href="../References%20Cited.html" />
+    <link rel="prev" title="11.7. Exercise 7 Solutions" href="Exercise%207.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Thermodynamics with Python - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Thermodynamics with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Thermodynamics with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../About.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Brief%20Introduction%20to%20Python.html">2. Brief Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Brief%20Introduction%20to%20Thermodynamics.html">3. Brief Introduction to Thermodynamics: Systems , Processes, States and Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Evaluation%20of%20Properties.html">4. Evaluation of Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics.html">5. First Law of Thermodynamics - Introduction to Closed Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Continued.html">6. First Law of Thermodynamics - Boundary Work and Specific Heats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Entropy%20Change%20of%20Real%20Processes%20v2.html">9. Entropy Change of Real and Idealized Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Gas%20Power%20Cycles.html">10. Gas Power Cycles - Brayton, Otto and Diesel Cycles</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Exercise%20Solutions.html">11. Exercise Solutions</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Exercise%201.html">11.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%202.html">11.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%203.html">11.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%204.html">11.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%205.html">11.5. Exercise 5 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%206.html">11.6. Exercise 6 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise%207.html">11.7. Exercise 7 Solutions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">11.8. Exercise 8 Solutions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../References%20Cited.html">12. References Cited</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/Exercise_Solutions/Exercise 8.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Exercise_Solutions/Exercise 8.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exercise 8 Solutions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="exercise-8-solutions">
+<span id="exercise8solutions"></span><h1><span class="section-number">11.8. </span>Exercise 8 Solutions<a class="headerlink" href="#exercise-8-solutions" title="Link to this heading">#</a></h1>
+<p><a class="reference internal" href="../Gas%20Power%20Cycles.html#exercise8"><span class="std std-numref">Section 10.3.5</span></a> <a class="reference internal" href="../Gas%20Power%20Cycles.html#exercise8"><span class="std std-ref">Exercise 8</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="n">Kc</span> <span class="o">=</span> <span class="mf">273.15</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#1 A stationary gas-turbine power plant operates on a simple ideal Brayton cycle with air as the</span>
+<span class="c1">#working fluid. The air enters the compressor at 95 kPa and 290 K and the turbine at 760 kPa and</span>
+<span class="c1">#1100 K. Heat is transferred to air at a rate of 35,000 kW. Determine the power delivered by this</span>
+<span class="c1">#plant (a) assuming constant specific heats at room temperature and (b) accounting for the variation</span>
+<span class="c1">#of specific heats with temperature.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Pl</span> <span class="o">=</span> <span class="mf">95e3</span>
+<span class="n">Ph</span> <span class="o">=</span> <span class="mf">760e3</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">290</span> <span class="c1"># K</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="mi">1100</span> <span class="c1"># K</span>
+<span class="n">Qin</span> <span class="o">=</span> <span class="mi">35000</span> <span class="c1">#kW</span>
+<span class="c1"># approach 1</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2:0.21&#39;</span>
+<span class="n">cv_RT</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">cv</span>
+<span class="n">cp_RT</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">cp</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="n">cp_RT</span><span class="o">/</span><span class="n">cv_RT</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T1</span><span class="o">*</span><span class="p">(</span><span class="n">Ph</span><span class="o">/</span><span class="n">Pl</span><span class="p">)</span><span class="o">**</span><span class="p">((</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+<span class="n">T4</span> <span class="o">=</span> <span class="n">T3</span><span class="o">*</span><span class="p">(</span><span class="n">Pl</span><span class="o">/</span><span class="n">Ph</span><span class="p">)</span><span class="o">**</span><span class="p">((</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+<span class="n">wc</span> <span class="o">=</span> <span class="n">cp_RT</span><span class="o">*</span><span class="p">(</span><span class="n">T2</span><span class="o">-</span><span class="n">T1</span><span class="p">)</span>
+<span class="n">wt</span> <span class="o">=</span> <span class="n">cp_RT</span><span class="o">*</span><span class="p">(</span><span class="n">T3</span><span class="o">-</span><span class="n">T4</span><span class="p">)</span>
+<span class="n">wnet</span> <span class="o">=</span> <span class="n">wt</span> <span class="o">-</span> <span class="n">wc</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="n">Qin</span><span class="o">/</span><span class="p">(</span><span class="n">cp_RT</span><span class="o">*</span><span class="p">(</span><span class="n">T3</span><span class="o">-</span><span class="n">T2</span><span class="p">))</span>
+<span class="n">Wnet</span> <span class="o">=</span> <span class="n">wnet</span><span class="o">*</span><span class="n">mdot</span>
+
+<span class="c1"># approach 2</span>
+<span class="n">state1</span><span class="p">,</span><span class="n">state2</span><span class="p">,</span><span class="n">state3</span><span class="p">,</span><span class="n">state4</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">state2</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">state3</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">state4</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2:0.21&#39;</span><span class="p">,</span><span class="s1">&#39;N2:0.79 O2:0.21&#39;</span><span class="p">,</span><span class="s1">&#39;N2:0.79 O2:0.21&#39;</span><span class="p">,</span><span class="s1">&#39;N2:0.79 O2:0.21&#39;</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span><span class="n">Pl</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span>
+<span class="n">state2</span><span class="o">.</span><span class="n">SP</span> <span class="o">=</span> <span class="n">s2</span><span class="p">,</span><span class="n">Ph</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">state2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">state3</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T3</span><span class="p">,</span><span class="n">Ph</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">state3</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h3</span> <span class="o">=</span> <span class="n">state3</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">s4</span> <span class="o">=</span> <span class="n">s3</span>
+<span class="n">state4</span><span class="o">.</span><span class="n">SP</span> <span class="o">=</span> <span class="n">s4</span><span class="p">,</span><span class="n">Pl</span>
+<span class="n">h4</span> <span class="o">=</span> <span class="n">state4</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">wc</span> <span class="o">=</span> <span class="n">h1</span><span class="o">-</span><span class="n">h2</span>
+<span class="n">wt</span> <span class="o">=</span> <span class="n">h3</span><span class="o">-</span><span class="n">h4</span>
+<span class="n">wnet</span> <span class="o">=</span> <span class="n">wc</span> <span class="o">+</span> <span class="n">wt</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="n">Qin</span><span class="o">/</span><span class="p">(</span><span class="n">h3</span><span class="o">-</span><span class="n">h2</span><span class="p">)</span>
+<span class="n">Wnet</span> <span class="o">=</span> <span class="n">wnet</span><span class="o">*</span><span class="n">mdot</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Part A: Power Delivered is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Wnet</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> kW&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Part B: Power Delivered is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Wnet</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> kW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Part A: Power Delivered is 15053.32 kW
+Part B: Power Delivered is 15053.32 kW
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#2</span>
+<span class="c1">#A gas turbine power plant operates on the simple Brayton cycle with air as the working fluid and</span>
+<span class="c1">#delivers 32 MW of power. The minimum and maximum temperatures in the cycle are 310 and 900</span>
+<span class="c1">#K, and the pressure of air at the compressor exit is 8 times the value at the compressor inlet.</span>
+<span class="c1">#Assuming an isentropic efficiency of 80% for the compressor and 86% for the turbine, determine</span>
+<span class="c1">#the mass flow rate of air through the cycle. Account for the variation of specific heats with</span>
+<span class="c1">#temperature.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 774 kg/s </span>
+<span class="n">Wdotnet</span> <span class="o">=</span> <span class="mf">32e+6</span> <span class="c1">#W</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">310</span> <span class="c1"># K</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="mi">900</span> <span class="c1">#K</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mf">100e3</span>
+<span class="n">Pr</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1"># P3 = P2 = 8*P1</span>
+<span class="n">etac</span><span class="p">,</span> <span class="n">etat</span> <span class="o">=</span> <span class="mf">0.80</span><span class="p">,</span> <span class="mf">0.86</span>
+<span class="n">state1</span><span class="p">,</span><span class="n">state2s</span><span class="p">,</span><span class="n">state3</span><span class="p">,</span><span class="n">state4s</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">state2s</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">state3</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">state4s</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2:0.21&#39;</span><span class="p">,</span><span class="s1">&#39;N2:0.79 O2:0.21&#39;</span><span class="p">,</span><span class="s1">&#39;N2:0.79 O2:0.21&#39;</span><span class="p">,</span><span class="s1">&#39;N2:0.79 O2:0.21&#39;</span>
+<span class="n">cv_RT</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">cv</span>
+<span class="n">cp_RT</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">cp</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">cp_RT</span><span class="o">/</span><span class="n">cv_RT</span>
+<span class="n">T2s</span> <span class="o">=</span> <span class="n">T1</span><span class="o">*</span><span class="n">Pr</span><span class="o">**</span><span class="p">((</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+<span class="n">T4s</span> <span class="o">=</span> <span class="n">T3</span><span class="o">/</span><span class="p">(</span><span class="n">Pr</span><span class="o">**</span><span class="p">((</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">))</span>
+
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">state3</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T3</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h3</span> <span class="o">=</span> <span class="n">state3</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">state2s</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2s</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h2s</span> <span class="o">=</span> <span class="n">state2s</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">state4s</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T4s</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h4s</span> <span class="o">=</span> <span class="n">state4s</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">etac</span><span class="o">*</span><span class="p">(</span><span class="n">h2s</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span> <span class="o">+</span> <span class="n">h1</span>
+<span class="n">h4</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="n">etat</span><span class="o">*</span><span class="p">(</span><span class="n">h3</span><span class="o">-</span><span class="n">h4s</span><span class="p">)</span><span class="o">-</span><span class="n">h3</span><span class="p">)</span>
+<span class="n">wcin</span> <span class="o">=</span> <span class="p">(</span><span class="n">h1</span> <span class="o">-</span> <span class="n">h2</span><span class="p">)</span>
+<span class="n">wt</span> <span class="o">=</span> <span class="n">h3</span> <span class="o">-</span> <span class="n">h4</span>
+<span class="n">wnet</span> <span class="o">=</span> <span class="p">(</span><span class="n">wc</span> <span class="o">+</span> <span class="n">wt</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">m_dot</span> <span class="o">=</span> <span class="n">Wdotnet</span><span class="o">/</span><span class="n">wnet</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Mass Flow Rate is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">m_dot</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Mass Flow Rate is 232185.382 kg/s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Wdotnet</span> <span class="o">=</span> <span class="mf">32e+6</span> <span class="c1">#W</span>
+<span class="n">T1</span> <span class="o">=</span> <span class="mi">310</span> <span class="c1"># K</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="mi">900</span> <span class="c1">#K</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mf">100e3</span>
+<span class="n">Pr</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1"># P3 = P2 = 8*P1</span>
+<span class="n">etac</span><span class="p">,</span> <span class="n">etat</span> <span class="o">=</span> <span class="mf">0.80</span><span class="p">,</span> <span class="mf">0.86</span>
+<span class="n">state1</span><span class="p">,</span><span class="n">state2s</span><span class="p">,</span><span class="n">state3</span><span class="p">,</span><span class="n">state4s</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">),</span><span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">state1</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">state2s</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">state3</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">state4s</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2:0.21&#39;</span><span class="p">,</span><span class="s1">&#39;N2:0.79 O2:0.21&#39;</span><span class="p">,</span><span class="s1">&#39;N2:0.79 O2:0.21&#39;</span><span class="p">,</span><span class="s1">&#39;N2:0.79 O2:0.21&#39;</span>
+
+<span class="n">state1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">state3</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T3</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h3</span> <span class="o">=</span> <span class="n">state3</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">state3</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span>
+<span class="n">state2s</span><span class="o">.</span><span class="n">SP</span> <span class="o">=</span> <span class="n">s2</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h2s</span> <span class="o">=</span> <span class="n">state2s</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s4</span> <span class="o">=</span> <span class="n">s3</span>
+<span class="n">state4s</span><span class="o">.</span><span class="n">SP</span> <span class="o">=</span> <span class="n">s4</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h4s</span> <span class="o">=</span> <span class="n">state4s</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">etac</span><span class="o">*</span><span class="p">(</span><span class="n">h2s</span><span class="o">-</span><span class="n">h1</span><span class="p">)</span> <span class="o">+</span> <span class="n">h1</span>
+<span class="n">h4</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="n">etat</span><span class="o">*</span><span class="p">(</span><span class="n">h3</span><span class="o">-</span><span class="n">h4s</span><span class="p">)</span><span class="o">-</span><span class="n">h3</span><span class="p">)</span>
+<span class="n">wcin</span> <span class="o">=</span> <span class="p">(</span><span class="n">h1</span> <span class="o">-</span> <span class="n">h2</span><span class="p">)</span>
+<span class="n">wt</span> <span class="o">=</span> <span class="n">h3</span> <span class="o">-</span> <span class="n">h4</span>
+<span class="n">wnet</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">wc</span> <span class="o">+</span> <span class="n">wt</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">m_dot</span> <span class="o">=</span> <span class="n">Wdotnet</span><span class="o">/</span><span class="n">wnet</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The Mass Flow Rate is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">m_dot</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Mass Flow Rate is 135191.699 kg/s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3</span>
+
+<span class="c1">#A Brayton cycle using air as the working fluid operates at steady state with</span>
+<span class="c1">#intercooling and reheating. The net power output is 10 MW. Operating data are provided in problem statement.</span>
+
+<span class="c1">#a) Sketch the T-s diagram for the cycle</span>
+<span class="c1">#b) Determine the mass flowrate of air, in kg/s</span>
+<span class="c1">#c) The rate of heat transfer, in kW, during all heat addition stages</span>
+<span class="c1">#d) The thermal efficiency</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Wdnet</span> <span class="o">=</span> <span class="mf">10e6</span>
+<span class="n">h1</span><span class="p">,</span> <span class="n">h2</span><span class="p">,</span> <span class="n">h3</span><span class="p">,</span> <span class="n">h4</span><span class="p">,</span> <span class="n">h5</span><span class="p">,</span> <span class="n">h6</span><span class="p">,</span> <span class="n">h7</span><span class="p">,</span> <span class="n">h8</span><span class="p">,</span> <span class="n">h9</span><span class="p">,</span> <span class="n">h10</span> <span class="o">=</span> <span class="mf">300.19e3</span><span class="p">,</span> <span class="mf">411.22e3</span><span class="p">,</span> <span class="mf">300.19e3</span><span class="p">,</span> <span class="mf">446.50e3</span><span class="p">,</span> <span class="mf">1173.84e3</span><span class="p">,</span> <span class="mf">1575.57e3</span><span class="p">,</span><span class="mf">1085.31e3</span><span class="p">,</span><span class="mf">1575.57e3</span><span class="p">,</span><span class="mf">1173.84e3</span><span class="p">,</span><span class="mf">446.5e3</span>
+
+<span class="c1"># b) find the mass flow rate</span>
+<span class="n">wc</span><span class="o">=</span> <span class="n">h1</span> <span class="o">-</span> <span class="n">h2</span> <span class="o">+</span> <span class="n">h3</span> <span class="o">-</span> <span class="n">h4</span>
+<span class="n">wt</span><span class="o">=</span> <span class="n">h6</span> <span class="o">-</span> <span class="n">h7</span> <span class="o">+</span> <span class="n">h8</span> <span class="o">-</span> <span class="n">h9</span>
+<span class="n">wnet</span> <span class="o">=</span> <span class="n">wc</span> <span class="o">+</span> <span class="n">wt</span>
+
+<span class="n">m_dot</span> <span class="o">=</span> <span class="n">Wdnet</span><span class="o">/</span><span class="n">wnet</span>
+
+<span class="c1"># c) rate of heat transfer </span>
+<span class="n">qin</span> <span class="o">=</span> <span class="n">h6</span> <span class="o">-</span> <span class="n">h4</span> <span class="o">+</span> <span class="n">h8</span> <span class="o">-</span> <span class="n">h7</span>
+<span class="n">Qdotin</span> <span class="o">=</span> <span class="n">m_dot</span><span class="o">*</span><span class="n">qin</span>
+
+<span class="c1"># d) thermal efficiency</span>
+<span class="n">nth</span> <span class="o">=</span> <span class="n">Wdnet</span><span class="o">/</span><span class="n">Qdotin</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;b) air mass flow rate: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">m_dot</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;c) heat transfer rate: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">Qdotin</span><span class="o">/</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> MW&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;d) thermal efficiency: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">nth</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b) air mass flow rate: 15.76 kg/s
+c) heat transfer rate: 25.52 MW
+d) thermal efficiency: 0.39
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4</span>
+
+<span class="c1">#Consider an ideal gas-turbine cycle with two stages of compression and two stages of expansion.</span>
+<span class="c1">#The pressure ratio across each stage of the compressor and turbine is 3. The air enters each stage</span>
+<span class="c1">#of the compressor at 300 K and each stage of the turbine at 1200 K. Determine the thermal</span>
+<span class="c1">#efficiency of the cycle, assuming (a) no regenerator is used and (b) a regenerator with 75 percent</span>
+<span class="c1">#effectiveness is used. Use variable specific heats.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T1</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="n">T1</span>
+<span class="n">T5</span> <span class="o">=</span> <span class="mi">1200</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">1.4</span>
+<span class="n">Pr</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mf">100e3</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Solution</span><span class="p">(</span><span class="s1">&#39;gri30.yaml&#39;</span><span class="p">)</span>
+<span class="n">state</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="s1">&#39;N2:0.79 O2:0.21&#39;</span>
+<span class="n">cp</span> <span class="o">=</span> <span class="n">state1</span><span class="o">.</span><span class="n">cp</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">T2</span> <span class="o">=</span> <span class="n">T1</span><span class="o">*</span><span class="p">(</span><span class="n">Pr</span><span class="p">)</span><span class="o">**</span><span class="p">((</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+<span class="n">T6</span> <span class="o">=</span> <span class="n">T5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">Pr</span><span class="p">)</span><span class="o">**</span><span class="p">((</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+<span class="n">T7</span> <span class="o">=</span> <span class="n">T5</span>
+<span class="n">T8</span> <span class="o">=</span> <span class="n">T6</span>
+<span class="n">T3</span> <span class="o">=</span> <span class="n">T1</span>
+<span class="n">T4</span> <span class="o">=</span> <span class="n">T2</span>
+<span class="n">Wt</span> <span class="o">=</span> <span class="n">cp</span><span class="o">*</span><span class="p">(</span><span class="n">T5</span><span class="o">-</span><span class="n">T6</span><span class="p">)</span> <span class="o">+</span> <span class="n">cp</span><span class="o">*</span><span class="p">(</span><span class="n">T7</span><span class="o">-</span><span class="n">T8</span><span class="p">)</span>
+<span class="n">Wc</span> <span class="o">=</span> <span class="n">cp</span><span class="o">*</span><span class="p">(</span><span class="n">T1</span><span class="o">-</span><span class="n">T2</span><span class="p">)</span> <span class="o">+</span> <span class="n">cp</span><span class="o">*</span><span class="p">(</span><span class="n">T3</span><span class="o">-</span><span class="n">T4</span><span class="p">)</span>
+<span class="n">state</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T1</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">state</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T2</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">state</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T5</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h5</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
+<span class="n">state</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="n">T6</span><span class="p">,</span><span class="n">P</span>
+<span class="n">h6</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span>
+
+<span class="n">h8</span> <span class="o">=</span> <span class="n">h6</span>
+<span class="n">h7</span> <span class="o">=</span> <span class="n">h5</span>
+<span class="n">h3</span> <span class="o">=</span> <span class="n">h1</span>
+<span class="n">h4</span> <span class="o">=</span> <span class="n">h2</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">(</span><span class="n">h5</span> <span class="o">-</span> <span class="n">h4</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">h7</span> <span class="o">-</span> <span class="n">h6</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">Wt</span> <span class="o">+</span> <span class="n">Wc</span>
+<span class="n">etath</span> <span class="o">=</span> <span class="n">W</span><span class="o">/</span><span class="n">q</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a) thermal efficiency w no regenerator: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">etath</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">Tb</span> <span class="o">=</span> <span class="n">e</span><span class="o">*</span><span class="p">(</span><span class="n">T8</span><span class="o">-</span><span class="n">T4</span><span class="p">)</span> <span class="o">+</span> <span class="n">T4</span>
+<span class="n">etath</span> <span class="o">=</span> <span class="p">(</span><span class="n">T5</span><span class="o">-</span><span class="n">T6</span> <span class="o">+</span> <span class="n">T7</span> <span class="o">-</span> <span class="n">T8</span> <span class="o">+</span> <span class="n">T1</span> <span class="o">-</span> <span class="n">T2</span> <span class="o">+</span> <span class="n">T3</span> <span class="o">-</span>  <span class="n">T4</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">T5</span> <span class="o">-</span> <span class="n">Tb</span> <span class="o">+</span> <span class="n">T7</span> <span class="o">-</span><span class="n">T6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;a) thermal efficiency w 75% effectiveness regenerator: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">etath</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a) thermal efficiency w no regenerator: 0.35
+a) thermal efficiency w 75% effectiveness regenerator: 0.56
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#5</span>
+<span class="c1">#Air at ambient conditions is compressed with a compression ratio r = 12. There is 700 kJ/kg of heat addition</span>
+<span class="c1">#What is the net specific work of the cycle?</span>
+<span class="c1">#What is the thermal efficiency of this process?</span>
+<span class="c1">#What is the thermal efficiency not assuming constant specific heats?</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+<span class="c1">#otto cycle has 4 states</span>
+
+<span class="c1">#state 1</span>
+<span class="c1">#given: T = 300 K, P = 100 kPa</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span> <span class="c1">#assumption for air</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">100000</span>
+
+<span class="c1">#state 2: after isentropic compression</span>
+<span class="c1">#r = 12</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="c1"># v1/v2 = r</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">12</span>
+<span class="c1">#s1 = s2</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">SV</span> <span class="o">=</span> <span class="n">s2</span><span class="p">,</span> <span class="n">v2</span>
+
+<span class="c1">#state 3: after constant volume heat addition</span>
+<span class="c1">#700 kJ/kg heat addition; u3 = u2 + qin</span>
+<span class="c1">#v2 = v3</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u3</span> <span class="o">=</span> <span class="n">u2</span> <span class="o">+</span> <span class="mi">700000</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">v2</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">UV</span> <span class="o">=</span> <span class="n">u3</span><span class="p">,</span> <span class="n">v3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">species3</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1">#state 4: after isentropic expansion</span>
+<span class="c1">#v4 = rv3</span>
+<span class="c1">#s3 = s4</span>
+<span class="n">species4</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">v4</span> <span class="o">=</span> <span class="mi">12</span><span class="o">*</span><span class="n">v3</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s4</span> <span class="o">=</span> <span class="n">s3</span>
+<span class="n">species4</span><span class="o">.</span><span class="n">SV</span> <span class="o">=</span> <span class="n">s4</span><span class="p">,</span> <span class="n">v4</span>
+
+<span class="c1">#What is the net specific work of the cycle?</span>
+<span class="c1">#net work is found from work of each process or the difference of heat in vs heat out</span>
+<span class="c1">#w = qin - qout</span>
+<span class="c1">#qout = u4 - u1</span>
+<span class="n">u4</span> <span class="o">=</span> <span class="n">species4</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mi">700000</span> <span class="o">-</span> <span class="p">(</span><span class="n">u4</span> <span class="o">-</span> <span class="n">u1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The net specific work of the process is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">w</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span> 
+
+<span class="c1">#What is the thermal efficiency of this process?</span>
+<span class="c1">#nthotto = 1 - 1/r^(k-1)</span>
+<span class="c1">#k = 1.4 for air. Ratio of specific heats</span>
+<span class="n">nth_otto</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">12</span><span class="o">**</span><span class="p">(</span><span class="mf">1.4</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The thermal efficiency of the process not assuming constant specific heats is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">nth_otto</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">%.&#39;</span><span class="p">)</span> 
+
+<span class="c1">#What is the thermal efficiency not assuming constant specific heats?</span>
+<span class="c1">#nth = 1 - qout/qin</span>
+<span class="n">nth</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">u4</span> <span class="o">-</span><span class="n">u1</span><span class="p">)</span><span class="o">/</span><span class="mi">700000</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The thermal efficiency of the process is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">nth</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">%.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1571.886568324419
+The net specific work of the process is 417.33 kJ/kg.
+The thermal efficiency of the process not assuming constant specific heats is 63.0%.
+The thermal efficiency of the process is 59.6%.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#6</span>
+<span class="c1">#An ideal otto cycle has a compresion ratio of 10. The air is at P = 120 kPa and T = 300 K before compression and reaches P = 4.5 MPa and T = 1500 K after heat addition.</span>
+<span class="c1">#What is the specific heat addition of the process? </span>
+<span class="c1">#What is the thermal efficiency of the cycle?</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+
+<span class="c1">#state 3</span>
+<span class="c1">#Given: P = 4.5 MPa and T = 1500 K</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span> <span class="c1">#assumption for air</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">1500</span><span class="p">,</span> <span class="mi">4500000</span>
+
+<span class="c1">#state 4</span>
+<span class="c1">#r = 10</span>
+<span class="c1">#s3 = s4</span>
+<span class="n">species4</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">#v4 = rv3</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+<span class="n">v4</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">v3</span>
+<span class="n">species4</span><span class="o">.</span><span class="n">SV</span> <span class="o">=</span> <span class="n">s3</span><span class="p">,</span> <span class="n">v4</span>
+
+<span class="c1">#state 1</span>
+<span class="c1">#given: P = 120 kPa, T = 300 K</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">120000</span>
+
+<span class="c1">#state 2</span>
+<span class="c1">#v2 = v3</span>
+<span class="c1">#s2 = s1</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">v3</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">SV</span> <span class="o">=</span> <span class="n">s2</span><span class="p">,</span> <span class="n">v2</span>
+
+<span class="c1">#What is the specific heat addition of the process? </span>
+<span class="c1">#qin = u3 - u2</span>
+<span class="n">u3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">qin</span> <span class="o">=</span> <span class="n">u3</span> <span class="o">-</span> <span class="n">u2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The heat addition to the system is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">qin</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+
+<span class="c1">#What is the thermal efficiency of the cycle?</span>
+<span class="c1">#nth = 1 - qout/qin</span>
+<span class="c1">#qout = u4 -u1</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u4</span> <span class="o">=</span> <span class="n">species4</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">qout</span> <span class="o">=</span> <span class="n">u4</span> <span class="o">-</span><span class="n">u1</span>
+<span class="n">nth</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">qout</span><span class="o">/</span><span class="n">qin</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The thermal efficiency of the cycle is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">nth</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">%.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The heat addition to the system is 736.35 kJ/kg.
+The thermal efficiency of the cycle is 60.6%.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#7</span>
+<span class="c1">#An ideal diesel cycle has a cutoff ratio of 2 and a compression ratio of 15. The air is at ambient conditions prior to compression.</span>
+<span class="c1">#What is the heat addition to the system?</span>
+<span class="c1">#What is the thermal efficiency of the cycle?</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+
+<span class="c1">#state 1</span>
+<span class="c1">#given P = 100 kPa and T = 300 K</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span> <span class="c1">#assumption for air</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">100000</span>
+
+<span class="c1">#state 2</span>
+<span class="c1">#s2 = s1</span>
+<span class="c1">#v1/v2 = r</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">v1</span><span class="o">/</span><span class="mi">15</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">SV</span> <span class="o">=</span> <span class="n">s2</span><span class="p">,</span> <span class="n">v2</span>
+
+<span class="c1">#state 3</span>
+<span class="c1">#P2 = P3</span>
+<span class="c1">#v3/v2 = r</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">TP</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">P3</span> <span class="o">=</span> <span class="n">P2</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">v2</span><span class="o">*</span><span class="mi">2</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="n">P3</span><span class="p">,</span> <span class="n">v3</span>
+
+<span class="c1">#state 4</span>
+<span class="c1">#v1 = v4</span>
+<span class="c1">#s3 = s4</span>
+<span class="n">species4</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">v4</span> <span class="o">=</span> <span class="n">v1</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s4</span> <span class="o">=</span> <span class="n">s3</span>
+<span class="n">species4</span><span class="o">.</span><span class="n">SV</span> <span class="o">=</span> <span class="n">s4</span><span class="p">,</span><span class="n">v4</span>
+
+<span class="c1">#What is the heat addition to the system?</span>
+<span class="c1">#qin = h3 - h2</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">qin</span> <span class="o">=</span> <span class="n">h3</span> <span class="o">-</span> <span class="n">h2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The heat addition to the system is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">qin</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+
+<span class="c1">#what is the thermal efficiency of the cycle?</span>
+<span class="c1">#nth = 1 - qout/qin</span>
+<span class="c1">#qout = u4 - u1</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u4</span> <span class="o">=</span> <span class="n">species4</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">qout</span> <span class="o">=</span> <span class="n">u4</span> <span class="o">-</span> <span class="n">u1</span>
+<span class="n">nth</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">qout</span><span class="o">/</span><span class="n">qin</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The thermal efficiency of the cycle is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">nth</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">%.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The heat addition to the system is 1055.65 kJ/kg.
+The thermal efficiency of the cycle is 56.0%.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#8</span>
+<span class="c1">#Air in an ideal diesel cycle is at P = 4 MPa and T = 1500 K after constant pressure heat addition. The cutoff ratio is 1.7 and the compression ration is 18.</span>
+<span class="c1">#What is the heat addition to the system?</span>
+<span class="c1">#What is the net specific work in the cycle?</span>
+<span class="c1">#What is the thermal efficiency of the cycle?</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+
+<span class="c1">#state 3</span>
+<span class="c1">#Given P = 4 MPa and T = 1500 K</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span> <span class="c1"># assumption for air</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">1500</span><span class="p">,</span> <span class="mi">4000000</span>
+
+<span class="c1">#state 2</span>
+<span class="c1">#P3 = P2</span>
+<span class="c1">#v3/v2 = r</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">TV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">v3</span><span class="o">/</span><span class="mf">1.7</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">PV</span> <span class="o">=</span> <span class="mi">4000000</span><span class="p">,</span> <span class="n">v2</span>
+
+<span class="c1">#state 1</span>
+<span class="c1">#s2 = s1</span>
+<span class="c1">#v1/v2 = r</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">s2</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">v2</span><span class="o">*</span><span class="mi">18</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">SV</span> <span class="o">=</span> <span class="n">s1</span><span class="p">,</span> <span class="n">v1</span>
+
+<span class="c1">#state 4</span>
+<span class="c1">#v1 = v4</span>
+<span class="c1">#s3 = s4</span>
+<span class="n">species4</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">v4</span> <span class="o">=</span> <span class="n">v1</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s4</span> <span class="o">=</span><span class="n">s3</span>
+<span class="n">species4</span><span class="o">.</span><span class="n">SV</span> <span class="o">=</span> <span class="n">s4</span><span class="p">,</span><span class="n">v4</span>
+
+<span class="c1">#What is the heat addition to the system?</span>
+<span class="c1">#qin = h3 -h2</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">qin</span> <span class="o">=</span> <span class="n">h3</span> <span class="o">-</span> <span class="n">h2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The heat addition to the system is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">qin</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+
+<span class="c1">#What is the net specific work in the cycle?</span>
+<span class="c1">#w = qin - qout</span>
+<span class="c1">#qout = u4 - u1</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">u4</span> <span class="o">=</span> <span class="n">species4</span><span class="o">.</span><span class="n">UP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">qout</span> <span class="o">=</span> <span class="n">u4</span> <span class="o">-</span> <span class="n">u1</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">qin</span> <span class="o">-</span> <span class="n">qout</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The net specific work of the cycle is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">w</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+
+<span class="c1">#What is the thermal efficiency of the cycle?</span>
+<span class="c1">#nth = 1 - qout/qin</span>
+<span class="n">nth</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">qout</span><span class="o">/</span><span class="n">qin</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The thermal efficiency of the cycle is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">nth</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">%.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The heat addition to the system is 745.63 kJ/kg.
+The net specific work of the cycle is 456.48 kJ/kg.
+The thermal efficiency of the cycle is 61.2%.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#9 </span>
+<span class="c1">#A power plant uses an ideal brayton cycle with a pressure ratio of 10. The gas enters the compressor at ambient conditions and enters the turbine at T = 1500 K.</span>
+<span class="c1">#What is the heat addition to the system?</span>
+<span class="c1">#What is the thermal efficiency of the cycle?</span>
+<span class="c1">#If the net power is P = 1 MJ, what is the mass flowrate?</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cantera</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+
+<span class="c1">#state 1</span>
+<span class="c1">#Given P = 100 kPa, T = 300 K</span>
+<span class="n">species1</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span> <span class="c1">#assumption for air</span>
+<span class="n">species1</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">100000</span>
+
+<span class="c1">#state 2</span>
+<span class="c1">#r = P2/P1</span>
+<span class="c1">#s1 = s2</span>
+<span class="n">species2</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="mi">100000</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span>
+<span class="n">species2</span><span class="o">.</span><span class="n">SP</span> <span class="o">=</span> <span class="n">s2</span><span class="p">,</span><span class="n">P2</span>
+
+<span class="c1">#state 3</span>
+<span class="c1">#P2 = P3</span>
+<span class="c1">#Given T3 = 1500</span>
+<span class="n">species3</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">P3</span> <span class="o">=</span> <span class="n">P2</span>
+<span class="n">species3</span><span class="o">.</span><span class="n">TP</span> <span class="o">=</span> <span class="mi">1500</span><span class="p">,</span> <span class="n">P3</span>
+
+<span class="c1">#state 4</span>
+<span class="c1">#P4 = P1</span>
+<span class="c1">#s3 = s4</span>
+<span class="n">species4</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nitrogen</span><span class="p">()</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">SP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">s4</span> <span class="o">=</span> <span class="n">s3</span>
+<span class="n">species4</span><span class="o">.</span><span class="n">SP</span> <span class="o">=</span> <span class="n">s4</span><span class="p">,</span> <span class="mi">100000</span>
+
+<span class="c1">#What is the heat addition to the system?</span>
+<span class="c1">#qin = h3 - h2</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="n">species2</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h3</span> <span class="o">=</span> <span class="n">species3</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">qin</span> <span class="o">=</span> <span class="n">h3</span> <span class="o">-</span> <span class="n">h2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The heat addition to the system is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">qin</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kJ/kg.&#39;</span><span class="p">)</span>
+
+<span class="c1">#What is the thermal efficiency of the cycle?</span>
+<span class="c1">#nth = 1 - qout/qin</span>
+<span class="c1">#qout = h4 - h1</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">species1</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">h4</span> <span class="o">=</span> <span class="n">species4</span><span class="o">.</span><span class="n">HP</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">qout</span> <span class="o">=</span> <span class="n">h4</span> <span class="o">-</span> <span class="n">h1</span>
+<span class="n">nth</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">qout</span><span class="o">/</span><span class="n">qin</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The thermal efficiency of the cycle is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">nth</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">%.&#39;</span><span class="p">)</span>
+
+<span class="c1">#If the net power is P = 2 MJ, what is the mass flowrate?</span>
+<span class="c1">#Wnet = mwnet</span>
+<span class="c1">#wnet = qin - qout</span>
+<span class="n">wnet</span> <span class="o">=</span> <span class="n">qin</span> <span class="o">-</span> <span class="n">qout</span>
+<span class="c1">#Wnet/wnet = m</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000000</span><span class="o">/</span><span class="n">wnet</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The mass flowrate of the cycle is </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> kg/s.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The heat addition to the system is 1077.49 kJ/kg.
+The thermal efficiency of the cycle is 45.8%.
+The mass flowrate of the cycle is 2.03 kg/s.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Exercise_Solutions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Exercise%207.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">11.7. </span>Exercise 7 Solutions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../References%20Cited.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>References Cited</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jonathan R. Scheffe
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
