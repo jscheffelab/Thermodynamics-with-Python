@@ -75,7 +75,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Entropy Change of Real Processes v2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. Exercise Solutions" href="Exercise%20Solutions.html" />
+    <link rel="next" title="10. Gas Power Cycles - Brayton, Otto and Diesel Cycles" href="Gas%20Power%20Cycles.html" />
     <link rel="prev" title="8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators" href="Second%20Law%20of%20Thermodynamics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -204,17 +204,19 @@
 <li class="toctree-l1"><a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html">7. First Law of Thermodynamics - Open Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html">8. Second Law of Thermodynamics - Directionality of Processes, Entropy, Heat Engines and Refrigerators</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Entropy Change of Real and Idealized Processes</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Exercise%20Solutions.html">10. Exercise Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%201.html">10.1. Exercise 1 Solutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%202.html">10.2. Exercise 2 Solutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%203.html">10.3. Exercise 3 Solutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%204.html">10.4. Exercise 4 Solutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%205.html">10.5. Exercise 5 Solutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%206.html">10.6. Exercise 6 Solutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%207.html">10.7. Exercise 7 Solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Gas%20Power%20Cycles.html">10. Gas Power Cycles - Brayton, Otto and Diesel Cycles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Exercise%20Solutions.html">11. Exercise Solutions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%201.html">11.1. Exercise 1 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%202.html">11.2. Exercise 2 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%203.html">11.3. Exercise 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%204.html">11.4. Exercise 4 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%205.html">11.5. Exercise 5 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%206.html">11.6. Exercise 6 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%207.html">11.7. Exercise 7 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exercise_Solutions/Exercise%208.html">11.8. Exercise 8 Solutions</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="References%20Cited.html">11. References Cited</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References%20Cited.html">12. References Cited</a></li>
 </ul>
 
     </div>
@@ -544,7 +546,7 @@ document.write(`
 </section>
 </section>
 <section id="isentropic-processes-of-ideal-gases">
-<h2><span class="section-number">9.2. </span>Isentropic Processes of Ideal Gases<a class="headerlink" href="#isentropic-processes-of-ideal-gases" title="Link to this heading">#</a></h2>
+<span id="isentropicidealgas"></span><h2><span class="section-number">9.2. </span>Isentropic Processes of Ideal Gases<a class="headerlink" href="#isentropic-processes-of-ideal-gases" title="Link to this heading">#</a></h2>
 <p id="index-0">When the entropy change during a process remains unchanged, this is referred to as an  <a class="reference internal" href="../genindex.html"><span class="std std-ref">isentropic process</span></a>. When compression or expansion processes occur reversibly and adiabatically, then they are also by definition isentropic. This can be seen readily from our equation relating entropy to heat transfer discussed in <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#thermodynamicentropy"><span class="std std-numref">Section 8.4</span></a> <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#thermodynamicentropy"><span class="std std-ref">Thermodynamic Definition of Entropy</span></a>, which is <span class="math notranslate nohighlight">\(dS = \frac{1}{T} \delta Q_{\rm rev}\)</span>. As seen, if the process is adiabatic then the magnitude of heat transfer is zero. And, if the process is reversible, then there is no entropy generation, and as a result, an adiabatic and reversible process MUST be isentropic.</p>
 <p>In the special case of an isentropic expansion or compression process of an ideal gas, the left hand sides of <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-m">(8.13)</a> and <a class="reference internal" href="Second%20Law%20of%20Thermodynamics.html#equation-eq-n">(8.14)</a> are zero and become</p>
 <div class="math notranslate nohighlight" id="equation-eq-p">
@@ -572,7 +574,7 @@ document.write(`
 <span class="eqno">(9.25)<a class="headerlink" href="#equation-eq-x" title="Link to this equation">#</a></span>\[\frac{p_2}{p_1} = (\frac{v_1}{v_2})^{k}\]</div>
 </section>
 <section id="reversible-steady-state-work">
-<h2><span class="section-number">9.3. </span>Reversible Steady State Work<a class="headerlink" href="#reversible-steady-state-work" title="Link to this heading">#</a></h2>
+<span id="reversiblework"></span><h2><span class="section-number">9.3. </span>Reversible Steady State Work<a class="headerlink" href="#reversible-steady-state-work" title="Link to this heading">#</a></h2>
 <p id="index-1">Interestingly, for steady state open systems such as compressors, the isentropic case does not correspond to the minimum shaft work required. Rather, less work is required heat transfer occurs during compressions. In the case of a compressor, this is because cooling during compression decreases the specific volume relative to an isentropic processes. At first, it may be tempting to think that the minimum work is related to the reversible boundary work equation discussed in <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#reversibility"><span class="std std-numref">Section 6.1</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Continued.html#reversibility"><span class="std std-ref">More on Boundary Work - Reversible Processes</span></a>, which says that <span class="math notranslate nohighlight">\(W_{\rm rev} = \int_{1}^{2} pdV\)</span>. However, compressors are steady state devices with one inlet and one exit, and are governed by the first law of thermodynamics for open systems (<a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html#firstlawopen"><span class="std std-numref">Section 7</span></a> <a class="reference internal" href="First%20Law%20of%20Thermodynamics%20Open%20Systems.html#firstlawopen"><span class="std std-ref">First Law of Thermodynamics - Open Systems</span></a>). Thus, the open system energy conservation equation reduces to the following.</p>
 <div class="math notranslate nohighlight" id="equation-eq-y">
 <span class="eqno">(9.26)<a class="headerlink" href="#equation-eq-y" title="Link to this equation">#</a></span>\[0 = \dot Q_{\rm rev} - \dot W_{\rm rev} + \dot m(h_{\rm i}-h_{\rm e}) + \dot m(\frac{{\rm V_i}^2}{2}-\frac{{\rm V_e}^2}{2}) +\dot m g(z_{\rm i} -z_{\rm e})\]</div>
@@ -691,7 +693,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Plotting the results we see that isothermal cooling results in compression of the gas at smaller specific volumes, resulting in less work, consistent with <a class="reference internal" href="#equation-eq-ee">(9.33)</a>, or <span class="math notranslate nohighlight">\(w_{\rm rev} =  - \int_{1}^{2} vdp\)</span>.</p>
+<p>Plotting the results we see that isothermal cooling results in compression of the gas at smaller specific volumes, resulting in less work, consistent with <a class="reference internal" href="#equation-eq-dd">(9.31)</a>, or <span class="math notranslate nohighlight">\(w_{\rm rev} =  - \int_{1}^{2} vdp\)</span>.</p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -724,11 +726,11 @@ document.write(`
 &lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:13: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-/tmp/ipykernel_15027/4046737556.py:8: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18426/4046737556.py:8: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   plt.annotate(&#39;$pv^\mathrm{k} = const$&#39;, (0.22,730000), color=&#39;Blue&#39;, fontsize=12)
-/tmp/ipykernel_15027/4046737556.py:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18426/4046737556.py:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   plt.xlabel(&#39;$v$ $(\mathrm{m^3 kg^{-1}})$&#39;,  fontsize=12)
-/tmp/ipykernel_15027/4046737556.py:13: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18426/4046737556.py:13: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   plt.ylabel(&#39;$p$ $({\mathrm{Pa})}$&#39;,  fontsize=12)
 </pre></div>
 </div>
@@ -806,7 +808,7 @@ document.write(`
 </section>
 </section>
 <section id="isentropic-efficiency">
-<h2><span class="section-number">9.4. </span>Isentropic Efficiency<a class="headerlink" href="#isentropic-efficiency" title="Link to this heading">#</a></h2>
+<span id="isentropicefficiency"></span><h2><span class="section-number">9.4. </span>Isentropic Efficiency<a class="headerlink" href="#isentropic-efficiency" title="Link to this heading">#</a></h2>
 <p id="index-2">The <a class="reference internal" href="../genindex.html"><span class="std std-ref">isentropic efficiency</span></a> is a measure of the work input or output of a real process (i.e., irreversible) relative to the idealized or isentropic process. The comparison is always made for adiabatic systems between the same two pressures and for identical mass flowrates. As it is an efficiency, it is always a value that is constrained to be between 0 and 1. And thus, in the case of a turbine where the real work output will always be less than the reversible work output, the isentropic efficiency (<span class="math notranslate nohighlight">\(\eta_t\)</span>) is the ratio of the real work output relative to the isentropic work output, as seen below.</p>
 <div class="math notranslate nohighlight" id="equation-eq-hh">
 <span class="eqno">(9.36)<a class="headerlink" href="#equation-eq-hh" title="Link to this equation">#</a></span>\[\eta_{\rm t} = \frac{\dot W}{(\dot W)_{\rm s}} = \frac{h_1-h_2}{h_1-h_{2s}}\]</div>
@@ -915,9 +917,9 @@ document.write(`
 &lt;&gt;:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-/tmp/ipykernel_15027/1549023197.py:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18426/1549023197.py:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   ax.set_xlabel(&#39;$s$ $(\mathrm{J kg^{-1} K^{-1}})$&#39;,  fontsize=12)
-/tmp/ipykernel_15027/1549023197.py:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18426/1549023197.py:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   ax.set_ylabel(&#39;$T$ $({\mathrm{K})}$&#39;,  fontsize=12)
 </pre></div>
 </div>
@@ -1039,9 +1041,9 @@ document.write(`
 &lt;&gt;:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-/tmp/ipykernel_15027/3388790894.py:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18426/3388790894.py:86: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   ax.set_xlabel(&#39;$s$ $(\mathrm{J kg^{-1} K^{-1}})$&#39;,  fontsize=12)
-/tmp/ipykernel_15027/3388790894.py:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18426/3388790894.py:87: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   ax.set_ylabel(&#39;$T$ $({\mathrm{K})}$&#39;,  fontsize=12)
 </pre></div>
 </div>
@@ -1208,7 +1210,7 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-/tmp/ipykernel_15027/1278372899.py:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/tmp/ipykernel_18426/1278372899.py:12: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   ax.set_ylabel(&#39;pressure $({\mathrm{kPa})}$&#39;,  fontsize=12)
 </pre></div>
 </div>
@@ -1252,9 +1254,9 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The exact pressure, determined using the fsolve function is 47.43 kPa
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_15027/3904513878.py:16: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_18426/3904513878.py:16: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   state2s.SP=s2s,p2
-/tmp/ipykernel_15027/3904513878.py:19: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+/tmp/ipykernel_18426/3904513878.py:19: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   state2.HP=h2,p2
 </pre></div>
 </div>
@@ -1276,7 +1278,7 @@ document.write(`
 <li><p>Repeat #9 but using specific heats.</p></li>
 <li><p>From <a class="reference internal" href="#isentropicpumpingexample"><span class="std std-numref">Section 9.3.1</span></a> <a class="reference internal" href="#isentropicpumpingexample"><span class="std std-ref">Example - Isentropic Pumping</span></a>. For this do not assume incompressible or Cantera and rather use data provided in link below to help calculate – “Calculate the work per kg to pump water isentropically from 100 kPa, 30 °C to 5 MPa. Assume steady state, reversible and adiabatic.  Use <a class="reference external" href="https://webbook.nist.gov/chemistry/fluid/">https://webbook.nist.gov/chemistry/fluid/</a> .</p></li>
 </ol>
-<p><a class="reference internal" href="Exercise_Solutions/Exercise%207.html#exercise7solutions"><span class="std std-numref">Section 10.7</span></a> <a class="reference internal" href="Exercise_Solutions/Exercise%207.html#exercise7solutions"><span class="std std-ref">Exercise 7 Solutions</span></a></p>
+<p><a class="reference internal" href="Exercise_Solutions/Exercise%207.html#exercise7solutions"><span class="std std-numref">Section 11.7</span></a> <a class="reference internal" href="Exercise_Solutions/Exercise%207.html#exercise7solutions"><span class="std std-ref">Exercise 7 Solutions</span></a></p>
 </section>
 </section>
 </section>
@@ -1321,11 +1323,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="Exercise%20Solutions.html"
+       href="Gas%20Power%20Cycles.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Exercise Solutions</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Gas Power Cycles - Brayton, Otto and Diesel Cycles</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
