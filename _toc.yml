@@ -19,6 +19,7 @@ chapters:
 - file: chapters/Second Law of Thermodynamics
 - file: chapters/Entropy Change of Real Processes v2
 - file: chapters/Gas Power Cycles
+- file: chapters/Vapor Power Cycles
 - file: chapters/Exercise Solutions
   sections: 
   - file: chapters/Exercise_Solutions/Exercise 1
